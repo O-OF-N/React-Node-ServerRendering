@@ -12,7 +12,7 @@ export default class Component extends React.Component {
         return (
             <html>
             <head>
-                <title>Component</title>
+                <title>Diabeties</title>
                 <link rel="stylesheet" href="/stylesheets/style.css"/>
             </head>
             <body>

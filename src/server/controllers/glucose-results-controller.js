@@ -5,7 +5,7 @@ import * as GlucoseService from '../helper/glucose-resource-helper';
 
 const router = express.Router();
 
-router.get('/', co(function* (req, res, next) {
+router.get('/glucose', co(function* (req, res, next) {
     try {
         const result = yield serverCall();
         const glucose = GlucoseService.fetchGlucoseResults(result);

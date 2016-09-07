@@ -47,7 +47,7 @@ var Component = function (_React$Component) {
                     _react2.default.createElement(
                         'title',
                         null,
-                        'Component'
+                        'Diabeties'
                     ),
                     _react2.default.createElement('link', { rel: 'stylesheet', href: '/stylesheets/style.css' })
                 ),

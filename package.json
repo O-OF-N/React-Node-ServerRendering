@@ -9,7 +9,8 @@
     "build-ui": "webpack -p",
     "build": "npm run clean && npm run build-server && npm run build-ui && npm run copy-public",
     "postinstall": "npm run build",
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "dev": "npm run build && npm start"
   },
   "dependencies": {
     "axios": "^0.13.1",

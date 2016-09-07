@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 // controller imports
+import authorizationController from './controllers/authorization-controller';
 import viewRendererController from './controllers/view-renderer-controller';
 import glucoseController from './controllers/glucose-results-controller';
 
@@ -25,6 +26,7 @@ app.use(express.static(path.join(__dirname, '/../../public')));
 
 app.use('/',viewRendererController);
 app.use('/results', glucoseController);
+app.use('/authorization', authorizationController);
 
 // catch 404 and forward to error handler
 app.use((req, res, next)=> {

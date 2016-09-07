@@ -24,7 +24,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var router = _express2.default.Router();
 
-router.get('/', (0, _wrap2.default)(regeneratorRuntime.mark(function _callee(req, res, next) {
+router.get('/glucose', (0, _wrap2.default)(regeneratorRuntime.mark(function _callee(req, res, next) {
     var result, glucose;
     return regeneratorRuntime.wrap(function _callee$(_context) {
         while (1) {

@@ -1,2 +1,2 @@
-# diabeties
+# diabetesdashboard
 Node+ react starter

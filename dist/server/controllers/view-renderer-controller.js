@@ -62,6 +62,9 @@ router.get('/', (0, _wrap2.default)(regeneratorRuntime.mark(function _callee(req
 })));
 
 router.get('/callback', function (req, res, next) {
+    console.log('in call back');
+    console.log(req.query);
+    console.log(req.query.code);
     var html = _server2.default.renderToString(_react2.default.createElement(_index2.default));
     res.send(html);
 });

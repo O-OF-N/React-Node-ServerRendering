@@ -17,6 +17,9 @@ router.get('/', co(function* (req, res, next) {
 }));
 
 router.get('/callback', (req, res, next) => {
+    console.log('in call back');
+    console.log(req.query);
+    console.log(req.query.code);
     const html = ReactDomServer.renderToString(
         React.createElement(Component)
     );

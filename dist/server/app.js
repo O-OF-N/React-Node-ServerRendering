@@ -1,9 +1,5 @@
 'use strict';
 
-var _authorizationController = require('./controllers/authorization-controller');
-
-var _authorizationController2 = _interopRequireDefault(_authorizationController);
-
 var _viewRendererController = require('./controllers/view-renderer-controller');
 
 var _viewRendererController2 = _interopRequireDefault(_viewRendererController);
@@ -40,7 +36,6 @@ app.use(express.static(path.join(__dirname, '/../../public')));
 
 app.use('/', _viewRendererController2.default);
 app.use('/results', _glucoseResultsController2.default);
-app.use('/authorization', _authorizationController2.default);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

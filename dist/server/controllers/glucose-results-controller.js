@@ -16,7 +16,7 @@ var _wrap2 = _interopRequireDefault(_wrap);
 
 var _glucoseResourceHelper = require('../helper/glucose-resource-helper');
 
-var GlucoseService = _interopRequireWildcard(_glucoseResourceHelper);
+var GlucoseHelper = _interopRequireWildcard(_glucoseResourceHelper);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -36,7 +36,7 @@ router.get('/glucose', (0, _wrap2.default)(regeneratorRuntime.mark(function _cal
 
                 case 3:
                     result = _context.sent;
-                    glucose = GlucoseService.fetchGlucoseResults(result);
+                    glucose = GlucoseHelper.fetchGlucoseResults(result);
 
                     res.send(glucose);
                     _context.next = 12;

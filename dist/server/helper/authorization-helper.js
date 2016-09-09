@@ -41,9 +41,12 @@ var authorizeURL = regeneratorRuntime.mark(function authorizeURL(iss, launch) {
                         return ext.url === 'authorize';
                     })[0].valueUri;
                     redirectUrl = authorizeURL + '?response_type=' + Constants.RESPONSE_TYPE + '&client_id=' + Constants.CLIENT_ID + '&redirect_uri=' + Constants.REDIRECT_URL + '&launch=' + launch + '&scope=' + Constants.SCOPE + '&state=98wrghuwuogerg97&aud=' + iss;
+
+                    console.log('>>>>>>>>>');
+                    console.log(redirectUrl);
                     return _context.abrupt('return', redirectUrl);
 
-                case 7:
+                case 9:
                 case 'end':
                     return _context.stop();
             }

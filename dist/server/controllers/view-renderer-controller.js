@@ -52,9 +52,8 @@ router.get('/', (0, _wrap2.default)(regeneratorRuntime.mark(function _callee(req
                     url = _context.sent;
 
                     res.redirect(url);
-                    console.log('outside>>>>');
 
-                case 9:
+                case 8:
                 case 'end':
                     return _context.stop();
             }

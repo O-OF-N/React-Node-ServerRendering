@@ -14,7 +14,6 @@ router.get('/', co(function* (req, res, next) {
     ({ iss, launch } = req.query);
     const url = yield AuthorizationHelper.authorize(iss, launch);
     res.redirect(url);
-    console.log('outside>>>>');
 }));
 
 router.get('/callback', (req, res, next) => {

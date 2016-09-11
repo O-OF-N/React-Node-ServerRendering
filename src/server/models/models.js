@@ -20,5 +20,5 @@ export const AuthorizationHeader = new Record({
 });
 
 export const POSTHeader = new Record({
-    "content-type": "x-www-form-urlencoded"
+    "Content-Type": "x-www-form-urlencoded"
 })

@@ -26,6 +26,7 @@
     "fhir.js": "0.0.19",
     "immutable": "^3.8.1",
     "morgan": "~1.7.0",
+    "querystring":"0.2.0",
     "react": "^15.3.1",
     "react-dom": "^15.3.1",
     "serve-favicon": "~2.3.0",

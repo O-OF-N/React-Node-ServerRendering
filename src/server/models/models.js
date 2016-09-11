@@ -7,6 +7,10 @@ export const Observation = new Record({
     interpretation: ''
 });
 
+export const AccessToken = new Record({
+    patient:0,
+    access_token:''
+});
 
 export const AccessTokenBody = new Record({
     grant_type: Constants.GRANT_TYPE,
@@ -21,4 +25,4 @@ export const AuthorizationHeader = new Record({
 
 export const POSTHeader = new Record({
     "Content-Type": "x-www-form-urlencoded"
-})
+});

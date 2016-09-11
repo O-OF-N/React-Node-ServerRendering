@@ -46,9 +46,10 @@ var getAccessToken = regeneratorRuntime.mark(function getAccessToken(code) {
                 case 3:
                     result = _context.sent;
 
-                    console.log(result);
+                    console.log(result.patient);
+                    console.log(result.access_token);
 
-                case 5:
+                case 6:
                 case 'end':
                     return _context.stop();
             }

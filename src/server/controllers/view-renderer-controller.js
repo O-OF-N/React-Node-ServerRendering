@@ -16,14 +16,17 @@ router.get('/', co(function* (req, res, next) {
     res.redirect(url);
 }));
 
-router.get('/callback', (req, res, next) => {
+router.get('/callback', co(function* (req, res, next) {
     console.log('in call back');
     console.log(req.query);
     console.log(req.query.code);
+    let code = null;
+    ({ code, state } = req.query);
+    yield AuthorizationHelper.accessToken(code);
     const html = ReactDomServer.renderToString(
         React.createElement(Component)
     );
     res.send(html);
-});
+}));
 
 export default router;

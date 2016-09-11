@@ -8,7 +8,7 @@ var _express = require('express');
 
 var _express2 = _interopRequireDefault(_express);
 
-var _fhirResourceService = require('../service/fhir-resource-service');
+var _httpService = require('../service/http-service');
 
 var _wrap = require('../util/wrap');
 
@@ -17,6 +17,10 @@ var _wrap2 = _interopRequireDefault(_wrap);
 var _glucoseResourceHelper = require('../helper/glucose-resource-helper');
 
 var GlucoseHelper = _interopRequireWildcard(_glucoseResourceHelper);
+
+var _models = require('../models/models');
+
+var Records = _interopRequireWildcard(_models);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -32,7 +36,7 @@ router.get('/glucose', (0, _wrap2.default)(regeneratorRuntime.mark(function _cal
                 case 0:
                     _context.prev = 0;
                     _context.next = 3;
-                    return (0, _fhirResourceService.serverCall)();
+                    return (0, _httpService.get)(Constants.OBSERVATIONS_FETCH_URL, new Records.AuthorizationHeader());
 
                 case 3:
                     result = _context.sent;

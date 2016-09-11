@@ -61,13 +61,35 @@ router.get('/', (0, _wrap2.default)(regeneratorRuntime.mark(function _callee(req
     }, _callee, this);
 })));
 
-router.get('/callback', function (req, res, next) {
-    console.log('in call back');
-    console.log(req.query);
-    console.log(req.query.code);
-    var html = _server2.default.renderToString(_react2.default.createElement(_index2.default));
-    res.send(html);
-});
+router.get('/callback', (0, _wrap2.default)(regeneratorRuntime.mark(function _callee2(req, res, next) {
+    var code, _req$query2, html;
+
+    return regeneratorRuntime.wrap(function _callee2$(_context2) {
+        while (1) {
+            switch (_context2.prev = _context2.next) {
+                case 0:
+                    console.log('in call back');
+                    console.log(req.query);
+                    console.log(req.query.code);
+                    code = null;
+                    _req$query2 = req.query;
+                    code = _req$query2.code;
+                    state = _req$query2.state;
+                    _context2.next = 9;
+                    return AuthorizationHelper.accessToken(code);
+
+                case 9:
+                    html = _server2.default.renderToString(_react2.default.createElement(_index2.default));
+
+                    res.send(html);
+
+                case 11:
+                case 'end':
+                    return _context2.stop();
+            }
+        }
+    }, _callee2, this);
+})));
 
 exports.default = router;
 //# sourceMappingURL=view-renderer-controller.js.map

@@ -1,15 +1,25 @@
 "use strict";
 import co from 'co';
 import * as Constants from '../util/constants';
-import * as ServerCall from '../service/fhir-resource-service'
-
+import * as ServerCall from '../service/http-service'
+import * as Records from '../models/models';
 export const authorize = (iss, launch) =>
-    co(authorizeURL.bind(this, iss, launch))
+    co(getaAuthorizeURL.bind(this, iss, launch))
         .catch(console.log);
 
-const authorizeURL = function* (iss, launch) {
+export const accessToken = (code) =>
+    co(getAccessToken.bind(this, code))
+        .catch(console.log);
+
+const getAccessToken = function* (code) {
+    const requestBody = new Records.AccessTokenBody({code});
+    const result = yield ServerCall.post(Constants.TOKEN_URL,requestBody,new Records.POSTHeader());
+    console.log(result);
+};
+
+const getaAuthorizeURL = function* (iss, launch) {
     const issURl = `${decodeURIComponent(iss)}/metadata`;
-    const result = yield ServerCall.callUrl(issURl);
+    const result = yield ServerCall.get(issURl, new Records.AuthorizationHeader());
     const authorizeURL = result.data.rest[0].security.extension[0].extension.filter(ext => ext.url === 'authorize')[0].valueUri;
     const redirectUrl = authorizeURL +
         '?response_type=' + Constants.RESPONSE_TYPE +
@@ -20,3 +30,5 @@ const authorizeURL = function* (iss, launch) {
         '&state=98wrghuwuogerg97&aud=' + iss;
     return redirectUrl;
 };
+
+

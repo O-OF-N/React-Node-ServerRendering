@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.callUrl = exports.callUrlWithoutHeader = exports.serverCall = undefined;
+exports.post = exports.get = undefined;
 
 var _axios = require('axios');
 
@@ -17,13 +17,11 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var serverCall = exports.serverCall = function serverCall() {
-  return _axios2.default.get(Constants.OBSERVATIONS_FETCH_URL, { headers: Constants.AUTHORIZATION_HEADER });
+var get = exports.get = function get(url, header) {
+  return _axios2.default.get(url, header.toJS());
 };
-var callUrlWithoutHeader = exports.callUrlWithoutHeader = function callUrlWithoutHeader(url) {
-  return _axios2.default.get(url, {});
+
+var post = exports.post = function post(url, body, header) {
+  return _axios2.default.post(url, body.toJS(), header.toJS());
 };
-var callUrl = exports.callUrl = function callUrl(url) {
-  return _axios2.default.get(url, { headers: Constants.AUTHORIZATION_HEADER });
-};
-//# sourceMappingURL=fhir-resource-service.js.map
+//# sourceMappingURL=http-service.js.map

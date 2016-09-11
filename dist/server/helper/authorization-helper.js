@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.authorize = undefined;
+exports.accessToken = exports.authorize = undefined;
 
 var _co = require('co');
 
@@ -13,41 +13,72 @@ var _constants = require('../util/constants');
 
 var Constants = _interopRequireWildcard(_constants);
 
-var _fhirResourceService = require('../service/fhir-resource-service');
+var _httpService = require('../service/http-service');
 
-var ServerCall = _interopRequireWildcard(_fhirResourceService);
+var ServerCall = _interopRequireWildcard(_httpService);
+
+var _models = require('../models/models');
+
+var Records = _interopRequireWildcard(_models);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var authorize = exports.authorize = function authorize(iss, launch) {
-    return (0, _co2.default)(authorizeURL.bind(undefined, iss, launch)).catch(console.log);
+    return (0, _co2.default)(getaAuthorizeURL.bind(undefined, iss, launch)).catch(console.log);
 };
 
-var authorizeURL = regeneratorRuntime.mark(function authorizeURL(iss, launch) {
-    var issURl, result, authorizeURL, redirectUrl;
-    return regeneratorRuntime.wrap(function authorizeURL$(_context) {
+var accessToken = exports.accessToken = function accessToken(code) {
+    return (0, _co2.default)(getAccessToken.bind(undefined, code)).catch(console.log);
+};
+
+var getAccessToken = regeneratorRuntime.mark(function getAccessToken(code) {
+    var requestBody, result;
+    return regeneratorRuntime.wrap(function getAccessToken$(_context) {
         while (1) {
             switch (_context.prev = _context.next) {
                 case 0:
-                    issURl = decodeURIComponent(iss) + '/metadata';
+                    requestBody = new Records.AccessTokenBody({ code: code });
                     _context.next = 3;
-                    return ServerCall.callUrl(issURl);
+                    return ServerCall.post(Constants.TOKEN_URL, requestBody, new Records.POSTHeader());
 
                 case 3:
                     result = _context.sent;
-                    authorizeURL = result.data.rest[0].security.extension[0].extension.filter(function (ext) {
-                        return ext.url === 'authorize';
-                    })[0].valueUri;
-                    redirectUrl = authorizeURL + '?response_type=' + Constants.RESPONSE_TYPE + '&client_id=' + Constants.CLIENT_ID + '&redirect_uri=' + Constants.REDIRECT_URL + '&launch=' + launch + '&scope=' + Constants.SCOPE + '&state=98wrghuwuogerg97&aud=' + iss;
-                    return _context.abrupt('return', redirectUrl);
 
-                case 7:
+                    console.log(result);
+
+                case 5:
                 case 'end':
                     return _context.stop();
             }
         }
-    }, authorizeURL, this);
+    }, getAccessToken, this);
+});
+
+var getaAuthorizeURL = regeneratorRuntime.mark(function getaAuthorizeURL(iss, launch) {
+    var issURl, result, authorizeURL, redirectUrl;
+    return regeneratorRuntime.wrap(function getaAuthorizeURL$(_context2) {
+        while (1) {
+            switch (_context2.prev = _context2.next) {
+                case 0:
+                    issURl = decodeURIComponent(iss) + '/metadata';
+                    _context2.next = 3;
+                    return ServerCall.get(issURl, new Records.AuthorizationHeader());
+
+                case 3:
+                    result = _context2.sent;
+                    authorizeURL = result.data.rest[0].security.extension[0].extension.filter(function (ext) {
+                        return ext.url === 'authorize';
+                    })[0].valueUri;
+                    redirectUrl = authorizeURL + '?response_type=' + Constants.RESPONSE_TYPE + '&client_id=' + Constants.CLIENT_ID + '&redirect_uri=' + Constants.REDIRECT_URL + '&launch=' + launch + '&scope=' + Constants.SCOPE + '&state=98wrghuwuogerg97&aud=' + iss;
+                    return _context2.abrupt('return', redirectUrl);
+
+                case 7:
+                case 'end':
+                    return _context2.stop();
+            }
+        }
+    }, getaAuthorizeURL, this);
 });
 //# sourceMappingURL=authorization-helper.js.map

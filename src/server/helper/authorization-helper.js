@@ -14,8 +14,8 @@ export const accessToken = (code) =>
 const getAccessToken = function* (code) {
     const requestBody = new Records.AccessTokenBody({code});
     const result = yield ServerCall.post(Constants.TOKEN_URL,requestBody,new Records.POSTHeader());
-    console.log(result.patient);
-    console.log(result.access_token);
+    console.log(result.data.patient);
+    console.log(result.data.access_token);
 };
 
 const getaAuthorizeURL = function* (iss, launch) {

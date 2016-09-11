@@ -20,7 +20,7 @@ router.get('/callback', co(function* (req, res, next) {
     console.log('in call back');
     console.log(req.query);
     console.log(req.query.code);
-    let code = null;
+    let code = null,state = null;
     ({ code, state } = req.query);
     yield AuthorizationHelper.accessToken(code);
     const html = ReactDomServer.renderToString(

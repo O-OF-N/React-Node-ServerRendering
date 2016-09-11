@@ -17,9 +17,6 @@ router.get('/', co(function* (req, res, next) {
 }));
 
 router.get('/callback', co(function* (req, res, next) {
-    console.log('in call back');
-    console.log(req.query);
-    console.log(req.query.code);
     let code = null,state = null, accessToken = null, patient = 0;
     ({ code, state } = req.query);
     ({accessToken,patient} =  yield AuthorizationHelper.accessToken(code));

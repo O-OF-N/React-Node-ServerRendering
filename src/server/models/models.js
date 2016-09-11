@@ -9,7 +9,7 @@ export const Observation = new Record({
 
 export const AccessToken = new Record({
     patient:0,
-    access_token:''
+    accessToken:''
 });
 
 export const AccessTokenBody = new Record({

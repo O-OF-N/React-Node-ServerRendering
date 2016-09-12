@@ -1,5 +1,6 @@
 import {Record} from 'immutable';
 import * as Constants from '../util/constants';
+import {ActiveEnv,FHIRConfig} from '../config/app-config';
 
 export const Observation = new Record({
     date: '',
@@ -8,25 +9,45 @@ export const Observation = new Record({
 });
 
 export const AccessToken = new Record({
-    patient:0,
-    accessToken:''
+    patient: 0,
+    accessToken: ''
 });
 
-export const AccessTokenBody = new Record({
-    grant_type: Constants.GRANT_TYPE,
+export const AccessTokenRequestBody = new Record({
+    grant_type: FHIRConfig.get(ActiveEnv).grantType,
     code: '',
-    redirect_uri: Constants.REDIRECT_URL,
-    client_id: Constants.CLIENT_ID
+    redirect_uri: FHIRConfig.get(ActiveEnv).redirectUrl,
+    client_id: FHIRConfig.get(ActiveEnv).clientId
 });
 
 export const AuthorizationHeader = new Record({
     headers: Constants.AUTHORIZATION_HEADER
 });
 
-export const auth = new Record({
-    Authorization: ''
-});
-
 export const POSTHeader = new Record({
     "Content-Type": "x-www-form-urlencoded"
+});
+
+export const UserAuthentication = new Record({
+    state: '',
+    iss: '',
+    authorizationCode: '',
+    accessToken: '',
+    authorizationURL: '',
+    tokenURL: '',
+    patient: 0
+});
+
+export const DatabaseConfig = new Record({
+    userName: '',
+    password: '',
+    url: '',
+    schema: ''
+});
+
+export const FHIRAuthorizationConfig = new Record({
+    clientId: '',
+    redirectUrl: '',
+    responseType: 'code',
+    scope: ''
 });

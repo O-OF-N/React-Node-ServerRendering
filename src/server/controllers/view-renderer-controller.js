@@ -24,8 +24,6 @@ router.get('/callback', co(function* (req, res, next) {
     ({accessToken,patient} =  yield AuthorizationHelper.accessToken(code));
     console.log(`patient = ${patient}`);
     console.log(`accessToken = ${accessToken}`);
-    const result = yield get(Constants.OBSERVATIONS_FETCH_URL, new Records.auth({Authorization: `Bearer ${accessToken}`}));
-    console.log(result);
     const html = ReactDomServer.renderToString(
         React.createElement(Component)
     );

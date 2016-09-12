@@ -21,6 +21,8 @@ var _models = require('../models/models');
 
 var Records = _interopRequireWildcard(_models);
 
+var _appConfig = require('../config/app-config');
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -39,17 +41,15 @@ var getAccessToken = regeneratorRuntime.mark(function getAccessToken(code) {
         while (1) {
             switch (_context.prev = _context.next) {
                 case 0:
-                    requestBody = new Records.AccessTokenBody({ code: code });
+                    requestBody = new Records.AccessTokenRequestBody({ code: code });
                     _context.next = 3;
                     return ServerCall.post(Constants.TOKEN_URL, requestBody, new Records.POSTHeader());
 
                 case 3:
                     result = _context.sent;
+                    return _context.abrupt('return', new Records.AccessToken({ patient: result.data.patient, accessToken: result.data.access_token }));
 
-                    console.log(result.patient);
-                    console.log(result.access_token);
-
-                case 6:
+                case 5:
                 case 'end':
                     return _context.stop();
             }
@@ -72,7 +72,7 @@ var getaAuthorizeURL = regeneratorRuntime.mark(function getaAuthorizeURL(iss, la
                     authorizeURL = result.data.rest[0].security.extension[0].extension.filter(function (ext) {
                         return ext.url === 'authorize';
                     })[0].valueUri;
-                    redirectUrl = authorizeURL + '?response_type=' + Constants.RESPONSE_TYPE + '&client_id=' + Constants.CLIENT_ID + '&redirect_uri=' + Constants.REDIRECT_URL + '&launch=' + launch + '&scope=' + Constants.SCOPE + '&state=98wrghuwuogerg97&aud=' + iss;
+                    redirectUrl = authorizeURL + '?response_type=' + _appConfig.FHIRConfig.get(_appConfig.ActiveEnv).responseType + '&client_id=' + _appConfig.FHIRConfig.get(_appConfig.ActiveEnv).clientId + '&redirect_uri=' + _appConfig.FHIRConfig.get(_appConfig.ActiveEnv).redirectUrl + '&scope=' + _appConfig.FHIRConfig.get(_appConfig.ActiveEnv).scope + '&launch=' + launch + '&state=98wrghuwuogerg97&aud=' + iss;
                     return _context2.abrupt('return', redirectUrl);
 
                 case 7:

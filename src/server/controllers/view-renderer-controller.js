@@ -6,7 +6,7 @@ import Component from '../index';
 import * as AuthorizationHelper from '../helper/authorization-helper';
 import co from '../util/wrap';
 import {get} from '../service/http-service'
-
+import * as Records from '../models/models';
 import * as Constants from '../util/constants';
 
 const router = express.Router();
@@ -24,7 +24,7 @@ router.get('/callback', co(function* (req, res, next) {
     ({accessToken,patient} =  yield AuthorizationHelper.accessToken(code));
     console.log(`patient = ${patient}`);
     console.log(`accessToken = ${accessToken}`);
-    const result = yield get(Constants.OBSERVATIONS_FETCH_URL, {Authorization: `Bearer ${accessToken}`});
+    const result = yield get(Constants.OBSERVATIONS_FETCH_URL, new Records.auth({Authorization: `Bearer ${accessToken}`}));
     console.log(result);
     const html = ReactDomServer.renderToString(
         React.createElement(Component)

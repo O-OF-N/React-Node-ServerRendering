@@ -4,6 +4,13 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
+
+//database
+mongoose.connect(appConfig.database.development);
+var db = mongoose.connection;
+db.on('error', (err) => { log.error(`Error connecting to db ${err}`); });
+db.once('open', () => { log.debug('connected to Mongo DB'); });
 
 // controller imports
 import viewRendererController from './controllers/view-renderer-controller';
@@ -23,11 +30,11 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '/../../public')));
 
-app.use('/',viewRendererController);
+app.use('/', viewRendererController);
 app.use('/results', glucoseController);
 
 // catch 404 and forward to error handler
-app.use((req, res, next)=> {
+app.use((req, res, next) => {
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
@@ -38,7 +45,7 @@ app.use((req, res, next)=> {
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
-  app.use((err, req, res) =>{
+  app.use((err, req, res) => {
     res.status(err.status || 500);
     res.render('error', {
       message: err
@@ -48,13 +55,17 @@ if (app.get('env') === 'development') {
 
 // production error handler
 // no stacktraces leaked to user
-app.use((err, req, res)=> {
+app.use((err, req, res) => {
   res.status(err.status || 500);
   res.render('error', {
     message: err.message,
     error: {}
   });
 });
+
+const getDBURL = () => {
+
+}
 
 
 module.exports = app;

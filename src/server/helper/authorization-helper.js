@@ -3,6 +3,7 @@ import co from 'co';
 import * as Constants from '../util/constants';
 import * as ServerCall from '../service/http-service'
 import * as Records from '../models/models';
+import UserAuthenticationModel from '../models/UserAuthenticationSchema';
 import {ActiveEnv,FHIRConfig} from '../config/app-config';
 
 export const authorize = (iss, launch) =>
@@ -20,6 +21,7 @@ const getAccessToken = function* (code) {
 };
 
 const getaAuthorizeURL = function* (iss, launch) {
+    const result1 = UserAuthenticationModel.save({iss});
     const issURl = `${decodeURIComponent(iss)}/metadata`;
     const result = yield ServerCall.get(issURl, new Records.AuthorizationHeader());
     const authorizeURL = result.data.rest[0].security.extension[0].extension.filter(ext => ext.url === 'authorize')[0].valueUri;

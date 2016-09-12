@@ -6,11 +6,19 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 
+import {ActiveEnv, DBConfig} from './config/app-config';
+
+const getDBURL = () => {
+  let userName, password, url, schema;
+  ({ userName, password, url, schema } = DBConfig.get(ActiveEnv));
+  const dbConn = `mongodb://${userName}:${password}@${url}/${schema}`;
+  return dbConn;
+};
 //database
-mongoose.connect(appConfig.database.development);
+mongoose.connect(getDBURL());
 var db = mongoose.connection;
-db.on('error', (err) => { log.error(`Error connecting to db ${err}`); });
-db.once('open', () => { log.debug('connected to Mongo DB'); });
+db.on('error', (err) => { console.log(`Error connecting to db ${err}`); });
+db.once('open', () => { console.log('connected to Mongo DB'); });
 
 // controller imports
 import viewRendererController from './controllers/view-renderer-controller';
@@ -62,10 +70,6 @@ app.use((err, req, res) => {
     error: {}
   });
 });
-
-const getDBURL = () => {
-
-}
 
 
 module.exports = app;

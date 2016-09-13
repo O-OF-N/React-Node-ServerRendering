@@ -5,7 +5,7 @@ export default class Component extends React.Component {
         return (
             <html>
                 <head>
-                    <title>Diabeties</title>
+                    <title>Diabetes Dashboard</title>
                     <link rel="stylesheet" href="/stylesheets/style.css"/>
                 </head>
                 <body>

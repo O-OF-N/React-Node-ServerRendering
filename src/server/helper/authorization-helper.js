@@ -37,6 +37,7 @@ const authorizeHelper = function* (iss, launch) {
         iss, state, authorizationURL, tokenURL
     })
     const model = yield UserAuthenticationModel.save(authModel);
+    console.log('model >>>>>>>>>>>>>>>');
     console.log(model);
     return model;
 };

@@ -6,15 +6,15 @@ import * as Records from '../models/models';
 import UserAuthenticationModel from '../models/UserAuthenticationSchema';
 import {ActiveEnv, FHIRConfig} from '../config/app-config';
 
-export const authorize = (iss, launch) =>
-    co(getaAuthorizeURL.bind(this, iss, launch))
-        .catch(console.log);
 
-export const accessToken = (code, state) =>
-    co(getAccessToken.bind(this, code, state))
-        .catch(console.log);
+//public methods
+export const authorize = (iss, launch) => co(authorizeHelper.bind(this, iss, launch));
 
-const getAccessToken = function* (authorizationCode, state) {
+export const accessToken = (code, state) => co(accessTokenHelper.bind(this, code, state));
+
+
+//private methods
+const accessTokenHelper = function* (authorizationCode, state) {
     let patient, accessToken;
     const [userAuthenticationModel] = yield UserAuthenticationModel.findByState(state);
     console.log(userAuthenticationModel);
@@ -26,7 +26,7 @@ const getAccessToken = function* (authorizationCode, state) {
     return state;
 };
 
-const getaAuthorizeURL = function* (iss, launch) {
+const authorizeHelper = function* (iss, launch) {
     let responseType, clientId, redirectUrl, scope;
     const state = buildState(launch);
     const issURl = `${decodeURIComponent(iss)}/metadata`;

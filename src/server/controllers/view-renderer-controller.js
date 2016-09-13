@@ -12,21 +12,31 @@ import * as Constants from '../util/constants';
 const router = express.Router();
 
 router.get('/', co(function* (req, res, next) {
-    let iss = null, launch = null;
-    ({ iss, launch } = req.query);
-    const url = yield AuthorizationHelper.authorize(iss, launch);
-    res.redirect(url);
+    try {
+        let iss = null, launch = null;
+        ({ iss, launch } = req.query);
+        const url = yield AuthorizationHelper.authorize(iss, launch);
+        res.redirect(url);
+    } catch (err) {
+        console.log('err = ' + err);
+        next(err);
+    }
 }));
 
 router.get('/callback', co(function* (req, res, next) {
-    let code = null, state = null, accessToken = null, patient = 0;
-    ({ code, state } = req.query);
-    yield AuthorizationHelper.accessToken(code, state);
-    const html = ReactDomServer.renderToString(
-        React.createElement(Component)
-    );
-    res.header({ state });
-    res.send(html);
+    try {
+        let code = null, state = null, accessToken = null, patient = 0;
+        ({ code, state } = req.query);
+        yield AuthorizationHelper.accessToken(code, state);
+        const html = ReactDomServer.renderToString(
+            React.createElement(Component)
+        );
+        res.header({ state });
+        res.send(html);
+    } catch (err) {
+        console.log('err = ' + err);
+        next(err);
+    }
 }));
 
 export default router;

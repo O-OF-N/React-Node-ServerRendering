@@ -15,8 +15,9 @@ export const accessToken = (code, state) =>
         .catch(console.log);
 
 const getAccessToken = function* (code, state) {
-    const userAuthenticationModel = yield UserAuthenticationModel.find(state);
+
     console.log('here>>>>>>>>>>');
+    const userAuthenticationModel = yield UserAuthenticationModel.find(state);
     console.log(userAuthenticationModel); 
     const requestBody = new Records.AccessTokenRequestBody({ code });
     const result = yield httpService.post(Constants.TOKEN_URL, requestBody, new Records.POSTHeader());
@@ -25,7 +26,6 @@ const getAccessToken = function* (code, state) {
 
 const getaAuthorizeURL = function* (iss, launch) {
     const state = buildState(launch);
-    console.log(`state = ${state}`);
     const issURl = `${decodeURIComponent(iss)}/metadata`;
     const result = yield httpService.get(issURl, new Records.AuthorizationHeader());
     const authorizationURL = result.data.rest[0].security.extension[0].extension.filter(ext => ext.url === 'authorize')[0].valueUri;

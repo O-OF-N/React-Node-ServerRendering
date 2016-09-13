@@ -28,7 +28,8 @@ router.get('/callback', co(function* (req, res, next) {
         let code = null, state = null, accessToken = null, patient = 0;
         ({ code, state } = req.query);
         const model = yield AuthorizationHelper.accessToken(code, state);
-        console.log(model.state);
+        console.log('the model is '+ model.state);
+        console.log(model);
         const html = ReactDomServer.renderToString(
             React.createElement(Component)
         );

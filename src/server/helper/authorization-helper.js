@@ -19,7 +19,12 @@ const accessTokenHelper = function* (authorizationCode, state) {
     const [userAuthenticationModel] = yield UserAuthenticationModel.findByState(state);
     console.log(userAuthenticationModel);
     const requestBody = new Records.AccessTokenRequestBody({ code: authorizationCode });
+    console.log('here????')
+    console.log(requestBody);
+    console.log(userAuthenticationModel.tokenURL);
     const response = yield httpService.post(userAuthenticationModel.tokenURL, requestBody, new Records.POSTHeader());
+    console.log('here>>>>>>>>')
+    console.log(response);
     ({ patient } = response.data);
     accessToken = response.data.access_token;
     const updateResponse = yield UserAuthenticationModel.update(userAuthenticationModel._id, { authorizationCode, patient, accessToken });
@@ -28,7 +33,8 @@ const accessTokenHelper = function* (authorizationCode, state) {
 
 const authorizeHelper = function* (iss, launch) {
     const aud = iss;
-    let params = { response_type: '', client_id: '', redirect_uri: '' };
+    let response_type, client_id, redirect_uri, params;
+    ({ response_type, client_id, redirect_uri } = FHIRConfig.get(ActiveEnv));
     const state = buildState(launch);
     const issURl = `${decodeURIComponent(iss)}/metadata`;
     const response = yield httpService.get(issURl, new Records.AuthorizationHeader());
@@ -38,7 +44,7 @@ const authorizeHelper = function* (iss, launch) {
         iss, state, authorizationURL, tokenURL
     })
     const model = yield UserAuthenticationModel.save(authModel);
-    Object.assign(params, FHIRConfig.get(ActiveEnv), { launch, state, aud });
+    Object.assign(params, { response_type, client_id, redirect_uri }, { launch, state, aud });
     console.log('params = >>>>>>>>>>>>>>>>>>>>');
     console.log(params)
     const url = buildRedirectUrl(authorizationURL, params);

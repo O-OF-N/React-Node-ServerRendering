@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.FHIRAuthorizationConfig = exports.DatabaseConfig = exports.UserAuthentication = exports.POSTHeader = exports.AuthorizationHeader = exports.AccessTokenRequestBody = exports.AccessToken = exports.Observation = undefined;
+exports.FHIRAuthorizationConfig = exports.DatabaseConfig = exports.UserAuthentication = exports.POSTHeader = exports.AuthorizationHeader = exports.AccessTokenRequestBody = exports.Observation = undefined;
 
 var _immutable = require('immutable');
 
@@ -21,16 +21,11 @@ var Observation = exports.Observation = new _immutable.Record({
     interpretation: ''
 });
 
-var AccessToken = exports.AccessToken = new _immutable.Record({
-    patient: 0,
-    accessToken: ''
-});
-
 var AccessTokenRequestBody = exports.AccessTokenRequestBody = new _immutable.Record({
-    grant_type: _appConfig.FHIRConfig.get(_appConfig.ActiveEnv).grantType,
+    grant_type: _appConfig.FHIRConfig.get(_appConfig.ActiveEnv).grant_type,
     code: '',
-    redirect_uri: _appConfig.FHIRConfig.get(_appConfig.ActiveEnv).redirectUrl,
-    client_id: _appConfig.FHIRConfig.get(_appConfig.ActiveEnv).clientId
+    redirect_uri: _appConfig.FHIRConfig.get(_appConfig.ActiveEnv).redirect_uri,
+    client_id: _appConfig.FHIRConfig.get(_appConfig.ActiveEnv).client_id
 });
 
 var AuthorizationHeader = exports.AuthorizationHeader = new _immutable.Record({

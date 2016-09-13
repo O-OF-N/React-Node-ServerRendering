@@ -33,18 +33,20 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+//public methods
 var authorize = exports.authorize = function authorize(iss, launch) {
-    return (0, _co2.default)(getaAuthorizeURL.bind(undefined, iss, launch)).catch(console.log);
+    return (0, _co2.default)(authorizeHelper.bind(undefined, iss, launch));
 };
 
 var accessToken = exports.accessToken = function accessToken(code, state) {
-    return (0, _co2.default)(getAccessToken.bind(undefined, code, state)).catch(console.log);
+    return (0, _co2.default)(accessTokenHelper.bind(undefined, code, state));
 };
 
-var getAccessToken = regeneratorRuntime.mark(function getAccessToken(code, state) {
+//private methods
+var accessTokenHelper = regeneratorRuntime.mark(function accessTokenHelper(authorizationCode, state) {
     var patient, accessToken, _ref, _ref2, userAuthenticationModel, requestBody, response, updateResponse;
 
-    return regeneratorRuntime.wrap(function getAccessToken$(_context) {
+    return regeneratorRuntime.wrap(function accessTokenHelper$(_context) {
         while (1) {
             switch (_context.prev = _context.next) {
                 case 0:
@@ -58,44 +60,56 @@ var getAccessToken = regeneratorRuntime.mark(function getAccessToken(code, state
                     userAuthenticationModel = _ref2[0];
 
                     console.log(userAuthenticationModel);
-                    requestBody = new Records.AccessTokenRequestBody({ code: code });
-                    _context.next = 10;
+                    requestBody = new Records.AccessTokenRequestBody({ code: authorizationCode });
+
+                    console.log('here????');
+                    console.log(requestBody);
+                    console.log(userAuthenticationModel.tokenURL);
+                    _context.next = 13;
                     return httpService.post(userAuthenticationModel.tokenURL, requestBody, new Records.POSTHeader());
 
-                case 10:
+                case 13:
                     response = _context.sent;
+
+                    console.log('here>>>>>>>>');
+                    console.log(response);
                     patient = response.data.patient;
 
                     accessToken = response.data.access_token;
-                    _context.next = 15;
-                    return _UserAuthenticationSchema2.default.update(userAuthenticationModel._id, { patient: patient, accessToken: accessToken });
+                    _context.next = 20;
+                    return _UserAuthenticationSchema2.default.update(userAuthenticationModel._id, { authorizationCode: authorizationCode, patient: patient, accessToken: accessToken });
 
-                case 15:
+                case 20:
                     updateResponse = _context.sent;
+                    return _context.abrupt('return', updateResponse);
 
-                    console.log(updateResponse);
-                    return _context.abrupt('return', new Records.AccessToken({ patient: patient, accessToken: accessToken }));
-
-                case 18:
+                case 22:
                 case 'end':
                     return _context.stop();
             }
         }
-    }, getAccessToken, this);
+    }, accessTokenHelper, this);
 });
 
-var getaAuthorizeURL = regeneratorRuntime.mark(function getaAuthorizeURL(iss, launch) {
-    var state, issURl, response, authorizationURL, tokenURL, authModel, redirectUrl;
-    return regeneratorRuntime.wrap(function getaAuthorizeURL$(_context2) {
+var authorizeHelper = regeneratorRuntime.mark(function authorizeHelper(iss, launch) {
+    var aud, response_type, client_id, redirect_uri, params, _FHIRConfig$get, state, issURl, response, authorizationURL, tokenURL, authModel, model, url;
+
+    return regeneratorRuntime.wrap(function authorizeHelper$(_context2) {
         while (1) {
             switch (_context2.prev = _context2.next) {
                 case 0:
+                    aud = iss;
+                    response_type = void 0, client_id = void 0, redirect_uri = void 0, params = void 0;
+                    _FHIRConfig$get = _appConfig.FHIRConfig.get(_appConfig.ActiveEnv);
+                    response_type = _FHIRConfig$get.response_type;
+                    client_id = _FHIRConfig$get.client_id;
+                    redirect_uri = _FHIRConfig$get.redirect_uri;
                     state = buildState(launch);
                     issURl = decodeURIComponent(iss) + '/metadata';
-                    _context2.next = 4;
+                    _context2.next = 10;
                     return httpService.get(issURl, new Records.AuthorizationHeader());
 
-                case 4:
+                case 10:
                     response = _context2.sent;
                     authorizationURL = response.data.rest[0].security.extension[0].extension.filter(function (ext) {
                         return ext.url === 'authorize';
@@ -106,20 +120,33 @@ var getaAuthorizeURL = regeneratorRuntime.mark(function getaAuthorizeURL(iss, la
                     authModel = new Records.UserAuthentication({
                         iss: iss, state: state, authorizationURL: authorizationURL, tokenURL: tokenURL
                     });
-                    _context2.next = 10;
+                    _context2.next = 16;
                     return _UserAuthenticationSchema2.default.save(authModel);
 
-                case 10:
-                    redirectUrl = authorizationURL + '?response_type=' + _appConfig.FHIRConfig.get(_appConfig.ActiveEnv).responseType + '&client_id=' + _appConfig.FHIRConfig.get(_appConfig.ActiveEnv).clientId + '&redirect_uri=' + _appConfig.FHIRConfig.get(_appConfig.ActiveEnv).redirectUrl + '&scope=' + _appConfig.FHIRConfig.get(_appConfig.ActiveEnv).scope + '&launch=' + launch + '&state=' + state + '&aud=' + iss;
-                    return _context2.abrupt('return', redirectUrl);
+                case 16:
+                    model = _context2.sent;
 
-                case 12:
+                    Object.assign(params, { response_type: response_type, client_id: client_id, redirect_uri: redirect_uri }, { launch: launch, state: state, aud: aud });
+                    console.log('params = >>>>>>>>>>>>>>>>>>>>');
+                    console.log(params);
+                    url = buildRedirectUrl(authorizationURL, params);
+
+                    console.log('url fetched = ' + url);
+                    return _context2.abrupt('return', url);
+
+                case 23:
                 case 'end':
                     return _context2.stop();
             }
         }
-    }, getaAuthorizeURL, this);
+    }, authorizeHelper, this);
 });
+
+var buildRedirectUrl = function buildRedirectUrl(authorizationURL, params) {
+    return authorizationURL + '?' + Object.keys(params).map(function (key) {
+        return key + '=' + params[key];
+    }).join('&');
+};
 
 var buildState = function buildState(launch) {
     return '' + launch + Math.floor(Math.random() * 100000, 1) + Date.now();

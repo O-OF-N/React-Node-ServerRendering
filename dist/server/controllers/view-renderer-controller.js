@@ -51,57 +51,82 @@ router.get('/', (0, _wrap2.default)(regeneratorRuntime.mark(function _callee(req
         while (1) {
             switch (_context.prev = _context.next) {
                 case 0:
+                    _context.prev = 0;
                     iss = null, launch = null;
                     _req$query = req.query;
                     iss = _req$query.iss;
                     launch = _req$query.launch;
-                    _context.next = 6;
+                    _context.next = 7;
                     return AuthorizationHelper.authorize(iss, launch);
 
-                case 6:
+                case 7:
                     url = _context.sent;
 
                     res.redirect(url);
+                    _context.next = 15;
+                    break;
 
-                case 8:
+                case 11:
+                    _context.prev = 11;
+                    _context.t0 = _context['catch'](0);
+
+                    console.log('err = ' + _context.t0);
+                    next(_context.t0);
+
+                case 15:
                 case 'end':
                     return _context.stop();
             }
         }
-    }, _callee, this);
+    }, _callee, this, [[0, 11]]);
 })));
 
 router.get('/callback', (0, _wrap2.default)(regeneratorRuntime.mark(function _callee2(req, res, next) {
-    var code, state, accessToken, patient, _req$query2, _ref, html;
+    var code, state, accessToken, patient, _req$query2, model, html;
 
     return regeneratorRuntime.wrap(function _callee2$(_context2) {
         while (1) {
             switch (_context2.prev = _context2.next) {
                 case 0:
+                    _context2.prev = 0;
+
+                    console.log('1>>>');
                     code = null, state = null, accessToken = null, patient = 0;
+
+                    console.log('2>>>');
                     _req$query2 = req.query;
                     code = _req$query2.code;
                     state = _req$query2.state;
-                    _context2.next = 6;
+
+                    console.log('3>>>');
+                    _context2.next = 10;
                     return AuthorizationHelper.accessToken(code, state);
 
-                case 6:
-                    _ref = _context2.sent;
-                    accessToken = _ref.accessToken;
-                    patient = _ref.patient;
+                case 10:
+                    model = _context2.sent;
 
-                    console.log('patient = ' + patient);
-                    console.log('accessToken = ' + accessToken);
+                    console.log('the model is ' + model.state);
+                    console.log(model);
                     html = _server2.default.renderToString(_react2.default.createElement(_index2.default));
 
+                    res.header({ state: state });
                     res.send(html);
+                    _context2.next = 22;
+                    break;
 
-                case 13:
+                case 18:
+                    _context2.prev = 18;
+                    _context2.t0 = _context2['catch'](0);
+
+                    console.log('err = ' + _context2.t0);
+                    next(_context2.t0);
+
+                case 22:
                 case 'end':
                     return _context2.stop();
             }
         }
-    }, _callee2, this);
+    }, _callee2, this, [[0, 18]]);
 })));
 
 exports.default = router;

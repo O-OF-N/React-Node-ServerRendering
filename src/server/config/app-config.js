@@ -12,7 +12,7 @@ const devFhirAuth = {
     redirect_uri: 'https://diabetesdashboard.herokuapp.com/callback',
     scope: 'launch+user%2FObservation.read',
     response_type: 'code',
-    grantType: 'authorization_code'
+    grant_type: 'authorization_code'
 };
 
 

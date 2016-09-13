@@ -19,9 +19,9 @@ router.get('/', co(function* (req, res, next) {
 }));
 
 router.get('/callback', co(function* (req, res, next) {
-    let code = null,state = null, accessToken = null, patient = 0;
+    let code = null, state = null, accessToken = null, patient = 0;
     ({ code, state } = req.query);
-    ({accessToken,patient} =  yield AuthorizationHelper.accessToken(code));
+    ({ accessToken, patient } = yield AuthorizationHelper.accessToken(code, state));
     console.log(`patient = ${patient}`);
     console.log(`accessToken = ${accessToken}`);
     const html = ReactDomServer.renderToString(

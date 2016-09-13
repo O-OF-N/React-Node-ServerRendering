@@ -83,7 +83,7 @@ router.get('/callback', (0, _wrap2.default)(regeneratorRuntime.mark(function _ca
                     code = _req$query2.code;
                     state = _req$query2.state;
                     _context2.next = 6;
-                    return AuthorizationHelper.accessToken(code);
+                    return AuthorizationHelper.accessToken(code, state);
 
                 case 6:
                     _ref = _context2.sent;

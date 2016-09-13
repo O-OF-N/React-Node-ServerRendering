@@ -14,14 +14,21 @@ const UserAuthenticationSchema = new Schema({
     patient: Number
 });
 
-const UserAuthenticationModel = mongoose.model('UserAuth',UserAuthenticationSchema);
+const UserAuthenticationModel = mongoose.model('UserAuth', UserAuthenticationSchema);
 
-UserAuthenticationModel.save = (userAuthentication) => co(saveHelper.bind(this,userAuthentication));
+UserAuthenticationModel.save = (userAuthentication) => co(saveHelper.bind(this, userAuthentication));
 
+UserAuthenticationModel.find = (state) => co(findByState.bind(this, state));
 
-const saveHelper = function*(userAuthentication){
-    const userAuthenticationToSave = new UserAuthenticationModel(userAuthentication);
-    yield userAuthenticationToSave.save();
+const findByState = function* (state) {
+    const userAuth = yield UserAuthenticationModel.find({ state });
+    return userAuth;
+}
+
+const saveHelper = function* (userAuthentication) {
+    const userAuthenticationToSave = new UserAuthenticationModel(userAuthentication.toJS());
+    const userAuth = yield userAuthenticationToSave.save();
+    return userAuth;
 };
 
 export default UserAuthenticationModel;

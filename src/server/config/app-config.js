@@ -8,10 +8,10 @@ const devDatabase = {
 };
 
 const devFhirAuth = {
-    clientId: '707ffe10-83ee-42f2-b2e8-1871ad0c1a4c',
-    redirectUrl: 'https://diabetesdashboard.herokuapp.com/callback',
+    client_id: '707ffe10-83ee-42f2-b2e8-1871ad0c1a4c',
+    redirect_uri: 'https://diabetesdashboard.herokuapp.com/callback',
     scope: 'launch+user%2FObservation.read',
-    responseType: 'code',
+    response_type: 'code',
     grantType: 'authorization_code'
 };
 

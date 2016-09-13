@@ -23,13 +23,11 @@ const accessTokenHelper = function* (authorizationCode, state) {
     ({ patient } = response.data);
     accessToken = response.data.access_token;
     const updateResponse = yield UserAuthenticationModel.update(userAuthenticationModel._id, { authorizationCode, patient, accessToken });
-    console.log('model >>>>>>>>>>>>>>>');
-    console.log(updateResponse);
     return updateResponse;
 };
 
-const authorizeHelper = function* (iss, launch) {
-    let responseType, clientId, redirectUrl, scope;
+const authorizeHelper = function* (aud, launch) {
+    let params = { response_type, client_id, redirect_uri, scope, lauch, state, aud };
     const state = buildState(launch);
     const issURl = `${decodeURIComponent(iss)}/metadata`;
     const response = yield httpService.get(issURl, new Records.AuthorizationHeader());
@@ -39,8 +37,19 @@ const authorizeHelper = function* (iss, launch) {
         iss, state, authorizationURL, tokenURL
     })
     const model = yield UserAuthenticationModel.save(authModel);
-    return model;
+    console.log('before>>>>>>>>>>>>>>>>>>>>>');
+    console.log(params);
+    params = FHIRConfig.get(ActiveEnv);
+    params = { launch, state, aud };
+    console.log('params = >>>>>>>>>>>>>>>>>>>>');
+    console.log(params)
+    const url = buildRedirectUrl(authorizationURL, params);
+    console.log('url fetched = ' + url);
+    return url;
 };
+
+const buildRedirectUrl = (authorizationURL, params) =>
+    `${authorizationURL}?${Object.keys(params).map(key => `${key}=${params[key]}`).join('&')}`
 
 const buildState = (launch) => `${launch}${Math.floor(Math.random() * 100000, 1)}${Date.now()}`;
 

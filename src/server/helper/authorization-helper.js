@@ -33,11 +33,12 @@ const authorizeHelper = function* (iss, launch) {
     const state = buildState(launch);
     const issURl = `${decodeURIComponent(iss)}/metadata`;
     const response = yield httpService.get(issURl, new Records.AuthorizationHeader());
-    const authorizationURL = response.data.rest[0].security.extension[0].extension.filter(ext => ext.url === 'authorize')[0].valueUri;
-    const tokenURL = response.data.rest[0].security.extension[0].extension.filter(ext => ext.url === 'token')[0].valueUri;
+    const extension = response.data.rest[0].security.extension[0].extension;
+    const authorizationURL = extension.filter(ext => ext.url === 'authorize')[0].valueUri;
+    const tokenURL = extension.filter(ext => ext.url === 'token')[0].valueUri;
     const authModel = new Records.UserAuthentication({
         iss, state, authorizationURL, tokenURL
-    })
+    });
     const model = yield UserAuthenticationModel.save(authModel);
     params = { response_type, client_id, redirect_uri, scope };
     util._extend(params, { launch, state, aud });
@@ -46,7 +47,7 @@ const authorizeHelper = function* (iss, launch) {
 };
 
 const buildRedirectUrl = (authorizationURL, params) =>
-    `${authorizationURL}?${Object.keys(params).map(key => `${key}=${params[key]}`).join('&')}`
+    `${authorizationURL}?${Object.keys(params).map(key => `${key}=${params[key]}`).join('&')}`;
 
 const buildState = (launch) => `${launch}${Math.floor(Math.random() * 100000, 1)}${Date.now()}`;
 

@@ -35,6 +35,8 @@ const saveHelper = function* (userAuthentication) {
 
 const updateHelper = function* (_id, $set) {
     const userAuth = yield UserAuthenticationModel.findByIdAndUpdate({ _id }, { $set });
+    console.log('userauth>>>');
+    console.log(userAuth);
     return userAuth;
 }
 

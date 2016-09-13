@@ -36,7 +36,9 @@ const authorizeHelper = function* (iss, launch) {
     const authModel = new Records.UserAuthentication({
         iss, state, authorizationURL, tokenURL
     })
-    yield UserAuthenticationModel.save(authModel);
+    const model = yield UserAuthenticationModel.save(authModel);
+    console.log(model);
+    return model;
 };
 
 const buildState = (launch) => `${launch}${Math.floor(Math.random() * 100000, 1)}${Date.now()}`;

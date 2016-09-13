@@ -25,7 +25,7 @@ router.get('/callback', co(function* (req, res, next) {
     const html = ReactDomServer.renderToString(
         React.createElement(Component)
     );
-    res.header({state});
+    res.header({ state });
     res.send(html);
 }));
 

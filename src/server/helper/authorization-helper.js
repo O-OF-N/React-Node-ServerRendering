@@ -23,7 +23,6 @@ const getAccessToken = function* (authorizationCode, state) {
     ({ patient } = response.data);
     accessToken = response.data.access_token;
     const updateResponse = yield UserAuthenticationModel.update(userAuthenticationModel._id, { authorizationCode, patient, accessToken });
-    console.log(updateResponse);
     return state;
 };
 

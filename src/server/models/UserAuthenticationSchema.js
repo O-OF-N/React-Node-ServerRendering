@@ -21,6 +21,7 @@ UserAuthenticationModel.save = (userAuthentication) => co(saveHelper.bind(this, 
 UserAuthenticationModel.find = (state) => co(findByState.bind(this, state));
 
 const findByState = function* (state) {
+    console.log('may be here??')
     const userAuth = yield UserAuthenticationModel.find({ state });
     return userAuth;
 }

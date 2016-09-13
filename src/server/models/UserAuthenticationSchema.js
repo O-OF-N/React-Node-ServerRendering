@@ -18,10 +18,11 @@ const UserAuthenticationModel = mongoose.model('UserAuth', UserAuthenticationSch
 
 UserAuthenticationModel.save = (userAuthentication) => co(saveHelper.bind(this, userAuthentication));
 
-UserAuthenticationModel.findByState = (state) => co(findByState.bind(this, state));
+UserAuthenticationModel.findByState = (state) => co(findByStateHelper.bind(this, state));
 
-const findByState = function* (state) {
-    console.log('may be here??')
+UserAuthenticationModel.update = (_id, $set) => co(updateHelper.bind(this, _id, $set));
+
+const findByStateHelper = function* (state) {
     const userAuth = yield UserAuthenticationModel.find({ state });
     return userAuth;
 }
@@ -31,6 +32,11 @@ const saveHelper = function* (userAuthentication) {
     const userAuth = yield userAuthenticationToSave.save();
     return userAuth;
 };
+
+const updateHelper = function* (_id, $set) {
+    const userAuth = yield UserAuthenticationModel.findByIdAndUpdate({ _id }, { $set });
+    return userAuth;
+}
 
 export default UserAuthenticationModel;
 

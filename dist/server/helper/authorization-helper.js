@@ -5,6 +5,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.accessToken = exports.authorize = undefined;
 
+var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
 var _co = require('co');
 
 var _co2 = _interopRequireDefault(_co);
@@ -40,29 +42,41 @@ var accessToken = exports.accessToken = function accessToken(code, state) {
 };
 
 var getAccessToken = regeneratorRuntime.mark(function getAccessToken(code, state) {
-    var userAuthenticationModel, requestBody, result;
+    var patient, accessToken, _ref, _ref2, userAuthenticationModel, requestBody, response, updateResponse;
+
     return regeneratorRuntime.wrap(function getAccessToken$(_context) {
         while (1) {
             switch (_context.prev = _context.next) {
                 case 0:
-
-                    console.log('here>>>>>>>>>>');
+                    patient = void 0, accessToken = void 0;
                     _context.next = 3;
                     return _UserAuthenticationSchema2.default.findByState(state);
 
                 case 3:
-                    userAuthenticationModel = _context.sent;
+                    _ref = _context.sent;
+                    _ref2 = _slicedToArray(_ref, 1);
+                    userAuthenticationModel = _ref2[0];
 
                     console.log(userAuthenticationModel);
                     requestBody = new Records.AccessTokenRequestBody({ code: code });
-                    _context.next = 8;
-                    return httpService.post(Constants.TOKEN_URL, requestBody, new Records.POSTHeader());
-
-                case 8:
-                    result = _context.sent;
-                    return _context.abrupt('return', new Records.AccessToken({ patient: result.data.patient, accessToken: result.data.access_token }));
+                    _context.next = 10;
+                    return httpService.post(userAuthenticationModel.tokenURL, requestBody, new Records.POSTHeader());
 
                 case 10:
+                    response = _context.sent;
+                    patient = response.data.patient;
+
+                    accessToken = response.data.access_token;
+                    _context.next = 15;
+                    return _UserAuthenticationSchema2.default.update(userAuthenticationModel._id, { patient: patient, accessToken: accessToken });
+
+                case 15:
+                    updateResponse = _context.sent;
+
+                    console.log(updateResponse);
+                    return _context.abrupt('return', new Records.AccessToken({ patient: patient, accessToken: accessToken }));
+
+                case 18:
                 case 'end':
                     return _context.stop();
             }
@@ -71,7 +85,7 @@ var getAccessToken = regeneratorRuntime.mark(function getAccessToken(code, state
 });
 
 var getaAuthorizeURL = regeneratorRuntime.mark(function getaAuthorizeURL(iss, launch) {
-    var state, issURl, result, authorizationURL, tokenURL, authModel, redirectUrl;
+    var state, issURl, response, authorizationURL, tokenURL, authModel, redirectUrl;
     return regeneratorRuntime.wrap(function getaAuthorizeURL$(_context2) {
         while (1) {
             switch (_context2.prev = _context2.next) {
@@ -82,11 +96,11 @@ var getaAuthorizeURL = regeneratorRuntime.mark(function getaAuthorizeURL(iss, la
                     return httpService.get(issURl, new Records.AuthorizationHeader());
 
                 case 4:
-                    result = _context2.sent;
-                    authorizationURL = result.data.rest[0].security.extension[0].extension.filter(function (ext) {
+                    response = _context2.sent;
+                    authorizationURL = response.data.rest[0].security.extension[0].extension.filter(function (ext) {
                         return ext.url === 'authorize';
                     })[0].valueUri;
-                    tokenURL = result.data.rest[0].security.extension[0].extension.filter(function (ext) {
+                    tokenURL = response.data.rest[0].security.extension[0].extension.filter(function (ext) {
                         return ext.url === 'token';
                     })[0].valueUri;
                     authModel = new Records.UserAuthentication({

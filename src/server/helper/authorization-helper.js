@@ -15,21 +15,24 @@ export const accessToken = (code, state) =>
         .catch(console.log);
 
 const getAccessToken = function* (code, state) {
-
-    console.log('here>>>>>>>>>>');
+    let patient, accessToken;
     const [userAuthenticationModel] = yield UserAuthenticationModel.findByState(state);
-    console.log(userAuthenticationModel); 
+    console.log(userAuthenticationModel);
     const requestBody = new Records.AccessTokenRequestBody({ code });
-    const result = yield httpService.post(userAuthenticationModel.tokenURL, requestBody, new Records.POSTHeader());
-    return new Records.AccessToken({ patient: result.data.patient, accessToken: result.data.access_token })
+    const response = yield httpService.post(userAuthenticationModel.tokenURL, requestBody, new Records.POSTHeader());
+    ({ patient } = response.data);
+    accessToken = response.data.access_token;
+    const updateResponse = yield UserAuthenticationModel.update(userAuthenticationModel._id, { patient, accessToken });
+    console.log(updateResponse);
+    return new Records.AccessToken({ patient, accessToken })
 };
 
 const getaAuthorizeURL = function* (iss, launch) {
     const state = buildState(launch);
     const issURl = `${decodeURIComponent(iss)}/metadata`;
-    const result = yield httpService.get(issURl, new Records.AuthorizationHeader());
-    const authorizationURL = result.data.rest[0].security.extension[0].extension.filter(ext => ext.url === 'authorize')[0].valueUri;
-    const tokenURL = result.data.rest[0].security.extension[0].extension.filter(ext => ext.url === 'token')[0].valueUri;
+    const response = yield httpService.get(issURl, new Records.AuthorizationHeader());
+    const authorizationURL = response.data.rest[0].security.extension[0].extension.filter(ext => ext.url === 'authorize')[0].valueUri;
+    const tokenURL = response.data.rest[0].security.extension[0].extension.filter(ext => ext.url === 'token')[0].valueUri;
     const authModel = new Records.UserAuthentication({
         iss, state, authorizationURL, tokenURL
     })

@@ -35,29 +35,32 @@ UserAuthenticationModel.save = function (userAuthentication) {
 };
 
 UserAuthenticationModel.findByState = function (state) {
-    return (0, _co2.default)(findByState.bind(undefined, state)).then(console.log);
+    return (0, _co2.default)(findByStateHelper.bind(undefined, state));
 };
 
-var findByState = regeneratorRuntime.mark(function findByState(state) {
+UserAuthenticationModel.update = function (_id, $set) {
+    return (0, _co2.default)(updateHelper.bind(undefined, _id, $set));
+};
+
+var findByStateHelper = regeneratorRuntime.mark(function findByStateHelper(state) {
     var userAuth;
-    return regeneratorRuntime.wrap(function findByState$(_context) {
+    return regeneratorRuntime.wrap(function findByStateHelper$(_context) {
         while (1) {
             switch (_context.prev = _context.next) {
                 case 0:
-                    console.log('may be here??');
-                    _context.next = 3;
+                    _context.next = 2;
                     return UserAuthenticationModel.find({ state: state });
 
-                case 3:
+                case 2:
                     userAuth = _context.sent;
                     return _context.abrupt('return', userAuth);
 
-                case 5:
+                case 4:
                 case 'end':
                     return _context.stop();
             }
         }
-    }, findByState, this);
+    }, findByStateHelper, this);
 });
 
 var saveHelper = regeneratorRuntime.mark(function saveHelper(userAuthentication) {
@@ -80,6 +83,27 @@ var saveHelper = regeneratorRuntime.mark(function saveHelper(userAuthentication)
             }
         }
     }, saveHelper, this);
+});
+
+var updateHelper = regeneratorRuntime.mark(function updateHelper(_id, $set) {
+    var userAuth;
+    return regeneratorRuntime.wrap(function updateHelper$(_context3) {
+        while (1) {
+            switch (_context3.prev = _context3.next) {
+                case 0:
+                    _context3.next = 2;
+                    return UserAuthenticationModel.findByIdAndUpdate({ _id: _id }, { $set: $set });
+
+                case 2:
+                    userAuth = _context3.sent;
+                    return _context3.abrupt('return', userAuth);
+
+                case 4:
+                case 'end':
+                    return _context3.stop();
+            }
+        }
+    }, updateHelper, this);
 });
 
 exports.default = UserAuthenticationModel;

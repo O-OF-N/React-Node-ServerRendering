@@ -45,18 +45,24 @@ var getAccessToken = regeneratorRuntime.mark(function getAccessToken(code, state
         while (1) {
             switch (_context.prev = _context.next) {
                 case 0:
-                    userAuthenticationModel = _UserAuthenticationSchema2.default.find(state);
+
+                    console.log('here>>>>>>>>>>');
+                    _context.next = 3;
+                    return _UserAuthenticationSchema2.default.findByState(state);
+
+                case 3:
+                    userAuthenticationModel = _context.sent;
 
                     console.log(userAuthenticationModel);
                     requestBody = new Records.AccessTokenRequestBody({ code: code });
-                    _context.next = 5;
-                    return ServerCall.post(Constants.TOKEN_URL, requestBody, new Records.POSTHeader());
+                    _context.next = 8;
+                    return httpService.post(Constants.TOKEN_URL, requestBody, new Records.POSTHeader());
 
-                case 5:
+                case 8:
                     result = _context.sent;
                     return _context.abrupt('return', new Records.AccessToken({ patient: result.data.patient, accessToken: result.data.access_token }));
 
-                case 7:
+                case 10:
                 case 'end':
                     return _context.stop();
             }

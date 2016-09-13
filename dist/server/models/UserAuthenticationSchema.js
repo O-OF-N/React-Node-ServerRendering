@@ -34,8 +34,8 @@ UserAuthenticationModel.save = function (userAuthentication) {
     return (0, _co2.default)(saveHelper.bind(undefined, userAuthentication));
 };
 
-UserAuthenticationModel.find = function (state) {
-    return (0, _co2.default)(findByState.bind(undefined, state));
+UserAuthenticationModel.findByState = function (state) {
+    return (0, _co2.default)(findByState.bind(undefined, state)).then(console.log);
 };
 
 var findByState = regeneratorRuntime.mark(function findByState(state) {
@@ -44,14 +44,15 @@ var findByState = regeneratorRuntime.mark(function findByState(state) {
         while (1) {
             switch (_context.prev = _context.next) {
                 case 0:
-                    _context.next = 2;
+                    console.log('may be here??');
+                    _context.next = 3;
                     return UserAuthenticationModel.find({ state: state });
 
-                case 2:
+                case 3:
                     userAuth = _context.sent;
                     return _context.abrupt('return', userAuth);
 
-                case 4:
+                case 5:
                 case 'end':
                     return _context.stop();
             }

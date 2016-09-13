@@ -17,10 +17,10 @@ export const accessToken = (code, state) =>
 const getAccessToken = function* (code, state) {
 
     console.log('here>>>>>>>>>>');
-    const userAuthenticationModel = yield UserAuthenticationModel.find(state);
+    const userAuthenticationModel = yield UserAuthenticationModel.findByState(state);
     console.log(userAuthenticationModel); 
     const requestBody = new Records.AccessTokenRequestBody({ code });
-    const result = yield httpService.post(Constants.TOKEN_URL, requestBody, new Records.POSTHeader());
+    const result = yield httpService.post(userAuthenticationModel.tokenURL, requestBody, new Records.POSTHeader());
     return new Records.AccessToken({ patient: result.data.patient, accessToken: result.data.access_token })
 };
 

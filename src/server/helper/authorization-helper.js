@@ -15,11 +15,11 @@ export const accessToken = (code, state) =>
         .catch(console.log);
 
 const getAccessToken = function* (code, state) {
-    const userAuthenticationModel = UserAuthenticationModel.find(state);
+    const userAuthenticationModel = yield UserAuthenticationModel.find(state);
     console.log('here>>>>>>>>>>');
     console.log(userAuthenticationModel); 
     const requestBody = new Records.AccessTokenRequestBody({ code });
-    const result = yield ServerCall.post(Constants.TOKEN_URL, requestBody, new Records.POSTHeader());
+    const result = yield httpService.post(Constants.TOKEN_URL, requestBody, new Records.POSTHeader());
     return new Records.AccessToken({ patient: result.data.patient, accessToken: result.data.access_token })
 };
 

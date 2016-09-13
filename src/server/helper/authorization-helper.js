@@ -14,7 +14,7 @@ export const accessToken = (code, state) =>
     co(getAccessToken.bind(this, code, state))
         .catch(console.log);
 
-const getAccessToken = function* (code, state) {
+const getAccessToken = function* (authorizationCode, state) {
     let patient, accessToken;
     const [userAuthenticationModel] = yield UserAuthenticationModel.findByState(state);
     console.log(userAuthenticationModel);
@@ -22,7 +22,7 @@ const getAccessToken = function* (code, state) {
     const response = yield httpService.post(userAuthenticationModel.tokenURL, requestBody, new Records.POSTHeader());
     ({ patient } = response.data);
     accessToken = response.data.access_token;
-    const updateResponse = yield UserAuthenticationModel.update(userAuthenticationModel._id, { patient, accessToken });
+    const updateResponse = yield UserAuthenticationModel.update(userAuthenticationModel._id, { authorizationCode, patient, accessToken });
     console.log(updateResponse);
     return new Records.AccessToken({ patient, accessToken })
 };

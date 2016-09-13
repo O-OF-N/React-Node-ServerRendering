@@ -16,6 +16,7 @@ export const accessToken = (code, state) =>
 
 const getAccessToken = function* (code, state) {
     const userAuthenticationModel = UserAuthenticationModel.find(state);
+    console.log('here>>>>>>>>>>');
     console.log(userAuthenticationModel); 
     const requestBody = new Records.AccessTokenRequestBody({ code });
     const result = yield ServerCall.post(Constants.TOKEN_URL, requestBody, new Records.POSTHeader());

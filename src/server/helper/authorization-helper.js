@@ -27,7 +27,7 @@ const getAccessToken = function* (authorizationCode, state) {
 };
 
 const getaAuthorizeURL = function* (iss, launch) {
-    const responseType, clientId, redirectUrl, scope;
+    let responseType, clientId, redirectUrl, scope;
     const state = buildState(launch);
     const issURl = `${decodeURIComponent(iss)}/metadata`;
     const response = yield httpService.get(issURl, new Records.AuthorizationHeader());

@@ -5,7 +5,7 @@ import * as httpService from '../service/http-service'
 import * as Records from '../models/models';
 import UserAuthenticationModel from '../models/UserAuthenticationSchema';
 import {ActiveEnv, FHIRConfig} from '../config/app-config';
-
+import util from 'util';
 
 //public methods
 export const authorize = (iss, launch) => co(authorizeHelper.bind(this, iss, launch));
@@ -44,7 +44,8 @@ const authorizeHelper = function* (iss, launch) {
         iss, state, authorizationURL, tokenURL
     })
     const model = yield UserAuthenticationModel.save(authModel);
-    Object.assign(params, { response_type, client_id, redirect_uri }, { launch, state, aud });
+    params = { response_type, client_id, redirect_uri };
+    util._extend(params, { launch, state, aud });
     console.log('params = >>>>>>>>>>>>>>>>>>>>');
     console.log(params)
     const url = buildRedirectUrl(authorizationURL, params);

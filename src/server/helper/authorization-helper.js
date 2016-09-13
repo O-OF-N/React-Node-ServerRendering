@@ -27,6 +27,7 @@ const getAccessToken = function* (authorizationCode, state) {
 };
 
 const getaAuthorizeURL = function* (iss, launch) {
+    const responseType, clientId, redirectUrl, scope;
     const state = buildState(launch);
     const issURl = `${decodeURIComponent(iss)}/metadata`;
     const response = yield httpService.get(issURl, new Records.AuthorizationHeader());
@@ -36,15 +37,16 @@ const getaAuthorizeURL = function* (iss, launch) {
         iss, state, authorizationURL, tokenURL
     })
     yield UserAuthenticationModel.save(authModel);
-    const redirectUrl = authorizationURL +
-        '?response_type=' + FHIRConfig.get(ActiveEnv).responseType +
-        '&client_id=' + FHIRConfig.get(ActiveEnv).clientId +
-        '&redirect_uri=' + FHIRConfig.get(ActiveEnv).redirectUrl +
-        '&scope=' + FHIRConfig.get(ActiveEnv).scope +
+    ({ responseType, clientId, redirectUrl, scope } = FHIRConfig.get(ActiveEnv));
+    const url = authorizationURL +
+        '?response_type=' + responseType +
+        '&client_id=' + clientId +
+        '&redirect_uri=' + redirectUrl +
+        '&scope=' + scope +
         '&launch=' + launch +
         '&state=' + state +
         '&aud=' + iss;
-    return redirectUrl;
+    return url;
 };
 
 const buildState = (launch) => `${launch}${Math.floor(Math.random() * 100000, 1)}${Date.now()}`;

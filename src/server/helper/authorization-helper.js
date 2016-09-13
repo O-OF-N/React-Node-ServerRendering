@@ -18,7 +18,7 @@ const getAccessToken = function* (authorizationCode, state) {
     let patient, accessToken;
     const [userAuthenticationModel] = yield UserAuthenticationModel.findByState(state);
     console.log(userAuthenticationModel);
-    const requestBody = new Records.AccessTokenRequestBody({ authorizationCode });
+    const requestBody = new Records.AccessTokenRequestBody({ code: authorizationCode });
     const response = yield httpService.post(userAuthenticationModel.tokenURL, requestBody, new Records.POSTHeader());
     ({ patient } = response.data);
     accessToken = response.data.access_token;

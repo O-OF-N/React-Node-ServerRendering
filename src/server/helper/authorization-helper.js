@@ -28,7 +28,7 @@ const accessTokenHelper = function* (authorizationCode, state) {
 
 const authorizeHelper = function* (iss, launch) {
     const aud = iss;
-    let params = { response_type: '', client_id: '', redirect_uri: '', scope: '', lauch: '', state: '', aud: '' };
+    let params = { response_type: '', client_id: '', redirect_uri: '' };
     const state = buildState(launch);
     const issURl = `${decodeURIComponent(iss)}/metadata`;
     const response = yield httpService.get(issURl, new Records.AuthorizationHeader());
@@ -38,10 +38,7 @@ const authorizeHelper = function* (iss, launch) {
         iss, state, authorizationURL, tokenURL
     })
     const model = yield UserAuthenticationModel.save(authModel);
-    console.log('before>>>>>>>>>>>>>>>>>>>>>');
-    console.log(params);
-    params = FHIRConfig.get(ActiveEnv);
-    params = { launch, state, aud };
+    Object.assign(params, FHIRConfig.get(ActiveEnv), { launch, state, aud });
     console.log('params = >>>>>>>>>>>>>>>>>>>>');
     console.log(params)
     const url = buildRedirectUrl(authorizationURL, params);

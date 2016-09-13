@@ -23,7 +23,9 @@ const accessTokenHelper = function* (authorizationCode, state) {
     ({ patient } = response.data);
     accessToken = response.data.access_token;
     const updateResponse = yield UserAuthenticationModel.update(userAuthenticationModel._id, { authorizationCode, patient, accessToken });
-    return state;
+    console.log('model >>>>>>>>>>>>>>>');
+    console.log(updateResponse);
+    return updateResponse;
 };
 
 const authorizeHelper = function* (iss, launch) {
@@ -37,8 +39,6 @@ const authorizeHelper = function* (iss, launch) {
         iss, state, authorizationURL, tokenURL
     })
     const model = yield UserAuthenticationModel.save(authModel);
-    console.log('model >>>>>>>>>>>>>>>');
-    console.log(model);
     return model;
 };
 

@@ -37,16 +37,6 @@ const authorizeHelper = function* (iss, launch) {
         iss, state, authorizationURL, tokenURL
     })
     yield UserAuthenticationModel.save(authModel);
-    ({ responseType, clientId, redirectUrl, scope } = FHIRConfig.get(ActiveEnv));
-    const url = authorizationURL +
-        '?response_type=' + responseType +
-        '&client_id=' + clientId +
-        '&redirect_uri=' + redirectUrl +
-        '&scope=' + scope +
-        '&launch=' + launch +
-        '&state=' + state +
-        '&aud=' + iss;
-    return url;
 };
 
 const buildState = (launch) => `${launch}${Math.floor(Math.random() * 100000, 1)}${Date.now()}`;

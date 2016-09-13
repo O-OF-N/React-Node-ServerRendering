@@ -98,7 +98,7 @@ router.get('/callback', (0, _wrap2.default)(regeneratorRuntime.mark(function _ca
                     code = _req$query2.code;
                     state = _req$query2.state;
 
-                    console.log('3>>>');
+                    console.log('3>>>' + code);
                     _context2.next = 10;
                     return AuthorizationHelper.accessToken(code, state);
 

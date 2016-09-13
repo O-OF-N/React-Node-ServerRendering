@@ -9,10 +9,10 @@ export const Observation = new Record({
 });
 
 export const AccessTokenRequestBody = new Record({
-    grant_type: FHIRConfig.get(ActiveEnv).grant_type,
+    grant_type: FHIRConfig.get(ActiveEnv).grantType,
     code: '',
-    redirect_uri: FHIRConfig.get(ActiveEnv).redirect_uri,
-    client_id: FHIRConfig.get(ActiveEnv).client_id
+    redirect_uri: FHIRConfig.get(ActiveEnv).redirectUrl,
+    client_id: FHIRConfig.get(ActiveEnv).clientId
 });
 
 export const AuthorizationHeader = new Record({

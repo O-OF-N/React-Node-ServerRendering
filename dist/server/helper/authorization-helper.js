@@ -29,6 +29,10 @@ var _UserAuthenticationSchema2 = _interopRequireDefault(_UserAuthenticationSchem
 
 var _appConfig = require('../config/app-config');
 
+var _util = require('util');
+
+var _util2 = _interopRequireDefault(_util);
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -126,7 +130,8 @@ var authorizeHelper = regeneratorRuntime.mark(function authorizeHelper(iss, laun
                 case 16:
                     model = _context2.sent;
 
-                    Object.assign(params, { response_type: response_type, client_id: client_id, redirect_uri: redirect_uri }, { launch: launch, state: state, aud: aud });
+                    params = { response_type: response_type, client_id: client_id, redirect_uri: redirect_uri };
+                    _util2.default._extend(params, { launch: launch, state: state, aud: aud });
                     console.log('params = >>>>>>>>>>>>>>>>>>>>');
                     console.log(params);
                     url = buildRedirectUrl(authorizationURL, params);
@@ -134,7 +139,7 @@ var authorizeHelper = regeneratorRuntime.mark(function authorizeHelper(iss, laun
                     console.log('url fetched = ' + url);
                     return _context2.abrupt('return', url);
 
-                case 23:
+                case 24:
                 case 'end':
                     return _context2.stop();
             }

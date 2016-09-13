@@ -8,11 +8,11 @@ const devDatabase = {
 };
 
 const devFhirAuth = {
-    client_id: '707ffe10-83ee-42f2-b2e8-1871ad0c1a4c',
-    redirect_uri: 'https://diabetesdashboard.herokuapp.com/callback',
+    clientId: '707ffe10-83ee-42f2-b2e8-1871ad0c1a4c',
+    redirectUrl: 'https://diabetesdashboard.herokuapp.com/callback',
     scope: 'launch+user%2FObservation.read',
-    response_type: 'code',
-    grant_type: 'authorization_code'
+    responseType: 'code',
+    grantType: 'authorization_code'
 };
 
 

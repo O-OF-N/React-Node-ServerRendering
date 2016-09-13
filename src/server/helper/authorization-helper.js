@@ -5,7 +5,7 @@ import * as httpService from '../service/http-service'
 import * as Records from '../models/models';
 import UserAuthenticationModel from '../models/UserAuthenticationSchema';
 import {ActiveEnv, FHIRConfig} from '../config/app-config';
-import util from 'util';
+
 
 //public methods
 export const authorize = (iss, launch) => co(authorizeHelper.bind(this, iss, launch));
@@ -19,22 +19,15 @@ const accessTokenHelper = function* (authorizationCode, state) {
     const [userAuthenticationModel] = yield UserAuthenticationModel.findByState(state);
     console.log(userAuthenticationModel);
     const requestBody = new Records.AccessTokenRequestBody({ code: authorizationCode });
-    console.log('here????')
-    console.log(requestBody);
-    console.log(userAuthenticationModel.tokenURL);
     const response = yield httpService.post(userAuthenticationModel.tokenURL, requestBody, new Records.POSTHeader());
-    console.log('here>>>>>>>>')
-    console.log(response);
     ({ patient } = response.data);
     accessToken = response.data.access_token;
     const updateResponse = yield UserAuthenticationModel.update(userAuthenticationModel._id, { authorizationCode, patient, accessToken });
-    return updateResponse;
+    return state;
 };
 
 const authorizeHelper = function* (iss, launch) {
-    const aud = iss;
-    let response_type, client_id, redirect_uri, params;
-    ({ response_type, client_id, redirect_uri } = FHIRConfig.get(ActiveEnv));
+    let responseType, clientId, redirectUrl, scope;
     const state = buildState(launch);
     const issURl = `${decodeURIComponent(iss)}/metadata`;
     const response = yield httpService.get(issURl, new Records.AuthorizationHeader());
@@ -43,18 +36,18 @@ const authorizeHelper = function* (iss, launch) {
     const authModel = new Records.UserAuthentication({
         iss, state, authorizationURL, tokenURL
     })
-    const model = yield UserAuthenticationModel.save(authModel);
-    params = { response_type, client_id, redirect_uri };
-    util._extend(params, { launch, state, aud });
-    console.log('params = >>>>>>>>>>>>>>>>>>>>');
-    console.log(params)
-    const url = buildRedirectUrl(authorizationURL, params);
-    console.log('url fetched = ' + url);
+    yield UserAuthenticationModel.save(authModel);
+    ({ responseType, clientId, redirectUrl, scope } = FHIRConfig.get(ActiveEnv));
+    const url = authorizationURL +
+        '?response_type=' + responseType +
+        '&client_id=' + clientId +
+        '&redirect_uri=' + redirectUrl +
+        '&scope=' + scope +
+        '&launch=' + launch +
+        '&state=' + state +
+        '&aud=' + iss;
     return url;
 };
-
-const buildRedirectUrl = (authorizationURL, params) =>
-    `${authorizationURL}?${Object.keys(params).map(key => `${key}=${params[key]}`).join('&')}`
 
 const buildState = (launch) => `${launch}${Math.floor(Math.random() * 100000, 1)}${Date.now()}`;
 

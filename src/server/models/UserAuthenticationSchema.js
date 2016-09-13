@@ -18,7 +18,7 @@ const UserAuthenticationModel = mongoose.model('UserAuth', UserAuthenticationSch
 
 UserAuthenticationModel.save = (userAuthentication) => co(saveHelper.bind(this, userAuthentication));
 
-UserAuthenticationModel.findByState = (state) => co(findByState.bind(this, state)).then(console.log);
+UserAuthenticationModel.findByState = (state) => co(findByState.bind(this, state));
 
 const findByState = function* (state) {
     console.log('may be here??')

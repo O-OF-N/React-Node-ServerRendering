@@ -96,24 +96,25 @@ var accessTokenHelper = regeneratorRuntime.mark(function accessTokenHelper(autho
 });
 
 var authorizeHelper = regeneratorRuntime.mark(function authorizeHelper(iss, launch) {
-    var aud, response_type, client_id, redirect_uri, params, _FHIRConfig$get, state, issURl, response, authorizationURL, tokenURL, authModel, model, url;
+    var aud, response_type, client_id, redirect_uri, scope, params, _FHIRConfig$get, state, issURl, response, authorizationURL, tokenURL, authModel, model, url;
 
     return regeneratorRuntime.wrap(function authorizeHelper$(_context2) {
         while (1) {
             switch (_context2.prev = _context2.next) {
                 case 0:
                     aud = iss;
-                    response_type = void 0, client_id = void 0, redirect_uri = void 0, params = void 0;
+                    response_type = void 0, client_id = void 0, redirect_uri = void 0, scope = void 0, params = void 0;
                     _FHIRConfig$get = _appConfig.FHIRConfig.get(_appConfig.ActiveEnv);
                     response_type = _FHIRConfig$get.response_type;
                     client_id = _FHIRConfig$get.client_id;
                     redirect_uri = _FHIRConfig$get.redirect_uri;
+                    scope = _FHIRConfig$get.scope;
                     state = buildState(launch);
                     issURl = decodeURIComponent(iss) + '/metadata';
-                    _context2.next = 10;
+                    _context2.next = 11;
                     return httpService.get(issURl, new Records.AuthorizationHeader());
 
-                case 10:
+                case 11:
                     response = _context2.sent;
                     authorizationURL = response.data.rest[0].security.extension[0].extension.filter(function (ext) {
                         return ext.url === 'authorize';
@@ -124,13 +125,13 @@ var authorizeHelper = regeneratorRuntime.mark(function authorizeHelper(iss, laun
                     authModel = new Records.UserAuthentication({
                         iss: iss, state: state, authorizationURL: authorizationURL, tokenURL: tokenURL
                     });
-                    _context2.next = 16;
+                    _context2.next = 17;
                     return _UserAuthenticationSchema2.default.save(authModel);
 
-                case 16:
+                case 17:
                     model = _context2.sent;
 
-                    params = { response_type: response_type, client_id: client_id, redirect_uri: redirect_uri };
+                    params = { response_type: response_type, client_id: client_id, redirect_uri: redirect_uri, scope: scope };
                     _util2.default._extend(params, { launch: launch, state: state, aud: aud });
                     console.log('params = >>>>>>>>>>>>>>>>>>>>');
                     console.log(params);
@@ -139,7 +140,7 @@ var authorizeHelper = regeneratorRuntime.mark(function authorizeHelper(iss, laun
                     console.log('url fetched = ' + url);
                     return _context2.abrupt('return', url);
 
-                case 24:
+                case 25:
                 case 'end':
                     return _context2.stop();
             }

@@ -8,11 +8,6 @@ export const Observation = new Record({
     interpretation: ''
 });
 
-export const AccessToken = new Record({
-    patient: 0,
-    accessToken: ''
-});
-
 export const AccessTokenRequestBody = new Record({
     grant_type: FHIRConfig.get(ActiveEnv).grantType,
     code: '',

@@ -24,7 +24,7 @@ const getAccessToken = function* (authorizationCode, state) {
     accessToken = response.data.access_token;
     const updateResponse = yield UserAuthenticationModel.update(userAuthenticationModel._id, { authorizationCode, patient, accessToken });
     console.log(updateResponse);
-    return new Records.AccessToken({ patient, accessToken })
+    return state;
 };
 
 const getaAuthorizeURL = function* (iss, launch) {

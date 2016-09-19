@@ -62,32 +62,23 @@ var accessTokenHelper = regeneratorRuntime.mark(function accessTokenHelper(autho
                     _ref = _context.sent;
                     _ref2 = _slicedToArray(_ref, 1);
                     userAuthenticationModel = _ref2[0];
-
-                    console.log(userAuthenticationModel);
                     requestBody = new Records.AccessTokenRequestBody({ code: authorizationCode });
-
-                    console.log('here????');
-                    console.log(requestBody);
-                    console.log(userAuthenticationModel.tokenURL);
-                    _context.next = 13;
+                    _context.next = 9;
                     return httpService.post(userAuthenticationModel.tokenURL, requestBody, new Records.POSTHeader());
 
-                case 13:
+                case 9:
                     response = _context.sent;
-
-                    console.log('here>>>>>>>>');
-                    console.log(response);
                     patient = response.data.patient;
 
                     accessToken = response.data.access_token;
-                    _context.next = 20;
+                    _context.next = 14;
                     return _UserAuthenticationSchema2.default.update(userAuthenticationModel._id, { authorizationCode: authorizationCode, patient: patient, accessToken: accessToken });
 
-                case 20:
+                case 14:
                     updateResponse = _context.sent;
                     return _context.abrupt('return', updateResponse);
 
-                case 22:
+                case 16:
                 case 'end':
                     return _context.stop();
             }
@@ -96,7 +87,7 @@ var accessTokenHelper = regeneratorRuntime.mark(function accessTokenHelper(autho
 });
 
 var authorizeHelper = regeneratorRuntime.mark(function authorizeHelper(iss, launch) {
-    var aud, response_type, client_id, redirect_uri, scope, params, _FHIRConfig$get, state, issURl, response, authorizationURL, tokenURL, authModel, model, url;
+    var aud, response_type, client_id, redirect_uri, scope, params, _FHIRConfig$get, state, issURl, response, extension, authorizationURL, tokenURL, authModel, model, url;
 
     return regeneratorRuntime.wrap(function authorizeHelper$(_context2) {
         while (1) {
@@ -116,31 +107,28 @@ var authorizeHelper = regeneratorRuntime.mark(function authorizeHelper(iss, laun
 
                 case 11:
                     response = _context2.sent;
-                    authorizationURL = response.data.rest[0].security.extension[0].extension.filter(function (ext) {
+                    extension = response.data.rest[0].security.extension[0].extension;
+                    authorizationURL = extension.filter(function (ext) {
                         return ext.url === 'authorize';
                     })[0].valueUri;
-                    tokenURL = response.data.rest[0].security.extension[0].extension.filter(function (ext) {
+                    tokenURL = extension.filter(function (ext) {
                         return ext.url === 'token';
                     })[0].valueUri;
                     authModel = new Records.UserAuthentication({
                         iss: iss, state: state, authorizationURL: authorizationURL, tokenURL: tokenURL
                     });
-                    _context2.next = 17;
+                    _context2.next = 18;
                     return _UserAuthenticationSchema2.default.save(authModel);
 
-                case 17:
+                case 18:
                     model = _context2.sent;
 
                     params = { response_type: response_type, client_id: client_id, redirect_uri: redirect_uri, scope: scope };
                     _util2.default._extend(params, { launch: launch, state: state, aud: aud });
-                    console.log('params = >>>>>>>>>>>>>>>>>>>>');
-                    console.log(params);
                     url = buildRedirectUrl(authorizationURL, params);
-
-                    console.log('url fetched = ' + url);
                     return _context2.abrupt('return', url);
 
-                case 25:
+                case 23:
                 case 'end':
                     return _context2.stop();
             }

@@ -8,6 +8,8 @@ import co from '../util/wrap';
 import {get} from '../service/http-service'
 import * as Records from '../models/models';
 import * as Constants from '../util/constants';
+var jade = require('react-jade');
+
 
 const router = express.Router();
 
@@ -28,10 +30,8 @@ router.get('/callback', co(function* (req, res, next) {
         let code = null, state = null, accessToken = null, patient = 0;
         ({ code, state } = req.query);
         yield AuthorizationHelper.accessToken(code, state);
-        const html = ReactDomServer.renderToString(
-            React.createElement(Component)
-        );
-        res.header({ state });
+        var template = jade.compileFile(__dirname + '/../../views/index.jade');
+        var html = ReactDomServer.renderToString(template({ state }));
         res.send(html);
     } catch (err) {
         console.log('err = ' + err);

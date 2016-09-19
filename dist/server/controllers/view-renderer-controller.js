@@ -42,6 +42,8 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var jade = require('react-jade');
+
 var router = _express2.default.Router();
 
 router.get('/', (0, _wrap2.default)(regeneratorRuntime.mark(function _callee(req, res, next) {
@@ -82,51 +84,41 @@ router.get('/', (0, _wrap2.default)(regeneratorRuntime.mark(function _callee(req
 })));
 
 router.get('/callback', (0, _wrap2.default)(regeneratorRuntime.mark(function _callee2(req, res, next) {
-    var code, state, accessToken, patient, _req$query2, model, html;
+    var code, state, accessToken, patient, _req$query2, template, html;
 
     return regeneratorRuntime.wrap(function _callee2$(_context2) {
         while (1) {
             switch (_context2.prev = _context2.next) {
                 case 0:
                     _context2.prev = 0;
-
-                    console.log('1>>>');
                     code = null, state = null, accessToken = null, patient = 0;
-
-                    console.log('2>>>');
                     _req$query2 = req.query;
                     code = _req$query2.code;
                     state = _req$query2.state;
-
-                    console.log('3>>>' + code);
-                    _context2.next = 10;
+                    _context2.next = 7;
                     return AuthorizationHelper.accessToken(code, state);
 
-                case 10:
-                    model = _context2.sent;
+                case 7:
+                    template = jade.compileFile(__dirname + '/../../views/index.jade');
+                    html = _server2.default.renderToString(template({ state: state }));
 
-                    console.log('the model is ' + model.state);
-                    console.log(model);
-                    html = _server2.default.renderToString(_react2.default.createElement(_index2.default));
-
-                    res.header({ state: state });
                     res.send(html);
-                    _context2.next = 22;
+                    _context2.next = 16;
                     break;
 
-                case 18:
-                    _context2.prev = 18;
+                case 12:
+                    _context2.prev = 12;
                     _context2.t0 = _context2['catch'](0);
 
                     console.log('err = ' + _context2.t0);
                     next(_context2.t0);
 
-                case 22:
+                case 16:
                 case 'end':
                     return _context2.stop();
             }
         }
-    }, _callee2, this, [[0, 18]]);
+    }, _callee2, this, [[0, 12]]);
 })));
 
 exports.default = router;

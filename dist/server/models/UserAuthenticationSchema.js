@@ -96,12 +96,9 @@ var updateHelper = regeneratorRuntime.mark(function updateHelper(_id, $set) {
 
                 case 2:
                     userAuth = _context3.sent;
-
-                    console.log('userauth>>>');
-                    console.log(userAuth);
                     return _context3.abrupt('return', userAuth);
 
-                case 6:
+                case 4:
                 case 'end':
                     return _context3.stop();
             }

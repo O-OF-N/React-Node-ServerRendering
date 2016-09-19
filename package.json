@@ -37,6 +37,7 @@
     "querystring": "0.2.0",
     "react": "^15.3.1",
     "react-dom": "^15.3.1",
+    "react-jade": "^2.5.0",
     "redux": "^3.5.2",
     "redux-logger": "^2.6.1",
     "redux-thunk": "^2.1.0",

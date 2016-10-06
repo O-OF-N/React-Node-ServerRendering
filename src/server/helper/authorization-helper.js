@@ -46,7 +46,7 @@ const authorizeHelper = function* (iss, launch) {
     params = { response_type, client_id, redirect_uri, scope };
     util._extend(params, { launch, state, aud });
     const url = buildRedirectUrl(authorizationURL, params);
-    console.log('leaving here>>>>>>>>>>>>> /authorizeHelper')
+    console.log('leaving here>>>>>>>>>>>>> /authorizeHelper'+url)
     return url;
 };
 

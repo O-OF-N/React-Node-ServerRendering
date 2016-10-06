@@ -3,14 +3,17 @@
 import * as Records from '../models/models';
 import {List} from 'immutable';
 import * as Constants from '../util/constants';
+import {get} from '../service/http-service'
 
-export const fetchGlucoseResults = (json)=>{
-    return checkResponseStatus(json)?buildObservationFromJson(json): null;
+export const fetchGlucoseResults = function* () {
+    const result = yield get(Constants.OBSERVATIONS_FETCH_URL,
+            new Records.AuthorizationHeader());
+    return checkResponseStatus(result) ? buildObservationFromJson(result) : null;
 };
 
-const checkResponseStatus = (json) => (json && json.status && json.status === 200)? true:false;
+const checkResponseStatus = (json) => (json && json.status && json.status === 200) ? true : false;
 
-const buildObservationFromJson = (json) =>{
+const buildObservationFromJson = (json) => {
     let glucose = json.data.entry.map((entry) => {
         if (entry.resource.code.coding) {
             const [code] = entry.resource.code.coding;

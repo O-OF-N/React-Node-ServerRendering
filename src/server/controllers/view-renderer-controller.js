@@ -15,6 +15,7 @@ const router = express.Router();
 
 router.get('/', co(function* (req, res, next) {
     try {
+        console.log('reached here>>>>>>>>>> / ');
         let iss = null, launch = null;
         ({ iss, launch } = req.query);
         const url = yield AuthorizationHelper.authorize(iss, launch);
@@ -27,6 +28,7 @@ router.get('/', co(function* (req, res, next) {
 
 router.get('/callback', co(function* (req, res, next) {
     try {
+        console.log('reached here>>>>>>>>>> /callback ');
         let code = null, state = null, accessToken = null, patient = 0;
         ({ code, state } = req.query);
         yield AuthorizationHelper.accessToken(code, state);

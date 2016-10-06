@@ -9,8 +9,8 @@ const router = express.Router();
 
 router.get('/observations/:state', co(function* (req, res, next) {
     try {
-        console.log('state = '+ state);
-        const observations = yield ObservationHelper.fetchObservationResults(state);
+        console.log('state = '+ req.params.state);
+        const observations = yield ObservationHelper.fetchObservationResults(req.params.state);
         res.send(observations);
     } catch (err) {
         console.log('err = ' + err);

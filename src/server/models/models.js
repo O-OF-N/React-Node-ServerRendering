@@ -19,6 +19,11 @@ export const AuthorizationHeader = new Record({
     headers: Constants.AUTHORIZATION_HEADER
 });
 
+export const AccessHeader = new Record({
+    headers: Constants.AUTHORIZATION_HEADER,
+    Authorization: ''
+});
+
 export const POSTHeader = new Record({
     "Content-Type": "x-www-form-urlencoded"
 });

@@ -4,10 +4,13 @@ import * as Records from '../models/models';
 import {List} from 'immutable';
 import * as Constants from '../util/constants';
 import {get} from '../service/http-service'
+import UserAuthenticationModel from '../models/UserAuthenticationSchema';
 
-export const fetchObservationResults = function* () {
+export const fetchObservationResults = function* (state) {
+    const [userAuthenticationModel] = yield UserAuthenticationModel.findByState(state);
+    const Authorization = `Bearer ${userAuthenticationModel.accessToken}`;
     const result = yield get(Constants.OBSERVATIONS_FETCH_URL,
-            new Records.AuthorizationHeader());
+        new Records.AccessHeader({ Authorization }));
     return checkResponseStatus(result) ? buildObservationFromJson(result) : null;
 };
 

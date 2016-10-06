@@ -9,7 +9,7 @@ const router = express.Router();
 
 router.get('/observations', co(function* (req, res, next) {
     try {
-        const observations = ObservationHelper.fetchObservationResults(result);
+        const observations = yield ObservationHelper.fetchObservationResults();
         res.send(observations);
     } catch (err) {
         console.log('err = ' + err);

@@ -16,7 +16,8 @@ const UserAuthenticationSchema = new Schema({
 
 const UserAuthenticationModel = mongoose.model('UserAuth', UserAuthenticationSchema);
 
-UserAuthenticationModel.save = (userAuthentication) => co(saveHelper.bind(this, userAuthentication));
+UserAuthenticationModel.save = (userAuthentication) =>
+    co(saveHelper.bind(this, userAuthentication));
 
 UserAuthenticationModel.findByState = (state) => co(findByStateHelper.bind(this, state));
 

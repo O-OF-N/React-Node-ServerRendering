@@ -5,7 +5,7 @@ import {List} from 'immutable';
 import * as Constants from '../util/constants';
 import {get} from '../service/http-service'
 
-export const fetchGlucoseResults = function* () {
+export const fetchObservationResults = function* () {
     const result = yield get(Constants.OBSERVATIONS_FETCH_URL,
             new Records.AuthorizationHeader());
     return checkResponseStatus(result) ? buildObservationFromJson(result) : null;

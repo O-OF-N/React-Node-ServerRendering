@@ -1,15 +1,15 @@
 import express from 'express';
 import co from '../util/wrap';
-import * as GlucoseHelper from '../helper/glucose-resource-helper';
+import * as ObservationHelper from '../helper/observation-helper';
 import * as Records from '../models/models';
 import * as Constants from '../util/constants';
 
 
 const router = express.Router();
 
-router.get('/glucose', co(function* (req, res, next) {
+router.get('/observations', co(function* (req, res, next) {
     try {
-        const glucose = GlucoseHelper.fetchGlucoseResults(result);
+        const glucose = ObservationHelper.fetchObservationResults(result);
         res.send(glucose);
     } catch (err) {
         console.log('err = ' + err);

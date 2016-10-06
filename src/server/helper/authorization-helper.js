@@ -15,7 +15,6 @@ export const accessToken = (code, state) => co(accessTokenHelper.bind(this, code
 
 //private methods
 const accessTokenHelper = function* (authorizationCode, state) {
-    console.log('Reached here>>>>>>>>>>>>> /accessTokenHelper')
     let patient, accessToken;
     const [userAuthenticationModel] = yield UserAuthenticationModel.findByState(state);
     const requestBody = new Records.AccessTokenRequestBody({ code: authorizationCode });
@@ -24,12 +23,10 @@ const accessTokenHelper = function* (authorizationCode, state) {
     accessToken = response.data.access_token;
     const updateResponse = yield UserAuthenticationModel.update(userAuthenticationModel._id,
         { authorizationCode, patient, accessToken });
-    console.log('leaving here>>>>>>>>>>>>> /accessTokenHelper')
     return updateResponse;
 };
 
 const authorizeHelper = function* (iss, launch) {
-    console.log('Reached here>>>>>>>>>>>>> /authorizeHelper')
     const aud = iss;
     let response_type, client_id, redirect_uri, scope, params;
     ({ response_type, client_id, redirect_uri, scope } = FHIRConfig.get(ActiveEnv));
@@ -46,7 +43,6 @@ const authorizeHelper = function* (iss, launch) {
     params = { response_type, client_id, redirect_uri, scope };
     util._extend(params, { launch, state, aud });
     const url = buildRedirectUrl(authorizationURL, params);
-    console.log('leaving here>>>>>>>>>>>>> /authorizeHelper'+url)
     return url;
 };
 

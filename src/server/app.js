@@ -22,7 +22,7 @@ db.once('open', () => { console.log('connected to Mongo DB'); });
 
 // controller imports
 import viewRendererController from './controllers/view-renderer-controller';
-import glucoseController from './controllers/glucose-results-controller';
+import observationController from './controllers/observation-controller';
 
 var app = express();
 
@@ -39,7 +39,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '/../../public')));
 
 app.use('/', viewRendererController);
-app.use('/results', glucoseController);
+app.use('/results', observationController);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

@@ -9,6 +9,7 @@ import UserAuthenticationModel from '../models/UserAuthenticationSchema';
 export const fetchObservationResults = function* (state) {
     const [userAuthenticationModel] = yield UserAuthenticationModel.findByState(state);
     const Authorization = `Bearer ${userAuthenticationModel.accessToken}`;
+    console.log("Authorization = " + Authorization);
     const result = yield get(Constants.OBSERVATIONS_FETCH_URL,
         new Records.AccessHeader({ Authorization }));
     return checkResponseStatus(result) ? buildObservationFromJson(result) : null;

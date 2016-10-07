@@ -20,6 +20,10 @@ export const AuthorizationHeader = new Record({
     headers: Constants.AUTHORIZATION_HEADER
 });
 
+export const POSTHeader = new Record({
+    "Content-Type": "x-www-form-urlencoded"
+});
+
 export const UserAuthentication = new Record({
     state: '',
     iss: '',

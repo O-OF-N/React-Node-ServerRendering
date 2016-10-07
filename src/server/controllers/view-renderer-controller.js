@@ -65,7 +65,7 @@ const renderFullPage = (html, preloadedState) => {
         <title>Diabetes Dashboard</title>
       </head>
       <body>
-        <div id="root">${html}</div>
+        <div>${html}</div>
         <script>
           window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState)}
         </script>

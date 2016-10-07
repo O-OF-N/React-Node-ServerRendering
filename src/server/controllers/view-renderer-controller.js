@@ -45,9 +45,7 @@ router.get('/callback', co(function* (req, res, next) {
 const handleRenderer = (state) => {
     console.log('state = ' + state);
     const html = ReactDomServer.renderToString(
-        <Provider store={store}>
-            <Component/>
-        </Provider>
+        React.createElement(Component)
     );
     return renderFullPage(renderFullPage(html, state))
 }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
-import DiabeticsChart from './components/diabetics-chart';
+import DiabetieChart from './components/diabetes-chart';
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 import createLogger from 'redux-logger';
@@ -22,7 +22,7 @@ const store = createStore(reducer, middleware);
 const dom = () => {
     render(
         <Provider store = {store}>
-            <DiabeticsChart/>
+            <DiabetieChart/>
         </Provider>, document.getElementById('app')
     );
 };

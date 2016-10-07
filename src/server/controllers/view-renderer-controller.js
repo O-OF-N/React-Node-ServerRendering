@@ -44,27 +44,22 @@ router.get('/callback', co(function* (req, res, next) {
 
 const handleRenderer = (state) => {
     console.log('state = ' + state);
-    const s = { state };
-    const store = createStore(() => s);
-    console.log(store);
-    console.log(store.getState());
     const html = ReactDomServer.renderToString(
         <Provider store={store}>
             <Component/>
         </Provider>
     );
-    const preloadedState = store.getState();
-    return renderFullPage(renderFullPage(html, preloadedState))
+    return renderFullPage(renderFullPage(html, state))
 }
 
-const renderFullPage = (html, preloadedState) => {
+const renderFullPage = (html, state) => {
     return `
     <!doctype html>
     <html>
       <head>
         <title>Diabetes Dashboard</title>
         <script>
-          window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState)}
+          window.__PRELOADED_STATE__ = ${state}
         </script>
       </head>
       <body>

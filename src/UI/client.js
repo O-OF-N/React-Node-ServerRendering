@@ -9,7 +9,7 @@ import {fetchObservations} from './components/glucose-results/glucose-results-ac
 import {Provider} from 'react-redux';
 const logger = createLogger();
 
-const state = window.__PRELOADED_STATE__;
+const state = { state: window.__PRELOADED_STATE__ };
 console.log('preloadedState = ' + state);
 const reducer = combineReducers({ state, ObservationObject });
 const middleware = applyMiddleware(thunk, logger);

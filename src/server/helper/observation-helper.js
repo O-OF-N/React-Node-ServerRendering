@@ -11,9 +11,9 @@ import * as UrlBuilders from '../util/url-builder';
 export const fetchGlucoseResults = function* (state) {
     const [userAuthenticationModel] = yield UserAuthenticationModel.findByState(state);
     const Authorization = `Bearer ${userAuthenticationModel.accessToken}`;
-    const url = UrlBuilders.buildGlucoseResultsFromJson(userAuthenticationModel.patient, ["glucose"], userAuthenticationModel.iss);
+    const url = UrlBuilders.buildObeservationURL(userAuthenticationModel.patient, ["glucose"], userAuthenticationModel.iss);
     const result = yield get(url, new Records.AuthorizationHeader({ headers: { Accept: "application/json+fhir", Authorization } }));
-    return checkResponseStatus(result) ? buildObservationFromJson(result) : null;
+    return checkResponseStatus(result) ? buildGlucoseResultsFromJson(result) : null;
 };
 
 

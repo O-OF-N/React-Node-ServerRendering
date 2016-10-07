@@ -9,7 +9,6 @@ const router = express.Router();
 
 router.get('/glucose/:state', co(function* (req, res, next) {
     try {
-        console.log('state = '+ req.params.state);
         const glucose = yield ObservationHelper.fetchGlucoseResults(req.params.state);
         res.send(glucose);
     } catch (err) {

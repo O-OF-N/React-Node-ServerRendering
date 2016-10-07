@@ -30,10 +30,10 @@ router.get('/callback', co(function* (req, res, next) {
         let code = null, state = null, accessToken = null, patient = 0;
         ({ code, state } = req.query);
         yield AuthorizationHelper.accessToken(code, state);
-        const html = ReactDomServer.renderToString(
+        /*const html = ReactDomServer.renderToString(
             React.createElement(Component)
         );
-        //res.header({ state });
+        res.header({ state });*/
         res.send(handleRenderer(state));
     } catch (err) {
         console.log('err = ' + err);

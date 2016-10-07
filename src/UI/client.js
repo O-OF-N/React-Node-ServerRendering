@@ -8,13 +8,14 @@ import ObservationObject from './reducer/glucose-results-reducer';
 import {fetchObservations} from './components/glucose-results/glucose-results-action';
 import {Provider} from 'react-redux';
 const logger = createLogger();
-const reducer = combineReducers({ ObservationObject });
+
+const state = window.__PRELOADED_STATE__;
+console.log('preloadedState = ' + state);
+const reducer = combineReducers({ state, ObservationObject });
 const middleware = applyMiddleware(thunk, logger);
 
-const preloadedState = window.__PRELOADED_STATE__;
-console.log('preloadedState = ' + preloadedState);
-const state = () => preloadedState;
-const store = createStore(reducer, middleware, state);
+
+const store = createStore(reducer, middleware);
 
 const dom = () => {
     render(

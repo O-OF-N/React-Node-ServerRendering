@@ -3,13 +3,12 @@ import express from 'express';
 import React from 'react';
 import ReactDomServer from 'react-dom/server';
 import Component from '../index';
+import DiabeticsChart from '../../UI/components/diabetics-chart'; 
 import * as AuthorizationHelper from '../helper/authorization-helper';
 import co from '../util/wrap';
 import {get} from '../service/http-service'
 import * as Records from '../models/models';
 import * as Constants from '../util/constants';
-var jade = require('react-jade');
-
 
 const router = express.Router();
 
@@ -30,8 +29,10 @@ router.get('/callback', co(function* (req, res, next) {
         let code = null, state = null, accessToken = null, patient = 0;
         ({ code, state } = req.query);
         yield AuthorizationHelper.accessToken(code, state);
-        var template = jade.compileFile(__dirname + '/../../views/index.jade');
-        var html = ReactDomServer.renderToString(template({ state }));
+        const html = ReactDomServer.renderToString(
+            React.createElement(Component)
+        );
+        res.header({ state });
         res.send(html);
     } catch (err) {
         console.log('err = ' + err);

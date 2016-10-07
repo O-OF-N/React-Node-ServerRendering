@@ -6,15 +6,17 @@ import thunk from 'redux-thunk';
 import createLogger from 'redux-logger';
 import ObservationObject from './reducer/glucose-results-reducer';
 import {fetchObservations} from './components/glucose-results/glucose-results-action';
-
+import {Provider} from 'react-redux';
 const logger = createLogger();
-const reducer = combineReducers({ ObservationObject});
+const reducer = combineReducers({ ObservationObject });
 const middleware = applyMiddleware(thunk, logger);
 const store = createStore(reducer, middleware);
 
 const dom = () => {
     render(
-        <DiabeticsChart observations={store.getState().ObservationObject.observations}/>, document.getElementById('app')
+        <Provider store = {store}>
+            <DiabeticsChart/>
+        </Provider>, document.getElementById('app')
     );
 };
 

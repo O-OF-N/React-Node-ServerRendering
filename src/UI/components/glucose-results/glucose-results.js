@@ -1,7 +1,8 @@
 import React from 'react';
 import drawChart from '../chart/draw-chart';
 
-export default class GlucoseResults extends React.Component {
+
+class GlucoseResults extends React.Component {
     constructor(props) {
         super(props);
         this.logit = this.logit.bind(this);
@@ -31,3 +32,7 @@ export default class GlucoseResults extends React.Component {
         )
     }
 };
+
+export default connect(state => ({
+  observations: state.ObservationObject.observations
+}))(GlucoseResults);

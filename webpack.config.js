@@ -4,6 +4,7 @@ var path = require('path');
 module.exports = {
     devtool: 'inline-source-map',
     entry: [
+        'babel-polyfill',
         './src/UI/client.js'
     ],
     output: {

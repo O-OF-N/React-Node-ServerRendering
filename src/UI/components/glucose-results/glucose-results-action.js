@@ -13,8 +13,8 @@ export const fetchObservations = (state) => dispatch => {
                 const data = (glucoseList && glucoseList.data) ? glucoseList.data : null;
                 console.log('data =' + data);
                 if (data) {
-                    const ObservationList = data.map(glucose => new Records.Observation(glucose));
-                    dispatch({ type: Constants.OBSERVATIONS_FETCHED, payLoad: ObservationList });
+                    const glucoseObj = data.map(glucose => new Records.Glucose(glucose));
+                    dispatch({ type: Constants.OBSERVATIONS_FETCHED, payLoad: glucoseObj });
                 } else
                     throw { message: "glucose list is not fetched" };
             } catch (err) {

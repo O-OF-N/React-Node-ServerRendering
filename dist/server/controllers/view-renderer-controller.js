@@ -38,6 +38,10 @@ var _constants = require('../util/constants');
 
 var Constants = _interopRequireWildcard(_constants);
 
+var _redux = require('redux');
+
+var _reactRedux = require('react-redux');
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -98,26 +102,41 @@ router.get('/callback', (0, _wrap2.default)(regeneratorRuntime.mark(function _ca
 
                 case 7:
                     html = _server2.default.renderToString(_react2.default.createElement(_index2.default));
+                    //res.header({ state });
 
-                    res.header({ state: state });
-                    res.send(html);
-                    _context2.next = 16;
+                    res.send(handleRenderer(state));
+                    _context2.next = 15;
                     break;
 
-                case 12:
-                    _context2.prev = 12;
+                case 11:
+                    _context2.prev = 11;
                     _context2.t0 = _context2['catch'](0);
 
                     console.log('err = ' + _context2.t0);
                     next(_context2.t0);
 
-                case 16:
+                case 15:
                 case 'end':
                     return _context2.stop();
             }
         }
-    }, _callee2, this, [[0, 12]]);
+    }, _callee2, this, [[0, 11]]);
 })));
+
+var handleRenderer = function handleRenderer(state) {
+    var store = (0, _redux.createStore)({ state: state });
+    var html = renderToString(_react2.default.createElement(
+        _reactRedux.Provider,
+        { store: store },
+        _react2.default.createElement(DiabeticsChart, null)
+    ));
+    var preloadedState = store.getState();
+    return renderFullPage(renderFullPage(html, preloadedState));
+};
+
+var renderFullPage = function renderFullPage(html, preloadedState) {
+    return '\n    <!doctype html>\n    <html>\n      <head>\n        <title>Redux Universal Example</title>\n      </head>\n      <body>\n        <div id="root">' + html + '</div>\n        <script>\n          window.__PRELOADED_STATE__ = ' + JSON.stringify(preloadedState) + '\n        </script>\n        <script src="/static/bundle.js"></script>\n      </body>\n    </html>\n    ';
+};
 
 exports.default = router;
 //# sourceMappingURL=view-renderer-controller.js.map

@@ -13,7 +13,6 @@ export const fetchObservationResults = function* (state) {
     const header = new Records.AccessHeader({ Authorization });
     const url = UtilFunctions.buildObeservationURL(userAuthenticationModel.patient, ["glucose"], userAuthenticationModel.iss);
     const result = yield get(url, new Records.AuthorizationHeader({ headers: { Accept: "application/json+fhir", Authorization } }));
-    console.log(result);
     return checkResponseStatus(result) ? buildObservationFromJson(result) : null;
 };
 

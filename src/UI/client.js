@@ -13,7 +13,8 @@ const middleware = applyMiddleware(thunk, logger);
 
 const preloadedState = window.__PRELOADED_STATE__;
 console.log('preloadedState = ' + preloadedState);
-const store = createStore(reducer, middleware, () => preloadedState);
+const state = () => preloadedState;
+const store = createStore(reducer, middleware, state);
 
 const dom = () => {
     render(

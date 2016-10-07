@@ -10,6 +10,7 @@ import * as Records from '../models/models';
 import * as Constants from '../util/constants';
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
+import {DiabeticsChart} from '../../public/javascripts/bundle'
 
 const router = express.Router();
 

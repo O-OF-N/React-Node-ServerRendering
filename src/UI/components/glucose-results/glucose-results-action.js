@@ -4,8 +4,8 @@ import * as Records from '../../records/records';
 import co from 'co';
 
 
-export const fetchGlucose = (state) => dispatch => {
-    co(fetchGlucoseHelper.bind(null, state))
+export const fetchGlucose = state => dispatch => {
+    co(fetchGlucoseHelper.bind(null, state, dispatch))
         .catch((err) => {
             const errImmutable = err ? new Records.HttpError(err) : new Records.HttpError();
             dispatch({ type: Constants.GLUCOSE_ERROR, payLoad: errImmutable });
@@ -13,7 +13,8 @@ export const fetchGlucose = (state) => dispatch => {
 
 };
 
-const fetchGlucoseHelper = function* (state) {
+const fetchGlucoseHelper = function* (state, dispatch) {
+    console.log('I came here and then failed');
     dispatch({ type: Constants.GLUCOSE_FETCHING });
     const glucoseList = yield axios.get(Constants.GLUCOSE_FETCH_URL.concat(`/${state}`), { headers: Constants.AUTHORIZATION_HEADER });
     try {

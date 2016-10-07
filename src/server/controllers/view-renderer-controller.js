@@ -43,7 +43,7 @@ router.get('/callback', co(function* (req, res, next) {
 
 const handleRenderer = (state) => {
     const store = createStore(()=>{ state });
-    const html = renderToString(
+    const html = ReactDomServer.renderToString(
     <Provider store={store}>
       <DiabeticsChart/>
     </Provider>

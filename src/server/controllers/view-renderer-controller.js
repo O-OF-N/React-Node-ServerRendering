@@ -47,7 +47,7 @@ const handleRenderer = (state) => {
     const html = ReactDomServer.renderToString(
         React.createElement(Component)
     );
-    return renderFullPage(renderFullPage(html, {state}))
+    return renderFullPage(renderFullPage(html, state))
 }
 
 const renderFullPage = (html, state) => {
@@ -57,7 +57,7 @@ const renderFullPage = (html, state) => {
       <head>
         <title>Diabetes Dashboard</title>
         <script>
-          window.__PRELOADED_STATE__ = ${state}
+          window.__PRELOADED_STATE__ = '${state}'
         </script>
       </head>
       <body>

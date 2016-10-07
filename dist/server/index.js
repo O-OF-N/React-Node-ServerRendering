@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 Object.defineProperty(exports, "__esModule", {
     value: true
@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = require("react");
+var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
@@ -28,27 +28,13 @@ var Component = function (_React$Component) {
     }
 
     _createClass(Component, [{
-        key: "render",
+        key: 'render',
         value: function render() {
             return _react2.default.createElement(
-                "html",
+                'div',
                 null,
-                _react2.default.createElement(
-                    "head",
-                    null,
-                    _react2.default.createElement(
-                        "title",
-                        null,
-                        "Diabetes Dashboard"
-                    ),
-                    _react2.default.createElement("link", { rel: "stylesheet", href: "/stylesheets/style.css" })
-                ),
-                _react2.default.createElement(
-                    "body",
-                    null,
-                    _react2.default.createElement("div", { id: "app" }),
-                    _react2.default.createElement("script", { src: "/javascripts/bundle.js" })
-                )
+                _react2.default.createElement('div', { id: 'app' }),
+                _react2.default.createElement('script', { src: '/javascripts/bundle.js' })
             );
         }
     }]);

@@ -46,6 +46,8 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+/*import {DiabeticsChart} from '../../public/javascripts/bundle'*/
+
 var router = _express2.default.Router();
 
 router.get('/', (0, _wrap2.default)(regeneratorRuntime.mark(function _callee(req, res, next) {
@@ -86,7 +88,7 @@ router.get('/', (0, _wrap2.default)(regeneratorRuntime.mark(function _callee(req
 })));
 
 router.get('/callback', (0, _wrap2.default)(regeneratorRuntime.mark(function _callee2(req, res, next) {
-    var code, state, accessToken, patient, _req$query2, html;
+    var code, state, accessToken, patient, _req$query2;
 
     return regeneratorRuntime.wrap(function _callee2$(_context2) {
         while (1) {
@@ -101,41 +103,48 @@ router.get('/callback', (0, _wrap2.default)(regeneratorRuntime.mark(function _ca
                     return AuthorizationHelper.accessToken(code, state);
 
                 case 7:
-                    html = _server2.default.renderToString(_react2.default.createElement(_index2.default));
-                    //res.header({ state });
-
+                    /*const html = ReactDomServer.renderToString(
+                        React.createElement(Component)
+                    );
+                    res.header({ state });*/
                     res.send(handleRenderer(state));
-                    _context2.next = 15;
+                    _context2.next = 14;
                     break;
 
-                case 11:
-                    _context2.prev = 11;
+                case 10:
+                    _context2.prev = 10;
                     _context2.t0 = _context2['catch'](0);
 
                     console.log('err = ' + _context2.t0);
                     next(_context2.t0);
 
-                case 15:
+                case 14:
                 case 'end':
                     return _context2.stop();
             }
         }
-    }, _callee2, this, [[0, 11]]);
+    }, _callee2, this, [[0, 10]]);
 })));
 
 var handleRenderer = function handleRenderer(state) {
-    var store = (0, _redux.createStore)({ state: state });
-    var html = renderToString(_react2.default.createElement(
+    console.log('state = ' + state);
+    var s = { state: state };
+    var store = (0, _redux.createStore)(function () {
+        return s;
+    });
+    console.log(store);
+    console.log(store.getState());
+    var html = _server2.default.renderToString(_react2.default.createElement(
         _reactRedux.Provider,
         { store: store },
-        _react2.default.createElement(DiabeticsChart, null)
+        _react2.default.createElement(_index2.default, null)
     ));
     var preloadedState = store.getState();
     return renderFullPage(renderFullPage(html, preloadedState));
 };
 
 var renderFullPage = function renderFullPage(html, preloadedState) {
-    return '\n    <!doctype html>\n    <html>\n      <head>\n        <title>Redux Universal Example</title>\n      </head>\n      <body>\n        <div id="root">' + html + '</div>\n        <script>\n          window.__PRELOADED_STATE__ = ' + JSON.stringify(preloadedState) + '\n        </script>\n        <script src="/static/bundle.js"></script>\n      </body>\n    </html>\n    ';
+    return '\n    <!doctype html>\n    <html>\n      <head>\n        <title>Diabetes Dashboard</title>\n      </head>\n      <body>\n        <div id="root">' + html + '</div>\n        <script>\n          window.__PRELOADED_STATE__ = ' + JSON.stringify(preloadedState) + '\n        </script>\n      </body>\n    </html>\n    ';
 };
 
 exports.default = router;

@@ -10,7 +10,9 @@ import {Provider} from 'react-redux';
 const logger = createLogger();
 const reducer = combineReducers({ ObservationObject });
 const middleware = applyMiddleware(thunk, logger);
-const store = createStore(reducer, middleware);
+
+const preloadedState = window.__PRELOADED_STATE__
+const store = createStore(reducer, middleware,preloadedState);
 
 const dom = () => {
     render(

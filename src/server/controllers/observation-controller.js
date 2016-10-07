@@ -7,11 +7,11 @@ import * as Constants from '../util/constants';
 
 const router = express.Router();
 
-router.get('/observations/:state', co(function* (req, res, next) {
+router.get('/glucose/:state', co(function* (req, res, next) {
     try {
         console.log('state = '+ req.params.state);
-        const observations = yield ObservationHelper.fetchObservationResults(req.params.state);
-        res.send(observations);
+        const glucose = yield ObservationHelper.fetchGlucoseResults(req.params.state);
+        res.send(glucose);
     } catch (err) {
         console.log('err = ' + err);
         next(err);

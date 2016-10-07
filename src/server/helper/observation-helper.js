@@ -7,18 +7,20 @@ import {get} from '../service/http-service'
 import UserAuthenticationModel from '../models/UserAuthenticationSchema';
 import * as UrlBuilders from '../util/url-builder';
 
-export const fetchObservationResults = function* (state) {
+//Public functions
+export const fetchGlucoseResults = function* (state) {
     const [userAuthenticationModel] = yield UserAuthenticationModel.findByState(state);
     const Authorization = `Bearer ${userAuthenticationModel.accessToken}`;
-//    const header = new Records.AccessHeader({ Authorization });
-    const url = UrlBuilders.buildObeservationURL(userAuthenticationModel.patient, ["glucose"], userAuthenticationModel.iss);
+    const url = UrlBuilders.buildGlucoseResultsFromJson(userAuthenticationModel.patient, ["glucose"], userAuthenticationModel.iss);
     const result = yield get(url, new Records.AuthorizationHeader({ headers: { Accept: "application/json+fhir", Authorization } }));
     return checkResponseStatus(result) ? buildObservationFromJson(result) : null;
 };
 
+
+//Private functions
 const checkResponseStatus = (json) => (json && json.status && json.status === 200) ? true : false;
 
-const buildObservationFromJson = (json) => {
+const buildGlucoseResultsFromJson = (json) => {
     let glucose = json.data.entry.map((entry) => {
         if (entry && entry.resource) {
             const resource = entry.resource;

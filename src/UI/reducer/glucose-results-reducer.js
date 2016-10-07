@@ -9,7 +9,7 @@ const reducer = (observationObject = init, action) => {
         case Constants.OBSERVATIONS_FETCHED:
             const payLoad = action.payLoad === null ? immutableList([]) : action.payLoad;
             return observationObject.merge({
-                observations: action.payLoad,
+                glucose: action.payLoad,
                 fetched: true,
                 fetching: false,
                 error: null

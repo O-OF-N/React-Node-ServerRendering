@@ -5,13 +5,15 @@ import {List} from 'immutable';
 import * as Constants from '../util/constants';
 import {get} from '../service/http-service'
 import UserAuthenticationModel from '../models/UserAuthenticationSchema';
+import * as UtilFunctions from '../util/util-functions';
 
 export const fetchObservationResults = function* (state) {
     const [userAuthenticationModel] = yield UserAuthenticationModel.findByState(state);
     const Authorization = `Bearer ${userAuthenticationModel.accessToken}`;
-    console.log("Authorization = " + Authorization);
-    const result = yield get(Constants.OBSERVATIONS_FETCH_URL,
-        new Records.AccessHeader({ Authorization }));
+    const header = new Records.AccessHeader({ Authorization });
+    const url = UtilFunctions.buildObeservationURL(userAuthenticationModel.patient, ["glucose"], userAuthenticationModel.iss);
+    const result = yield get(url, new Records.AuthorizationHeader({ headers: { Accept: "application/json+fhir", Authorization } }));
+    console.log(result);
     return checkResponseStatus(result) ? buildObservationFromJson(result) : null;
 };
 
@@ -19,15 +21,14 @@ const checkResponseStatus = (json) => (json && json.status && json.status === 20
 
 const buildObservationFromJson = (json) => {
     let glucose = json.data.entry.map((entry) => {
-        if (entry.resource.code.coding) {
-            const [code] = entry.resource.code.coding;
-            if (code.code == Constants.GLUCOSE_CODE) {
-                return new Records.Observation({
-                    date: entry.resource.issued,
-                    quantity: entry.resource.valueQuantity.value,
-                    interpretation: entry.resource.interpretation.coding[0].code
-                });
-            }
+        if (entry && entry.resource) {
+            const resource = entry.resource;
+            return new Records.Observation({
+                resource: (resource.code) ? resource.code.coding : null,
+                date: resource.issued,
+                quantity: resource.valueQuantity.value,
+                interpretation: (resource.interpretation && resource.interpretation.coding) ? resource.interpretation.coding[0].code : null
+            });
         }
     }).filter(entry => (entry) ? true : false);
     return List(glucose);

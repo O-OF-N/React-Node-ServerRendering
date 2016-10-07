@@ -16,6 +16,7 @@ var _appConfig = require('../config/app-config');
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 var Observation = exports.Observation = new _immutable.Record({
+    resource: '',
     date: '',
     quantity: 0,
     interpretation: ''
@@ -33,7 +34,7 @@ var AuthorizationHeader = exports.AuthorizationHeader = new _immutable.Record({
 });
 
 var AccessHeader = exports.AccessHeader = new _immutable.Record({
-    headers: Constants.AUTHORIZATION_HEADER,
+    Accept: "application/json+fhir",
     Authorization: ''
 });
 

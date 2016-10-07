@@ -23,12 +23,16 @@ var _UserAuthenticationSchema = require('../models/UserAuthenticationSchema');
 
 var _UserAuthenticationSchema2 = _interopRequireDefault(_UserAuthenticationSchema);
 
+var _utilFunctions = require('../util/util-functions');
+
+var UtilFunctions = _interopRequireWildcard(_utilFunctions);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 var fetchObservationResults = exports.fetchObservationResults = regeneratorRuntime.mark(function fetchObservationResults(state) {
-    var _ref, _ref2, userAuthenticationModel, Authorization, result;
+    var _ref, _ref2, userAuthenticationModel, Authorization, header, url, result;
 
     return regeneratorRuntime.wrap(function fetchObservationResults$(_context) {
         while (1) {
@@ -42,16 +46,18 @@ var fetchObservationResults = exports.fetchObservationResults = regeneratorRunti
                     _ref2 = _slicedToArray(_ref, 1);
                     userAuthenticationModel = _ref2[0];
                     Authorization = 'Bearer ' + userAuthenticationModel.accessToken;
+                    header = new Records.AccessHeader({ Authorization: Authorization });
+                    url = UtilFunctions.buildObeservationURL(userAuthenticationModel.patient, ["glucose"], userAuthenticationModel.iss);
+                    _context.next = 10;
+                    return (0, _httpService.get)(url, new Records.AuthorizationHeader({ headers: { Accept: "application/json+fhir", Authorization: Authorization } }));
 
-                    console.log("Authorization = " + Authorization);
-                    _context.next = 9;
-                    return (0, _httpService.get)(Constants.OBSERVATIONS_FETCH_URL, new Records.AccessHeader({ Authorization: Authorization }));
-
-                case 9:
+                case 10:
                     result = _context.sent;
+
+                    console.log(result);
                     return _context.abrupt('return', checkResponseStatus(result) ? buildObservationFromJson(result) : null);
 
-                case 11:
+                case 13:
                 case 'end':
                     return _context.stop();
             }
@@ -65,18 +71,14 @@ var checkResponseStatus = function checkResponseStatus(json) {
 
 var buildObservationFromJson = function buildObservationFromJson(json) {
     var glucose = json.data.entry.map(function (entry) {
-        if (entry.resource.code.coding) {
-            var _entry$resource$code$ = _slicedToArray(entry.resource.code.coding, 1);
-
-            var code = _entry$resource$code$[0];
-
-            if (code.code == Constants.GLUCOSE_CODE) {
-                return new Records.Observation({
-                    date: entry.resource.issued,
-                    quantity: entry.resource.valueQuantity.value,
-                    interpretation: entry.resource.interpretation.coding[0].code
-                });
-            }
+        if (entry && entry.resource) {
+            var resource = entry.resource;
+            return new Records.Observation({
+                resource: resource.code ? resource.code.coding : null,
+                date: resource.issued,
+                quantity: resource.valueQuantity.value,
+                interpretation: resource.interpretation && resource.interpretation.coding ? resource.interpretation.coding[0].code : null
+            });
         }
     }).filter(function (entry) {
         return entry ? true : false;

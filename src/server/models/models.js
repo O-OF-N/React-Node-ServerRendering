@@ -3,6 +3,7 @@ import * as Constants from '../util/constants';
 import {ActiveEnv,FHIRConfig} from '../config/app-config';
 
 export const Observation = new Record({
+    resource: '',
     date: '',
     quantity: 0,
     interpretation: ''
@@ -20,7 +21,7 @@ export const AuthorizationHeader = new Record({
 });
 
 export const AccessHeader = new Record({
-    headers: Constants.AUTHORIZATION_HEADER,
+    Accept: "application/json+fhir",
     Authorization: ''
 });
 

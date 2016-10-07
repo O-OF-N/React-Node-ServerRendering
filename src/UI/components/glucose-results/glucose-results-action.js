@@ -11,6 +11,7 @@ export const fetchObservations = (state) => dispatch => {
         .then((glucoseList) => {
             try {
                 const data = (glucoseList && glucoseList.data) ? glucoseList.data : null;
+                console.log('data =' + data);
                 if (data) {
                     const ObservationList = data.map(glucose => new Records.Observation(glucose));
                     dispatch({ type: Constants.OBSERVATIONS_FETCHED, payLoad: ObservationList });

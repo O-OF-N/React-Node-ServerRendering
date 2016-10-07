@@ -10,7 +10,7 @@ import * as Records from '../models/models';
 import * as Constants from '../util/constants';
 import { createStore } from 'redux'
 import { Provider } from 'react-redux'
-import {DiabeticsChart} from '../../public/javascripts/bundle'
+/*import {DiabeticsChart} from '../../public/javascripts/bundle'*/
 
 const router = express.Router();
 
@@ -46,7 +46,7 @@ const handleRenderer = (state) => {
     const store = createStore(()=>{ state });
     const html = ReactDomServer.renderToString(
     <Provider store={store}>
-      <DiabeticsChart/>
+      <Component/>
     </Provider>
   );
    const preloadedState = store.getState();

@@ -43,7 +43,9 @@ router.get('/callback', co(function* (req, res, next) {
 }));
 
 const handleRenderer = (state) => {
+    console.log('state = ' + state);
     const store = createStore(()=>{ state });
+    console.log(store.getState());
     const html = ReactDomServer.renderToString(
     <Provider store={store}>
       <Component/>
@@ -58,14 +60,13 @@ const renderFullPage = (html, preloadedState) => {
     <!doctype html>
     <html>
       <head>
-        <title>Redux Universal Example</title>
+        <title>Diabetes Dashboard</title>
       </head>
       <body>
         <div id="root">${html}</div>
         <script>
           window.__PRELOADED_STATE__ = ${JSON.stringify(preloadedState)}
         </script>
-        <script src="/static/bundle.js"></script>
       </body>
     </html>
     `

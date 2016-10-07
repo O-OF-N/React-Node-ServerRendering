@@ -30,4 +30,4 @@ const dom = () => {
 dom();
 store.subscribe(dom);
 
-store.dispatch(fetchObservations());
+store.dispatch(fetchObservations(State.state));

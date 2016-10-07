@@ -3,11 +3,11 @@ import axios from 'axios';
 import * as Records from '../../records/records';
 
 
-export const fetchObservations = () => dispatch => {
+export const fetchObservations = (state) => dispatch => {
     dispatch({
         type: Constants.OBSERVATIONS_FETCHING
     });
-    axios.get(Constants.OBSERVATIONS_FETCH_URL, { headers: Constants.AUTHORIZATION_HEADER })
+    axios.get(Constants.OBSERVATIONS_FETCH_URL.concat(`/${state}`), { headers: Constants.AUTHORIZATION_HEADER })
         .then((glucoseList) => {
             try {
                 const data = (glucoseList && glucoseList.data) ? glucoseList.data : null;

@@ -44,19 +44,21 @@ router.get('/callback', co(function* (req, res, next) {
 
 const handleRenderer = (state) => {
     console.log('state = ' + state);
-    const store = createStore(()=>{ state });
+    const s = { state };
+    const store = createStore(() => s);
+    console.log(store);
     console.log(store.getState());
     const html = ReactDomServer.renderToString(
-    <Provider store={store}>
-      <Component/>
-    </Provider>
-  );
-   const preloadedState = store.getState();
-   return renderFullPage(renderFullPage(html, preloadedState))
+        <Provider store={store}>
+            <Component/>
+        </Provider>
+    );
+    const preloadedState = store.getState();
+    return renderFullPage(renderFullPage(html, preloadedState))
 }
 
 const renderFullPage = (html, preloadedState) => {
-  return `
+    return `
     <!doctype html>
     <html>
       <head>

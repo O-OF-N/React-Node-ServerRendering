@@ -9,7 +9,6 @@ class GlucoseResults extends React.Component {
         this.logit = this.logit.bind(this);
     }
     logit() {
-        console.log('this>>>>'+this.props.glucose);
         if (this.refs.myChart && this.props.glucose) {
             const labels = this.props.glucose.map(glucose => glucose.date).toJS();
             const data = this.props.glucose.map(glucose => glucose.quantity).toJS();

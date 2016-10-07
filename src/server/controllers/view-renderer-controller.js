@@ -8,9 +8,6 @@ import co from '../util/wrap';
 import {get} from '../service/http-service'
 import * as Records from '../models/models';
 import * as Constants from '../util/constants';
-import { createStore } from 'redux'
-import { Provider } from 'react-redux'
-/*import {DiabeticsChart} from '../../public/javascripts/bundle'*/
 
 const router = express.Router();
 
@@ -31,10 +28,6 @@ router.get('/callback', co(function* (req, res, next) {
         let code = null, state = null, accessToken = null, patient = 0;
         ({ code, state } = req.query);
         yield AuthorizationHelper.accessToken(code, state);
-        /*const html = ReactDomServer.renderToString(
-            React.createElement(Component)
-        );
-        res.header({ state });*/
         res.send(handleRenderer(state));
     } catch (err) {
         console.log('err = ' + err);
@@ -43,7 +36,6 @@ router.get('/callback', co(function* (req, res, next) {
 }));
 
 const handleRenderer = (state) => {
-    console.log('state = ' + state);
     const html = ReactDomServer.renderToString(
         React.createElement(Component)
     );

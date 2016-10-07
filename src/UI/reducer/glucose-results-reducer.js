@@ -14,7 +14,6 @@ const reducer = (glucoseObject = init, action) => {
             });
         case Constants.GLUCOSE_FETCHED:
             const payLoad = action.payLoad === null ? immutableList([]) : action.payLoad;
-            console.log(payLoad);
             return glucoseObject.merge({
                 glucose: action.payLoad,
                 fetched: true,

@@ -11,7 +11,6 @@ export const fetchGlucose = (state) => dispatch => {
         .then((glucoseList) => {
             try {
                 const data = (glucoseList && glucoseList.data) ? glucoseList.data : null;
-                console.log('data =' + data);
                 if (data) {
                     const glucoseObj = data.map(glucose => new Records.Glucose(glucose));
                     dispatch({ type: Constants.GLUCOSE_FETCHED, payLoad: glucoseObj });

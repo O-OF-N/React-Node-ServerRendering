@@ -12,7 +12,6 @@ import * as Records from './records/records';
 const logger = createLogger();
 
 const State = new Records.ServerState({ state: window.__PRELOADED_STATE__ });
-console.log('preloadedState = ' + State);
 const reducer = combineReducers({ State, GlucoseObject });
 const middleware = applyMiddleware(thunk, logger);
 

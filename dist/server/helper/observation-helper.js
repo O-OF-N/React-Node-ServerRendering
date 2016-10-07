@@ -23,9 +23,9 @@ var _UserAuthenticationSchema = require('../models/UserAuthenticationSchema');
 
 var _UserAuthenticationSchema2 = _interopRequireDefault(_UserAuthenticationSchema);
 
-var _utilFunctions = require('../util/util-functions');
+var _urlBuilder = require('../util/url-builder');
 
-var UtilFunctions = _interopRequireWildcard(_utilFunctions);
+var UrlBuilders = _interopRequireWildcard(_urlBuilder);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -47,17 +47,15 @@ var fetchObservationResults = exports.fetchObservationResults = regeneratorRunti
                     userAuthenticationModel = _ref2[0];
                     Authorization = 'Bearer ' + userAuthenticationModel.accessToken;
                     header = new Records.AccessHeader({ Authorization: Authorization });
-                    url = UtilFunctions.buildObeservationURL(userAuthenticationModel.patient, ["glucose"], userAuthenticationModel.iss);
+                    url = UrlBuilders.buildObeservationURL(userAuthenticationModel.patient, ["glucose"], userAuthenticationModel.iss);
                     _context.next = 10;
                     return (0, _httpService.get)(url, new Records.AuthorizationHeader({ headers: { Accept: "application/json+fhir", Authorization: Authorization } }));
 
                 case 10:
                     result = _context.sent;
-
-                    console.log(result);
                     return _context.abrupt('return', checkResponseStatus(result) ? buildObservationFromJson(result) : null);
 
-                case 13:
+                case 12:
                 case 'end':
                     return _context.stop();
             }

@@ -1,5 +1,5 @@
 import React from 'react';
-import drawChart from '../chart/draw-chart';
+import drawChart from './chart/draw-chart';
 
 
 class GlucoseResults extends React.Component {

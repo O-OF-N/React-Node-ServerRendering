@@ -42,8 +42,6 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var jade = require('react-jade');
-
 var router = _express2.default.Router();
 
 router.get('/', (0, _wrap2.default)(regeneratorRuntime.mark(function _callee(req, res, next) {
@@ -84,7 +82,7 @@ router.get('/', (0, _wrap2.default)(regeneratorRuntime.mark(function _callee(req
 })));
 
 router.get('/callback', (0, _wrap2.default)(regeneratorRuntime.mark(function _callee2(req, res, next) {
-    var code, state, accessToken, patient, _req$query2, template, html;
+    var code, state, accessToken, patient, _req$query2, html;
 
     return regeneratorRuntime.wrap(function _callee2$(_context2) {
         while (1) {
@@ -99,9 +97,9 @@ router.get('/callback', (0, _wrap2.default)(regeneratorRuntime.mark(function _ca
                     return AuthorizationHelper.accessToken(code, state);
 
                 case 7:
-                    template = jade.compileFile(__dirname + '/../../views/index.jade');
-                    html = _server2.default.renderToString(template({ state: state }));
+                    html = _server2.default.renderToString(_react2.default.createElement(_index2.default));
 
+                    res.header({ state: state });
                     res.send(html);
                     _context2.next = 16;
                     break;

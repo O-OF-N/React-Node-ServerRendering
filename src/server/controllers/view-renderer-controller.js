@@ -2,8 +2,7 @@
 import express from 'express';
 import React from 'react';
 import ReactDomServer from 'react-dom/server';
-import Component from '../index';
-import DiabeticsChart from '../../UI/components/diabetics-chart'; 
+import Component from '../index'; 
 import * as AuthorizationHelper from '../helper/authorization-helper';
 import co from '../util/wrap';
 import {get} from '../service/http-service'

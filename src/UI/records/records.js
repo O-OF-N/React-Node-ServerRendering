@@ -5,7 +5,12 @@ export const ObservationObject = immutableRecord({
     fetching: false,
     fetched: false,
     error: null
-})
+});
+
+export const ServerState  = immutableRecord({
+    state:''
+});
+
 export const Observation = immutableRecord({
     date: '',
     quantity: 0,

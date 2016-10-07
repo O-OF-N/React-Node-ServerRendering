@@ -7,11 +7,13 @@ import createLogger from 'redux-logger';
 import ObservationObject from './reducer/glucose-results-reducer';
 import {fetchObservations} from './components/glucose-results/glucose-results-action';
 import {Provider} from 'react-redux';
+import * as Records from './records/records';
+
 const logger = createLogger();
 
-const state = { state: window.__PRELOADED_STATE__ };
-console.log('preloadedState = ' + state);
-const reducer = combineReducers({ state, ObservationObject });
+const State = new Records.ServerState({ state: window.__PRELOADED_STATE__ });
+console.log('preloadedState = ' + State);
+const reducer = combineReducers({ State, ObservationObject });
 const middleware = applyMiddleware(thunk, logger);
 
 

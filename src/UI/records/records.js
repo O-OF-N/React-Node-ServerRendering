@@ -1,7 +1,7 @@
 import { Record as immutableRecord, List as immutableList } from 'immutable';
 
 export const ObservationObject = immutableRecord({
-    observations: immutableList([]),
+    glucose: immutableList([]),
     fetching: false,
     fetched: false,
     error: null
@@ -11,7 +11,7 @@ export const ServerState  = immutableRecord({
     state:''
 });
 
-export const Observation = immutableRecord({
+export const Glucose = immutableRecord({
     date: '',
     quantity: 0,
     interpretation: ''

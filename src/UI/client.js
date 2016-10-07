@@ -4,8 +4,8 @@ import DiabetieChart from './components/diabetes-chart';
 import { createStore, applyMiddleware, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
 import createLogger from 'redux-logger';
-import ObservationObject from './reducer/glucose-results-reducer';
-import {fetchObservations} from './components/glucose-results/glucose-results-action';
+import GlucoseObject from './reducer/glucose-results-reducer';
+import {fetchGlucose} from './components/glucose-results/glucose-results-action';
 import {Provider} from 'react-redux';
 import * as Records from './records/records';
 
@@ -13,7 +13,7 @@ const logger = createLogger();
 
 const State = new Records.ServerState({ state: window.__PRELOADED_STATE__ });
 console.log('preloadedState = ' + State);
-const reducer = combineReducers({ State, ObservationObject });
+const reducer = combineReducers({ State, GlucoseObject });
 const middleware = applyMiddleware(thunk, logger);
 
 
@@ -30,4 +30,4 @@ const dom = () => {
 dom();
 store.subscribe(dom);
 
-store.dispatch(fetchObservations(State.state));
+store.dispatch(fetchGlucose(State.state));

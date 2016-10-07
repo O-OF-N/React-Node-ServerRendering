@@ -1,6 +1,6 @@
 import { Record as immutableRecord, List as immutableList } from 'immutable';
 
-export const ObservationObject = immutableRecord({
+export const GlucoseObject = immutableRecord({
     glucose: immutableList([]),
     fetching: false,
     fetched: false,

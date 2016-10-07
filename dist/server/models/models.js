@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.FHIRAuthorizationConfig = exports.DatabaseConfig = exports.UserAuthentication = exports.AuthorizationHeader = exports.AccessTokenRequestBody = exports.Observation = undefined;
+exports.FHIRAuthorizationConfig = exports.DatabaseConfig = exports.UserAuthentication = exports.POSTHeader = exports.AuthorizationHeader = exports.AccessTokenRequestBody = exports.Observation = undefined;
 
 var _immutable = require('immutable');
 
@@ -31,6 +31,10 @@ var AccessTokenRequestBody = exports.AccessTokenRequestBody = new _immutable.Rec
 
 var AuthorizationHeader = exports.AuthorizationHeader = new _immutable.Record({
     headers: Constants.AUTHORIZATION_HEADER
+});
+
+var POSTHeader = exports.POSTHeader = new _immutable.Record({
+    "Content-Type": "x-www-form-urlencoded"
 });
 
 var UserAuthentication = exports.UserAuthentication = new _immutable.Record({

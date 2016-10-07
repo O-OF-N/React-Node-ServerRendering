@@ -1,5 +1,6 @@
 import React from 'react';
 import drawChart from './chart/draw-chart';
+import {connect} from 'react-redux';
 
 
 class GlucoseResults extends React.Component {

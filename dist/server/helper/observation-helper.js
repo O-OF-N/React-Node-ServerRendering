@@ -32,7 +32,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 var fetchObservationResults = exports.fetchObservationResults = regeneratorRuntime.mark(function fetchObservationResults(state) {
-    var _ref, _ref2, userAuthenticationModel, Authorization, header, url, result;
+    var _ref, _ref2, userAuthenticationModel, Authorization, url, result;
 
     return regeneratorRuntime.wrap(function fetchObservationResults$(_context) {
         while (1) {
@@ -46,16 +46,17 @@ var fetchObservationResults = exports.fetchObservationResults = regeneratorRunti
                     _ref2 = _slicedToArray(_ref, 1);
                     userAuthenticationModel = _ref2[0];
                     Authorization = 'Bearer ' + userAuthenticationModel.accessToken;
-                    header = new Records.AccessHeader({ Authorization: Authorization });
+                    //    const header = new Records.AccessHeader({ Authorization });
+
                     url = UrlBuilders.buildObeservationURL(userAuthenticationModel.patient, ["glucose"], userAuthenticationModel.iss);
-                    _context.next = 10;
+                    _context.next = 9;
                     return (0, _httpService.get)(url, new Records.AuthorizationHeader({ headers: { Accept: "application/json+fhir", Authorization: Authorization } }));
 
-                case 10:
+                case 9:
                     result = _context.sent;
                     return _context.abrupt('return', checkResponseStatus(result) ? buildObservationFromJson(result) : null);
 
-                case 12:
+                case 11:
                 case 'end':
                     return _context.stop();
             }

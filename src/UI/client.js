@@ -9,6 +9,7 @@ import StateObject from './reducer/state-reducer';
 import {fetchGlucose} from './components/glucose-results/glucose-results-action';
 import {Provider} from 'react-redux';
 import * as Records from './records/records';
+import * as Constants from './utils/constants';
 
 const logger = createLogger();
 

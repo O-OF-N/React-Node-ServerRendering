@@ -19,6 +19,11 @@ const middleware = applyMiddleware(thunk, logger);
 
 
 const store = createStore(reducer, middleware);
+const init = function* (){
+    console.log('state = ' + window.__PRELOADED_STATE__)
+    yield store.dispatch(Constants.SET_SERVER_STATE, window.__PRELOADED_STATE__);
+    store.dispatch(fetchGlucose(State.state));
+};
 
 const dom = () => {
     render(
@@ -29,5 +34,4 @@ const dom = () => {
 };
 dom();
 store.subscribe(dom);
-store.dispatch(Constants.SET_SERVER_STATE, window.__PRELOADED_STATE__);
-store.dispatch(fetchGlucose(State.state));
+init();

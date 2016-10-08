@@ -10,6 +10,8 @@ import {fetchGlucose} from './components/glucose-results/glucose-results-action'
 import {Provider} from 'react-redux';
 import * as Records from './records/records';
 import * as Constants from './utils/constants';
+import co from 'co';
+
 
 const logger = createLogger();
 
@@ -19,10 +21,10 @@ const middleware = applyMiddleware(thunk, logger);
 
 
 const store = createStore(reducer, middleware);
-const init = function* (){
-    console.log('state = ' + window.__PRELOADED_STATE__)
-    yield store.dispatch(Constants.SET_SERVER_STATE, window.__PRELOADED_STATE__);
-    store.dispatch(fetchGlucose(State.state));
+const init = function* (dispatch, state) {
+    console.log('state = ' + state)
+    yield dispatch(Constants.SET_SERVER_STATE, state);
+    dispatch(fetchGlucose(state));
 };
 
 const dom = () => {
@@ -34,4 +36,4 @@ const dom = () => {
 };
 dom();
 store.subscribe(dom);
-init();
+co(init.bind(null, store.dispatch, window.__PRELOADED_STATE__));

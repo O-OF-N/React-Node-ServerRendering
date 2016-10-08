@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.fetchObservationResults = undefined;
+exports.fetchGlucoseResults = undefined;
 
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
@@ -31,10 +31,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
-var fetchObservationResults = exports.fetchObservationResults = regeneratorRuntime.mark(function fetchObservationResults(state) {
+//Public functions
+var fetchGlucoseResults = exports.fetchGlucoseResults = regeneratorRuntime.mark(function fetchGlucoseResults(state) {
     var _ref, _ref2, userAuthenticationModel, Authorization, url, result;
 
-    return regeneratorRuntime.wrap(function fetchObservationResults$(_context) {
+    return regeneratorRuntime.wrap(function fetchGlucoseResults$(_context) {
         while (1) {
             switch (_context.prev = _context.next) {
                 case 0:
@@ -46,29 +47,28 @@ var fetchObservationResults = exports.fetchObservationResults = regeneratorRunti
                     _ref2 = _slicedToArray(_ref, 1);
                     userAuthenticationModel = _ref2[0];
                     Authorization = 'Bearer ' + userAuthenticationModel.accessToken;
-                    //    const header = new Records.AccessHeader({ Authorization });
-
                     url = UrlBuilders.buildObeservationURL(userAuthenticationModel.patient, ["glucose"], userAuthenticationModel.iss);
                     _context.next = 9;
                     return (0, _httpService.get)(url, new Records.AuthorizationHeader({ headers: { Accept: "application/json+fhir", Authorization: Authorization } }));
 
                 case 9:
                     result = _context.sent;
-                    return _context.abrupt('return', checkResponseStatus(result) ? buildObservationFromJson(result) : null);
+                    return _context.abrupt('return', checkResponseStatus(result) ? buildGlucoseResultsFromJson(result) : null);
 
                 case 11:
                 case 'end':
                     return _context.stop();
             }
         }
-    }, fetchObservationResults, this);
+    }, fetchGlucoseResults, this);
 });
 
+//Private functions
 var checkResponseStatus = function checkResponseStatus(json) {
     return json && json.status && json.status === 200 ? true : false;
 };
 
-var buildObservationFromJson = function buildObservationFromJson(json) {
+var buildGlucoseResultsFromJson = function buildGlucoseResultsFromJson(json) {
     var glucose = json.data.entry.map(function (entry) {
         if (entry && entry.resource) {
             var resource = entry.resource;

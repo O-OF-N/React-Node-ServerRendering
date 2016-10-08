@@ -30,38 +30,36 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var router = _express2.default.Router();
 
-router.get('/observations/:state', (0, _wrap2.default)(regeneratorRuntime.mark(function _callee(req, res, next) {
-    var observations;
+router.get('/glucose/:state', (0, _wrap2.default)(regeneratorRuntime.mark(function _callee(req, res, next) {
+    var glucose;
     return regeneratorRuntime.wrap(function _callee$(_context) {
         while (1) {
             switch (_context.prev = _context.next) {
                 case 0:
                     _context.prev = 0;
+                    _context.next = 3;
+                    return ObservationHelper.fetchGlucoseResults(req.params.state);
 
-                    console.log('state = ' + req.params.state);
-                    _context.next = 4;
-                    return ObservationHelper.fetchObservationResults(req.params.state);
+                case 3:
+                    glucose = _context.sent;
 
-                case 4:
-                    observations = _context.sent;
-
-                    res.send(observations);
-                    _context.next = 12;
+                    res.send(glucose);
+                    _context.next = 11;
                     break;
 
-                case 8:
-                    _context.prev = 8;
+                case 7:
+                    _context.prev = 7;
                     _context.t0 = _context['catch'](0);
 
                     console.log('err = ' + _context.t0);
                     next(_context.t0);
 
-                case 12:
+                case 11:
                 case 'end':
                     return _context.stop();
             }
         }
-    }, _callee, this, [[0, 8]]);
+    }, _callee, this, [[0, 7]]);
 })));
 
 exports.default = router;

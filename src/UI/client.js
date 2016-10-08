@@ -18,9 +18,6 @@ const middleware = applyMiddleware(thunk, logger);
 
 
 const store = createStore(reducer, middleware);
-const init = () => {
-    store.dispatch()
-}
 
 const dom = () => {
     render(
@@ -29,7 +26,6 @@ const dom = () => {
         </Provider>, document.getElementById('app')
     );
 };
-init();
 dom();
 store.subscribe(dom);
 store.dispatch(Constants.SET_SERVER_STATE, window.__PRELOADED_STATE__);

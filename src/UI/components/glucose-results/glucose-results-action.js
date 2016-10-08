@@ -14,7 +14,6 @@ export const fetchGlucose = state => dispatch => {
 };
 
 const fetchGlucoseHelper = function* (state, dispatch) {
-    console.log('I came here and then failed');
     dispatch({ type: Constants.GLUCOSE_FETCHING });
     const glucoseList = yield axios.get(Constants.GLUCOSE_FETCH_URL.concat(`/${state}`), { headers: Constants.AUTHORIZATION_HEADER });
     try {

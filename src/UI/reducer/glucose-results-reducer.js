@@ -13,7 +13,7 @@ const reducer = (glucoseObject = init, action) => {
                 error: action.payLoad
             });
         case Constants.GLUCOSE_FETCHED:
-            const payLoad = action.payLoad === null ? immutableList([]) : action.payLoad;
+            const payLoad = !action.payLoad? immutableList([]) : action.payLoad;
             return glucoseObject.merge({
                 glucose: action.payLoad,
                 fetched: true,

@@ -15,7 +15,7 @@ export const fetchGlucoseResults = function* (state) {
 };
 
 export const fetchLabResults = function* (state) {
-    const result = yield* fetchObservationResultsHelper(state, ["ketones","ph"]);
+    const result = yield* fetchObservationResultsHelper(state, ["ketones","ph","serum"]);
     //console.log(result);
     return checkResponseStatus(result) ? buildLabResultsFromJson(result) : null;
 };
@@ -50,5 +50,11 @@ const buildGlucoseResultsFromJson = (json) => {
 };
 
 const buildLabResultsFromJson = (json) => {
-    console.log(json.data.entry.resource.code.coding);
+    let lab = json.data.entry.map((entry) => {
+        if (entry && entry.resource) {
+            const resource = entry.resource;
+            console.log(resource);
+        }
+    }).filter(entry => (entry) ? true : false);
+    return List(glucose);
 }

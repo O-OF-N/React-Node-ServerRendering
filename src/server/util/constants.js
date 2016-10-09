@@ -8,10 +8,12 @@ export const LONIC_URL = "http://loinc.org|";
 export const GLUCOSE_CODE = "2345-7";
 export const KETONE_CODE = "2514-8";
 export const PH_CODE ="5803-2";
+export const SERUM_CODE ="1963-8 ";
 export const LONIC_CODES = new Map([
     ["glucose", GLUCOSE_CODE],
     ["ketones", KETONE_CODE],
-    ["ph", PH_CODE]
+    ["ph", PH_CODE],
+    ["serum",SERUM_CODE]
 ]);
 
 

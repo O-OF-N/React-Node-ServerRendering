@@ -52,7 +52,7 @@ const buildGlucoseResultsFromJson = (json) => {
 };
 
 const buildLabResultsFromJson = (json) => {
-    console.log(json.data.entry);
+    console.log(json.data);
     let lab = json.data.entry.map((entry) => {
         if (entry && entry.resource) {
             const resource = entry.resource;

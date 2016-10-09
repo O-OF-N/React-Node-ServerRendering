@@ -24,7 +24,7 @@ const store = createStore(reducer, middleware);
 const init = function* (dispatch, state) {
     console.log('state = ' + state)
     yield dispatch({ type: Constants.SET_SERVER_STATE, payLoad: state })
-    dispatch(fetchGlucose(state));
+    dispatch(fetchGlucose(store.getState().StateObject));
 };
 
 const dom = () => {

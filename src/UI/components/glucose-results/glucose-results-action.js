@@ -15,7 +15,7 @@ export const fetchGlucose = state => dispatch => {
 
 const fetchGlucoseHelper = function* (state, dispatch) {
     dispatch({ type: Constants.GLUCOSE_FETCHING });
-    const glucoseList = yield axios.get(Constants.GLUCOSE_FETCH_URL.concat(`/${state}`), { headers: Constants.AUTHORIZATION_HEADER });
+    const glucoseList = yield axios.get(Constants.GLUCOSE_FETCH_URL.concat(`/${state.state}`), { headers: Constants.AUTHORIZATION_HEADER });
     try {
         const data = (glucoseList && glucoseList.data) ? glucoseList.data : null;
         if (data) {

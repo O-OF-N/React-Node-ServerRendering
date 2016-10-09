@@ -10,13 +10,13 @@ import UserAuthenticationModel from '../models/UserAuthenticationSchema';
 //Public functions
 export const fetchGlucoseResults = function* (state) {
     const result = yield* fetchObservationResultsHelper(state, ["glucose"]);
-    console.log(result);
+    //console.log(result);
     return checkResponseStatus(result) ? buildGlucoseResultsFromJson(result) : null;
 };
 
 export const fetchLabResults = function* (state) {
     const result = yield* fetchObservationResultsHelper(state, ["ketones","ph"]);
-    console.log(result);
+    //console.log(result);
     return checkResponseStatus(result) ? buildLabResultsFromJson(result) : null;
 };
 

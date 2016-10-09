@@ -4,20 +4,25 @@ import * as Records from '../models/models';
 import {List} from 'immutable';
 import * as Constants from '../util/constants';
 import {get} from '../service/http-service'
-import UserAuthenticationModel from '../models/UserAuthenticationSchema';
-import * as UrlBuilders from '../util/url-builder';
+import * as HttpUtil from '../util/http-utils';
 
 //Public functions
 export const fetchGlucoseResults = function* (state) {
     const [userAuthenticationModel] = yield UserAuthenticationModel.findByState(state);
-    const Authorization = `Bearer ${userAuthenticationModel.accessToken}`;
-    const url = UrlBuilders.buildObeservationURL(userAuthenticationModel.patient, ["glucose"], userAuthenticationModel.iss);
-    const result = yield get(url, new Records.AuthorizationHeader({ headers: { Accept: "application/json+fhir", Authorization } }));
+    const url = HttpUtil.buildObeservationURL(userAuthenticationModel.patient, ["glucose"], userAuthenticationModel.iss);
+    const authHeader = HttpUtil.buildAuthorizationHeader(userAuthenticationModel);
+    const result = yield get(url, authHeader);
     return checkResponseStatus(result) ? buildGlucoseResultsFromJson(result) : null;
+};
+
+export const fetchLabResults = function* (state) {
+
 };
 
 
 //Private functions
+
+
 const checkResponseStatus = (json) => (json && json.status && json.status === 200) ? true : false;
 
 const buildGlucoseResultsFromJson = (json) => {

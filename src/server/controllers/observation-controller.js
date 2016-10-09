@@ -17,4 +17,8 @@ router.get('/glucose/:state', co(function* (req, res, next) {
     }
 }));
 
+router.get('/labs/:state', co(function* (req,res,next){
+
+}));
+
 export default router;

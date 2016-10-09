@@ -7,7 +7,6 @@ const reducer = (serverState = init, action) => {
     switch (action.type) {
         case Constants.SET_SERVER_STATE:
             const payLoad = !action.payLoad ? '' : action.payLoad;
-            console.log('payload = ' + payLoad);
             return serverState.merge({ state: payLoad });
         default:
             return serverState;

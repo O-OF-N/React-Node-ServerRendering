@@ -9,10 +9,7 @@ import UserAuthenticationModel from '../models/UserAuthenticationSchema';
 
 //Public functions
 export const fetchGlucoseResults = function* (state) {
-    const [userAuthenticationModel] = yield UserAuthenticationModel.findByState(state);
-    const url = HttpUtil.buildObeservationURL(userAuthenticationModel.patient, ["glucose"], userAuthenticationModel.iss);
-    const authHeader = HttpUtil.buildAuthorizationHeader(userAuthenticationModel);
-    const result = yield get(url, authHeader);
+    const result = yield* fetchObservationResultsHelper(state, ["glucose"]);
     return checkResponseStatus(result) ? buildGlucoseResultsFromJson(result) : null;
 };
 

@@ -17,7 +17,12 @@ export const fetchGlucoseResults = function* (state) {
 };
 
 export const fetchLabResults = function* (state) {
-
+    const [userAuthenticationModel] = yield UserAuthenticationModel.findByState(state);
+    const url = HttpUtil.buildObeservationURL(userAuthenticationModel.patient, ["ketones"], userAuthenticationModel.iss);
+    const authHeader = HttpUtil.buildAuthorizationHeader(userAuthenticationModel);
+    const result = yield get(url, authHeader);
+    console.log(result);
+    return result;
 };
 
 

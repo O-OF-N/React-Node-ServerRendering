@@ -6,8 +6,11 @@ export const AUTHORIZATION_HEADER = { Accept: "application/json+fhir" };
 
 export const LONIC_URL = "http://loinc.org|";
 export const GLUCOSE_CODE = "2345-7";
-
-export const LONIC_CODES = new Map([["glucose", GLUCOSE_CODE]]);
+export const KETONE_CODE = "2514-8"
+export const LONIC_CODES = new Map([
+    ["glucose", GLUCOSE_CODE],
+    ["ketones", KETONE_CODE]
+]);
 
 
 

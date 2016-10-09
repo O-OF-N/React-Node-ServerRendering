@@ -1,5 +1,4 @@
 import * as Constants from './constants';
-import UserAuthenticationModel from '../models/UserAuthenticationSchema';
 
 export const buildAuthorizationHeader = (userModel) => {
     const Authorization = `Bearer ${userModel.accessToken}`;

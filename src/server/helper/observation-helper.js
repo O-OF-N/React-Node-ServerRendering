@@ -5,6 +5,7 @@ import {List} from 'immutable';
 import * as Constants from '../util/constants';
 import {get} from '../service/http-service'
 import * as HttpUtil from '../util/http-utils';
+import UserAuthenticationModel from '../models/UserAuthenticationSchema';
 
 //Public functions
 export const fetchGlucoseResults = function* (state) {

@@ -16,7 +16,7 @@ export const fetchGlucoseResults = function* (state) {
 
 export const fetchLabResults = function* (state) {
     const result = yield* fetchObservationResultsHelper(state, ["ketones","ph","serum"]);
-    //console.log(result);
+    console.log('result>>>>>>>>>>>>>>>>>>>');
     return checkResponseStatus(result) ? buildLabResultsFromJson(result) : null;
 };
 

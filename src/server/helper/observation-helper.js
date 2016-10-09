@@ -48,3 +48,7 @@ const buildGlucoseResultsFromJson = (json) => {
     }).filter(entry => (entry) ? true : false);
     return List(glucose);
 };
+
+const buildLabResultsFromJson = (json) => {
+    console.log(json.data.entry.resource.code.coding);
+}

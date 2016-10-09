@@ -2,7 +2,7 @@ import {Record} from 'immutable';
 import * as Constants from '../util/constants';
 import {ActiveEnv,FHIRConfig} from '../config/app-config';
 
-export const Observation = new Record({
+export const Glucose = new Record({
     resource: '',
     date: '',
     quantity: 0,

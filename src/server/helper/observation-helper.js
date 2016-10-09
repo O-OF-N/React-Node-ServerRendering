@@ -37,22 +37,21 @@ const fetchObservationResultsHelper = function* (state, lonicCodes) {
 const checkResponseStatus = (json) => (json && json.status && json.status === 200) ? true : false;
 
 const buildGlucoseResultsFromJson = (json) => {
-    let glucose = json.data.entry.map((entry) => {
+    let glucose = (json.data && json.data.entry)?json.data.entry.map((entry) => {
         if (entry && entry.resource) {
             const resource = entry.resource;
-            return new Records.Observation({
+            return new Records.Glucose({
                 resource: (resource.code) ? resource.code.coding : null,
                 date: resource.issued,
                 quantity: resource.valueQuantity.value,
                 interpretation: (resource.interpretation && resource.interpretation.coding) ? resource.interpretation.coding[0].code : null
             });
         }
-    }).filter(entry => (entry) ? true : false);
+    }).filter(entry => (entry) ? true : false):null;
     return List(glucose);
 };
 
 const buildLabResultsFromJson = (json) => {
-    console.log(json.data);
     let lab = json.data.entry.map((entry) => {
         if (entry && entry.resource) {
             const resource = entry.resource;

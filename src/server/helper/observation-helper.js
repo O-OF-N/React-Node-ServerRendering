@@ -17,10 +17,7 @@ export const fetchGlucoseResults = function* (state) {
 };
 
 export const fetchLabResults = function* (state) {
-    const [userAuthenticationModel] = yield UserAuthenticationModel.findByState(state);
-    const url = HttpUtil.buildObeservationURL(userAuthenticationModel.patient, ["ketones"], userAuthenticationModel.iss);
-    const authHeader = HttpUtil.buildAuthorizationHeader(userAuthenticationModel);
-    const result = yield get(url, authHeader);
+    const result = yield* fetchObservationResultsHelper(state, ["ketones"]);
     console.log(result);
     return result;
 };
@@ -28,6 +25,14 @@ export const fetchLabResults = function* (state) {
 
 //Private functions
 
+
+const fetchObservationResultsHelper = function* (state, lonicCodes) {
+    const [userAuthenticationModel] = yield UserAuthenticationModel.findByState(state);
+    const url = HttpUtil.buildObeservationURL(userAuthenticationModel.patient, lonicCodes, userAuthenticationModel.iss);
+    const authHeader = HttpUtil.buildAuthorizationHeader(userAuthenticationModel);
+    const result = yield get(url, authHeader);
+    return result;
+};
 
 const checkResponseStatus = (json) => (json && json.status && json.status === 200) ? true : false;
 

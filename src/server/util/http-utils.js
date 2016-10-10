@@ -8,5 +8,5 @@ export const buildAuthorizationHeader = (userModel) => {
 
 export const buildObeservationURL = (patient, lonicCodes, url) => {
     const codes = lonicCodes.map(l => Constants.LONIC_URL.concat(Constants.LONIC_CODES.get(l))).join(',');
-     return `${url}/${Constants.OBSERVATIONS}?patient=${patient}&code=${codes}`;
+     return `${url}/${Constants.OBSERVATIONS}?patient=${4478007}&code=${codes}`;
 };

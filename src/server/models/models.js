@@ -1,9 +1,10 @@
 import {Record} from 'immutable';
 import * as Constants from '../util/constants';
-import {ActiveEnv,FHIRConfig} from '../config/app-config';
+import {ActiveEnv, FHIRConfig} from '../config/app-config';
 
 export const Glucose = new Record({
     resource: '',
+    text: '',
     date: '',
     quantity: 0,
     interpretation: ''

@@ -39,6 +39,7 @@ const buildGlucoseResultsFromJson = (json) => {
             const resource = entry.resource;
             return new Records.Glucose({
                 resource: (resource.code) ? resource.code.coding : null,
+                text: (resource.code) ? resource.code.text : null,
                 date: resource.issued,
                 quantity: resource.valueQuantity.value,
                 interpretation: (resource.interpretation && resource.interpretation.coding) ? resource.interpretation.coding[0].code : null
@@ -55,8 +56,9 @@ const buildLabResultsFromJson = (json) => {
             console.log(resource);
             return new Records.Glucose({
                 resource: (resource.code) ? resource.code.coding : null,
+                text: (resource.code) ? resource.code.text : null,
                 date: resource.issued,
-                quantity: resource.valueQuantity? resource.valueQuantity.value: null,
+                quantity: resource.valueQuantity? resource.valueQuantity.value + resource.valueQuantity.unit: null,
                 interpretation: (resource.interpretation && resource.interpretation.coding) ? resource.interpretation.coding[0].code : null
             });
         }

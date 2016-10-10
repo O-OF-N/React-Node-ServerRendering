@@ -2,7 +2,7 @@ import React from 'react';
 import LabResultsHeader from './lab-results-header';
 import LabResultsBody from './lab-results-body';
 
-const LabResults = () => {
+const LabResults = ({labs}) => {
     return (
         <div>
             <LabResultsHeader/>

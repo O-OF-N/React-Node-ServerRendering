@@ -9,10 +9,10 @@ class GlucoseResults extends React.Component {
         this.logit = this.logit.bind(this);
     }
     logit() {
-        if (this.refs.myChart && this.props.glucose) {
+        if (this.refs.chart && this.props.glucose) {
             const labels = this.props.glucose.map(glucose => glucose.date).toJS();
             const data = this.props.glucose.map(glucose => glucose.quantity).toJS();
-            const canvas = this.refs.myChart;
+            const canvas = this.refs.chart;
 
             const ctx = canvas.getContext("2d");
             canvas.width = 100;
@@ -26,7 +26,7 @@ class GlucoseResults extends React.Component {
         const style = {border:'1px solid',width:300,height:300};
         return (
             <div style={style}>
-                <canvas ref="myChart" width="200" height="200">
+                <canvas ref="chart" width="200" height="200">
                 </canvas>
                 {this.logit() }
             </div>

@@ -11,3 +11,5 @@ const LabResultsBody = ({text, interpretation, quantity, date}) => {
     )
 };
 
+export default LabResultsBody;
+

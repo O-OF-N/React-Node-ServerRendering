@@ -8,10 +8,7 @@ const LabResults = ({labs}) => {
         <div>
             <LabResultsHeader/>
             {
-                labs.map((l, i) => {
-                    console.log(l);
-                    return <LabResultsBody key={i} {...l.toJS()}/>
-                })
+                labs.map((l, i) => <LabResultsBody key={i} {...l.toJS() }/>)
             }
         </div>
     )

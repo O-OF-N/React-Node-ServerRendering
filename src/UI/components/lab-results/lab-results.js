@@ -12,6 +12,6 @@ const LabResults = ({labs}) => {
         </div>
     )
 };
-export default connect = ((state) => ({
+export default connect(state => ({
     labs: state.labObject.labs
 }))(LabResults);

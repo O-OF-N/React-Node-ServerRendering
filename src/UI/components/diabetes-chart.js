@@ -8,6 +8,7 @@ export default class DiabetesChart extends React.Component {
             <div>
                 <h1> Diabetes Chart </h1>
                 <GlucoseResults/>
+                <LabResults/>
             </div>
         );
     }

@@ -37,7 +37,7 @@ const buildGlucoseResultsFromJson = (json) => {
     let glucose = (json.data && json.data.entry)?json.data.entry.map((entry) => {
         if (entry && entry.resource) {
             const resource = entry.resource;
-            return new Records.Glucose({
+            return new Records.Observation({
                 resource: (resource.code) ? resource.code.coding : null,
                 text: (resource.code) ? resource.code.text : null,
                 date: resource.issued,
@@ -54,7 +54,7 @@ const buildLabResultsFromJson = (json) => {
         if (entry && entry.resource) {
             const resource = entry.resource;
             console.log(resource);
-            return new Records.Glucose({
+            return new Records.Observation({
                 resource: (resource.code) ? resource.code.coding : null,
                 text: (resource.code) ? resource.code.text : null,
                 date: resource.issued,

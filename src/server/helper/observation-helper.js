@@ -27,6 +27,7 @@ const fetchObservationResultsHelper = function* (state, lonicCodes) {
     const url = HttpUtil.buildObeservationURL(userAuthenticationModel.patient, lonicCodes, userAuthenticationModel.iss);
     const authHeader = HttpUtil.buildAuthorizationHeader(userAuthenticationModel);
     const result = yield get(url, authHeader);
+    console.log('url =' + url);
     return result;
 };
 
@@ -51,6 +52,7 @@ const buildLabResultsFromJson = (json) => {
     let lab = (json.data && json.data.entry)?json.data.entry.map((entry) => {
         if (entry && entry.resource) {
             const resource = entry.resource;
+            console.log(resource);
             return new Records.Glucose({
                 resource: (resource.code) ? resource.code.coding : null,
                 date: resource.issued,

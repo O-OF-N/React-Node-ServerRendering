@@ -25,7 +25,7 @@ const drawChart = (context, labels, data) => {
                     ticks: {
                         beginAtZero: true,
                         min:0,
-                        max:250
+                        max:500
                     }
                 }]
             }

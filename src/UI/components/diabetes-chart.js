@@ -9,3 +9,5 @@ const DiabetesChart = () => (
         <LabResults/>
     </div>
 );
+
+export default DiabetesChart;

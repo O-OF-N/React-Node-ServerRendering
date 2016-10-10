@@ -19,21 +19,24 @@ class GlucoseResults extends React.Component {
             canvas.height = 100;
             canvas.style.width = '100px';
             canvas.style.height = '100px';
-            drawChart(ctx,labels,data);
+            drawChart(ctx, labels, data);
         }
     }
     render() {
-        const style = {border:'1px solid',width:300,height:300};
+        const style = { border: '1px solid', width: 300, height: 300 };
         return (
-            <div style={style}>
-                <canvas ref="chart" width="200" height="200">
-                </canvas>
-                {this.logit() }
+            <div>
+                <h1>BG Graph</h1>
+                <div style={style}>
+                    <canvas ref="chart" width="200" height="200">
+                    </canvas>
+                    {this.logit() }
+                </div>
             </div>
         )
     }
 };
 
 export default connect(state => ({
-  glucose: state.glucoseObject.glucose
+    glucose: state.glucoseObject.glucose
 }))(GlucoseResults);

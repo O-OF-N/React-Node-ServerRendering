@@ -6,6 +6,7 @@ import {connect} from 'react-redux';
 const LabResults = ({labs}) => {
     return (
         <div>
+            <h1>Labs</h1>
             <LabResultsHeader/>
             {
                 labs.map((l, i) => <LabResultsBody key={i} {...l.toJS() }/>)

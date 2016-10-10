@@ -8,7 +8,7 @@ const LabResults = ({labs}) => {
         <div>
             <LabResultsHeader/>
             {
-                labs.map((l, i) => <LabResultsBody lab = {l} key={i}/>)
+                labs.map((l, i) => <LabResultsBody key={i} {...l}/>)
             }
         </div>
     )

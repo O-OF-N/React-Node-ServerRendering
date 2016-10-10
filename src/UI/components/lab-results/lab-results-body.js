@@ -1,12 +1,12 @@
 import React from 'react';
 
-const LabResultsBody = ({lab}) => {
+const LabResultsBody = ({text, interpretation, quantity, date}) => {
     return (
         <div id="div-header">
-            <span>{lab.text} </span>
-            <span>{lab.interpretation} </span>
-            <span>{lab.quantity} </span>
-            <span>{lab.date} </span>
+            <span>{text} </span>
+            <span>{interpretation} </span>
+            <span>{quantity} </span>
+            <span>{date} </span>
         </div>
     )
 };

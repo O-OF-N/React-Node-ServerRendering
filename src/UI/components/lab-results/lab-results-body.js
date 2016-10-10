@@ -7,10 +7,10 @@ import {
 
 const LabResultsBody = ({text, interpretation, quantity, date}) => (
     <div id="div-lab-body" style={LabItemsStyle}>
-        <span style={LabFirstItemsSpanStyle}>{text?text:'-'}</span>
-        <span style={LabItemsSpanStyle}>{interpretation?interpretation:'-'}</span>
-        <span style={LabItemsSpanStyle}>{quantity?quantity:'-'}</span>
-        <span style={LabItemsSpanStyle}>{date?date:'-'}</span>
+        <span style={LabFirstItemsSpanStyle}>{text ? text : '-'}</span>
+        <span style={LabItemsSpanStyle}>{interpretation ? interpretation : '-'}</span>
+        <span style={LabItemsSpanStyle}>{quantity ? quantity : '-'}</span>
+        <span style={LabItemsSpanStyle}>{date ? new Date(date).toLocaleDateString() : '-'}</span>
     </div>
 );
 

@@ -1,6 +1,7 @@
 import React from 'react';
 
 const LabResultsBody = ({text, interpretation, quantity, date}) => {
+    console.log('text = ' + text);
     return (
         <div id="div-header">
             <span>{text} </span>

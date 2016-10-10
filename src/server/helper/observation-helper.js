@@ -56,7 +56,7 @@ const buildLabResultsFromJson = (json) => {
             return new Records.Glucose({
                 resource: (resource.code) ? resource.code.coding : null,
                 date: resource.issued,
-                quantity: resource.valueQuantity.value,
+                quantity: resource.valueQuantity? resource.valueQuantity.value: null,
                 interpretation: (resource.interpretation && resource.interpretation.coding) ? resource.interpretation.coding[0].code : null
             });
         }

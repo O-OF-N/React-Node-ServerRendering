@@ -10,3 +10,5 @@ const LabResultsHeader = () => {
         </div>
     )
 };
+
+export default LabResultsHeader;

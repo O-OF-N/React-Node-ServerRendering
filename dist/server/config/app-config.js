@@ -17,7 +17,7 @@ var devDatabase = {
 var devFhirAuth = {
     client_id: '707ffe10-83ee-42f2-b2e8-1871ad0c1a4c',
     redirect_uri: 'https://diabetesdashboard.herokuapp.com/callback',
-    scope: 'launch+user%2FObservation.read',
+    scope: 'launch+user%2FObservation.read+user%2MedicationStatement.read+user%2FMedicationOrder.read',
     response_type: 'code',
     grant_type: 'authorization_code'
 };

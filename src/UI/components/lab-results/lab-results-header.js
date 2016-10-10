@@ -1,12 +1,13 @@
 import React from 'react';
 import {
     LabHeaderRowStyle,
-    LabHeaderSpanStyle
+    LabHeaderSpanStyle,
+    LabFirstHeaderSpanStyle
 } from '../styles';
 
 const LabResultsHeader = () => (
     <div id="div-lab-header" style={LabHeaderRowStyle} >
-        <span style={LabHeaderSpanStyle}>Result </span>
+        <span style={LabFirstHeaderSpanStyle}>Result </span>
         <span style={LabHeaderSpanStyle}>Interpretation </span>
         <span style={LabHeaderSpanStyle}>Value </span>
         <span style={LabHeaderSpanStyle}>Date </span>

@@ -1,6 +1,6 @@
 export const LabHeaderSpanStyle = {
     float: 'left',
-    width: '10%',
+    width: '25%',
     fontWeight: 'bold',
     display: 'table-cell',
     verticalAlign: 'middle',
@@ -11,13 +11,13 @@ export const LabHeaderSpanStyle = {
     borderWidth: '0.5px',
 };
 export const LabHeaderRowStyle = {
-    width: '100%',
+    width: '40%',
     height: '100%'
 };
 
 export const LabItemsSpanStyle = {
   float: 'left',
-  width: '10%',
+  width: '25%',
   verticalAlign: 'left',
   textAlign: 'left',
   whiteSpace: 'nowrap',
@@ -31,6 +31,6 @@ export const LabItemsSpanStyle = {
 };
 
 export const LabItemsStyle = {
-  width: '100%',
+  width: '40%',
   height: '100%'
 };

@@ -22,7 +22,6 @@ export const LabFirstHeaderSpanStyle = {
     background: '#BECCE5',
     border: 'black',
     borderStyle: 'solid',
-    borderRightStyle: 'none',
     borderWidth: '0.5px',
 };
 
@@ -57,7 +56,6 @@ export const LabFirstItemsSpanStyle = {
   border: 'black',
   borderStyle: 'solid',
   borderWidth: '1px',
-  borderRightStyle: 'none',
   borderTopStyle: 'none'
 };
 

@@ -35,5 +35,5 @@ class GlucoseResults extends React.Component {
 };
 
 export default connect(state => ({
-  glucose: state.GlucoseObject.glucose
+  glucose: state.glucoseObject.glucose
 }))(GlucoseResults);

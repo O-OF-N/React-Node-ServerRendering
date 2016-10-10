@@ -1,14 +1,13 @@
 import React from 'react';
 
-const LabResultsBody = () => {
+const LabResultsBody = ({lab}) => {
     return (
         <div id="div-header">
-            <span>Result </span>
-            <span>Interpretation </span>
-            <span>Value </span>
-            <span>Date </span>
+            <span>{lab.text} </span>
+            <span>{lab.interpretation} </span>
+            <span>{lab.quantity} </span>
+            <span>{lab.date} </span>
         </div>
     )
 };
 
-export default LabResultsHeader;

@@ -20,7 +20,7 @@ const GlucoseResults = ({glucose}) => {
         <div style={style}>
             <canvas ref="diabetesChart" width="200" height="200">
             </canvas>
-            {this.logit(glucose, this.refs.diabetesChart) }
+            {logit(glucose, this.refs.diabetesChart) }
         </div>
     )
 };

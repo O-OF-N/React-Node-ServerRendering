@@ -26,7 +26,7 @@ class GlucoseResults extends React.Component {
         const style = { border: '1px solid', width: 300, height: 300 };
         return (
             <div>
-                <h1>BG Graph</h1>
+                <h3>BG Graph</h3>
                 <div style={style}>
                     <canvas ref="chart" width="200" height="200">
                     </canvas>

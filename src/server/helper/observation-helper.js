@@ -59,5 +59,5 @@ const buildLabResultsFromJson = (json) => {
             });
         }
     }).filter(entry => (entry) ? true : false):null;
-    return List(glucose);
+    return List(lab);
 }

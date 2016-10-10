@@ -48,11 +48,16 @@ const buildGlucoseResultsFromJson = (json) => {
 };
 
 const buildLabResultsFromJson = (json) => {
-    let lab = json.data.entry.map((entry) => {
+    let lab = (json.data && json.data.entry)?json.data.entry.map((entry) => {
         if (entry && entry.resource) {
             const resource = entry.resource;
-            console.log(resource);
+            return new Records.Glucose({
+                resource: (resource.code) ? resource.code.coding : null,
+                date: resource.issued,
+                quantity: resource.valueQuantity.value,
+                interpretation: (resource.interpretation && resource.interpretation.coding) ? resource.interpretation.coding[0].code : null
+            });
         }
-    }).filter(entry => (entry) ? true : false);
+    }).filter(entry => (entry) ? true : false):null;
     return List(glucose);
 }

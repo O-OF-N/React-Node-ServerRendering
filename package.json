@@ -6,7 +6,7 @@
     "clean": "rm -rf dist/* && rm -rf dist && mkdir dist && mkdir dist/public && mkdir dist/server",
     "copy-public": "cp -r public/* dist/public/ ",
     "build-server": "./node_modules/.bin/babel -d dist/server src/server -s",
-    "build-ui": "webpack -p",
+    "build-ui": "webpack",
     "build": "npm run clean && npm run build-server && npm run build-ui && npm run copy-public",
     "postinstall": "npm run build",
     "start": "node ./bin/www",

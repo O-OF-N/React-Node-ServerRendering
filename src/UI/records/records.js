@@ -17,6 +17,20 @@ export const Glucose = immutableRecord({
     interpretation: ''
 });
 
+export const LabObject = immutableRecord({
+    labs: immutableList([]),
+    fetching: false,
+    fetched: false,
+    error: null
+});
+
+export const Lab = immutableRecord({
+    date: '',
+    quantity: 0,
+    interpretation: '',
+    text: ''
+});
+
 export const Height = immutableRecord({
     height: 0
 });

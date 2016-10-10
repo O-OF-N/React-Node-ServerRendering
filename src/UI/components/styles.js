@@ -1,6 +1,6 @@
 export const LabHeaderSpanStyle = {
     float: 'left',
-    width: '25%',
+    width: '24%',
     fontWeight: 'bold',
     display: 'table-cell',
     verticalAlign: 'middle',
@@ -17,7 +17,7 @@ export const LabHeaderRowStyle = {
 
 export const LabItemsSpanStyle = {
   float: 'left',
-  width: '25%',
+  width: '24%',
   verticalAlign: 'left',
   textAlign: 'left',
   whiteSpace: 'nowrap',

@@ -10,14 +10,11 @@ import UserAuthenticationModel from '../models/UserAuthenticationSchema';
 //Public functions
 export const fetchGlucoseResults = function* (state) {
     const result = yield* fetchObservationResultsHelper(state, ["glucose"]);
-    //console.log(result);
     return checkResponseStatus(result) ? buildGlucoseResultsFromJson(result) : null;
 };
 
 export const fetchLabResults = function* (state) {
-    console.log('result111111>>>>>>>>>>>>>>>>>>>');
     const result = yield* fetchObservationResultsHelper(state, ["ketones","ph","serum"]);
-    console.log('result>>>>>>>>>>>>>>>>>>>');
     return checkResponseStatus(result) ? buildLabResultsFromJson(result) : null;
 };
 
@@ -29,7 +26,6 @@ const fetchObservationResultsHelper = function* (state, lonicCodes) {
     const [userAuthenticationModel] = yield UserAuthenticationModel.findByState(state);
     const url = HttpUtil.buildObeservationURL(userAuthenticationModel.patient, lonicCodes, userAuthenticationModel.iss);
     const authHeader = HttpUtil.buildAuthorizationHeader(userAuthenticationModel);
-    console.log(url);
     const result = yield get(url, authHeader);
     return result;
 };

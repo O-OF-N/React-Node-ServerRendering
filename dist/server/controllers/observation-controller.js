@@ -62,5 +62,37 @@ router.get('/glucose/:state', (0, _wrap2.default)(regeneratorRuntime.mark(functi
     }, _callee, this, [[0, 7]]);
 })));
 
+router.get('/labs/:state', (0, _wrap2.default)(regeneratorRuntime.mark(function _callee2(req, res, next) {
+    var ketones;
+    return regeneratorRuntime.wrap(function _callee2$(_context2) {
+        while (1) {
+            switch (_context2.prev = _context2.next) {
+                case 0:
+                    _context2.prev = 0;
+                    _context2.next = 3;
+                    return ObservationHelper.fetchLabResults(req.params.state);
+
+                case 3:
+                    ketones = _context2.sent;
+
+                    res.send(ketones);
+                    _context2.next = 11;
+                    break;
+
+                case 7:
+                    _context2.prev = 7;
+                    _context2.t0 = _context2['catch'](0);
+
+                    console.log('err = ' + _context2.t0);
+                    next(_context2.t0);
+
+                case 11:
+                case 'end':
+                    return _context2.stop();
+            }
+        }
+    }, _callee2, this, [[0, 7]]);
+})));
+
 exports.default = router;
 //# sourceMappingURL=observation-controller.js.map

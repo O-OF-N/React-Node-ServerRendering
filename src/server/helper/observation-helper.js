@@ -27,7 +27,6 @@ const fetchObservationResultsHelper = function* (state, lonicCodes) {
     const url = HttpUtil.buildObeservationURL(userAuthenticationModel.patient, lonicCodes, userAuthenticationModel.iss);
     const authHeader = HttpUtil.buildAuthorizationHeader(userAuthenticationModel);
     const result = yield get(url, authHeader);
-    console.log('url =' + url);
     return result;
 };
 

@@ -15,3 +15,5 @@ router.get('/medications/:state', co(function* (req, res, next) {
         next(err);
     }
 }));
+
+export default router;

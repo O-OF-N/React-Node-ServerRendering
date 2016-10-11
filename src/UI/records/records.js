@@ -7,8 +7,8 @@ export const GlucoseObject = immutableRecord({
     error: null
 });
 
-export const ServerState  = immutableRecord({
-    state:''
+export const ServerState = immutableRecord({
+    state: ''
 });
 
 export const Glucose = immutableRecord({
@@ -31,6 +31,21 @@ export const Lab = immutableRecord({
     text: ''
 });
 
+export const MedicationObject = immutableRecord({
+    medications: immutableList([]),
+    fetching: false,
+    fetched: false,
+    error: null
+});
+
+export const Medication = immutableRecord({
+    status: '',
+    prescriber: '',
+    date: '',
+    dosage: 0,
+    medication: ''
+});
+
 export const Height = immutableRecord({
     height: 0
 });
@@ -43,6 +58,6 @@ export const HGB = immutableRecord({
     hgb: 0
 });
 
-export const HttpError = immutableRecord({ 
-    message: '' 
+export const HttpError = immutableRecord({
+    message: ''
 });

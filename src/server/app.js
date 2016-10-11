@@ -21,8 +21,9 @@ db.on('error', (err) => { console.log(`Error connecting to db ${err}`); });
 db.once('open', () => { console.log('connected to Mongo DB'); });
 
 // controller imports
-import viewRendererController from './controllers/view-renderer-controller';
-import observationController from './controllers/observation-controller';
+import ViewRendererController from './controllers/view-renderer-controller';
+import ObservationController from './controllers/observation-controller';
+import MedicationController from './controllers/medication-controller';
 
 var app = express();
 
@@ -38,8 +39,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '/../../public')));
 
-app.use('/', viewRendererController);
-app.use('/results', observationController);
+app.use('/', ViewRendererController);
+app.use('/observation', ObservationController);
+app.use('/medication', MedicationController);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

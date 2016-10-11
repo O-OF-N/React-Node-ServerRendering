@@ -6,7 +6,7 @@ import * as Constants from '../util/constants';
 
 const router = express.Router();
 
-router.get('/medications/:state', co(function* (req, res, next) {
+router.get('/orders/:state', co(function* (req, res, next) {
     try {
         const medications = yield MedicationHelper.fetchMedications(req.params.state);
         res.send(medications);

@@ -1,6 +1,7 @@
 export const DOMAIN = "https://fhir-open.sandboxcernerpowerchart.com/may2015";
 export const TENANT = "d075cf8b-3261-481d-97e5-ba6c48d3b41f";
 export const OBSERVATIONS = "Observation";
+export const MEDICATION_ORDER = "MedicationOrder";
 
 export const AUTHORIZATION_HEADER = { Accept: "application/json+fhir" };
 

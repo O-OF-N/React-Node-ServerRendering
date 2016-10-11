@@ -19,8 +19,8 @@ router.get('/glucose/:state', co(function* (req, res, next) {
 
 router.get('/labs/:state', co(function* (req, res, next) {
     try {
-        const ketones = yield ObservationHelper.fetchLabResults(req.params.state);
-        res.send(ketones);
+        const labs = yield ObservationHelper.fetchLabResults(req.params.state);
+        res.send(labs);
     } catch (err) {
         console.log('err = ' + err);
         next(err);

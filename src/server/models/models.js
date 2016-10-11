@@ -10,6 +10,14 @@ export const Observation = new Record({
     interpretation: ''
 });
 
+export const MedicationOrder = new Record({
+    status: '',
+    prescriber: '',
+    date: '',
+    dosage: 0,
+    medication: ''
+});
+
 export const AccessTokenRequestBody = new Record({
     grant_type: FHIRConfig.get(ActiveEnv).grant_type,
     code: '',

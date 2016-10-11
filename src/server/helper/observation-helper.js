@@ -10,18 +10,16 @@ import UserAuthenticationModel from '../models/UserAuthenticationSchema';
 //Public functions
 export const fetchGlucoseResults = function* (state) {
     const result = yield* fetchObservationResultsHelper(state, ["glucose"]);
-    return checkResponseStatus(result) ? buildGlucoseResultsFromJson(result) : null;
+    return HttpUtil.checkResponseStatus(result) ? buildGlucoseResultsFromJson(result) : null;
 };
 
 export const fetchLabResults = function* (state) {
     const result = yield* fetchObservationResultsHelper(state, ["ketones","ph","serum"]);
-    return checkResponseStatus(result) ? buildLabResultsFromJson(result) : null;
+    return HttpUtil.checkResponseStatus(result) ? buildLabResultsFromJson(result) : null;
 };
 
 
 //Private functions
-
-
 const fetchObservationResultsHelper = function* (state, lonicCodes) {
     const [userAuthenticationModel] = yield UserAuthenticationModel.findByState(state);
     const url = HttpUtil.buildObeservationURL(userAuthenticationModel.patient, lonicCodes, userAuthenticationModel.iss);
@@ -29,8 +27,6 @@ const fetchObservationResultsHelper = function* (state, lonicCodes) {
     const result = yield get(url, authHeader);
     return result;
 };
-
-const checkResponseStatus = (json) => (json && json.status && json.status === 200) ? true : false;
 
 const buildGlucoseResultsFromJson = (json) => {
     let glucose = (json.data && json.data.entry)?json.data.entry.map((entry) => {

@@ -6,14 +6,15 @@ Object.defineProperty(exports, "__esModule", {
 var DOMAIN = exports.DOMAIN = "https://fhir-open.sandboxcernerpowerchart.com/may2015";
 var TENANT = exports.TENANT = "d075cf8b-3261-481d-97e5-ba6c48d3b41f";
 var OBSERVATIONS = exports.OBSERVATIONS = "Observation";
+var MEDICATION_ORDER = exports.MEDICATION_ORDER = "MedicationOrder";
 
 var AUTHORIZATION_HEADER = exports.AUTHORIZATION_HEADER = { Accept: "application/json+fhir" };
 
 var LONIC_URL = exports.LONIC_URL = "http://loinc.org|";
 var GLUCOSE_CODE = exports.GLUCOSE_CODE = "2345-7";
 var KETONE_CODE = exports.KETONE_CODE = "2514-8";
-var PH_CODE = exports.PH_CODE = "5803-2";
-var SERUM_CODE = exports.SERUM_CODE = "1963-8";
+var PH_CODE = exports.PH_CODE = "2746-6";
+var SERUM_CODE = exports.SERUM_CODE = "2028-9";
 var LONIC_CODES = exports.LONIC_CODES = new Map([["glucose", GLUCOSE_CODE], ["ketones", KETONE_CODE], ["ph", PH_CODE], ["serum", SERUM_CODE]]);
 
 /*export const OBSERVATIONS_FETCH_URL =

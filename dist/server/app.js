@@ -10,6 +10,10 @@ var _observationController = require('./controllers/observation-controller');
 
 var _observationController2 = _interopRequireDefault(_observationController);
 
+var _medicationController = require('./controllers/medication-controller');
+
+var _medicationController2 = _interopRequireDefault(_medicationController);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var express = require('express');
@@ -66,7 +70,8 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, '/../../public')));
 
 app.use('/', _viewRendererController2.default);
-app.use('/results', _observationController2.default);
+app.use('/observation', _observationController2.default);
+app.use('/medication', _medicationController2.default);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

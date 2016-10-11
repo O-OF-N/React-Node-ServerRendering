@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.FHIRAuthorizationConfig = exports.DatabaseConfig = exports.UserAuthentication = exports.POSTHeader = exports.AuthorizationHeader = exports.AccessTokenRequestBody = exports.Glucose = undefined;
+exports.FHIRAuthorizationConfig = exports.DatabaseConfig = exports.UserAuthentication = exports.POSTHeader = exports.AuthorizationHeader = exports.AccessTokenRequestBody = exports.MedicationOrder = exports.Observation = undefined;
 
 var _immutable = require('immutable');
 
@@ -15,11 +15,20 @@ var _appConfig = require('../config/app-config');
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
-var Glucose = exports.Glucose = new _immutable.Record({
+var Observation = exports.Observation = new _immutable.Record({
     resource: '',
+    text: '',
     date: '',
     quantity: 0,
     interpretation: ''
+});
+
+var MedicationOrder = exports.MedicationOrder = new _immutable.Record({
+    status: '',
+    prescriber: '',
+    date: '',
+    dosage: 0,
+    medication: ''
 });
 
 var AccessTokenRequestBody = exports.AccessTokenRequestBody = new _immutable.Record({

@@ -10,7 +10,7 @@ import medicationObject from './reducer/lab-results-reducer';
 import stateObject from './reducer/state-reducer';
 import {fetchGlucose} from './components/glucose-results/glucose-results-action';
 import {fetchLabs} from './components/lab-results/lab-results-action';
-import {fetchMedications} from './components/lab-results/medications-action';
+import {fetchMedications} from './components/medications/medications-action';
 import {Provider} from 'react-redux';
 import * as Records from './records/records';
 import * as Constants from './utils/constants';

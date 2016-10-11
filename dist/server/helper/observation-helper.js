@@ -42,7 +42,7 @@ var fetchGlucoseResults = exports.fetchGlucoseResults = regeneratorRuntime.mark(
 
                 case 1:
                     result = _context.t0;
-                    return _context.abrupt('return', checkResponseStatus(result) ? buildGlucoseResultsFromJson(result) : null);
+                    return _context.abrupt('return', HttpUtil.checkResponseStatus(result) ? buildGlucoseResultsFromJson(result) : null);
 
                 case 3:
                 case 'end':
@@ -62,7 +62,7 @@ var fetchLabResults = exports.fetchLabResults = regeneratorRuntime.mark(function
 
                 case 1:
                     result = _context2.t0;
-                    return _context2.abrupt('return', checkResponseStatus(result) ? buildLabResultsFromJson(result) : null);
+                    return _context2.abrupt('return', HttpUtil.checkResponseStatus(result) ? buildLabResultsFromJson(result) : null);
 
                 case 3:
                 case 'end':
@@ -73,8 +73,6 @@ var fetchLabResults = exports.fetchLabResults = regeneratorRuntime.mark(function
 });
 
 //Private functions
-
-
 var fetchObservationResultsHelper = regeneratorRuntime.mark(function fetchObservationResultsHelper(state, lonicCodes) {
     var _ref, _ref2, userAuthenticationModel, url, authHeader, result;
 
@@ -106,16 +104,13 @@ var fetchObservationResultsHelper = regeneratorRuntime.mark(function fetchObserv
     }, fetchObservationResultsHelper, this);
 });
 
-var checkResponseStatus = function checkResponseStatus(json) {
-    return json && json.status && json.status === 200 ? true : false;
-};
-
 var buildGlucoseResultsFromJson = function buildGlucoseResultsFromJson(json) {
     var glucose = json.data && json.data.entry ? json.data.entry.map(function (entry) {
         if (entry && entry.resource) {
             var resource = entry.resource;
-            return new Records.Glucose({
+            return new Records.Observation({
                 resource: resource.code ? resource.code.coding : null,
+                text: resource.code ? resource.code.text : null,
                 date: resource.issued,
                 quantity: resource.valueQuantity.value,
                 interpretation: resource.interpretation && resource.interpretation.coding ? resource.interpretation.coding[0].code : null
@@ -128,14 +123,21 @@ var buildGlucoseResultsFromJson = function buildGlucoseResultsFromJson(json) {
 };
 
 var buildLabResultsFromJson = function buildLabResultsFromJson(json) {
-    var lab = json.data.entry.map(function (entry) {
+    var lab = json.data && json.data.entry ? json.data.entry.map(function (entry) {
         if (entry && entry.resource) {
             var resource = entry.resource;
             console.log(resource);
+            return new Records.Observation({
+                resource: resource.code ? resource.code.coding : null,
+                text: resource.code ? resource.code.text : null,
+                date: resource.issued,
+                quantity: resource.valueQuantity ? resource.valueQuantity.value + resource.valueQuantity.unit : null,
+                interpretation: resource.interpretation && resource.interpretation.coding ? resource.interpretation.coding[0].code : null
+            });
         }
     }).filter(function (entry) {
         return entry ? true : false;
-    });
-    return (0, _immutable.List)(glucose);
+    }) : null;
+    return (0, _immutable.List)(lab);
 };
 //# sourceMappingURL=observation-helper.js.map

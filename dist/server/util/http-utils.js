@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.buildObeservationURL = exports.buildAuthorizationHeader = undefined;
+exports.buildMedicationURL = exports.buildObeservationURL = exports.checkResponseStatus = exports.buildAuthorizationHeader = undefined;
 
 var _constants = require('./constants');
 
@@ -20,10 +20,18 @@ var buildAuthorizationHeader = exports.buildAuthorizationHeader = function build
     return new Records.AuthorizationHeader({ headers: { Accept: "application/json+fhir", Authorization: Authorization } });
 };
 
+var checkResponseStatus = exports.checkResponseStatus = function checkResponseStatus(json) {
+    return json && json.status && json.status === 200 ? true : false;
+};
+
 var buildObeservationURL = exports.buildObeservationURL = function buildObeservationURL(patient, lonicCodes, url) {
     var codes = lonicCodes.map(function (l) {
         return Constants.LONIC_URL.concat(Constants.LONIC_CODES.get(l));
     }).join(',');
-    return url + '/' + Constants.OBSERVATIONS + '?patient=' + patient + '&code=' + codes;
+    return url + '/' + Constants.OBSERVATIONS + '?patient=' + 4478007 + '&code=' + codes;
+};
+
+var buildMedicationURL = exports.buildMedicationURL = function buildMedicationURL(patient, url) {
+    return url + '/' + Constants.MEDICATION_ORDER + '?patient=' + 4478007;
 };
 //# sourceMappingURL=http-utils.js.map

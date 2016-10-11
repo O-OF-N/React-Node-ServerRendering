@@ -63,7 +63,7 @@ router.get('/glucose/:state', (0, _wrap2.default)(regeneratorRuntime.mark(functi
 })));
 
 router.get('/labs/:state', (0, _wrap2.default)(regeneratorRuntime.mark(function _callee2(req, res, next) {
-    var ketones;
+    var labs;
     return regeneratorRuntime.wrap(function _callee2$(_context2) {
         while (1) {
             switch (_context2.prev = _context2.next) {
@@ -73,9 +73,9 @@ router.get('/labs/:state', (0, _wrap2.default)(regeneratorRuntime.mark(function 
                     return ObservationHelper.fetchLabResults(req.params.state);
 
                 case 3:
-                    ketones = _context2.sent;
+                    labs = _context2.sent;
 
-                    res.send(ketones);
+                    res.send(labs);
                     _context2.next = 11;
                     break;
 

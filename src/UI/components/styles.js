@@ -63,3 +63,72 @@ export const LabItemsStyle = {
   width: '40%',
   height: '100%'
 };
+
+
+
+
+export const MedicationHeaderSpanStyle = {
+    float: 'left',
+    width: '14%',
+    fontWeight: 'bold',
+    display: 'table-cell',
+    verticalAlign: 'middle',
+    textAlign: 'center',
+    background: '#BECCE5',
+    border: 'black',
+    borderStyle: 'solid',
+    borderLeftStyle: 'none',
+    borderWidth: '0.5px',
+};
+
+export const MedicationFirstHeaderSpanStyle = {
+    float: 'left',
+    width: '39%',
+    fontWeight: 'bold',
+    display: 'table-cell',
+    verticalAlign: 'middle',
+    textAlign: 'center',
+    background: '#BECCE5',
+    border: 'black',
+    borderStyle: 'solid',
+    borderWidth: '0.5px',
+};
+
+export const MedicationHeaderRowStyle = {
+    width: '40%',
+    height: '100%'
+};
+
+export const MedicationItemsSpanStyle = {
+  float: 'left',
+  width: '14%',
+  verticalAlign: 'left',
+  textAlign: 'left',
+  whiteSpace: 'nowrap',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+  border: 'black',
+  borderStyle: 'solid',
+  borderWidth: '1px',
+  borderLeftStyle: 'none',
+  borderTopStyle: 'none'
+};
+
+export const MedicationFirstItemsSpanStyle = {
+  float: 'left',
+  width: '39%',
+  verticalAlign: 'left',
+  textAlign: 'left',
+  whiteSpace: 'nowrap',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+  border: 'black',
+  borderStyle: 'solid',
+  borderWidth: '1px',
+  borderTopStyle: 'none'
+};
+
+export const MedicationItemsStyle = {
+  width: '60%',
+  height: '100%'
+};

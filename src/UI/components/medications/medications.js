@@ -6,7 +6,7 @@ import {connect} from 'react-redux';
 const Medications = ({medications}) => {
     return (
         <div>
-            <h3>Labs</h3>
+            <h3>Medications</h3>
             <MedicationsHeader/>
             {
             medications.map((m, i) => {

@@ -30,8 +30,8 @@ const buildInsulinOrdersResult = (json) => {
         if (entry && entry.resource) {
             const resource = entry.resource;
             console.log('>>>>>>>>>>>>>>>>>>>>>');
-            ({ status, prescriber, dateWritten, dosageInstruction, medicationReference, medicationCodeableConcept } = resource);
-             console.log(medicationReference,medicationCodeableConcept);
+            ({ status, prescriber, dateWritten, dosageInstruction, medicationCodeableConcept } = resource);
+             console.log(medicationCodeableConcept);
             ({ medication } = fetchMedicationFromResource(medicationReference, medicationCodeableConcept));
             console.log(medication);
             insulin = (medication) ? new Records.InsulinOrder({
@@ -49,6 +49,6 @@ const buildInsulinOrdersResult = (json) => {
     return List(insulinOrder);
 };
 
-const fetchMedicationFromResource = (reference, concept) => reference ? reference.display : (concept) ? concept.text : null;
+const fetchMedicationFromResource = (concept) => (concept) ? concept.text : null;
 
 const fetchMedicationAdministration = (dosage) => (dosage && dosage instanceof 'Array' && dosage[0] && dosage[0].route && dosage[0].route.coding && dosage[0].route.coding instanceof 'Array' && dosage[0].route.coding[0]) ? dosage[0].route.coding[0].code === Constants.SUBCUTANEOUS ? Constants.SUBCUTANEOUS_TEXT : Constants.INTRAVENOUS_TEXT : null;

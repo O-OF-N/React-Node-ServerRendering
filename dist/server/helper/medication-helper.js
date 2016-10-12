@@ -89,8 +89,7 @@ var buildInsulinOrdersResult = function buildInsulinOrdersResult(json) {
         var insulin = null;
         if (entry && entry.resource) {
             var resource = entry.resource;
-            console.log(">>>>>>>>>>>>>>>>>>>>>");
-            console.log(resource);
+            console.log(">>>>>>>>>>>>>>>>>>>>>" + resource.status);
             status = resource.status;
             prescriber = resource.prescriber;
             dateWritten = resource.dateWritten;
@@ -98,7 +97,7 @@ var buildInsulinOrdersResult = function buildInsulinOrdersResult(json) {
             medicationReference = resource.medicationReference;
             medicationCodeableConcept = resource.medicationCodeableConcept;
 
-            console.log(status);
+            console.log(resource.status);
 
             var _fetchMedicationFromR = fetchMedicationFromResource(medicationReference, medicationCodeableConcept);
 

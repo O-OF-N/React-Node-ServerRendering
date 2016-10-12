@@ -29,9 +29,8 @@ const buildInsulinOrdersResult = (json) => {
         if (entry && entry.resource) {
             const resource = entry.resource;
             console.log(">>>>>>>>>>>>>>>>>>>>>");
-            console.log(JSON.parse(resource));
-            ({ status, prescriber, dateWritten, dosageInstruction, medicationReference, medicationCodeableConcept } = resource);
-            console.log(status);
+            ({ status, prescriber, dateWritten, dosageInstruction, medicationReference, medicationCodeableConcept } = JSON.parse(resource));
+            console.log(resource.status);
             ({ medication } = fetchMedicationFromResource(medicationReference, medicationCodeableConcept));
             insulin = (medication) ? new Records.InsulinOrder({
                 status,

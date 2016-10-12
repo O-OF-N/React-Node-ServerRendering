@@ -7,6 +7,7 @@ const DiabetesChart = () => (
     <div>
         <GlucoseResults/>
         <LabResults/>
+        <Medications/>
     </div>
 );
 

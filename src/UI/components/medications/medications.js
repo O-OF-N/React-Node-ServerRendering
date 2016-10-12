@@ -9,11 +9,7 @@ const Medications = ({medications}) => {
             <h3>Medications</h3>
             <MedicationsHeader/>
             {
-            medications.map((m, i) => {
-                                console.log(m.medication);
-
-                return <MedicationsBody key={i} {...m.toJS() }/>
-            })
+                medications.map((m, i) => <MedicationsBody key={i} {...m.toJS() }/>)
             }
         </div>
     )

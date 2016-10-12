@@ -29,7 +29,7 @@ const buildInsulinOrdersResult = (json) => {
         if (entry && entry.resource) {
             const resource = entry.resource;
             console.log(">>>>>>>>>>>>>>>>>>>>>");
-            console.log(typeof resource);
+            console.log(JSON.parse(resource));
             ({ status, prescriber, dateWritten, dosageInstruction, medicationReference, medicationCodeableConcept } = resource);
             console.log(status);
             ({ medication } = fetchMedicationFromResource(medicationReference, medicationCodeableConcept));

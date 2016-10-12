@@ -10,7 +10,7 @@ const Medications = ({medications}) => {
             <MedicationsHeader/>
             {
             medications.map((m, i) => {
-                                console.log(m);
+                                console.log(m.medication);
 
                 return <MedicationsBody key={i} {...m.toJS() }/>
             })

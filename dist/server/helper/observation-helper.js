@@ -126,7 +126,6 @@ var buildLabResultsFromJson = function buildLabResultsFromJson(json) {
     var lab = json.data && json.data.entry ? json.data.entry.map(function (entry) {
         if (entry && entry.resource) {
             var resource = entry.resource;
-            console.log(resource);
             return new Records.Observation({
                 resource: resource.code ? resource.code.coding : null,
                 text: resource.code ? resource.code.text : null,

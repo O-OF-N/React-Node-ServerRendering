@@ -39,7 +39,8 @@ const buildInsulinOrdersResult = (json) => {
                 medication,
                 administration: fetchMedicationAdministration(dosageInstruction)
             }) : null;
-        }
+        };
+        console.log(insulin);
         return insulin;
     }).filter(entry => (entry) ? true : false) : null;
     return List(insulinOrder);

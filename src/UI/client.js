@@ -6,7 +6,7 @@ import thunk from 'redux-thunk';
 import createLogger from 'redux-logger';
 import glucoseObject from './reducer/glucose-results-reducer';
 import labObject from './reducer/lab-results-reducer';
-import medicationObject from './reducer/lab-results-reducer';
+import medicationObject from './reducer/medication-results-reducer';
 import stateObject from './reducer/state-reducer';
 import {fetchGlucose} from './components/glucose-results/glucose-results-action';
 import {fetchLabs} from './components/lab-results/lab-results-action';

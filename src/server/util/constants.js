@@ -2,6 +2,11 @@ export const DOMAIN = "https://fhir-open.sandboxcernerpowerchart.com/may2015";
 export const TENANT = "d075cf8b-3261-481d-97e5-ba6c48d3b41f";
 export const OBSERVATIONS = "Observation";
 export const MEDICATION_ORDER = "MedicationOrder";
+export const HTTP_SUCCESS = 200;
+export const INTRAVENOUS = 'C38276';
+export const SUBCUTANEOUS = 'C38299';
+export const INTRAVENOUS_TEXT = 'INTRAVENOUS';
+export const SUBCUTANEOUS_TEXT = 'SUBCUTANEOUS';
 
 export const AUTHORIZATION_HEADER = { Accept: "application/json+fhir" };
 

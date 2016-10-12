@@ -10,12 +10,13 @@ export const Observation = new Record({
     interpretation: ''
 });
 
-export const MedicationOrder = new Record({
+export const InsulinOrder = new Record({
     status: '',
     prescriber: '',
     date: '',
     dosage: 0,
-    medication: ''
+    medication: '',
+    administration:''
 });
 
 export const AccessTokenRequestBody = new Record({

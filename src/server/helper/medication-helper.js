@@ -10,7 +10,7 @@ import UserAuthenticationModel from '../models/UserAuthenticationSchema';
 //public functions
 export const fetchMedications = function* (state) {
     const result = yield* fetchMedicationsHelper(state);
-    return HttpUtil.checkResponseStatus(result) ? buildMedicationOrdersResult(result) : null;
+    return HttpUtil.checkResponseStatus(result) ? buildInsulinOrdersResult(result) : null;
 };
 
 //Private functions
@@ -23,20 +23,27 @@ const fetchMedicationsHelper = function* (state) {
 };
 
 
-const buildMedicationOrdersResult = (json) => {
-    let medicationOrder = (json.data && json.data.entry) ? json.data.entry.map((entry) => {
+const buildInsulinOrdersResult = (json) => {
+    let insulinOrder = (json.data && json.data.entry) ? json.data.entry.map((entry) => {
+        let insulin = null;
         if (entry && entry.resource) {
             const resource = entry.resource;
-            return new Records.MedicationOrder({
-                status: (resource.status),
-                prescriber: (resource.prescriber) ? resource.prescriber.display : null,
-                date: resource.dateWritten,
-                dosage: (resource.dosageInstruction) ? resource.dosageInstruction[0].text : null,
-                medication: fetchMedicationFromResource(resource)
-            });
+            ({ status, prescriber, dateWritten, dosageInstruction, medicationReference, medicationCodeableConcept } = resource);
+            ({ medication } = fetchMedicationFromResource(medicationReference, medicationCodeableConcept));
+            insulin = (medication) ? new Records.InsulinOrder({
+                status,
+                prescriber: (prescriber) ? prescriber.display : null,
+                date: dateWritten,
+                dosage: (dosageInstruction && dosageInstruction instanceof 'Array' && dosageInstruction[0]) ? dosageInstruction[0].text : null,
+                medication,
+                administration: fetchMedicationAdministration(dosageInstruction)
+            }) : null;
         }
+        return insulin;
     }).filter(entry => (entry) ? true : false) : null;
-    return List(medicationOrder);
+    return List(insulinOrder);
 };
 
-const fetchMedicationFromResource = (resource) => resource ? resource.medicationReference ? resource.medicationReference.display : resource.medicationCodeableConcept ? resource.medicationCodeableConcept.text : null : null;
+const fetchMedicationFromResource = (reference, concept) => reference ? reference.display : (concept) ? concept.text : null;
+
+const fetchMedicationAdministration = (dosage) => (dosage && dosage instanceof 'Array' && dosage[0] && dosage[0].route && dosage[0].route.coding && dosage[0].route.coding instanceof 'Array' && dosage[0].route.coding[0]) ? dosage[0].route.coding[0].code === Constants.SUBCUTANEOUS ? Constants.SUBCUTANEOUS_TEXT : Constants.INTRAVENOUS_TEXT : null;

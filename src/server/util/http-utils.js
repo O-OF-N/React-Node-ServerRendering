@@ -6,7 +6,7 @@ export const buildAuthorizationHeader = (userModel) => {
     return new Records.AuthorizationHeader({ headers: { Accept: "application/json+fhir", Authorization } });
 }
 
-export const checkResponseStatus = (json) => (json && json.status && json.status === 200) ? true : false;
+export const checkResponseStatus = (json) => (json && json.status && json.status === Constants.HTTP_SUCCESS) ? true : false;
 
 export const buildObeservationURL = (patient, lonicCodes, url) => {
     const codes = lonicCodes.map(l => Constants.LONIC_URL.concat(Constants.LONIC_CODES.get(l))).join(',');

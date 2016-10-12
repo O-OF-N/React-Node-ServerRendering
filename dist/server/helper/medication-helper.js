@@ -42,7 +42,7 @@ var fetchMedications = exports.fetchMedications = regeneratorRuntime.mark(functi
 
                 case 1:
                     result = _context.t0;
-                    return _context.abrupt('return', HttpUtil.checkResponseStatus(result) ? buildMedicationOrdersResult(result) : null);
+                    return _context.abrupt('return', HttpUtil.checkResponseStatus(result) ? buildInsulinOrdersResult(result) : null);
 
                 case 3:
                 case 'end':
@@ -84,25 +84,43 @@ var fetchMedicationsHelper = regeneratorRuntime.mark(function fetchMedicationsHe
     }, fetchMedicationsHelper, this);
 });
 
-var buildMedicationOrdersResult = function buildMedicationOrdersResult(json) {
-    var medicationOrder = json.data && json.data.entry ? json.data.entry.map(function (entry) {
+var buildInsulinOrdersResult = function buildInsulinOrdersResult(json) {
+    var insulinOrder = json.data && json.data.entry ? json.data.entry.map(function (entry) {
+        var insulin = null;
         if (entry && entry.resource) {
             var resource = entry.resource;
-            return new Records.MedicationOrder({
-                status: resource.status,
-                prescriber: resource.prescriber ? resource.prescriber.display : null,
-                date: resource.dateWritten,
-                dosage: resource.dosageInstruction ? resource.dosageInstruction[0].text : null,
-                medication: fetchMedicationFromResource(resource)
-            });
+            status = resource.status;
+            prescriber = resource.prescriber;
+            dateWritten = resource.dateWritten;
+            dosageInstruction = resource.dosageInstruction;
+            medicationReference = resource.medicationReference;
+            medicationCodeableConcept = resource.medicationCodeableConcept;
+
+            var _fetchMedicationFromR = fetchMedicationFromResource(medicationReference, medicationCodeableConcept);
+
+            medication = _fetchMedicationFromR.medication;
+
+            insulin = medication ? new Records.InsulinOrder({
+                status: status,
+                prescriber: prescriber ? prescriber.display : null,
+                date: dateWritten,
+                dosage: dosageInstruction && dosageInstruction instanceof 'Array' && dosageInstruction[0] ? dosageInstruction[0].text : null,
+                medication: medication,
+                administration: fetchMedicationAdministration(dosageInstruction)
+            }) : null;
         }
+        return insulin;
     }).filter(function (entry) {
         return entry ? true : false;
     }) : null;
-    return (0, _immutable.List)(medicationOrder);
+    return (0, _immutable.List)(insulinOrder);
 };
 
-var fetchMedicationFromResource = function fetchMedicationFromResource(resource) {
-    return resource ? resource.medicationReference ? resource.medicationReference.display : resource.medicationCodeableConcept ? resource.medicationCodeableConcept.text : null : null;
+var fetchMedicationFromResource = function fetchMedicationFromResource(reference, concept) {
+    return reference ? reference.display : concept ? concept.text : null;
+};
+
+var fetchMedicationAdministration = function fetchMedicationAdministration(dosage) {
+    return dosage && dosage instanceof 'Array' && dosage[0] && dosage[0].route && dosage[0].route.coding && dosage[0].route.coding instanceof 'Array' && dosage[0].route.coding[0] ? dosage[0].route.coding[0].code === Constants.SUBCUTANEOUS ? Constants.SUBCUTANEOUS_TEXT : Constants.INTRAVENOUS_TEXT : null;
 };
 //# sourceMappingURL=medication-helper.js.map

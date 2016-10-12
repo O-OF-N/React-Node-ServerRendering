@@ -21,7 +21,7 @@ var buildAuthorizationHeader = exports.buildAuthorizationHeader = function build
 };
 
 var checkResponseStatus = exports.checkResponseStatus = function checkResponseStatus(json) {
-    return json && json.status && json.status === 200 ? true : false;
+    return json && json.status && json.status === Constants.HTTP_SUCCESS ? true : false;
 };
 
 var buildObeservationURL = exports.buildObeservationURL = function buildObeservationURL(patient, lonicCodes, url) {

@@ -7,6 +7,11 @@ var DOMAIN = exports.DOMAIN = "https://fhir-open.sandboxcernerpowerchart.com/may
 var TENANT = exports.TENANT = "d075cf8b-3261-481d-97e5-ba6c48d3b41f";
 var OBSERVATIONS = exports.OBSERVATIONS = "Observation";
 var MEDICATION_ORDER = exports.MEDICATION_ORDER = "MedicationOrder";
+var HTTP_SUCCESS = exports.HTTP_SUCCESS = 200;
+var INTRAVENOUS = exports.INTRAVENOUS = 'C38276';
+var SUBCUTANEOUS = exports.SUBCUTANEOUS = 'C38299';
+var INTRAVENOUS_TEXT = exports.INTRAVENOUS_TEXT = 'INTRAVENOUS';
+var SUBCUTANEOUS_TEXT = exports.SUBCUTANEOUS_TEXT = 'SUBCUTANEOUS';
 
 var AUTHORIZATION_HEADER = exports.AUTHORIZATION_HEADER = { Accept: "application/json+fhir" };
 

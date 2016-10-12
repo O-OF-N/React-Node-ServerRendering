@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 
 const Medications = ({medications}) => {
     return (
-        <div style={{ float: left }}>
+        <div style={{ float: 'left' }}>
             <h3>Medications</h3>
             <MedicationsHeader/>
             {

@@ -14,6 +14,7 @@ const reducer = (medicationObject = init, action) => {
             });
         case Constants.MEDICATIONS_FETCHED:
             const payLoad = !action.payLoad? immutableList([]) : action.payLoad;
+            console.log(payLoad);
             return medicationObject.merge({
                 medications: action.payLoad,
                 fetched: true,

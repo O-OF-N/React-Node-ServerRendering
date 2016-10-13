@@ -129,6 +129,6 @@ export const MedicationFirstItemsSpanStyle = {
 };
 
 export const MedicationItemsStyle = {
-  width: '60%',
+  width: '40%',
   height: '100%'
 };

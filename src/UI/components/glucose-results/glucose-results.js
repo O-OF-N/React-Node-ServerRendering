@@ -15,10 +15,10 @@ class GlucoseResults extends React.Component {
             const canvas = this.refs.chart;
 
             const ctx = canvas.getContext("2d");
-            /*canvas.width = 100;
-            canvas.height = 100;
-            canvas.style.width = '100px';
-            canvas.style.height = '100px';*/
+            canvas.width = '50%';
+            canvas.height = '50%';
+            canvas.style.width = '50%';
+            canvas.style.height = '50%';
             drawChart(ctx, labels, data);
         }
     }
@@ -28,7 +28,7 @@ class GlucoseResults extends React.Component {
             <div style={style}>
                 <h3>BG Graph</h3>
                 <div>
-                    <canvas ref="chart" width="50%" height="50%">
+                    <canvas ref="chart">
                     </canvas>
                     {this.logit() }
                 </div>

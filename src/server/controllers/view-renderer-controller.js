@@ -52,7 +52,7 @@ const renderFullPage = (html, state) => {
           window.__PRELOADED_STATE__ = '${state}'
         </script>
       </head>
-      <body>
+      <body style="width:inherit;height:inherit">
         <div id="root-app" style="width:inherit;height:inherit">${html}</div>
       </body>
     </html>

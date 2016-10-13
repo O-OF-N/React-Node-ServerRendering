@@ -7,9 +7,9 @@ import {
 
 const LabResultsBody = ({prescriber, status, date, medication, dosage, administration}) => (
     <div style={MedicationItemsStyle}>
-        <span style={MedicationFirstItemsSpanStyle}>{medication ? medication : '-'}</span>
-        <span style={MedicationItemsSpanStyle}>{dosage ? dosage : '-'}</span>
-        <span style={MedicationItemsSpanStyle}>{date ? new Date(date).toLocaleDateString() : '-'}</span>
+        <span style={MedicationFirstItemsSpanStyle} title = {medication} >{medication ? medication : '-'}</span>
+        <span style={MedicationItemsSpanStyle} title = {dosage} > {dosage ? dosage : '-'}</span>
+        <span style={MedicationItemsSpanStyle} title = {dt} > {date ? new Date(date).toLocaleDateString() : '-'}</span>
     </div>
 );
 

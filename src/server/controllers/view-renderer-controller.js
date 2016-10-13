@@ -53,7 +53,7 @@ const renderFullPage = (html, state) => {
         </script>
       </head>
       <body>
-        <div id="root">${html}</div>
+        <div id="root-app">${html}</div>
       </body>
     </html>
     `

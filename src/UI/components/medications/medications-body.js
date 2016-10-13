@@ -6,7 +6,7 @@ import {
 } from '../styles';
 
 const LabResultsBody = ({prescriber, status, date, medication, dosage, administration}) => (
-    <div id="div-lab-body" style={MedicationItemsStyle}>
+    <div style={MedicationItemsStyle}>
         <span style={MedicationFirstItemsSpanStyle}>{medication ? medication : '-'}</span>
         <span style={MedicationItemsSpanStyle}>{dosage ? dosage : '-'}</span>
         <span style={MedicationItemsSpanStyle}>{date ? new Date(date).toLocaleDateString() : '-'}</span>

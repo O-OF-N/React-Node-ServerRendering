@@ -9,16 +9,20 @@ const Medications = ({medications}) => {
             <div style={{ float: 'left' }}>
                 <h3>INTRAVENOUS</h3>
                 <MedicationsHeader/>
-                {
-                    medications.filter(m => m.administration === 'INTRAVENOUS').map((m, i) => <MedicationsBody key={i} {...m.toJS() }/>)
-                }
+                <div id="div-med-body-1">
+                    {
+                        medications.filter(m => m.administration === 'INTRAVENOUS').map((m, i) => <MedicationsBody key={i} {...m.toJS() }/>)
+                    }
+                </div>
             </div>
             <div style={{ float: 'left' }}>
                 <h3>SUBCUTANEOUS</h3>
                 <MedicationsHeader/>
-                {
-                    medications.filter(m => m.administration === 'SUBCUTANEOUS').map((m, i) => <MedicationsBody key={i} {...m.toJS() }/>)
-                }
+                <div id="div-med-body-2">
+                    {
+                        medications.filter(m => m.administration === 'SUBCUTANEOUS').map((m, i) => <MedicationsBody key={i} {...m.toJS() }/>)
+                    }
+                </div>
             </div>
         </div>
     )

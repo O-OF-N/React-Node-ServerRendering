@@ -10,25 +10,25 @@ class GlucoseResults extends React.Component {
     }
     logit() {
         if (this.refs.chart && this.props.glucose) {
-            const labels = this.props.glucose.map(glucose => glucose.date? new Date(glucose.date).toLocaleDateString():null).toJS();
+            const labels = this.props.glucose.map(glucose => glucose.date ? new Date(glucose.date).toLocaleDateString() : null).toJS();
             const data = this.props.glucose.map(glucose => glucose.quantity).toJS();
             const canvas = this.refs.chart;
 
             const ctx = canvas.getContext("2d");
-            canvas.width = 100;
+            /*canvas.width = 100;
             canvas.height = 100;
             canvas.style.width = '100px';
-            canvas.style.height = '100px';
+            canvas.style.height = '100px';*/
             drawChart(ctx, labels, data);
         }
     }
     render() {
-        const style = { border: '1px solid', width: 300, height: 300 };
+        const style = { border: '1px solid', width: '50%', height: '100%', float: 'left' };
         return (
-            <div>
+            <div style={style}>
                 <h3>BG Graph</h3>
-                <div style={style}>
-                    <canvas ref="chart" width="200" height="200">
+                <div>
+                    <canvas ref="chart" width="100%" height="100%">
                     </canvas>
                     {this.logit() }
                 </div>

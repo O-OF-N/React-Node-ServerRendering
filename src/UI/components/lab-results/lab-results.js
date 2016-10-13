@@ -4,13 +4,16 @@ import LabResultsBody from './lab-results-body';
 import {connect} from 'react-redux';
 
 const LabResults = ({labs}) => {
+    const style = { border: '1px solid', width: '50%', height: '100%', float: 'left' };
     return (
-        <div>
+        <div style = {style}>
             <h3>Labs</h3>
             <LabResultsHeader/>
-            {
-                labs.map((l, i) => <LabResultsBody key={i} {...l.toJS() }/>)
-            }
+            <div id="div-lab-body">
+                {
+                    labs.map((l, i) => <LabResultsBody key={i} {...l.toJS() }/>)
+                }
+            </div>
         </div>
     )
 };

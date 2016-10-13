@@ -38,7 +38,7 @@ const buildInsulinOrdersResult = (json) => {
                 status,
                 prescriber: (prescriber) ? prescriber.display : null,
                 date: dateWritten,
-                dosage: (dosageInstruction && dosageInstruction instanceof array() && dosageInstruction[0]) ? dosageInstruction[0].text : null,
+                dosage: (dosageInstruction && dosageInstruction instanceof array && dosageInstruction[0]) ? dosageInstruction[0].text : null,
                 medication,
                 administration: fetchMedicationAdministration(dosageInstruction)
             }) : null;
@@ -51,6 +51,6 @@ const buildInsulinOrdersResult = (json) => {
 
 const fetchMedicationFromResource = (concept) => (concept) ? concept.text : null;
 
-const fetchMedicationAdministration = (dosage) => (dosage && dosage instanceof array() && dosage[0] && dosage[0].route && dosage[0].route.coding && dosage[0].route.coding instanceof 'Array' && dosage[0].route.coding[0]) ? dosage[0].route.coding[0].code === Constants.SUBCUTANEOUS ? Constants.SUBCUTANEOUS_TEXT : Constants.INTRAVENOUS_TEXT : null;
+const fetchMedicationAdministration = (dosage) => (dosage && dosage instanceof array && dosage[0] && dosage[0].route && dosage[0].route.coding && dosage[0].route.coding instanceof array && dosage[0].route.coding[0]) ? dosage[0].route.coding[0].code === Constants.SUBCUTANEOUS ? Constants.SUBCUTANEOUS_TEXT : Constants.INTRAVENOUS_TEXT : null;
 
-const array = ()=>[].constructor
+const array = (()=>[].constructor)()

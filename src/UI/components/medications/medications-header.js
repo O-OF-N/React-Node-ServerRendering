@@ -6,10 +6,10 @@ import {
 } from '../styles';
 
 const MedicationsHeader = () => (
-    <div id="div-lab-header" style={MedicationHeaderRowStyle} >
-        <span style={MedicationFirstHeaderSpanStyle}>Medication </span>
-        <span style={MedicationHeaderSpanStyle}>Dosage </span>
-        <span style={MedicationHeaderSpanStyle}>Date </span>
+    <div id="div-lab-header">
+        <span>Medication </span>
+        <span>Dosage </span>
+        <span>Date </span>
     </div >
 )
 

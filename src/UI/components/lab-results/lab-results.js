@@ -4,7 +4,7 @@ import LabResultsBody from './lab-results-body';
 import {connect} from 'react-redux';
 
 const LabResults = ({labs}) => {
-    const style = { border: '1px solid', width: '48%', height: '100%', float: 'left',marginLeft:'0.5%', padding:'0.5%'};
+    const style = { border: '1px solid', width: '48%', float: 'left',marginLeft:'0.5%', padding:'0.5%'};
     return (
         <div style = {style}>
             <h3>Labs</h3>

@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 
 const Medications = ({medications}) => {
     return (
-        <div>
+        <div style = {{width:'inherit',height:'inherit'}}>
             <div style={{ float: 'left' }}>
                 <h3>INTRAVENOUS</h3>
                 <MedicationsHeader/>

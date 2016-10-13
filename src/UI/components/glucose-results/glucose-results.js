@@ -15,15 +15,13 @@ class GlucoseResults extends React.Component {
             const canvas = this.refs.chart;
 
             const ctx = canvas.getContext("2d");
-            /*canvas.width = 50vh;
-            canvas.height = 50vh;*/
-            canvas.style.width = '50vh';
-            canvas.style.height = '50vh';
+            canvas.style.width = '48.5vh';
+            canvas.style.height = '48.5vh';
             drawChart(ctx, labels, data);
         }
     }
     render() {
-        const style = { border: '1px solid', width: '48%', height: '100%', float: 'left', paddingLeft:'0.5%'};
+        const style = { border: '1px solid', width: '48%', float: 'left', paddingLeft:'0.5%'};
         return (
             <div style={style}>
                 <h3>BG Graph</h3>

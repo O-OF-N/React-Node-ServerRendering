@@ -15,10 +15,10 @@ class GlucoseResults extends React.Component {
             const canvas = this.refs.chart;
 
             const ctx = canvas.getContext("2d");
-            canvas.width = '50%';
-            canvas.height = '50%';
-            canvas.style.width = '50%';
-            canvas.style.height = '50%';
+            canvas.width = '50vh';
+            canvas.height = '50vh';
+            canvas.style.width = '50vh';
+            canvas.style.height = '50vh';
             drawChart(ctx, labels, data);
         }
     }

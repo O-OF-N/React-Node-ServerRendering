@@ -45,7 +45,7 @@ const handleRenderer = (state) => {
 const renderFullPage = (html, state) => {
     return `
     <!doctype html>
-    <html>
+    <html style="width:100%;height:100%">
       <head>
         <title>Diabetes Dashboard</title>
         <script>
@@ -53,7 +53,7 @@ const renderFullPage = (html, state) => {
         </script>
       </head>
       <body>
-        <div id="root-app">${html}</div>
+        <div id="root-app" style="width:inherit;height:inherit">${html}</div>
       </body>
     </html>
     `

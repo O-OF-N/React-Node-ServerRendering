@@ -28,7 +28,7 @@ class GlucoseResults extends React.Component {
             <div style={style}>
                 <h3>BG Graph</h3>
                 <div>
-                    <canvas ref="chart" width="100%" height="100%">
+                    <canvas ref="chart" width="50%" height="50%">
                     </canvas>
                     {this.logit() }
                 </div>

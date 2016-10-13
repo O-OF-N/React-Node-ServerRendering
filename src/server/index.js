@@ -2,11 +2,10 @@ import React from 'react';
 
 export default class Component extends React.Component {
     render() {
-        const style = { width: '100%', height: '100%' };
-        const style1 = { width: 'inherit', height: 'inherit' };
+        const style = { width: 'inherit', height: 'inherit' };
         return (
             <div style={style}>
-                <div id="app" style={style1}></div>
+                <div id="app" style={style}></div>
                 <script src = '/javascripts/bundle.js'/>
             </div>
         )

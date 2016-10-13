@@ -26,7 +26,7 @@ export const LabFirstHeaderSpanStyle = {
 };
 
 export const LabHeaderRowStyle = {
-    width: '40%',
+    width: '100%',
     height: '100%'
 };
 
@@ -60,7 +60,7 @@ export const LabFirstItemsSpanStyle = {
 };
 
 export const LabItemsStyle = {
-  width: '40%',
+  width: '100%',
   height: '100%'
 };
 

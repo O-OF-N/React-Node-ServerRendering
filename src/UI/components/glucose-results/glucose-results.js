@@ -23,7 +23,7 @@ class GlucoseResults extends React.Component {
         }
     }
     render() {
-        const style = { border: '1px solid', width: '50%', height: '100%', float: 'left' };
+        const style = { border: '1px solid', width: '48%', height: '100%', float: 'left', paddingLeft:'0.5%'};
         return (
             <div style={style}>
                 <h3>BG Graph</h3>

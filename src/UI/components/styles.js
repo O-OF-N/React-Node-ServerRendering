@@ -93,8 +93,7 @@ export const MedicationFirstHeaderSpanStyle = {
 };
 
 export const MedicationHeaderRowStyle = {
-    width: '40%',
-    height: '100%'
+    width: '100%'
 };
 
 export const MedicationItemsSpanStyle = {
@@ -127,8 +126,7 @@ export const MedicationFirstItemsSpanStyle = {
 };
 
 export const MedicationItemsStyle = {
-  width: '40%',
-  height: '100%'
+  width: '100%'
 };
 
 export const inheritStyle = { width: 'inherit', height: 'inherit' };

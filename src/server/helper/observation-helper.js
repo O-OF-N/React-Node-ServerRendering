@@ -48,12 +48,11 @@ const buildLabResultsFromJson = (json) => {
     let lab = (json.data && json.data.entry)?json.data.entry.map((entry) => {
         if (entry && entry.resource) {
             const resource = entry.resource;
-            console.log(resource);
             return new Records.Observation({
                 resource: (resource.code) ? resource.code.coding : null,
                 text: (resource.code) ? resource.code.text : null,
                 date: resource.issued,
-                quantity: resource.valueQuantity? resource.valueQuantity.value + resource.valueQuantity.unit: null,
+                quantity: resource.valueQuantity? `${resource.valueQuantity.value} ${resource.valueQuantity.unit}`: null,
                 interpretation: (resource.interpretation && resource.interpretation.coding) ? resource.interpretation.coding[0].code : null
             });
         }

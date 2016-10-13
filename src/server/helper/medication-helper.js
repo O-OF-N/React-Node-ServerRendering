@@ -26,13 +26,13 @@ const fetchMedicationsHelper = function* (state) {
 const buildInsulinOrdersResult = (json) => {
     let insulinOrder = (json.data && json.data.entry) ? json.data.entry.map((entry) => {
         let insulin = null;
-        let status, prescriber, dateWritten, dosageInstruction, medicationReference, medicationCodeableConcept, medication;
+        let status, prescriber, dateWritten, dosageInstruction, medicationReference, medicationCodeableConcept;
         if (entry && entry.resource) {
             const resource = entry.resource;
             console.log('>>>>>>>>>>>>>>>>>>>>>');
             ({ status, prescriber, dateWritten, dosageInstruction, medicationCodeableConcept } = resource);
              console.log(medicationCodeableConcept);
-            ({ medication } = fetchMedicationFromResource(medicationReference, medicationCodeableConcept));
+            const medication  = fetchMedicationFromResource(medicationReference, medicationCodeableConcept);
             console.log(medication);
             insulin = (medication) ? new Records.InsulinOrder({
                 status,

@@ -43,7 +43,8 @@ export const Medication = immutableRecord({
     prescriber: '',
     date: '',
     dosage: 0,
-    medication: ''
+    medication: '',
+    administration: ''
 });
 
 export const Height = immutableRecord({

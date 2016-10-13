@@ -11,6 +11,7 @@ const MedicationsHeader = () => (
         <span style={MedicationHeaderSpanStyle}>Dosage </span>
         <span style={MedicationHeaderSpanStyle}>Status </span>
         <span style={MedicationHeaderSpanStyle}>Prescriber </span>
+        <span style={MedicationHeaderSpanStyle}>Administration </span>
         <span style={MedicationHeaderSpanStyle}>Date </span>
     </div >
 )

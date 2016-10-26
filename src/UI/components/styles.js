@@ -1,6 +1,7 @@
+//Labs
 export const LabHeaderSpanStyle = {
     float: 'left',
-    width: '24%',
+    width: '32%',
     fontWeight: 'bold',
     display: 'table-cell',
     verticalAlign: 'middle',
@@ -14,7 +15,7 @@ export const LabHeaderSpanStyle = {
 
 export const LabFirstHeaderSpanStyle = {
     float: 'left',
-    width: '24%',
+    width: '32%',
     fontWeight: 'bold',
     display: 'table-cell',
     verticalAlign: 'middle',
@@ -31,7 +32,7 @@ export const LabHeaderRowStyle = {
 
 export const LabItemsSpanStyle = {
   float: 'left',
-  width: '24%',
+  width: '32%',
   verticalAlign: 'left',
   textAlign: 'left',
   whiteSpace: 'nowrap',
@@ -46,7 +47,7 @@ export const LabItemsSpanStyle = {
 
 export const LabFirstItemsSpanStyle = {
   float: 'left',
-  width: '24%',
+  width: '32%',
   verticalAlign: 'left',
   textAlign: 'left',
   whiteSpace: 'nowrap',
@@ -64,7 +65,7 @@ export const LabItemsStyle = {
 
 
 
-
+//Medication
 export const MedicationHeaderSpanStyle = {
     float: 'left',
     width: '19%',

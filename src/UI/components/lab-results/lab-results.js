@@ -7,7 +7,7 @@ const LabResults = ({labs}) => {
     const style = { border: '1px solid', width: '48%', height: '100%', float: 'left',marginLeft:'0.5%', padding:'0.5%'};
     return (
         <div style = {style}>
-            <h3>Diabetes Labs</h3>(Most recent two results captured in the past 24hrs)
+            <h3>Diabetes Labs(Most recent two results captured in the past 24hrs)</h3>
             <LabResultsHeader/>
             <div id="div-lab-body">
                 {

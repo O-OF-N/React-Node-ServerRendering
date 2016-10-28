@@ -62,7 +62,7 @@ const buildLabResultsFromJson = (json) => {
     let lab = (json.data && json.data.entry) ? json.data.entry.map((entry) => {
         if (entry && entry.resource) {
             const resource = entry.resource;
-            console.log(resource);
+            console.log(resource.code.coding);
             return buildObservationFromResource(resource);
         }
     }).filter(entry => (entry) ? true : false).sort(l => l.date) : null;

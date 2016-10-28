@@ -28,6 +28,7 @@ export const Lab = immutableRecord({
     date: '',
     quantity: 0,
     interpretation: '',
+    unit: '',
     text: ''
 });
 

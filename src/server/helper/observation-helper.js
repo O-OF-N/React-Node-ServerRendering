@@ -54,8 +54,8 @@ const buildGlucoseResultsFromJson = (json) => {
             const resource = entry.resource;
             return buildObservationFromResource(resource);
         }
-    }).filter(entry => (entry) ? true : false).sort(g => g.date) : null;
-    return List(glucose);
+    }).filter(entry => (entry) ? true : false): null;
+    return List(glucose).sortBy(g => g.date) ;
 };
 
 const buildLabResultsFromJson = (json) => {
@@ -65,8 +65,8 @@ const buildLabResultsFromJson = (json) => {
             console.log(resource);
             return buildObservationFromResource(resource);
         }
-    }).filter(entry => (entry) ? true : false).sort(l => l.date) : null;
-    return List(lab);
+    }).filter(entry => (entry) ? true : false) : null;
+    return List(lab).sortBy(l => l.date);
 };
 
 const buildObservationFromResource = (resource) => new Records.Observation({

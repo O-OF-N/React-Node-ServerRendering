@@ -40,14 +40,8 @@ const groupLabs = (loincCodes, results) => {
     return result;
 }
 
-const buildResultLoincMap = (code, results) => {
-    console.log(code);
-    console.log(results);
-    console.log(Records.LabResult);
-    console.log(new Records.LabResult());
-    const r=  new Records.LabResult({ code: code, observation: results.filter(r => r.resource === code) });
-    return r;
-};
+const buildResultLoincMap = (code, results) => new Records.LabResult({ code: code, observation: results.filter(r => r.resource === code).slice(0, Constants.LAB_RESULT_COUNT) });
+
 const getDateRange = (date, duration) => {
     if (date && duration) {
         const today = new Date(date);

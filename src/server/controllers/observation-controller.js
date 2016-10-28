@@ -19,7 +19,7 @@ router.get('/glucose/:state', co(function* (req, res, next) {
 
 router.get('/labs/:state', co(function* (req, res, next) {
     try {
-        const labs = yield ObservationHelper.fetchLabResults(req.params.state);
+        const labs = yield ObservationHelper.fetchLabResults(req.params.state, req.params.date);
         res.send(labs);
     } catch (err) {
         console.log('err = ' + err);

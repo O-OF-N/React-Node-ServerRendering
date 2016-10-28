@@ -114,7 +114,7 @@ var fetchObservationResultsHelper = regeneratorRuntime.mark(function fetchObserv
 });
 
 var groupLabs = function groupLabs(loincCodes, results) {
-    console.log(lonicCodes);
+    console.log(loincCodes);
     console.log(typeof loincCodes === 'undefined' ? 'undefined' : _typeof(loincCodes));
     var result = loincCodes.map(function (lc) {
         return buildResultLoincMap(Constants.LONIC_CODES.get(lc), results);
@@ -124,9 +124,12 @@ var groupLabs = function groupLabs(loincCodes, results) {
 };
 
 var buildResultLoincMap = function buildResultLoincMap(code, results) {
-    return new Records.LabResult({ code: code, observation: results.filter(code) });
+    console.log(code);
+    console.log(results);
+    return new Records.LabResult({ code: code, observation: results.filter(function (r) {
+            return r.code === code;
+        }) });
 };
-
 var getDateRange = function getDateRange(date, duration) {
     if (date && duration) {
         var today = new Date(date);

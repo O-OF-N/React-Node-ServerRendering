@@ -43,7 +43,10 @@ const groupLabs = (loincCodes, results) => {
 const buildResultLoincMap = (code, results) => {
     console.log(code);
     console.log(results);
-    return new Records.LabResult({ code: code, observation: results.filter(r => r.code === code) });
+    console.log(Records.LabResult);
+    console.log(new Records.LabResult());
+    const r=  new Records.LabResult({ code: code, observation: results.filter(r => r.code === code) });
+    return r;
 };
 const getDateRange = (date, duration) => {
     if (date && duration) {

@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-exports.FHIRAuthorizationConfig = exports.DatabaseConfig = exports.UserAuthentication = exports.POSTHeader = exports.AuthorizationHeader = exports.AccessTokenRequestBody = exports.InsulinOrder = exports.Observation = undefined;
+exports.FHIRAuthorizationConfig = exports.DatabaseConfig = exports.UserAuthentication = exports.POSTHeader = exports.AuthorizationHeader = exports.AccessTokenRequestBody = exports.InsulinOrder = exports.LabResult = exports.Observation = undefined;
 
 var _immutable = require('immutable');
 
@@ -23,6 +23,11 @@ var Observation = exports.Observation = new _immutable.Record({
     unit: '',
     interpretation: ''
 });
+
+var LabResult = exports.LabResult = {
+    code: '',
+    observation: null
+};
 
 var InsulinOrder = exports.InsulinOrder = new _immutable.Record({
     status: '',

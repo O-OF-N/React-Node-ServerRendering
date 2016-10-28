@@ -5,6 +5,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.fetchLabResults = exports.fetchGlucoseResults = undefined;
 
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
 var _models = require('../models/models');
@@ -111,14 +113,18 @@ var fetchObservationResultsHelper = regeneratorRuntime.mark(function fetchObserv
     }, fetchObservationResultsHelper, this);
 });
 
-var groupLabs = function groupLabs(loincCodes, results) {
-    return loincCodes.map(function (lc) {
+var groupLabs = groupLabs(loincCodes, results)=> {
+    console.log(lonicCodes);
+    console.log(typeof loincCodes === 'undefined' ? 'undefined' : _typeof(loincCodes));
+    var result = loincCodes.map(function (lc) {
         return buildResultLoincMap(Constants.LONIC_CODES.get(lc), results);
     });
+    console.log(result);
+    return result;
 };
 
 var buildResultLoincMap = function buildResultLoincMap(code, results) {
-    return new _immutable.Map().set(code, results.filter(code));
+    return new Records.LabResult({ code: code, observation: results.filter(code) });
 };
 
 var getDateRange = function getDateRange(date, duration) {

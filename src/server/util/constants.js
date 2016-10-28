@@ -10,7 +10,7 @@ export const SUBCUTANEOUS_TEXT = 'SUBCUTANEOUS';
 
 export const AUTHORIZATION_HEADER = { Accept: "application/json+fhir" };
 
-export const LONIC_URL = "http://loinc.org|";
+export const LONIC_URL = "http://loinc.org";
 
 
 export const GLUCOSE = "2345-7";

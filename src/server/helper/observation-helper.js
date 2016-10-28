@@ -16,7 +16,7 @@ export const fetchGlucoseResults = function* (state) {
 export const fetchLabResults = function* (state) {
     /*const result = yield* fetchObservationResultsHelper(state, Constants.LABS_LOINIC_CODES, new Date(), 24);*/
     const result = yield* fetchObservationResultsHelper(state, Constants.LABS_LOINIC_CODES);
-    const labs =  HttpUtil.checkResponseStatus(result) ? buildLabResultsFromJson(result) : null;
+    const labs = HttpUtil.checkResponseStatus(result) ? buildLabResultsFromJson(result) : null;
     return labs;
 };
 
@@ -30,11 +30,11 @@ const fetchObservationResultsHelper = function* (state, lonicCodes, date = null,
     return result;
 };
 
-/*const groupLabs = (loincCodes,results) =>{
+const groupLabs = (loincCodes, results) => {
     loincCodes.map(lc => results.filter)
-};*/
+};
 
-const buildResultLoincMap = (lc,results) =>{
+const buildResultLoincMap = (lc, results) => {
     results.filter(lc)
 }
 
@@ -54,7 +54,7 @@ const buildGlucoseResultsFromJson = (json) => {
             const resource = entry.resource;
             return buildObservationFromResource(resource);
         }
-    }).filter(entry => (entry) ? true : false).sort(g => g.date) : null;
+    }).filter(entry => (entry) ? true : false).sort(compare) : null;
     return List(glucose);
 };
 
@@ -62,18 +62,19 @@ const buildLabResultsFromJson = (json) => {
     let lab = (json.data && json.data.entry) ? json.data.entry.map((entry) => {
         if (entry && entry.resource) {
             const resource = entry.resource;
-            console.log(resource.code.coding.filter(code=>code.system === 'http://loinc.org')[0]['code']);
             return buildObservationFromResource(resource);
         }
-    }).filter(entry => (entry) ? true : false).sort(l => l.date) : null;
+    }).filter(entry => (entry) ? true : false).sort(compare) : null;
     return List(lab);
 };
 
 const buildObservationFromResource = (resource) => new Records.Observation({
-    resource: (resource.code && resource.code.coding)? resource.code.coding.filter(code=>code.system === 'http://loinc.org')[0]['code'] : null,
+    resource: (resource.code && resource.code.coding) ? resource.code.coding.filter(code => code.system === Constants.LONIC_URL)[0]['code'] : null,
     text: (resource.code) ? resource.code.text : null,
     date: resource.issued,
     quantity: resource.valueQuantity && resource.valueQuantity.value ? resource.valueQuantity.value : null,
     unit: resource.valueQuantity && resource.valueQuantity.unit ? resource.valueQuantity.unit : null,
     interpretation: (resource.interpretation && resource.interpretation.coding) ? resource.interpretation.coding[0].code : null
 });
+
+const compare = (r1, r2) => (r1 && r2) ? r1.text > r2.text ? 1 : r2.text > r1.text ? -1 : r1.date > r2.date ? -1 : 1 : 0;

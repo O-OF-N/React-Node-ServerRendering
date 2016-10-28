@@ -77,4 +77,4 @@ const buildObservationFromResource = (resource) => new Records.Observation({
     interpretation: (resource.interpretation && resource.interpretation.coding) ? resource.interpretation.coding[0].code : null
 });
 
-const compare = (r1, r2) => (r1 && r2) ? r1.text > r2.text ? 1 : r2.text > r1.text ? -1 : r1.date > r2.date ? -1 : 1 : 0;
+const compare = (r1, r2) => (r1 && r2) ? r1.text > r2.text ? 1 : r2.text > r1.text ? -1 : r1.date > r2.date ? 1 : -1 : 0;

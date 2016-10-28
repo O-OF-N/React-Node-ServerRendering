@@ -35,7 +35,7 @@ const fetchObservationResultsHelper = function* (state, lonicCodes, date = null,
 const groupLabs = (loincCodes, results) => {
     console.log(loincCodes);
     console.log(typeof loincCodes);
-    const result = loincCodes.map(lc => buildResultLoincMap(Constants.LONIC_CODES.get(lc), results));
+    const result = loincCodes.map(lc => buildResultLoincMap(Constants.LONIC_CODES.get(lc), results)).filter(r => r.observation.size);
     console.log(result);
     return result;
 }

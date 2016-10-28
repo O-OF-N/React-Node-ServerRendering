@@ -14,7 +14,7 @@ export const fetchGlucoseResults = function* (state) {
 };
 
 export const fetchLabResults = function* (state) {
-    const result = yield* fetchObservationResultsHelper(state, ["SERUM_CO2", "SERUM_POTASSIUM", "SERUM_SODIUM", "ANION_GAP", "PH_VENOUS", "PH_ARTERIAL", "PCO2_Venous", "PCO2_ARTERIAL", "BASE_DEFICIT_VENOUS", "BASE_DEFICIT_ARTERIAL", "URINE_KETONE"], new Date(), 24);
+    const result = yield* fetchObservationResultsHelper(state, ["SERUM_CO2", "SERUM_POTASSIUM", "SERUM_SODIUM", "ANION_GAP", "PH_VENOUS", "PH_ARTERIAL", "PCO2_Venous", "PCO2_ARTERIAL", "BASE_DEFICIT_VENOUS", "BASE_DEFICIT_ARTERIAL", "URINE_KETONE"], new Date('9/1/2016, 10:57:14 PM'), 24);
     return HttpUtil.checkResponseStatus(result) ? buildLabResultsFromJson(result) : null;
 };
 

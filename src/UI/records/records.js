@@ -25,7 +25,7 @@ export const LabObject = immutableRecord({
 });
 
 
-export const LabMaps = new Record({
+export const LabMaps = immutableRecord({
     code: '',
     labs: immutableList([])
 });

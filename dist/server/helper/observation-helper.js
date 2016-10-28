@@ -113,7 +113,7 @@ var fetchObservationResultsHelper = regeneratorRuntime.mark(function fetchObserv
     }, fetchObservationResultsHelper, this);
 });
 
-var groupLabs = groupLabs(loincCodes, results)=> {
+var groupLabs = function groupLabs(loincCodes, results) {
     console.log(lonicCodes);
     console.log(typeof loincCodes === 'undefined' ? 'undefined' : _typeof(loincCodes));
     var result = loincCodes.map(function (lc) {

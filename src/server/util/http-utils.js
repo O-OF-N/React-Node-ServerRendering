@@ -12,7 +12,7 @@ export const buildObeservationURL = (patient, lonicCodes, url,dates) => {
     const codes = lonicCodes.map(l => Constants.LONIC_URL.concat(Constants.LONIC_CODES.get(l))).join(',');
     let dateRange = '';
     let urlConstructed = '';
-    console.log(dates);
+    console.log('dates here = ' + dates);
    // console.log(dates.length);
    // console.log(dates instanceof Array);
     if(dates!= null){

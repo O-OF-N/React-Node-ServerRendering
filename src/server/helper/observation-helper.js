@@ -45,7 +45,7 @@ const buildResultLoincMap = (code, results) => {
     console.log(results);
     console.log(Records.LabResult);
     console.log(new Records.LabResult());
-    const r=  new Records.LabResult({ code: code, observation: results.filter(r => r.code === code) });
+    const r=  new Records.LabResult({ code: code, observation: results.filter(r => r.resource === code) });
     return r;
 };
 const getDateRange = (date, duration) => {

@@ -16,7 +16,7 @@ export const fetchGlucoseResults = function* (state) {
 export const fetchLabResults = function* (state) {
     /*const result = yield* fetchObservationResultsHelper(state, Constants.LABS_LOINIC_CODES, new Date(), 24);*/
     const result = yield* fetchObservationResultsHelper(state, Constants.LABS_LOINIC_CODES);
-    const labs =  HttpUtil.checkResponseStatus(result) ? buildLabResultsFromJson(result).sortBy(l => l.date) : null;
+    const labs =  HttpUtil.checkResponseStatus(result) ? buildLabResultsFromJson(result) : null;
     return labs;
 };
 
@@ -29,6 +29,14 @@ const fetchObservationResultsHelper = function* (state, lonicCodes, date = null,
     const result = yield get(url, authHeader);
     return result;
 };
+
+/*const groupLabs = (loincCodes,results) =>{
+    loincCodes.map(lc => results.filter)
+};*/
+
+const buildResultLoincMap = (lc,results) =>{
+    results.filter(lc)
+}
 
 const getDateRange = (date, duration) => {
     if (date && duration) {
@@ -46,7 +54,7 @@ const buildGlucoseResultsFromJson = (json) => {
             const resource = entry.resource;
             return buildObservationFromResource(resource);
         }
-    }).filter(entry => (entry) ? true : false) : null;
+    }).filter(entry => (entry) ? true : false).sortBy(g => g.date) : null;
     return List(glucose);
 };
 
@@ -57,12 +65,12 @@ const buildLabResultsFromJson = (json) => {
             console.log(resource);
             return buildObservationFromResource(resource);
         }
-    }).filter(entry => (entry) ? true : false) : null;
+    }).filter(entry => (entry) ? true : false).sortBy(l => l.date) : null;
     return List(lab);
 };
 
 const buildObservationFromResource = (resource) => new Records.Observation({
-    resource: (resource.code) ? resource.code.coding : null,
+    resource: (resource.code & resource.code.coding)? resource.code.coding.filter(code=>code.system === 'http://loinc.org')[0].get('code') : null,
     text: (resource.code) ? resource.code.text : null,
     date: resource.issued,
     quantity: resource.valueQuantity && resource.valueQuantity.value ? resource.valueQuantity.value : null,

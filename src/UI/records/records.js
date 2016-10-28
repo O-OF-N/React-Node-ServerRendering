@@ -29,7 +29,8 @@ export const Lab = immutableRecord({
     quantity: 0,
     interpretation: '',
     unit: '',
-    text: ''
+    text: '',
+    code: ''
 });
 
 export const MedicationObject = immutableRecord({

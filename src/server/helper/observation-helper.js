@@ -70,7 +70,7 @@ const buildLabResultsFromJson = (json) => {
 };
 
 const buildObservationFromResource = (resource) => new Records.Observation({
-    resource: (resource.code & resource.code.coding)? resource.code.coding.filter(code=>code.system === 'http://loinc.org')[0]['code'] : null,
+    resource: (resource.code && resource.code.coding)? resource.code.coding.filter(code=>code.system === 'http://loinc.org')[0]['code'] : null,
     text: (resource.code) ? resource.code.text : null,
     date: resource.issued,
     quantity: resource.valueQuantity && resource.valueQuantity.value ? resource.valueQuantity.value : null,

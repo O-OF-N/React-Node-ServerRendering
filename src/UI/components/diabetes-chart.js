@@ -14,7 +14,7 @@ const DiabetesChart = () => (
             <Medications />
         </div>
         <div style={{ width: '100%', height: '10%' }}>
-            <input type="button"> Sliding scale </input>
+            <span><button>Sliding scale</button></span>
         </div>
     </div>
 );

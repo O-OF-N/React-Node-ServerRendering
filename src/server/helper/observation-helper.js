@@ -64,7 +64,7 @@ const buildObservationFromResource = (resource) => new Records.Observation({
     resource: (resource.code) ? resource.code.coding : null,
     text: (resource.code) ? resource.code.text : null,
     date: resource.issued,
-    quantity: resource.valueQuantity.value ? resource.valueQuantity.value : null,
-    unit: resource.valueQuantity.unit ? resource.valueQuantity.unit : null,
+    quantity: resource.valueQuantity && resource.valueQuantity.value ? resource.valueQuantity.value : null,
+    unit: resource.valueQuantity && resource.valueQuantity.unit ? resource.valueQuantity.unit : null,
     interpretation: (resource.interpretation && resource.interpretation.coding) ? resource.interpretation.coding[0].code : null
 });

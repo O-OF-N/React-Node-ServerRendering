@@ -30,10 +30,11 @@ var Component = function (_React$Component) {
     _createClass(Component, [{
         key: 'render',
         value: function render() {
+            var style = { width: 'inherit', height: 'inherit' };
             return _react2.default.createElement(
                 'div',
-                null,
-                _react2.default.createElement('div', { id: 'app' }),
+                { style: style },
+                _react2.default.createElement('div', { id: 'app', style: style }),
                 _react2.default.createElement('script', { src: '/javascripts/bundle.js' })
             );
         }

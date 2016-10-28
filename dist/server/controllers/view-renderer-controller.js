@@ -122,7 +122,7 @@ var handleRenderer = function handleRenderer(state) {
 };
 
 var renderFullPage = function renderFullPage(html, state) {
-    return '\n    <!doctype html>\n    <html>\n      <head>\n        <title>Diabetes Dashboard</title>\n        <script>\n          window.__PRELOADED_STATE__ = \'' + state + '\'\n        </script>\n      </head>\n      <body>\n        <div id="root">' + html + '</div>\n      </body>\n    </html>\n    ';
+    return '\n    <!doctype html>\n    <html style="width:100%;height:100%">\n      <head>\n        <title>Diabetes Dashboard</title>\n        <script>\n          window.__PRELOADED_STATE__ = \'' + state + '\'\n        </script>\n      </head>\n      <body style="width:inherit;height:inherit">\n        <div id="root-app" style="width:inherit;height:inherit">' + html + '</div>\n      </body>\n    </html>\n    ';
 };
 
 exports.default = router;

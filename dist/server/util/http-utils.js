@@ -24,11 +24,16 @@ var checkResponseStatus = exports.checkResponseStatus = function checkResponseSt
     return json && json.status && json.status === Constants.HTTP_SUCCESS ? true : false;
 };
 
-var buildObeservationURL = exports.buildObeservationURL = function buildObeservationURL(patient, lonicCodes, url) {
+var buildObeservationURL = exports.buildObeservationURL = function buildObeservationURL(patient, lonicCodes, url, dates) {
     var codes = lonicCodes.map(function (l) {
         return Constants.LONIC_URL.concat(Constants.LONIC_CODES.get(l));
     }).join(',');
-    return url + '/' + Constants.OBSERVATIONS + '?patient=' + 4478007 + '&code=' + codes;
+    var urlConstructed = '';
+    if (dates != null && dates instanceof Array && dates.length == 2) {
+        var dateRange = ''.concat('date=gt').concat(dates[0]).concat('&date=lt').concat(dates[1]);
+        urlConstructed = url + '/' + Constants.OBSERVATIONS + '?patient=' + 4478007 + '&code=' + codes + '&' + dateRange;
+    } else urlConstructed = url + '/' + Constants.OBSERVATIONS + '?patient=' + 4478007 + '&code=' + codes;
+    return urlConstructed;
 };
 
 var buildMedicationURL = exports.buildMedicationURL = function buildMedicationURL(patient, url) {

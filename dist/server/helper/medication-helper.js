@@ -87,27 +87,30 @@ var fetchMedicationsHelper = regeneratorRuntime.mark(function fetchMedicationsHe
 var buildInsulinOrdersResult = function buildInsulinOrdersResult(json) {
     var insulinOrder = json.data && json.data.entry ? json.data.entry.map(function (entry) {
         var insulin = null;
+        var status = void 0,
+            prescriber = void 0,
+            dateWritten = void 0,
+            dosageInstruction = void 0,
+            medicationReference = void 0,
+            medicationCodeableConcept = void 0;
         if (entry && entry.resource) {
             var resource = entry.resource;
             status = resource.status;
             prescriber = resource.prescriber;
             dateWritten = resource.dateWritten;
             dosageInstruction = resource.dosageInstruction;
-            medicationReference = resource.medicationReference;
             medicationCodeableConcept = resource.medicationCodeableConcept;
-            var _fetchMedicationFromR = fetchMedicationFromResource(medicationReference, medicationCodeableConcept);
 
-            medication = _fetchMedicationFromR.medication;
-
+            var medication = fetchMedicationFromResource(medicationCodeableConcept);
             insulin = medication ? new Records.InsulinOrder({
                 status: status,
                 prescriber: prescriber ? prescriber.display : null,
                 date: dateWritten,
-                dosage: dosageInstruction && dosageInstruction instanceof 'Array' && dosageInstruction[0] ? dosageInstruction[0].text : null,
+                dosage: dosageInstruction && dosageInstruction instanceof array && dosageInstruction[0] ? dosageInstruction[0].text : null,
                 medication: medication,
                 administration: fetchMedicationAdministration(dosageInstruction)
             }) : null;
-        }
+        };
         return insulin;
     }).filter(function (entry) {
         return entry ? true : false;
@@ -115,11 +118,15 @@ var buildInsulinOrdersResult = function buildInsulinOrdersResult(json) {
     return (0, _immutable.List)(insulinOrder);
 };
 
-var fetchMedicationFromResource = function fetchMedicationFromResource(reference, concept) {
-    return reference ? reference.display : concept ? concept.text : null;
+var fetchMedicationFromResource = function fetchMedicationFromResource(concept) {
+    return concept ? concept.text : null;
 };
 
 var fetchMedicationAdministration = function fetchMedicationAdministration(dosage) {
-    return dosage && dosage instanceof 'Array' && dosage[0] && dosage[0].route && dosage[0].route.coding && dosage[0].route.coding instanceof 'Array' && dosage[0].route.coding[0] ? dosage[0].route.coding[0].code === Constants.SUBCUTANEOUS ? Constants.SUBCUTANEOUS_TEXT : Constants.INTRAVENOUS_TEXT : null;
+    return dosage && dosage instanceof array && dosage[0] && dosage[0].route && dosage[0].route.coding && dosage[0].route.coding instanceof array && dosage[0].route.coding[0] ? dosage[0].route.coding[0].code === Constants.SUBCUTANEOUS ? Constants.SUBCUTANEOUS_TEXT : Constants.INTRAVENOUS_TEXT : null;
 };
+
+var array = function () {
+    return [].constructor;
+}();
 //# sourceMappingURL=medication-helper.js.map

@@ -20,6 +20,7 @@ var Observation = exports.Observation = new _immutable.Record({
     text: '',
     date: '',
     quantity: 0,
+    unit: '',
     interpretation: ''
 });
 

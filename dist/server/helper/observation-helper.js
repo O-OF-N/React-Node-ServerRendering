@@ -38,7 +38,7 @@ var fetchGlucoseResults = exports.fetchGlucoseResults = regeneratorRuntime.mark(
         while (1) {
             switch (_context.prev = _context.next) {
                 case 0:
-                    return _context.delegateYield(fetchObservationResultsHelper(state, ["glucose"]), 't0', 1);
+                    return _context.delegateYield(fetchObservationResultsHelper(state, Constants.GLUCOSE_CODES), 't0', 1);
 
                 case 1:
                     result = _context.t0;
@@ -53,18 +53,21 @@ var fetchGlucoseResults = exports.fetchGlucoseResults = regeneratorRuntime.mark(
 });
 
 var fetchLabResults = exports.fetchLabResults = regeneratorRuntime.mark(function fetchLabResults(state) {
-    var result;
+    var result, labs;
     return regeneratorRuntime.wrap(function fetchLabResults$(_context2) {
         while (1) {
             switch (_context2.prev = _context2.next) {
                 case 0:
-                    return _context2.delegateYield(fetchObservationResultsHelper(state, ["ketones", "ph", "serum"]), 't0', 1);
+                    return _context2.delegateYield(fetchObservationResultsHelper(state, Constants.LABS_LOINIC_CODES), 't0', 1);
 
                 case 1:
                     result = _context2.t0;
-                    return _context2.abrupt('return', HttpUtil.checkResponseStatus(result) ? buildLabResultsFromJson(result) : null);
+                    labs = HttpUtil.checkResponseStatus(result) ? buildLabResultsFromJson(result).sortBy(function (l) {
+                        return l.date;
+                    }) : null;
+                    return _context2.abrupt('return', labs);
 
-                case 3:
+                case 4:
                 case 'end':
                     return _context2.stop();
             }
@@ -74,6 +77,9 @@ var fetchLabResults = exports.fetchLabResults = regeneratorRuntime.mark(function
 
 //Private functions
 var fetchObservationResultsHelper = regeneratorRuntime.mark(function fetchObservationResultsHelper(state, lonicCodes) {
+    var date = arguments.length <= 2 || arguments[2] === undefined ? null : arguments[2];
+    var duration = arguments.length <= 3 || arguments[3] === undefined ? 0 : arguments[3];
+
     var _ref, _ref2, userAuthenticationModel, url, authHeader, result;
 
     return regeneratorRuntime.wrap(function fetchObservationResultsHelper$(_context3) {
@@ -87,7 +93,7 @@ var fetchObservationResultsHelper = regeneratorRuntime.mark(function fetchObserv
                     _ref = _context3.sent;
                     _ref2 = _slicedToArray(_ref, 1);
                     userAuthenticationModel = _ref2[0];
-                    url = HttpUtil.buildObeservationURL(userAuthenticationModel.patient, lonicCodes, userAuthenticationModel.iss);
+                    url = HttpUtil.buildObeservationURL(userAuthenticationModel.patient, lonicCodes, userAuthenticationModel.iss, getDateRange(date, duration));
                     authHeader = HttpUtil.buildAuthorizationHeader(userAuthenticationModel);
                     _context3.next = 9;
                     return (0, _httpService.get)(url, authHeader);
@@ -104,17 +110,21 @@ var fetchObservationResultsHelper = regeneratorRuntime.mark(function fetchObserv
     }, fetchObservationResultsHelper, this);
 });
 
+var getDateRange = function getDateRange(date, duration) {
+    if (date && duration) {
+        var today = new Date(date);
+        var yesterday = new Date(today);
+        yesterday.setHours(today.getHours() - 24);
+        return [new Date(yesterday).toISOString(), today.toISOString()];
+    }
+    return null;
+};
+
 var buildGlucoseResultsFromJson = function buildGlucoseResultsFromJson(json) {
     var glucose = json.data && json.data.entry ? json.data.entry.map(function (entry) {
         if (entry && entry.resource) {
             var resource = entry.resource;
-            return new Records.Observation({
-                resource: resource.code ? resource.code.coding : null,
-                text: resource.code ? resource.code.text : null,
-                date: resource.issued,
-                quantity: resource.valueQuantity.value,
-                interpretation: resource.interpretation && resource.interpretation.coding ? resource.interpretation.coding[0].code : null
-            });
+            return buildObservationFromResource(resource);
         }
     }).filter(function (entry) {
         return entry ? true : false;
@@ -126,17 +136,22 @@ var buildLabResultsFromJson = function buildLabResultsFromJson(json) {
     var lab = json.data && json.data.entry ? json.data.entry.map(function (entry) {
         if (entry && entry.resource) {
             var resource = entry.resource;
-            return new Records.Observation({
-                resource: resource.code ? resource.code.coding : null,
-                text: resource.code ? resource.code.text : null,
-                date: resource.issued,
-                quantity: resource.valueQuantity ? resource.valueQuantity.value + resource.valueQuantity.unit : null,
-                interpretation: resource.interpretation && resource.interpretation.coding ? resource.interpretation.coding[0].code : null
-            });
+            return buildObservationFromResource(resource);
         }
     }).filter(function (entry) {
         return entry ? true : false;
     }) : null;
     return (0, _immutable.List)(lab);
+};
+
+var buildObservationFromResource = function buildObservationFromResource(resource) {
+    return new Records.Observation({
+        resource: resource.code ? resource.code.coding : null,
+        text: resource.code ? resource.code.text : null,
+        date: resource.issued,
+        quantity: resource.valueQuantity.value ? resource.valueQuantity.value : null,
+        unit: resource.valueQuantity.unit ? resource.valueQuantity.unit : null,
+        interpretation: resource.interpretation && resource.interpretation.coding ? resource.interpretation.coding[0].code : null
+    });
 };
 //# sourceMappingURL=observation-helper.js.map

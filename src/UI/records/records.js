@@ -18,10 +18,16 @@ export const Glucose = immutableRecord({
 });
 
 export const LabObject = immutableRecord({
-    labs: immutableList([]),
+    labMaps: immutableList([]),
     fetching: false,
     fetched: false,
     error: null
+});
+
+
+export const LabMaps = new Record({
+    code: '',
+    labs: immutableList([])
 });
 
 export const Lab = immutableRecord({

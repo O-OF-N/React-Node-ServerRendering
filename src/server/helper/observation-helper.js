@@ -17,9 +17,7 @@ export const fetchLabResults = function* (state) {
     /*const result = yield* fetchObservationResultsHelper(state, Constants.LABS_LOINIC_CODES, new Date(), 24);*/
     const result = yield* fetchObservationResultsHelper(state, Constants.LABS_LOINIC_CODES);
     const labs = HttpUtil.checkResponseStatus(result) ? buildLabResultsFromJson(result) : null;
-    const result1 = groupLabs(Constants.LABS_LOINIC_CODES, labs);
-    console.log(result1);
-    return labs;
+    return groupLabs(Constants.LABS_LOINIC_CODES, labs);
 };
 
 
@@ -32,13 +30,7 @@ const fetchObservationResultsHelper = function* (state, lonicCodes, date = null,
     return result;
 };
 
-const groupLabs = (loincCodes, results) => {
-    console.log(loincCodes);
-    console.log(typeof loincCodes);
-    const result = loincCodes.map(lc => buildResultLoincMap(Constants.LONIC_CODES.get(lc), results)).filter(r => r.observation.size);
-    console.log(result);
-    return result;
-}
+const groupLabs = (loincCodes, results) => loincCodes.map(lc => buildResultLoincMap(Constants.LONIC_CODES.get(lc), results)).filter(r => r.observation.size);
 
 const buildResultLoincMap = (code, results) => new Records.LabResult({ code: code, observation: results.filter(r => r.resource === code).slice(0, Constants.LAB_RESULT_COUNT) });
 

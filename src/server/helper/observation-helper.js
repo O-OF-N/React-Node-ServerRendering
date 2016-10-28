@@ -14,7 +14,7 @@ export const fetchGlucoseResults = function* (state) {
 };
 
 export const fetchLabResults = function* (state) {
-    const result = yield* fetchObservationResultsHelper(state, ["SERUM_CO2", "SERUM_POTASSIUM", "SERUM_SODIUM", "ANION_GAP", "PH_VENOUS", "PH_ARTERIAL", "PCO2_Venous", "PCO2_ARTERIAL", "BASE_DEFICIT_VENOUS", "BASE_DEFICIT_ARTERIAL", "URINE_KETONE"], new Date('9/1/2016, 10:57:14 PM'), 24);
+    const result = yield* fetchObservationResultsHelper(state, Constants.LABS_LOINIC_CODES , new Date('9/1/2016, 10:57:14 PM'), 24);
     return HttpUtil.checkResponseStatus(result) ? buildLabResultsFromJson(result) : null;
 };
 
@@ -22,8 +22,6 @@ export const fetchLabResults = function* (state) {
 //Private functions
 const fetchObservationResultsHelper = function* (state, lonicCodes, date = null, duration = 0) {
     const [userAuthenticationModel] = yield UserAuthenticationModel.findByState(state);
-    console.log('range = ');
-    console.log(getDateRange(date,duration));
     const url = HttpUtil.buildObeservationURL(userAuthenticationModel.patient, lonicCodes, userAuthenticationModel.iss,getDateRange(date,duration));
     const authHeader = HttpUtil.buildAuthorizationHeader(userAuthenticationModel);
     const result = yield get(url, authHeader);

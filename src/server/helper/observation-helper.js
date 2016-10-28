@@ -14,7 +14,7 @@ export const fetchGlucoseResults = function* (state) {
 };
 
 export const fetchLabResults = function* (state) {
-    const result = yield* fetchObservationResultsHelper(state, Constants.LABS_LOINIC_CODES , new Date('9/1/2016, 10:57:14 PM'), 24);
+    const result = yield* fetchObservationResultsHelper(state, Constants.LABS_LOINIC_CODES, new Date('9/1/2016, 10:57:14 PM'), 24);
     return HttpUtil.checkResponseStatus(result) ? buildLabResultsFromJson(result) : null;
 };
 
@@ -22,7 +22,7 @@ export const fetchLabResults = function* (state) {
 //Private functions
 const fetchObservationResultsHelper = function* (state, lonicCodes, date = null, duration = 0) {
     const [userAuthenticationModel] = yield UserAuthenticationModel.findByState(state);
-    const url = HttpUtil.buildObeservationURL(userAuthenticationModel.patient, lonicCodes, userAuthenticationModel.iss,getDateRange(date,duration));
+    const url = HttpUtil.buildObeservationURL(userAuthenticationModel.patient, lonicCodes, userAuthenticationModel.iss, getDateRange(date, duration));
     const authHeader = HttpUtil.buildAuthorizationHeader(userAuthenticationModel);
     const result = yield get(url, authHeader);
     return result;
@@ -42,13 +42,7 @@ const buildGlucoseResultsFromJson = (json) => {
     let glucose = (json.data && json.data.entry) ? json.data.entry.map((entry) => {
         if (entry && entry.resource) {
             const resource = entry.resource;
-            return new Records.Observation({
-                resource: (resource.code) ? resource.code.coding : null,
-                text: (resource.code) ? resource.code.text : null,
-                date: resource.issued,
-                quantity: resource.valueQuantity.value,
-                interpretation: (resource.interpretation && resource.interpretation.coding) ? resource.interpretation.coding[0].code : null
-            });
+            return buildObservationFromResource(resource);
         }
     }).filter(entry => (entry) ? true : false) : null;
     return List(glucose);
@@ -58,14 +52,17 @@ const buildLabResultsFromJson = (json) => {
     let lab = (json.data && json.data.entry) ? json.data.entry.map((entry) => {
         if (entry && entry.resource) {
             const resource = entry.resource;
-            return new Records.Observation({
-                resource: (resource.code) ? resource.code.coding : null,
-                text: (resource.code) ? resource.code.text : null,
-                date: resource.issued,
-                quantity: resource.valueQuantity ? `${resource.valueQuantity.value} ${resource.valueQuantity.unit}` : null,
-                interpretation: (resource.interpretation && resource.interpretation.coding) ? resource.interpretation.coding[0].code : null
-            });
+            return buildObservationFromResource(resource);
         }
     }).filter(entry => (entry) ? true : false) : null;
     return List(lab);
-}
+};
+
+const buildObservationFromResource = (resource) => new Records.Observation({
+    resource: (resource.code) ? resource.code.coding : null,
+    text: (resource.code) ? resource.code.text : null,
+    date: resource.issued,
+    quantity: resource.valueQuantity.value ? resource.valueQuantity.value : null,
+    unit: resource.valueQuantity.unit ? resource.valueQuantity.unit : null,
+    interpretation: (resource.interpretation && resource.interpretation.coding) ? resource.interpretation.coding[0].code : null
+});

@@ -7,6 +7,7 @@ export const Observation = new Record({
     text: '',
     date: '',
     quantity: 0,
+    unit:'',
     interpretation: ''
 });
 

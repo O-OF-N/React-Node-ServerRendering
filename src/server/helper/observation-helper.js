@@ -9,13 +9,15 @@ import UserAuthenticationModel from '../models/UserAuthenticationSchema';
 
 //Public functions
 export const fetchGlucoseResults = function* (state) {
-    const result = yield* fetchObservationResultsHelper(state, ["GLUCOSE"]);
+    const result = yield* fetchObservationResultsHelper(state, Constants.GLUCOSE_CODES);
     return HttpUtil.checkResponseStatus(result) ? buildGlucoseResultsFromJson(result) : null;
 };
 
 export const fetchLabResults = function* (state) {
-    const result = yield* fetchObservationResultsHelper(state, Constants.LABS_LOINIC_CODES, new Date('9/1/2016, 10:57:14 PM'), 24);
-    return HttpUtil.checkResponseStatus(result) ? buildLabResultsFromJson(result) : null;
+    /*const result = yield* fetchObservationResultsHelper(state, Constants.LABS_LOINIC_CODES, new Date(), 24);*/
+    const result = yield* fetchObservationResultsHelper(state, Constants.LABS_LOINIC_CODES);
+    const labs =  HttpUtil.checkResponseStatus(result) ? buildLabResultsFromJson(result).sortBy(l => l.date) : null;
+    return labs;
 };
 
 

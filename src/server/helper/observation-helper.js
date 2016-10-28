@@ -22,8 +22,6 @@ export const fetchLabResults = function* (state) {
 //Private functions
 const fetchObservationResultsHelper = function* (state, lonicCodes, date = null, duration = 0) {
     const [userAuthenticationModel] = yield UserAuthenticationModel.findByState(state);
-    console.log('date= ' + date );
-    console.log('duration = ' + duration );
     console.log('range = ');
     console.log(getDateRange(date,duration));
     const url = HttpUtil.buildObeservationURL(userAuthenticationModel.patient, lonicCodes, userAuthenticationModel.iss,getDateRange(date,duration));
@@ -36,9 +34,8 @@ const getDateRange = (date, duration) => {
     if (date && duration) {
         const today = new Date(date);
         const yesterday = new Date(today);
-        console.log(today,yesterday);
         yesterday.setHours(today.getHours() - 24);
-        return [new Date(yesterday), today];
+        return [new Date(yesterday).toISOString(), today.toISOString()];
     }
     return null;
 }

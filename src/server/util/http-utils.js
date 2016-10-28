@@ -12,6 +12,7 @@ export const buildObeservationURL = (patient, lonicCodes, url,dates) => {
     const codes = lonicCodes.map(l => Constants.LONIC_URL.concat(Constants.LONIC_CODES.get(l))).join(',');
     let dateRange = '';
     let urlConstructed = '';
+    console.log(dates);
     if(dates!= null && dates instanceof Array && dates.length == 2){
         dateRange.concat('date=gt').concat(dates[0]).concat('&date=lt').concat(dates[1]);
         urlConstructed= `${url}/${Constants.OBSERVATIONS}?patient=${4478007}&code=${codes}&${dateRange}`;

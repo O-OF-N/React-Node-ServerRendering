@@ -35,7 +35,7 @@ const fetchObservationResultsHelper = function* (state, lonicCodes, date = null,
 const groupLabs = (loincCodes, results) => {
     console.log(loincCodes);
     console.log(typeof loincCodes);
-    const result= loincCodes.map(lc => buildResultLoincMap(Constants.LONIC_CODES.get(lc), results));
+    const result = loincCodes.map(lc => buildResultLoincMap(Constants.LONIC_CODES.get(lc), results));
     console.log(result);
     return result;
 }
@@ -43,7 +43,7 @@ const groupLabs = (loincCodes, results) => {
 const buildResultLoincMap = (code, results) => {
     console.log(code);
     console.log(results);
-  return new Records.LabResult({ code: code, observation: results.filter(code) });
+    return new Records.LabResult({ code: code, observation: results.filter(r => r.code === code) });
 };
 const getDateRange = (date, duration) => {
     if (date && duration) {

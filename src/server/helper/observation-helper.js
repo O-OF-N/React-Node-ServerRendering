@@ -1,7 +1,7 @@
 "use strict";
 
 import * as Records from '../models/models';
-import { List } from 'immutable';
+import { List, Map as immutableMap } from 'immutable';
 import * as Constants from '../util/constants';
 import { get } from '../service/http-service'
 import * as HttpUtil from '../util/http-utils';
@@ -17,6 +17,8 @@ export const fetchLabResults = function* (state) {
     /*const result = yield* fetchObservationResultsHelper(state, Constants.LABS_LOINIC_CODES, new Date(), 24);*/
     const result = yield* fetchObservationResultsHelper(state, Constants.LABS_LOINIC_CODES);
     const labs = HttpUtil.checkResponseStatus(result) ? buildLabResultsFromJson(result) : null;
+    const result1 = groupLabs(Constants.LABS_LOINIC_CODES,labs);
+    console.log(result1);
     return labs;
 };
 
@@ -30,13 +32,9 @@ const fetchObservationResultsHelper = function* (state, lonicCodes, date = null,
     return result;
 };
 
-const groupLabs = (loincCodes, results) => {
-    loincCodes.map(lc => results.filter)
-};
+const groupLabs = (loincCodes, results) => loincCodes.map(lc => buildResultLoincMap(Constants.get(lc), results));
 
-const buildResultLoincMap = (lc, results) => {
-    results.filter(lc)
-}
+const buildResultLoincMap = (code, results) => new immutableMap().set(code, results.filter(code));
 
 const getDateRange = (date, duration) => {
     if (date && duration) {

@@ -10,13 +10,12 @@ export const checkResponseStatus = (json) => (json && json.status && json.status
 
 export const buildObeservationURL = (patient, lonicCodes, url,dates) => {
     const codes = lonicCodes.map(l => Constants.LONIC_URL.concat(Constants.LONIC_CODES.get(l))).join(',');
-    let dateRange = '';
     let urlConstructed = '';
     console.log('dates here = ' + dates);
    // console.log(dates.length);
    // console.log(dates instanceof Array);
     if(dates!= null){
-        dateRange.concat('date=gt').concat(dates[0]).concat('&date=lt').concat(dates[1]);
+        const dateRange = ''.concat('date=gt').concat(dates[0]).concat('&date=lt').concat(dates[1]);
         urlConstructed= `${url}/${Constants.OBSERVATIONS}?patient=${4478007}&code=${codes}&${dateRange}`;
     } else 
     urlConstructed= `${url}/${Constants.OBSERVATIONS}?patient=${4478007}&code=${codes}`;

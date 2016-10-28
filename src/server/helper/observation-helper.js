@@ -17,7 +17,7 @@ export const fetchLabResults = function* (state) {
     /*const result = yield* fetchObservationResultsHelper(state, Constants.LABS_LOINIC_CODES, new Date(), 24);*/
     const result = yield* fetchObservationResultsHelper(state, Constants.LABS_LOINIC_CODES);
     const labs = HttpUtil.checkResponseStatus(result) ? buildLabResultsFromJson(result) : null;
-    const result1 = groupLabs(Constants.LABS_LOINIC_CODES,labs);
+    const result1 = groupLabs(Constants.LABS_LOINIC_CODES, labs);
     console.log(result1);
     return labs;
 };
@@ -32,7 +32,7 @@ const fetchObservationResultsHelper = function* (state, lonicCodes, date = null,
     return result;
 };
 
-const groupLabs = (loincCodes, results) => loincCodes.map(lc => buildResultLoincMap(Constants.get(lc), results));
+const groupLabs = (loincCodes, results) => loincCodes.map(lc => buildResultLoincMap(Constants.LONIC_CODES.get(lc), results));
 
 const buildResultLoincMap = (code, results) => new immutableMap().set(code, results.filter(code));
 

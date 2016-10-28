@@ -16,7 +16,6 @@ export const fetchGlucoseResults = function* (state) {
 export const fetchLabResults = function* (state) {
     /*const result = yield* fetchObservationResultsHelper(state, Constants.LABS_LOINIC_CODES, new Date(), 24);*/
     const result = yield* fetchObservationResultsHelper(state, Constants.LABS_LOINIC_CODES);
-    console.log(result);
     const labs =  HttpUtil.checkResponseStatus(result) ? buildLabResultsFromJson(result).sortBy(l => l.date) : null;
     return labs;
 };
@@ -55,6 +54,7 @@ const buildLabResultsFromJson = (json) => {
     let lab = (json.data && json.data.entry) ? json.data.entry.map((entry) => {
         if (entry && entry.resource) {
             const resource = entry.resource;
+            console.log(resource);
             return buildObservationFromResource(resource);
         }
     }).filter(entry => (entry) ? true : false) : null;

@@ -26,7 +26,7 @@ var checkResponseStatus = exports.checkResponseStatus = function checkResponseSt
 
 var buildObeservationURL = exports.buildObeservationURL = function buildObeservationURL(patient, lonicCodes, url, dates) {
     var codes = lonicCodes.map(function (l) {
-        return Constants.LONIC_URL.concat(Constants.LONIC_CODES.get(l));
+        return Constants.LONIC_URL.concat('|').concat(Constants.LONIC_CODES.get(l));
     }).join(',');
     var urlConstructed = '';
     if (dates != null && dates instanceof Array && dates.length == 2) {

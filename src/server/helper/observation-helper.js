@@ -32,9 +32,15 @@ const fetchObservationResultsHelper = function* (state, lonicCodes, date = null,
     return result;
 };
 
-const groupLabs = (loincCodes, results) => loincCodes.map(lc => buildResultLoincMap(Constants.LONIC_CODES.get(lc), results));
+const groupLabs = (loincCodes, results) => {
+    console.log(lonicCodes);
+    console.log(typeof loincCodes);
+    const result= loincCodes.map(lc => buildResultLoincMap(Constants.LONIC_CODES.get(lc), results));
+    console.log(result);
+    return result;
+}
 
-const buildResultLoincMap = (code, results) => new immutableMap().set(code, results.filter(code));
+const buildResultLoincMap = (code, results) => new Records.LabResult({ code: code, observation: results.filter(code) });
 
 const getDateRange = (date, duration) => {
     if (date && duration) {

@@ -53,7 +53,7 @@ var fetchGlucoseResults = exports.fetchGlucoseResults = regeneratorRuntime.mark(
 });
 
 var fetchLabResults = exports.fetchLabResults = regeneratorRuntime.mark(function fetchLabResults(state) {
-    var result, labs;
+    var result, labs, result1;
     return regeneratorRuntime.wrap(function fetchLabResults$(_context2) {
         while (1) {
             switch (_context2.prev = _context2.next) {
@@ -62,12 +62,13 @@ var fetchLabResults = exports.fetchLabResults = regeneratorRuntime.mark(function
 
                 case 1:
                     result = _context2.t0;
-                    labs = HttpUtil.checkResponseStatus(result) ? buildLabResultsFromJson(result).sortBy(function (l) {
-                        return l.date;
-                    }) : null;
+                    labs = HttpUtil.checkResponseStatus(result) ? buildLabResultsFromJson(result) : null;
+                    result1 = groupLabs(Constants.LABS_LOINIC_CODES, labs);
+
+                    console.log(result1);
                     return _context2.abrupt('return', labs);
 
-                case 4:
+                case 6:
                 case 'end':
                     return _context2.stop();
             }
@@ -110,6 +111,16 @@ var fetchObservationResultsHelper = regeneratorRuntime.mark(function fetchObserv
     }, fetchObservationResultsHelper, this);
 });
 
+var groupLabs = function groupLabs(loincCodes, results) {
+    return loincCodes.map(function (lc) {
+        return buildResultLoincMap(Constants.LONIC_CODES.get(lc), results);
+    });
+};
+
+var buildResultLoincMap = function buildResultLoincMap(code, results) {
+    return new _immutable.Map().set(code, results.filter(code));
+};
+
 var getDateRange = function getDateRange(date, duration) {
     if (date && duration) {
         var today = new Date(date);
@@ -128,7 +139,7 @@ var buildGlucoseResultsFromJson = function buildGlucoseResultsFromJson(json) {
         }
     }).filter(function (entry) {
         return entry ? true : false;
-    }) : null;
+    }).sort(compare) : null;
     return (0, _immutable.List)(glucose);
 };
 
@@ -140,18 +151,24 @@ var buildLabResultsFromJson = function buildLabResultsFromJson(json) {
         }
     }).filter(function (entry) {
         return entry ? true : false;
-    }) : null;
+    }).sort(compare) : null;
     return (0, _immutable.List)(lab);
 };
 
 var buildObservationFromResource = function buildObservationFromResource(resource) {
     return new Records.Observation({
-        resource: resource.code ? resource.code.coding : null,
+        resource: resource.code && resource.code.coding ? resource.code.coding.filter(function (code) {
+            return code.system === Constants.LONIC_URL;
+        })[0]['code'] : null,
         text: resource.code ? resource.code.text : null,
         date: resource.issued,
-        quantity: resource.valueQuantity.value ? resource.valueQuantity.value : null,
-        unit: resource.valueQuantity.unit ? resource.valueQuantity.unit : null,
+        quantity: resource.valueQuantity && resource.valueQuantity.value ? resource.valueQuantity.value : null,
+        unit: resource.valueQuantity && resource.valueQuantity.unit ? resource.valueQuantity.unit : null,
         interpretation: resource.interpretation && resource.interpretation.coding ? resource.interpretation.coding[0].code : null
     });
+};
+
+var compare = function compare(r1, r2) {
+    return r1 && r2 ? r1.text.toLowerCase() > r2.text.toLowerCase() ? 1 : r2.text.toLowerCase() > r1.text.toLowerCase() ? -1 : r1.date > r2.date ? 1 : -1 : 0;
 };
 //# sourceMappingURL=observation-helper.js.map

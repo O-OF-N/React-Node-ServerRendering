@@ -11,6 +11,11 @@ export const Observation = new Record({
     interpretation: ''
 });
 
+export const LabResult = {
+    code:'',
+    observation:null
+};
+
 export const InsulinOrder = new Record({
     status: '',
     prescriber: '',

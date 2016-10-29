@@ -34,7 +34,7 @@ const fetchLabsHelper = function* (state, dispatch) {
 
 const buildLabObject = (lab) => {
     if (lab && lab.observation && lab.observation instanceof Array) {
-        const labs = new List(lab.observation.map(l => new Record.Lab(l)));
+        const labs = new List(lab.observation.map(l => new Records.Lab(l)));
         return new Records.LabMaps({ code: lab.code, labs });
     } else return null;
 };

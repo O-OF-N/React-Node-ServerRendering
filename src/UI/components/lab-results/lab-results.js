@@ -11,7 +11,7 @@ const LabResults = ({labs}) => {
             <LabResultsHeader/>
             <div id="div-lab-body">
                 {
-                    labs.map((l, i) => <LabResultsBody key={i} {...l.toJS() }/>)
+                   // labs.map((l, i) => <LabResultsBody key={i} {...l.toJS() }/>)
                 }
             </div>
         </div>

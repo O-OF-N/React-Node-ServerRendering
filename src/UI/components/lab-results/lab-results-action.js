@@ -18,6 +18,7 @@ const fetchLabsHelper = function* (state, dispatch) {
     const labList = yield axios.get(Constants.LAB_FETCH_URL.concat(`/${state.state}`), { headers: Constants.AUTHORIZATION_HEADER });
     try {
         const data = (labList && labList.data) ? labList.data : null;
+        console.log('date = ' + data);
         if (data) {
             const labObj = data.map(lab => buildLabObject(lab));
             console.log('>>>>>>>>>>');

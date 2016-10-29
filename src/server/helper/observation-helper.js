@@ -30,7 +30,7 @@ const fetchObservationResultsHelper = function* (state, lonicCodes, date = null,
     return result;
 };
 
-const groupLabs = (loincCodes, results) => loincCodes.map(lc => buildResultLoincMap(Constants.LONIC_CODES.get(lc), results)).filter(r => r.observation.size);
+const groupLabs = (loincCodes, results) => loincCodes.map(lc => buildResultLoincMap(Constants.LONIC_CODES.get(lc), results)).filter(r => r.observation.size).sort(r=>r.date);
 
 const buildResultLoincMap = (code, results) => new Records.LabResult({ code: code, observation: results.filter(r => r.resource === code).slice(0, Constants.LAB_RESULT_COUNT) });
 
@@ -60,7 +60,7 @@ const buildLabResultsFromJson = (json) => {
             const resource = entry.resource;
             return buildObservationFromResource(resource);
         }
-    }).filter(entry => (entry) ? true : false).sort(compare) : null;
+    }).filter(entry => (entry) ? true : false) : null;
     return List(lab);
 };
 

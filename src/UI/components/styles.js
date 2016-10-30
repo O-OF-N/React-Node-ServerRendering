@@ -54,11 +54,12 @@ export const LabFirstItemsSpanStyle = {
   whiteSpace: 'nowrap',
   overflow: 'hidden',
   textOverflow: 'ellipsis',
-  border: 'black',
+  borderStyle: 'none'
+  /*border: 'black',
   borderStyle: 'solid',
   borderWidth: '1px',
   borderTopStyle: 'none',
-  borderRightStyle: 'none'
+  borderRightStyle: 'none'*/
 };
 
 export const LabItemsStyle = {
@@ -68,7 +69,6 @@ export const LabItemsStyle = {
   borderStyle: 'solid',
   borderWidth: '1px',
   borderTopStyle: 'none',
-  borderLeftStyle: 'none'
 };
 
 export const LabValuesDivStyle = {

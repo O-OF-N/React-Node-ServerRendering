@@ -17,7 +17,7 @@ const LabResultName = ({labs}) => {
     return (
         <span style={LabFirstItemsSpanStyle} title={text}>{text ? text : '-'}</span>
     );
-}
+};
 
 const LabResultsBody = ({code, labs}) => (
     <div>

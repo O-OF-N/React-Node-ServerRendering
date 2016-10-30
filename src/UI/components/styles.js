@@ -53,16 +53,16 @@ export const LabFirstItemsSpanStyle = {
   textAlign: 'left',
   whiteSpace: 'nowrap',
   overflow: 'hidden',
-  textOverflow: 'ellipsis',
-  border: 'black',
-  borderStyle: 'solid',
-  borderWidth: '1px',
+  textOverflow: 'ellipsis'
   //borderTopStyle: 'none'
 };
 
 export const LabItemsStyle = {
   width: '100%',
-  float: 'left'
+  float: 'left',
+  border: 'black',
+  borderStyle: 'solid',
+  borderWidth: '1px',
 };
 
 export const LabValuesDivStyle = {

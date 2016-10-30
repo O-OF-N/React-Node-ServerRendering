@@ -41,8 +41,8 @@ export const LabItemsSpanStyle = {
   border: 'black',
   borderStyle: 'solid',
   borderWidth: '1px',
-  /*borderLeftStyle: 'none',
-  borderTopStyle: 'none'*/
+  borderLeftStyle: 'none',
+  borderBottomStyle: 'none'
 };
 
 export const LabFirstItemsSpanStyle = {
@@ -68,10 +68,7 @@ export const LabItemsStyle = {
   border: 'black',
   borderStyle: 'solid',
   borderWidth: '1px',
-  borderTopStyle: 'none',
-  borderLeft: 'none',
-  borderTop: 'none',
-  borderBottom: 'none'
+  borderRight: 'none'
 };
 
 export const LabValuesDivStyle = {

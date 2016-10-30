@@ -1,7 +1,7 @@
 //Labs
 export const LabHeaderSpanStyle = {
   float: 'left',
-  width: '32%',
+  width: '33%',
   fontWeight: 'bold',
   display: 'table-cell',
   verticalAlign: 'middle',
@@ -15,7 +15,7 @@ export const LabHeaderSpanStyle = {
 
 export const LabFirstHeaderSpanStyle = {
   float: 'left',
-  width: '32%',
+  width: '33%',
   fontWeight: 'bold',
   display: 'table-cell',
   verticalAlign: 'middle',
@@ -47,14 +47,18 @@ export const LabItemsSpanStyle = {
 
 export const LabFirstItemsSpanStyle = {
   float: 'left',
-  width: '32%',
+  width: '33%',
   height: '100%',
   verticalAlign: 'left',
   textAlign: 'left',
   whiteSpace: 'nowrap',
   overflow: 'hidden',
-  textOverflow: 'ellipsis'
-  //borderTopStyle: 'none'
+  textOverflow: 'ellipsis',
+  border: 'black',
+  borderStyle: 'solid',
+  borderWidth: '1px',
+  borderTopStyle: 'none',
+  borderRightStyle: 'none'
 };
 
 export const LabItemsStyle = {
@@ -63,10 +67,12 @@ export const LabItemsStyle = {
   border: 'black',
   borderStyle: 'solid',
   borderWidth: '1px',
+  borderTopStyle: 'none',
+  borderLeftStyle: 'none'
 };
 
 export const LabValuesDivStyle = {
-  width: '65%',
+  width: '66%',
   float: 'left',
   borderWidth: '1px',
   borderStyle: 'solid',

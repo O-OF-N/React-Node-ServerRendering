@@ -3,11 +3,12 @@ import {
     LabItemsStyle,
     LabItemsSpanStyle,
     LabFirstItemsSpanStyle,
-    LabValuesStyle
+    LabValuesStyle,
+    LabValuesDivStyle
 } from '../styles';
 
 const LabResultValues = ({text, quantity, date, unit}) => (
-    <div >
+    <div style={LabValuesStyle}>
         <span style={LabItemsSpanStyle} title={quantity}>{quantity ? quantity : '-'}{unit ? ` ${unit}` : ''}</span>
         <span style={LabItemsSpanStyle} title={date ? new Date(date).toLocaleDateString() : '-'}>{date ? new Date(date).toLocaleString() : '-'}</span>
     </div>
@@ -23,7 +24,7 @@ const LabResultName = ({labs}) => {
 const LabResultsBody = ({code, labs}) => (
     <div style={LabItemsStyle}>
         <LabResultName labs={labs} />
-        <div style={LabValuesStyle}>
+        <div style={LabValuesDivStyle}>
             {labs.map((l) => <LabResultValues {...l.toJS() } />)}
         </div>
     </div>

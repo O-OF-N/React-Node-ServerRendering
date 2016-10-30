@@ -14,7 +14,6 @@ const reducer = (labObject = init, action) => {
             });
         case Constants.LAB_FETCHED:
             const payLoad = !action.payLoad? immutableList([]) : immutableList(action.payLoad);
-            console.log(payLoad);
             return labObject.merge({
                 labMaps: payLoad,
                 fetched: true,

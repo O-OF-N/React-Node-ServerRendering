@@ -2,11 +2,12 @@ import React from 'react';
 import {
     LabItemsStyle,
     LabItemsSpanStyle,
-    LabFirstItemsSpanStyle
+    LabFirstItemsSpanStyle,
+    LabValuesStyle
 } from '../styles';
 
 const LabResultValues = ({text, quantity, date, unit}) => (
-    <div style={LabItemsStyle}>
+    <div style={LabValuesStyle}>
         <span style={LabItemsSpanStyle} title={quantity}>{quantity ? quantity : '-'}{unit ? ` ${unit}` : ''}</span>
         <span style={LabItemsSpanStyle} title={date ? new Date(date).toLocaleDateString() : '-'}>{date ? new Date(date).toLocaleString() : '-'}</span>
     </div>

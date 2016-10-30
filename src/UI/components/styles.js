@@ -32,7 +32,7 @@ export const LabHeaderRowStyle = {
 
 export const LabItemsSpanStyle = {
   float: 'left',
-  width: '50%',
+  width: '48%',
   verticalAlign: 'left',
   textAlign: 'left',
   whiteSpace: 'nowrap',

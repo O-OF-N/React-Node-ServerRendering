@@ -38,11 +38,11 @@ export const LabItemsSpanStyle = {
   whiteSpace: 'nowrap',
   overflow: 'hidden',
   textOverflow: 'ellipsis',
-  border: 'black',
+  /*border: 'black',
   borderStyle: 'solid',
   borderWidth: '1px',
   borderLeftStyle: 'none',
-  borderBottomStyle: 'none'
+  borderBottomStyle: 'none'*/
 };
 
 export const LabFirstItemsSpanStyle = {

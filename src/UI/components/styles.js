@@ -69,6 +69,9 @@ export const LabItemsStyle = {
   borderStyle: 'solid',
   borderWidth: '1px',
   borderTopStyle: 'none',
+  borderLeft: 'none',
+  borderTop: 'none',
+  borderBottom: 'none'
 };
 
 export const LabValuesDivStyle = {
@@ -77,7 +80,8 @@ export const LabValuesDivStyle = {
   borderWidth: '1px',
   borderStyle: 'solid',
   borderColor: 'black',
-  borderImage: 'initial'
+  borderImage: 'initial',
+  borderRight: 'none'
 };
 
 export const LabValuesStyle = {

@@ -20,14 +20,9 @@ const LabResultName = ({labs}) => {
 };
 
 const LabResultsBody = ({code, labs}) => (
-    <div>
-        {labs ?
-            <div style={LabItemsStyle}>
-                <LabResultName labs={labs} />
-                labs.map((l, i) => <LabResultValues key={i} {...l.toJS() } />)
-
-    </div> : null
-        }
+    <div style={LabItemsStyle}>
+        <LabResultName labs={labs} />
+        labs.map((l, i) => <LabResultValues key={i} {...l.toJS() } />)
     </div>
 )
 

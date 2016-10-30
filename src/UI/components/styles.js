@@ -41,8 +41,8 @@ export const LabItemsSpanStyle = {
   border: 'black',
   borderStyle: 'solid',
   borderWidth: '1px',
-  borderLeftStyle: 'none',
-  borderTopStyle: 'none'
+  /*borderLeftStyle: 'none',
+  borderTopStyle: 'none'*/
 };
 
 export const LabFirstItemsSpanStyle = {

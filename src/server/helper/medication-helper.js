@@ -52,7 +52,7 @@ const fetchMedicationAdministration = (dosage) => (dosage && dosage instanceof a
 
 const categorizeOrders = (administration, code) =>
     Constants.ORDER_CATEGORIZATION.forEach((value, key) => {
-        if (value.includes(code) ? value.dosage ? value.dosage === administration : true : false)
+        if (value.code.includes(code) ? value.dosage ? value.dosage === administration : true : false)
             return key;
     });
 

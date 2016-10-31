@@ -54,12 +54,11 @@ const categorizeOrders = (administration, code) =>
     Constants.ORDER_CATEGORIZATION.forEach((value, key) => {
         console.log('>>>>>>>>>>>>>>>>>>>>>');
         console.log(value.code);
-        console.log(code);
+        console.log('code = ' + typeof code);
         console.log(administration);
         console.log(value.dosage);
         console.log(value.code.includes(code));
         console.log(((value.dosage && value.dosage === administration) || (!value.dosage)));
-        
         console.log('>>>>>>>>>>>>>>>>>>>>>');
         if (value.code.includes(code) && ((value.dosage && value.dosage === administration) || (!value.dosage))){
             console.log('key is found as >>>>>>>>>>>' + key);

@@ -19,7 +19,6 @@ const fetchMedicationsHelper = function* (state) {
     const [userAuthenticationModel] = yield UserAuthenticationModel.findByState(state);
     const url = HttpUtil.buildMedicationURL(userAuthenticationModel.patient, userAuthenticationModel.iss);
     const authHeader = HttpUtil.buildAuthorizationHeader(userAuthenticationModel);
-    console.log(url)
     const result = yield get(url, authHeader);
     return result;
 };
@@ -33,6 +32,7 @@ const buildInsulinOrdersResult = (json) => {
             const resource = entry.resource;
             ({ status, prescriber, dateWritten, dosageInstruction, medicationCodeableConcept } = resource);
             const medication  = fetchMedicationFromResource(medicationCodeableConcept);
+            console.log(medication);
             insulin = (medication) ? new Records.InsulinOrder({
                 status,
                 prescriber: (prescriber) ? prescriber.display : null,

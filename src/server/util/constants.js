@@ -11,9 +11,10 @@ export const SUBCUTANEOUS_TEXT = 'SUBCUTANEOUS';
 export const AUTHORIZATION_HEADER = { Accept: "application/json+fhir" };
 
 export const LONIC_URL = "http://loinc.org";
+export const RXNORM_URL = "http://www.nlm.nih.gov/research/umls/rxnorm";
 
 // Labs
-//-------
+
 export const GLUCOSE = "2345-7";
 export const SERUM_CO2 = "2028-9";
 export const SERUM_POTASSIUM = "2823-3";
@@ -54,25 +55,26 @@ export const LAB_RESULT_COUNT = 2;
 
 
 //Orders
-//-------
 
-export const DRIP = ['insulin drip regular'];
+//https://mor.nlm.nih.gov/RxNav/
 
-export const BASAL = ['insulin glargine (Lantus)','insulin detemir (Levemir)','insulin degludec (Tresiba)','insulin isophane (NPH, HumuLIN-N, NovoLIN-N)','insulin aspart protamine / insulin aspart (NovoLOG Mix 70/30)','insulin lispro protamine / insulin lispro (HumaLOG Mix 75/25)'];
+export const DRIP = { code: [575148, 575628, 575146], dosage: INTRAVENOUS_TEXT };
 
-export const BOLUS = ['insulin regular (HumuLIN-R, NovoLIN-R)','insulin aspart (NovoLOG)','insulin lispro (HumaLOG)','insulin glulisine (Apidra)'];
+export const BASAL = { code: [261551, 400560, 1670012, 92880, 93558, 977838, 752386], dosage: null };
 
-export const PUMP = ['insulin pump'];
+export const BOLUS = { code: [575148, 575628, 575146, 575679, 575151, 1652240, 803192], dosage: SUBCUTANEOUS_TEXT };
 
-export const ORAL_HYPOGLYCEMICS =['metformin','glipizide','repaglinide'];
+export const PUMP = { names: ['insulin pump'], dosage: null };
+
+export const ORAL_HYPOGLYCEMICS = { code: [6809, 4821, 73044, 4815], dosage: null };
 
 
 export const ORDER_CATEGORIZATION = new Map([
-    ['Insulin Drip',DRIP],
-    ['Basal / Premixed',BASAL],
-    ['Bolus / Sliding Scale',BOLUS],
-    ['Insulin Pump',PUMP],
-    ['Oral Hypoglycemics',ORAL_HYPOGLYCEMICS]
+    ['Insulin Drip', DRIP],
+    ['Basal / Premixed', BASAL],
+    ['Bolus / Sliding Scale', BOLUS],
+    //['Insulin Pump', PUMP],
+    ['Oral Hypoglycemics', ORAL_HYPOGLYCEMICS]
 ]);
 
 /*export const OBSERVATIONS_FETCH_URL =

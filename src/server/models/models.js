@@ -18,11 +18,12 @@ export const LabResult = new Record({
 
 export const InsulinOrder = new Record({
     status: '',
-    prescriber: '',
     date: '',
     dosage: 0,
     medication: '',
-    administration:''
+    type:'',
+    comments: '',
+    notes: ''
 });
 
 export const AccessTokenRequestBody = new Record({

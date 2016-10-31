@@ -10,6 +10,7 @@ import UserAuthenticationModel from '../models/UserAuthenticationSchema';
 //public functions
 export const fetchMedications = function* (state) {
     const result = yield* fetchMedicationsHelper(state);
+    console.log(result);
     return HttpUtil.checkResponseStatus(result) ? buildInsulinOrdersResult(result) : null;
 };
 
@@ -18,6 +19,7 @@ const fetchMedicationsHelper = function* (state) {
     const [userAuthenticationModel] = yield UserAuthenticationModel.findByState(state);
     const url = HttpUtil.buildMedicationURL(userAuthenticationModel.patient, userAuthenticationModel.iss);
     const authHeader = HttpUtil.buildAuthorizationHeader(userAuthenticationModel);
+    console.log(url)
     const result = yield get(url, authHeader);
     return result;
 };

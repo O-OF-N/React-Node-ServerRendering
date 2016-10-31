@@ -12,7 +12,8 @@ export const AUTHORIZATION_HEADER = { Accept: "application/json+fhir" };
 
 export const LONIC_URL = "http://loinc.org";
 
-
+// Labs
+//-------
 export const GLUCOSE = "2345-7";
 export const SERUM_CO2 = "2028-9";
 export const SERUM_POTASSIUM = "2823-3";
@@ -51,6 +52,28 @@ export const LABS_LOINIC_CODES = ["SERUM_CO2", "SERUM_POTASSIUM", "SERUM_SODIUM"
 
 export const LAB_RESULT_COUNT = 2;
 
+
+//Orders
+//-------
+
+export const DRIP = ['insulin drip regular'];
+
+export const BASAL = ['insulin glargine (Lantus)','insulin detemir (Levemir)','insulin degludec (Tresiba)','insulin isophane (NPH, HumuLIN-N, NovoLIN-N)','insulin aspart protamine / insulin aspart (NovoLOG Mix 70/30)','insulin lispro protamine / insulin lispro (HumaLOG Mix 75/25)'];
+
+export const BOLUS = ['insulin regular (HumuLIN-R, NovoLIN-R)','insulin aspart (NovoLOG)','insulin lispro (HumaLOG)','insulin glulisine (Apidra)'];
+
+export const PUMP = ['insulin pump'];
+
+export const ORAL_HYPOGLYCEMICS =['metformin','glipizide','repaglinide'];
+
+
+export const ORDER_CATEGORIZATION = new Map([
+    ['Insulin Drip',DRIP],
+    ['Basal / Premixed',BASAL],
+    ['Bolus / Sliding Scale',BOLUS],
+    ['Insulin Pump',PUMP],
+    ['Oral Hypoglycemics',ORAL_HYPOGLYCEMICS]
+]);
 
 /*export const OBSERVATIONS_FETCH_URL =
     `https://fhir.sandboxcernerpowerchart.com/dstu2/d075cf8b-3261-481d-97e5-ba6c48d3b41f/Observation?patient=1316024&code=http://loinc.org|2345-7,http://loinc.org|8335-2,http://loinc.org|3137-7,http://loinc.org|718-7,http://loinc.org|59574-4`;*/

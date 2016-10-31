@@ -10,7 +10,6 @@ import UserAuthenticationModel from '../models/UserAuthenticationSchema';
 //public functions
 export const fetchMedications = function* (state) {
     const result = yield* fetchMedicationsHelper(state);
-    console.log(result);
     return HttpUtil.checkResponseStatus(result) ? buildInsulinOrdersResult(result) : null;
 };
 
@@ -47,7 +46,7 @@ const buildInsulinOrdersResult = (json) => {
     return List(insulinOrder);
 };
 
-const fetchMedicationFromResource = (concept) => (concept) ? { name: concept.text, code: concept.filter(codes => codes.system === Constants.RXNORM_URL)[0].code } : null;
+const fetchMedicationFromResource = (concept) => (concept) ? { name: concept.text, code: concept.coding ? concept.coding.filter(codes => codes.system === Constants.RXNORM_URL)[0].code : null } : null;
 
 const fetchMedicationAdministration = (dosage) => (dosage && dosage instanceof array && dosage[0] && dosage[0].route && dosage[0].route.coding && dosage[0].route.coding instanceof array && dosage[0].route.coding[0]) ? dosage[0].route.coding[0].code === Constants.SUBCUTANEOUS ? Constants.SUBCUTANEOUS_TEXT : Constants.INTRAVENOUS_TEXT : null;
 

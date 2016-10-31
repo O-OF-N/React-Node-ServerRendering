@@ -37,7 +37,7 @@ const buildInsulinOrdersResult = (json) => {
                 date: dateWritten,
                 dosage: (dosageInstruction && dosageInstruction instanceof array && dosageInstruction[0]) ? dosageInstruction[0].text : null,
                 medication: medication.name,
-                type: categorizeOrders(fetchMedicationAdministration(dosageInstruction), medication.code)
+                type: categorizeOrders(fetchMedicationAdministration(dosageInstruction), parseInt(medication.code))
             }) : null;
         };
         return insulin;

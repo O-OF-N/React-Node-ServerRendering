@@ -115,7 +115,7 @@ export const MedicationHeaderRowStyle = {
 
 export const MedicationItemsSpanStyle = {
   float: 'left',
-  width: '19%',
+  width: '29%',
   verticalAlign: 'left',
   textAlign: 'left',
   whiteSpace: 'nowrap',
@@ -130,7 +130,7 @@ export const MedicationItemsSpanStyle = {
 
 export const MedicationFirstItemsSpanStyle = {
   float: 'left',
-  width: '59%',
+  width: '39%',
   verticalAlign: 'left',
   textAlign: 'left',
   whiteSpace: 'nowrap',

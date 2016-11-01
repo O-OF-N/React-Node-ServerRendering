@@ -5,7 +5,7 @@ import BolusMedicationsHeader from './bolus/medications-bolus-header';
 import BolusMedicationsBody from './bolus/medications-bolus-body';
 import { connect } from 'react-redux';
 
-const NonBolusMedications = ({medication}) => (
+const NonBolusMedications = ({medication}) => medication ? (
     <div style={{ float: 'left', width: '33%', paddingLeft: '0.5%' }}>
         <h3>{medication.type}</h3>
         <MedicationsHeader />
@@ -15,9 +15,9 @@ const NonBolusMedications = ({medication}) => (
             }
         </div>
     </div>
-);
+) : null;
 
-const BolusMedications = ({medication}) => (
+const BolusMedications = ({medication}) => medication ? (
     <div style={{ float: 'left', width: '99%', paddingLeft: '0.5%' }}>
         <h3>{medication.type}</h3>
         <BolusMedicationsHeader />
@@ -27,7 +27,7 @@ const BolusMedications = ({medication}) => (
             }
         </div>
     </div>
-);
+) : null;
 
 const Medications = ({medications}) => {
     console.log('medications =  ' + medications);

@@ -14,7 +14,8 @@ export const ServerState = immutableRecord({
 export const Glucose = immutableRecord({
     date: '',
     quantity: 0,
-    interpretation: ''
+    interpretation: '',
+    source: ''
 });
 
 export const LabObject = immutableRecord({

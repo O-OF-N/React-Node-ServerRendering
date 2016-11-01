@@ -30,7 +30,6 @@ const BolusMedications = ({medication}) => medication ? (
 ) : null;
 
 const Medications = ({medications}) => {
-    console.log('medications =  ' + medications);
     return (
         <div style={{ width: '96%', height: 'auto', padding: '1%', marginTop: '0.5%' }}>
             {medications ? medications.map(medication =>

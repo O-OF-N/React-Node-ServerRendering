@@ -10,7 +10,8 @@ import UserAuthenticationModel from '../models/UserAuthenticationSchema';
 //public functions
 export const fetchMedications = function* (state) {
     const result = yield* fetchMedicationsHelper(state);
-    return HttpUtil.checkResponseStatus(result) ? buildInsulinOrdersResult(result) : null;
+    const insulinOrders = HttpUtil.checkResponseStatus(result) ? buildInsulinOrdersResult(result) : null;
+    return insulinOrders ? categorizeOrders(insulinOrders) : null;
 };
 
 //Private functions
@@ -37,7 +38,8 @@ const buildInsulinOrdersResult = (json) => {
                 date: dateWritten,
                 dosage: (dosageInstruction && dosageInstruction instanceof array && dosageInstruction[0]) ? dosageInstruction[0].text : null,
                 medication: medication.name,
-                type: categorizeOrders(fetchMedicationAdministration(dosageInstruction), parseInt(medication.code))
+                administration: fetchMedicationAdministration(dosageInstruction),
+                code: parseInt(medication.code)
             }) : null;
         };
         return insulin;
@@ -48,22 +50,16 @@ const buildInsulinOrdersResult = (json) => {
 
 const fetchMedicationFromResource = (concept) => (concept) ? { name: concept.text, code: concept.coding ? concept.coding.filter(codes => codes.system === Constants.RXNORM_URL)[0].code : null } : null;
 
-const fetchMedicationAdministration = (dosage) => (dosage && dosage instanceof array && dosage[0] && dosage[0].route && dosage[0].route.coding && dosage[0].route.coding instanceof array && dosage[0].route.coding[0]) ? dosage[0].route.coding[0].code === Constants.SUBCUTANEOUS ? Constants.SUBCUTANEOUS_TEXT : Constants.INTRAVENOUS_TEXT : null;
+const fetchMedicationAdministration = (dosage) => (dosage && dosage instanceof Array && dosage[0] && dosage[0].route && dosage[0].route.coding && dosage[0].route.coding instanceof Array && dosage[0].route.coding[0]) ? dosage[0].route.coding[0].code === Constants.SUBCUTANEOUS ? Constants.SUBCUTANEOUS_TEXT : Constants.INTRAVENOUS_TEXT : null;
 
-const categorizeOrders = (administration, code) =>
+const categorizeOrders = (insulinOrders) =>{
+    let medicationCategory = new Map();
     Constants.ORDER_CATEGORIZATION.forEach((value, key) => {
-        console.log('>>>>>>>>>>>>>>>>>>>>>');
-        console.log(value.code);
-        console.log('code = ' + typeof code);
-        console.log(administration);
-        console.log(value.dosage);
-        console.log(value.code.includes(code));
-        console.log(((value.dosage && value.dosage === administration) || (!value.dosage)));
-        console.log('>>>>>>>>>>>>>>>>>>>>>');
-        if (value.code.includes(code) && ((value.dosage && value.dosage === administration) || (!value.dosage))){
-            console.log('key is found as >>>>>>>>>>>' + key);
-            return key;
-        }
+        medicationCategory.set(key, insulinOrders.filter(order => value.code.includes(code) && ((value.dosage && value.dosage === administration) || (!value.dosage))));
     });
+    console.log('>>>>>>>>>>>>>>>>>');
+    console.log(medicationCategory);
+    return medicationCategory;
+};
 
-const array = (() => [].constructor)()
+//const array = (() => [].constructor)()

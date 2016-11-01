@@ -21,9 +21,10 @@ export const InsulinOrder = new Record({
     date: '',
     dosage: 0,
     medication: '',
-    type:'',
     comments: '',
-    notes: ''
+    notes: '',
+    administration: '',
+    code: 0
 });
 
 export const AccessTokenRequestBody = new Record({

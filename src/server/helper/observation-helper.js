@@ -9,7 +9,8 @@ import UserAuthenticationModel from '../models/UserAuthenticationSchema';
 
 //Public functions
 export const fetchGlucoseResults = function* (state) {
-    const result = yield* fetchObservationResultsHelper(state, Constants.GLUCOSE_CODES);
+    const result = yield* fetchObservationResultsHelper(state, Constants.GLUCOSE_CODES, new Date(), 24);
+    //const result = yield* fetchObservationResultsHelper(state, Constants.GLUCOSE_CODES);
     return HttpUtil.checkResponseStatus(result) ? buildGlucoseResultsFromJson(result) : null;
 };
 

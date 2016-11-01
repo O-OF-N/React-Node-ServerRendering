@@ -84,7 +84,7 @@ export const LabValuesStyle = {
 //Medication
 export const MedicationHeaderSpanStyle = {
   float: 'left',
-  width: '19%',
+  width: '29%',
   fontWeight: 'bold',
   display: 'table-cell',
   verticalAlign: 'middle',
@@ -98,7 +98,7 @@ export const MedicationHeaderSpanStyle = {
 
 export const MedicationFirstHeaderSpanStyle = {
   float: 'left',
-  width: '59%',
+  width: '39%',
   fontWeight: 'bold',
   display: 'table-cell',
   verticalAlign: 'middle',

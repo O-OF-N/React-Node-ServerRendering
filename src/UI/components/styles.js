@@ -101,7 +101,7 @@ export const MedicationFirstHeaderSpanStyle = {
 
 export const MedicationBolusHeaderSpanStyle = {
   float: 'left',
-  width: '19%',
+  width: '24%',
   fontWeight: 'bold',
   display: 'table-cell',
   verticalAlign: 'middle',
@@ -115,7 +115,7 @@ export const MedicationBolusHeaderSpanStyle = {
 
 export const MedicationBolusFirstHeaderSpanStyle = {
   float: 'left',
-  width: '19%',
+  width: '24%',
   fontWeight: 'bold',
   display: 'table-cell',
   verticalAlign: 'middle',
@@ -162,7 +162,7 @@ export const MedicationFirstItemsSpanStyle = {
 
 export const MedicationBolusItemsSpanStyle = {
   float: 'left',
-  width: '19%',
+  width: '24%',
   verticalAlign: 'left',
   textAlign: 'left',
   whiteSpace: 'nowrap',
@@ -177,7 +177,7 @@ export const MedicationBolusItemsSpanStyle = {
 
 export const MedicationBolusFirstItemsSpanStyle = {
   float: 'left',
-  width: '19%',
+  width: '24%',
   verticalAlign: 'left',
   textAlign: 'left',
   whiteSpace: 'nowrap',

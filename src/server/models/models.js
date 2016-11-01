@@ -22,7 +22,6 @@ export const InsulinOrder = new Record({
     dosage: 0,
     medication: '',
     comments: '',
-    notes: '',
     administration: '',
     code: 0
 });

@@ -10,7 +10,6 @@ const BolusMedicationsHeader = () => (
         <span style={MedicationBolusFirstHeaderSpanStyle}>Medication </span>
         <span style={MedicationBolusHeaderSpanStyle}>Dosage </span>
         <span style={MedicationBolusHeaderSpanStyle}>Date </span>
-        <span style={MedicationBolusHeaderSpanStyle}>Notes </span>
         <span style={MedicationBolusHeaderSpanStyle}>Additional Comments </span>
     </div >
 )

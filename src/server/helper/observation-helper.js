@@ -42,7 +42,7 @@ const getDateRange = (date, duration) => {
         return [new Date(yesterday).toISOString(), today.toISOString()];
     }
     return null;
-}
+};
 
 const buildGlucoseResultsFromJson = (json) => {
     let glucose = (json.data && json.data.entry) ? json.data.entry.map((entry) => {

@@ -32,7 +32,7 @@ const BolusMedications = ({medication}) => medication ? (
 const Medications = ({medications}) => {
     console.log('medications =  ' + medications);
     return (
-        <div style={{ width: '96%', height: 'auto', padding: '1%', display: 'inline-flex', marginTop: '0.5%' }}>
+        <div style={{ width: '96%', height: 'auto', padding: '1%', marginTop: '0.5%' }}>
             {medications ? medications.filter(medication => medication.type === 'Bolus / Sliding Scale').map(medication =>
                 <BolusMedications medication={medication} />
             ) : null}

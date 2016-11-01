@@ -39,7 +39,8 @@ const buildInsulinOrdersResult = (json) => {
                 dosage: (dosageInstruction && dosageInstruction instanceof Array && dosageInstruction[0]) ? dosageInstruction[0].text : null,
                 medication: medication.name,
                 administration: fetchMedicationAdministration(dosageInstruction),
-                code: parseInt(medication.code)
+                code: parseInt(medication.code),
+                comments: (dosageInstruction && dosageInstruction instanceof Array && dosageInstruction[0]) ? dosageInstruction[0].additionalInstructions : null
             }) : null;
         };
         return insulin;

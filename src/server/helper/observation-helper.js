@@ -71,7 +71,8 @@ const buildObservationFromResource = (resource) => new Records.Observation({
     date: resource.issued,
     quantity: resource.valueQuantity && resource.valueQuantity.value ? resource.valueQuantity.value : null,
     unit: resource.valueQuantity && resource.valueQuantity.unit ? resource.valueQuantity.unit : null,
-    interpretation: (resource.interpretation && resource.interpretation.coding) ? resource.interpretation.coding[0].code : null
+    interpretation: (resource.interpretation && resource.interpretation.coding) ? resource.interpretation.coding[0].code : null,
+    source: (resource.category && resource.category.coding) ? resource.category.coding.filter(code => code.system === Constants.OBSERVATION_CATEGORY_URL)[0]['code'] : null
 });
 
 const compare = (r1, r2) => (r1 && r2) ? r1.text.toLowerCase() > r2.text.toLowerCase() ? 1 : r2.text.toLowerCase() > r1.text.toLowerCase() ? -1 : r1.date > r2.date ? 1 : -1 : 0;

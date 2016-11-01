@@ -12,6 +12,7 @@ export const AUTHORIZATION_HEADER = { Accept: "application/json+fhir" };
 
 export const LONIC_URL = "http://loinc.org";
 export const RXNORM_URL = "http://www.nlm.nih.gov/research/umls/rxnorm";
+export const OBSERVATION_CATEGORY_URL = "http://hl7.org/fhir/observation-category";
 
 // Labs
 

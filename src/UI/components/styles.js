@@ -37,12 +37,7 @@ export const LabItemsSpanStyle = {
   textAlign: 'left',
   whiteSpace: 'nowrap',
   overflow: 'hidden',
-  textOverflow: 'ellipsis',
-  /*border: 'black',
-  borderStyle: 'solid',
-  borderWidth: '1px',
-  borderLeftStyle: 'none',
-  borderBottomStyle: 'none'*/
+  textOverflow: 'ellipsis'
 };
 
 export const LabFirstItemsSpanStyle = {
@@ -55,11 +50,6 @@ export const LabFirstItemsSpanStyle = {
   overflow: 'hidden',
   textOverflow: 'ellipsis',
   borderStyle: 'none'
-  /*border: 'black',
-  borderStyle: 'solid',
-  borderWidth: '1px',
-  borderTopStyle: 'none',
-  borderRightStyle: 'none'*/
 };
 
 export const LabItemsStyle = {
@@ -109,6 +99,33 @@ export const MedicationFirstHeaderSpanStyle = {
   borderWidth: '0.5px',
 };
 
+export const MedicationBolusHeaderSpanStyle = {
+  float: 'left',
+  width: '19%',
+  fontWeight: 'bold',
+  display: 'table-cell',
+  verticalAlign: 'middle',
+  textAlign: 'center',
+  background: '#BECCE5',
+  border: 'black',
+  borderStyle: 'solid',
+  borderLeftStyle: 'none',
+  borderWidth: '0.5px',
+};
+
+export const MedicationBolusFirstHeaderSpanStyle = {
+  float: 'left',
+  width: '19%',
+  fontWeight: 'bold',
+  display: 'table-cell',
+  verticalAlign: 'middle',
+  textAlign: 'center',
+  background: '#BECCE5',
+  border: 'black',
+  borderStyle: 'solid',
+  borderWidth: '0.5px',
+};
+
 export const MedicationHeaderRowStyle = {
   width: '100%'
 };
@@ -131,6 +148,35 @@ export const MedicationItemsSpanStyle = {
 export const MedicationFirstItemsSpanStyle = {
   float: 'left',
   width: '32.5%',
+  verticalAlign: 'left',
+  textAlign: 'left',
+  whiteSpace: 'nowrap',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+  border: 'black',
+  borderStyle: 'solid',
+  borderWidth: '1px',
+  borderTopStyle: 'none'
+};
+
+export const MedicationBolusItemsSpanStyle = {
+  float: 'left',
+  width: '19%',
+  verticalAlign: 'left',
+  textAlign: 'left',
+  whiteSpace: 'nowrap',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+  border: 'black',
+  borderStyle: 'solid',
+  borderWidth: '1px',
+  borderLeftStyle: 'none',
+  borderTopStyle: 'none'
+};
+
+export const MedicationBolusFirstItemsSpanStyle = {
+  float: 'left',
+  width: '19%',
   verticalAlign: 'left',
   textAlign: 'left',
   whiteSpace: 'nowrap',

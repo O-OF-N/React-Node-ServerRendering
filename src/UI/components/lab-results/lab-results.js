@@ -9,7 +9,7 @@ const LabResults = ({labMaps}) => {
         <div style={style}>
             <h3>Diabetes Labs(Most recent two results captured in the past 24hrs)</h3>
             <LabResultsHeader />
-            <div id="div-lab-body" style={{ overflow: 'scroll' }}>
+            <div id="div-lab-body">
                 {
                     labMaps.map((l, i) => <LabResultsBody key={i} code={l.code} labs={l.labs} />)
                 }

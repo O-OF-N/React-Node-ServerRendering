@@ -53,11 +53,12 @@ export const MedicationOrder = new immutableRecord({
 
 export const Medication = immutableRecord({
     status: '',
-    prescriber: '',
     date: '',
     dosage: 0,
     medication: '',
-    administration: ''
+    administration: '',
+    comments: '',
+    notes: '',
 });
 
 export const Height = immutableRecord({

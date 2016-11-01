@@ -67,7 +67,8 @@ export const LabItemsStyle = {
   float: 'left',
   border: 'black',
   borderStyle: 'solid',
-  borderWidth: '1px'
+  borderWidth: '1px',
+  overflow: 'scroll'
 };
 
 export const LabValuesDivStyle = {
@@ -143,8 +144,7 @@ export const MedicationFirstItemsSpanStyle = {
 };
 
 export const MedicationItemsStyle = {
-  width: '100%',
-  overflow: 'scroll'
+  width: '100%'
 };
 
 export const inheritStyle = { width: 'inherit', height: 'inherit' };

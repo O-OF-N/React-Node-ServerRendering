@@ -5,7 +5,7 @@ import {
     MedicationBolusFirstItemsSpanStyle
 } from '../../styles';
 
-const BolusMedicationResultsBody = ({date, medication, dosage, notes, additionalComments}) => (
+const BolusMedicationResultsBody = ({date, medication, dosage, notes, comments}) => (
     <div id="div-med-bolus-body" style={MedicationItemsStyle}>
         <span style={MedicationBolusFirstItemsSpanStyle} title = {medication} >{medication ? medication : '-'}</span>
         <span style={MedicationBolusItemsSpanStyle} title = {dosage} > {dosage ? dosage : '-'}</span>

@@ -53,6 +53,7 @@ const fetchMedicationFromResource = (concept) => (concept) ? { name: concept.tex
 const fetchMedicationAdministration = (dosage) => (dosage && dosage instanceof Array && dosage[0] && dosage[0].route && dosage[0].route.coding && dosage[0].route.coding instanceof Array && dosage[0].route.coding[0]) ? dosage[0].route.coding[0].code === Constants.SUBCUTANEOUS ? Constants.SUBCUTANEOUS_TEXT : Constants.INTRAVENOUS_TEXT : null;
 
 const categorizeOrders = (insulinOrders) => {
+    console.log(insulinOrders)
     let medicationCategory = new Map();
     Constants.ORDER_CATEGORIZATION.forEach((value, key) => {
         medicationCategory.set(key, insulinOrders.filter(order => value.code.includes(order.code) && ((value.dosage && value.dosage === order.administration) || (!value.dosage))));

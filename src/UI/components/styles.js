@@ -67,8 +67,7 @@ export const LabItemsStyle = {
   float: 'left',
   border: 'black',
   borderStyle: 'solid',
-  borderWidth: '1px',
-  overflow: 'scroll'
+  borderWidth: '1px'
 };
 
 export const LabValuesDivStyle = {

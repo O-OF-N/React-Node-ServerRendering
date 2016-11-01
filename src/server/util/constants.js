@@ -66,7 +66,7 @@ export const BASAL = { code: [51428, 274783, 261551, 400560, 1670012, 92880, 935
 
 /*export const BOLUS = { code: [575148, 575628, 575146, 575679, 575151, 1652240, 803192], dosage: SUBCUTANEOUS_TEXT };*/
 
-export const BOLUS = { code: [575148, 575628, 575146, 575679, 575151, 1652240, 803192], dosage: null };
+export const BOLUS = { code: [51428, 274783, 261551, 400560, 1670012, 92880, 93558, 977838, 752386, 575148, 575628, 575146, 575679, 575151, 1652240, 803192], dosage: null };
 
 export const PUMP = { names: ['insulin pump'], dosage: null };
 

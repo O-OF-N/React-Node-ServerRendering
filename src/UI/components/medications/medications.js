@@ -18,7 +18,7 @@ const NonBolusMedications = ({medication}) => medication ? (
 ) : null;
 
 const BolusMedications = ({medication}) => medication ? (
-    <div style={{ float: 'left', width: '99%', paddingLeft: '0.5%' }}>
+    <div style={{ float: 'left', width: '40%', paddingLeft: '0.5%' }}>
         <h3>{medication.type}</h3>
         <BolusMedicationsHeader />
         <div id="div-med-body">
@@ -33,11 +33,8 @@ const Medications = ({medications}) => {
     console.log('medications =  ' + medications);
     return (
         <div style={{ width: '96%', height: 'auto', padding: '1%', marginTop: '0.5%' }}>
-            {medications ? medications.filter(medication => medication.type === 'Bolus / Sliding Scale').map(medication =>
-                <BolusMedications medication={medication} />
-            ) : null}
-            {medications ? medications.filter(medication => medication.type !== 'Bolus / Sliding Scale').map(medication =>
-                <NonBolusMedications medication={medication} />
+            {medications ? medications.map(medication =>
+                medication.type === 'Bolus / Sliding Scale' ? <BolusMedications medication={medication} /> : <NonBolusMedications medication={medication} />
             ) : null}
 
         </div>

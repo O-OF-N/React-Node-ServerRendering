@@ -33,9 +33,11 @@ const Medications = ({medications}) => {
     console.log('medications =  ' + medications);
     return (
         <div style={{ width: '96%', height: 'auto', padding: '1%', display: 'inline-flex', marginTop: '0.5%' }}>
-            {medications ? medications.map(medication =>
-                medication.type === 'Bolus / Sliding Scale' ? <BolusMedications medication={medication} /> :
-                    <NonBolusMedications medication={medication} />
+            {medications ? medications.filter(medication.type === 'Bolus / Sliding Scale').map(medication =>
+                <BolusMedications medication={medication} />
+            ) : null}
+            {medications ? medications.filter(medication.type !== 'Bolus / Sliding Scale').map(medication =>
+                <NonBolusMedications medication={medication} />
             ) : null}
 
         </div>

@@ -8,7 +8,7 @@ const Medications = ({medications}) => {
         <div style={{ width: '96%', height: 'auto', padding: '1%', display: 'inline-flex', marginTop: '0.5%' }}>
             {medications ? medications.map(medication =>
                 <div style={{ float: 'left', width: '33%', paddingLeft: '0.5%' }}>
-                    <h3>medication.type</h3>
+                    <h3>{medication.type}</h3>
                     <MedicationsHeader />
                     <div id="div-med-body">
                         {

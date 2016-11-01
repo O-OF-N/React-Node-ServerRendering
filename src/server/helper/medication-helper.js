@@ -36,7 +36,7 @@ const buildInsulinOrdersResult = (json) => {
             insulin = (medication) ? new Records.InsulinOrder({
                 status,
                 date: dateWritten,
-                dosage: (dosageInstruction && dosageInstruction instanceof array && dosageInstruction[0]) ? dosageInstruction[0].text : null,
+                dosage: (dosageInstruction && dosageInstruction instanceof Array && dosageInstruction[0]) ? dosageInstruction[0].text : null,
                 medication: medication.name,
                 administration: fetchMedicationAdministration(dosageInstruction),
                 code: parseInt(medication.code)

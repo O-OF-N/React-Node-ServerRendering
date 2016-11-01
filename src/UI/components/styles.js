@@ -143,7 +143,8 @@ export const MedicationFirstItemsSpanStyle = {
 };
 
 export const MedicationItemsStyle = {
-  width: '100%'
+  width: '100%',
+  overflow: 'scroll'
 };
 
 export const inheritStyle = { width: 'inherit', height: 'inherit' };

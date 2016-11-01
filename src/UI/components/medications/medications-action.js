@@ -2,6 +2,7 @@ import * as Constants from '../../utils/constants';
 import axios from 'axios';
 import * as Records from '../../records/records';
 import co from 'co';
+import { Map as immutableMap } from 'immutable';
 
 
 export const fetchMedications = state => dispatch => {
@@ -20,8 +21,9 @@ const fetchMedicationsHelper = function* (state, dispatch) {
         const data = (medList && medList.data) ? medList.data : null;
         console.log(data);
         if (data) {
-            const medObj = data.map(med => new Records.Medication(med));
-            dispatch({ type: Constants.MEDICATIONS_FETCHED, payLoad: medObj });
+            const medObj = data.map(med => med.medications.length ? new Records.MedicationOrder({ type: med.type, medications: med.medications.map(m => (Records.Medication(m))) }) : null);
+            console.log(medObj)
+            dispatch({ type: Constants.MEDICATIONS_FETCHED, payLoad: medObj.filter(a => a) });
         } else
             throw { message: "medications not fetched" };
     } catch (err) {

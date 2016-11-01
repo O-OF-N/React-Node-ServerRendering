@@ -46,6 +46,11 @@ export const MedicationObject = immutableRecord({
     error: null
 });
 
+export const MedicationOrder = new Record({
+    type: '',
+    medications: immutableList()
+});
+
 export const Medication = immutableRecord({
     status: '',
     prescriber: '',

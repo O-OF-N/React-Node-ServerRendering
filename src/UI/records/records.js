@@ -1,4 +1,4 @@
-import { Record as immutableRecord, List as immutableList } from 'immutable';
+import { Record as immutableRecord, List as immutableList, Map as immutableMap } from 'immutable';
 
 export const GlucoseObject = immutableRecord({
     glucose: immutableList([]),
@@ -40,7 +40,7 @@ export const Lab = immutableRecord({
 });
 
 export const MedicationObject = immutableRecord({
-    medications: immutableList([]),
+    medications: immutableMap([]),
     fetching: false,
     fetched: false,
     error: null

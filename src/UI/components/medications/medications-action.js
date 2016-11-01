@@ -18,6 +18,7 @@ const fetchMedicationsHelper = function* (state, dispatch) {
     const medList = yield axios.get(Constants.MEDICATIONS_FETCH_URL.concat(`/${state.state}`), { headers: Constants.AUTHORIZATION_HEADER });
     try {
         const data = (medList && medList.data) ? medList.data : null;
+        console.log(data);
         if (data) {
             const medObj = data.map(med => new Records.Medication(med));
             dispatch({ type: Constants.MEDICATIONS_FETCHED, payLoad: medObj });

@@ -56,7 +56,7 @@ const categorizeOrders = (insulinOrders) => {
     console.log(insulinOrders)
     let medicationOrders = [];
     Constants.ORDER_CATEGORIZATION.forEach((value, key) => {
-        const medicationOrder = new medicationOrder({type: key, medications: new List(insulinOrders.filter(order => value.code.includes(order.code) && ((value.dosage && value.dosage === order.administration) || (!value.dosage))))});
+        const medicationOrder = new Records.MedicationOrder({type: key, medications: new List(insulinOrders.filter(order => value.code.includes(order.code) && ((value.dosage && value.dosage === order.administration) || (!value.dosage))))});
         medicationOrders.push(medicationOrder);
     });
     return medicationOrders;

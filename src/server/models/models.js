@@ -27,7 +27,7 @@ export const InsulinOrder = new Record({
     code: 0
 });
 
-export const MedicationOrders = new Record({
+export const MedicationOrder = new Record({
     type: '',
     medications: immutableList()
 });

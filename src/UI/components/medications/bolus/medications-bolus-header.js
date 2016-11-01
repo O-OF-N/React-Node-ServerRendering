@@ -1,8 +1,8 @@
 import React from 'react';
 import {
     MedicationHeaderRowStyle,
-    MedicationHeaderSpanStyle,
-    MedicationFirstHeaderSpanStyle
+    MedicationBolusHeaderSpanStyle,
+    MedicationBolusFirstHeaderSpanStyle
 } from '../../styles';
 
 const BolusMedicationsHeader = () => (

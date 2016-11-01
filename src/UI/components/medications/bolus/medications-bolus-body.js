@@ -1,8 +1,8 @@
 import React from 'react';
 import {
     MedicationItemsStyle,
-    MedicationItemsSpanStyle,
-    MedicationFirstItemsSpanStyle
+    MedicationBolusItemsSpanStyle,
+    MedicationBolusFirstItemsSpanStyle
 } from '../../styles';
 
 const BolusMedicationResultsBody = ({prescriber, status, date, medication, dosage, administration}) => (

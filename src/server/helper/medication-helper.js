@@ -54,11 +54,12 @@ const fetchMedicationAdministration = (dosage) => (dosage && dosage instanceof A
 
 const categorizeOrders = (insulinOrders) => {
     console.log(insulinOrders)
-    let medicationCategory = new Map();
+    let medicationOrders = [];
     Constants.ORDER_CATEGORIZATION.forEach((value, key) => {
-        medicationCategory.set(key, insulinOrders.filter(order => value.code.includes(order.code) && ((value.dosage && value.dosage === order.administration) || (!value.dosage))));
+        const medicationOrder = new medicationOrder({type: key, medications: new immutableList(insulinOrders.filter(order => value.code.includes(order.code) && ((value.dosage && value.dosage === order.administration) || (!value.dosage))))});
+        medicationOrders.push(medicationOrder);
     });
-    return medicationCategory;
+    return medicationOrders;
 };
 
 //const array = (() => [].constructor)()

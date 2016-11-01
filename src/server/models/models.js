@@ -27,6 +27,11 @@ export const InsulinOrder = new Record({
     code: 0
 });
 
+export const MedicationOrders = new Record({
+    type: '',
+    medications: immutableList()
+});
+
 export const AccessTokenRequestBody = new Record({
     grant_type: FHIRConfig.get(ActiveEnv).grant_type,
     code: '',

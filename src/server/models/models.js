@@ -8,7 +8,8 @@ export const Observation = new Record({
     date: '',
     quantity: 0,
     unit:'',
-    interpretation: ''
+    interpretation: '',
+    source: ''
 });
 
 export const LabResult = new Record({
@@ -23,8 +24,7 @@ export const InsulinOrder = new Record({
     medication: '',
     comments: '',
     administration: '',
-    code: 0,
-    source: ''
+    code: 0
 });
 
 export const MedicationOrder = new Record({

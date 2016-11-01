@@ -57,8 +57,6 @@ const categorizeOrders = (insulinOrders) => {
     Constants.ORDER_CATEGORIZATION.forEach((value, key) => {
         medicationCategory.set(key, insulinOrders.filter(order => value.code.includes(order.code) && ((value.dosage && value.dosage === order.administration) || (!value.dosage))));
     });
-    console.log('>>>>>>>>>>>>>>>>>');
-    console.log(medicationCategory);
     return medicationCategory;
 };
 

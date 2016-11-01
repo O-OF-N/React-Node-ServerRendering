@@ -61,5 +61,3 @@ const categorizeOrders = (insulinOrders) => {
     });
     return medicationOrders;
 };
-
-//const array = (() => [].constructor)()

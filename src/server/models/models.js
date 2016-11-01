@@ -1,4 +1,4 @@
-import {Record} from 'immutable';
+import {Record, List as immutableList} from 'immutable';
 import * as Constants from '../util/constants';
 import {ActiveEnv, FHIRConfig} from '../config/app-config';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import drawChart from './chart/draw-chart';
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 
 
 class GlucoseResults extends React.Component {
@@ -12,23 +12,24 @@ class GlucoseResults extends React.Component {
         if (this.refs.chart && this.props.glucose) {
             const labels = this.props.glucose.map(glucose => glucose.date ? new Date(glucose.date).toLocaleTimeString() : null).toJS();
             const data = this.props.glucose.map(glucose => glucose.quantity).toJS();
+            const toolTip = this.props.glucose.map(glucose => { return { date: glucose.quantity, toolTip: glucose.source } })
             const canvas = this.refs.chart;
 
             const ctx = canvas.getContext("2d");
             canvas.style.width = '48vh';
             canvas.style.height = '48vh';
-            drawChart(ctx, labels, data);
+            drawChart(ctx, labels, data, toolTip);
         }
     }
     render() {
-        const style = {width: '48%', float: 'left', paddingLeft:'0.5%'};
+        const style = { width: '48%', float: 'left', paddingLeft: '0.5%' };
         return (
             <div style={style}>
                 <h3>BG Graph</h3>
                 <div>
                     <canvas ref="chart">
                     </canvas>
-                    {this.logit() }
+                    {this.logit()}
                 </div>
             </div>
         )

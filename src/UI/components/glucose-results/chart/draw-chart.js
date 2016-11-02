@@ -1,6 +1,6 @@
 import Chart from 'chart.js'
 
-const drawChart = (context, labels, data) => {
+const drawChart = (context, labels, data, toolTip) => {
     const myChart = new Chart(context, {
         type: 'bar',
         data: {
@@ -20,8 +20,18 @@ const drawChart = (context, labels, data) => {
             }]
         },
         options: {
+            legend: {
+            display: true,
+            labels: {
+                fontColor: 'rgb(255, 99, 132)'
+            },
+            tooltips :{
+                title: (tooltipItem,data)=> {
+                    console.log(tooltipItem);
+                    return toolTip.filter(d => d.data === data);
+                }
+            },
             scales: {
-                labelString: "texting",
                 yAxes: [{
                     ticks: {
                         beginAtZero: true,

@@ -25,7 +25,7 @@ const drawChart = (context, labels, data, toolTip) => {
                 fontColor: 'rgb(255, 99, 132)'
             },
             tooltips :{
-                title: (tooltipItem,data)=> {
+                label: (tooltipItem,data)=> {
                     console.log(tooltipItem);
                     return toolTip.filter(d => d.data === data);
                 }

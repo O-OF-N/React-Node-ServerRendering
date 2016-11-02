@@ -81,10 +81,11 @@ export const LabDivStyle = {
 
 export const LabBodyDivStyle = {
   height: '90%',
-  maxHeight: '90%',
+  /*maxHeight: '90%',
   display: 'inline-block',
-  overflowY: 'hidden',
-  overflowX: 'hidden'
+  overflowY: 'auto',
+  overflowX: 'hidden'*/
+  width:'99%'
 };
 
 //Medication

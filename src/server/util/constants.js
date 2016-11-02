@@ -16,7 +16,7 @@ export const OBSERVATION_CATEGORY_URL = "http://hl7.org/fhir/observation-categor
 
 // Labs
 
-export const GLUCOSE = "2345-7";
+export const GLUCOSE = ["41653-7", "2345-7", "2339-0", "74774-1", "41652-9", "41651-1", "32016-8","5792-7", "2350-7", "2349-9", "25428-4"];
 export const SERUM_CO2 = "2028-9";
 export const SERUM_POTASSIUM = "2823-3";
 export const SERUM_SODIUM = "2951-2";
@@ -33,7 +33,7 @@ export const URINE_KETONE = "2514-8";
 
 
 export const LONIC_CODES = new Map([
-    ["GLUCOSE", GLUCOSE],
+    ["Glucose", GLUCOSE],
     ["SERUM_CO2", SERUM_CO2],
     ["SERUM_POTASSIUM", SERUM_POTASSIUM],
     ["SERUM_SODIUM", SERUM_SODIUM],
@@ -63,28 +63,17 @@ export const DRIP = { code: [575148, 575628, 575146], dosage: INTRAVENOUS_TEXT }
 
 export const BASAL = { code: [51428, 274783, 261551, 400560, 1670012, 92880, 93558, 977838, 752386], dosage: null };
 
-/*export const BASAL = { code: [261551, 400560, 1670012, 92880, 93558, 977838, 752386], dosage: null };*/
-
-/*export const BOLUS = { code: [575148, 575628, 575146, 575679, 575151, 1652240, 803192], dosage: SUBCUTANEOUS_TEXT };*/
-
 export const BOLUS = { code: [51428, 274783, 261551, 400560, 1670012, 92880, 93558, 977838, 752386, 575148, 575628, 575146, 575679, 575151, 1652240, 803192], dosage: null };
 
-export const PUMP = { names: ['insulin pump'], dosage: null };
+/*export const BASAL = { code: [261551, 400560, 1670012, 92880, 93558, 977838, 752386], dosage: null };
+
+export const BOLUS = { code: [575148, 575628, 575146, 575679, 575151, 1652240, 803192], dosage: SUBCUTANEOUS_TEXT };*/
 
 export const ORAL_HYPOGLYCEMICS = { code: [6809, 4821, 73044, 4815], dosage: null };
-
 
 export const ORDER_CATEGORIZATION = new Map([
     ['Insulin Drip', DRIP],
     ['Basal / Premixed', BASAL],
     ['Bolus / Sliding Scale', BOLUS],
-    //['Insulin Pump', PUMP],
     ['Oral Hypoglycemics', ORAL_HYPOGLYCEMICS]
 ]);
-
-/*export const OBSERVATIONS_FETCH_URL =
-    `https://fhir.sandboxcernerpowerchart.com/dstu2/d075cf8b-3261-481d-97e5-ba6c48d3b41f/Observation?patient=1316024&code=http://loinc.org|2345-7,http://loinc.org|8335-2,http://loinc.org|3137-7,http://loinc.org|718-7,http://loinc.org|59574-4`;*/
-
-
-/*export const OBSERVATIONS_FETCH_URL = "https://fhir-open.sandboxcernerpowerchart.com/may2015/d075cf8b-3261-481d-97e5-ba6c48d3b41f/Observation?patient=1316024&code=http://loinc.org|2345-7,http://loinc.org|8335-2,http://loinc.org|3137-7,http://loinc.org|718-7,http://loinc.org|59574-4";
-*/

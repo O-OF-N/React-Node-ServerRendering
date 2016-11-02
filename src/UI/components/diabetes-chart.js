@@ -10,10 +10,10 @@ const DiabetesChart = () => (
             <GlucoseResults />
             <LabResults />
         </div>
-        <div style={{ width: '100%', height: '40%' }}>
+        <div style={{ width: '100%', height: '40%',marginTop: '3%' }}>
             <Medications />
         </div>
-        <div style={{ width: '100%', height: '10%' }}>
+        <div style={{ width: '100%', height: '5%' }}>
             <span><button>Sliding scale</button></span>
         </div>
     </div>

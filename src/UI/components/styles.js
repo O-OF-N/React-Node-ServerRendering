@@ -207,7 +207,16 @@ export const MedicationBolusFirstItemsSpanStyle = {
 
 export const MedicationItemsStyle = {
   width: '100%',
-  float: 'left'
+  float: 'left',
+  maxHeight: '50%',
+  overflowY: 'scroll',
+  display: 'inline-block'
 };
+
+export const MedicationTableStyle = {
+  float: 'left',
+  width: '48%',
+  paddingLeft: '0.5%'
+}
 
 export const inheritStyle = { width: 'inherit', height: 'inherit' };

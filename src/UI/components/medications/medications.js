@@ -4,9 +4,10 @@ import MedicationsBody from './medications-body';
 import BolusMedicationsHeader from './bolus/medications-bolus-header';
 import BolusMedicationsBody from './bolus/medications-bolus-body';
 import { connect } from 'react-redux';
+import { MedicationTableStyle } from '../styles';
 
 const NonBolusMedications = ({medication}) => medication ? (
-    <div style={{ float: 'left', width: '33%', paddingLeft: '0.5%' }}>
+    <div style={MedicationTableStyle}>
         <h3>{medication.type}</h3>
         <MedicationsHeader />
         <div id="div-med-body">
@@ -18,7 +19,7 @@ const NonBolusMedications = ({medication}) => medication ? (
 ) : null;
 
 const BolusMedications = ({medication}) => medication ? (
-    <div style={{ float: 'left', width: '40%', paddingLeft: '0.5%' }}>
+    <div style={MedicationTableStyle}>
         <h3>{medication.type}</h3>
         <BolusMedicationsHeader />
         <div id="div-med-body">

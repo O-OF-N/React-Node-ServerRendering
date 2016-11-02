@@ -20,16 +20,6 @@ const drawChart = (context, labels, data, toolTip) => {
             }]
         },
         options: {
-            display: true,
-            labels: {
-                fontColor: 'rgb(255, 99, 132)'
-            },
-            tooltips :{
-                label: (tooltipItem,data)=> {
-                    console.log(tooltipItem);
-                    return toolTip.filter(d => d.data === data);
-                }
-            },
             scales: {
                 yAxes: [{
                     ticks: {

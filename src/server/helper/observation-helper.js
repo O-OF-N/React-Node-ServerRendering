@@ -34,7 +34,10 @@ const fetchObservationResultsHelper = function* (state, lonicCodesList, date = n
 
 const flatMap = (lonicCodesList) => {
     let lonicCodes = [];
-    lonicCodesList ? lonicCodesList.forEach(codes => codes instanceof Array ? lonicCodes.push(...codes) : lonicCodes.push(codes)) : null;
+    lonicCodesList ? lonicCodesList.forEach(codes => {
+        const lonicCode = Constants.LONIC_CODES.get(codes);
+        lonicCode instanceof Array ? lonicCodes.push(...lonicCode) : lonicCodes.push(lonicCode);
+    }) : null;
     console.log('lonic codes = ');
     console.log(lonicCodes);
     return lonicCodes;

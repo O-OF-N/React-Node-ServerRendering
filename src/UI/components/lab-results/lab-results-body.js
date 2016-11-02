@@ -14,16 +14,13 @@ const LabResultValues = ({text, quantity, date, unit}) => (
     </div>
 );
 
-const LabResultName = ({labs}) => {
-    const text = labs.get(0).text;
-    return (
-        <span style={LabFirstItemsSpanStyle} title={text}>{text ? text : '-'}</span>
-    );
-};
+const LabResultName = ({code}) => (
+    <span style={LabFirstItemsSpanStyle} title={code}>{code ? code : '-'}</span>
+);
 
 const LabResultsBody = ({code, labs}) => (
     <div style={LabItemsStyle}>
-        <LabResultName labs={labs} />
+        <LabResultName code={code} />
         <div style={LabValuesDivStyle}>
             {labs.map((l) => <LabResultValues {...l.toJS() } />)}
         </div>

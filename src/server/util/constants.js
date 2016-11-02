@@ -14,43 +14,52 @@ export const LONIC_URL = "http://loinc.org";
 export const RXNORM_URL = "http://www.nlm.nih.gov/research/umls/rxnorm";
 export const OBSERVATION_CATEGORY_URL = "http://hl7.org/fhir/observation-category";
 
+//Blood Glucose
+export const GLUCOSE = ["2345-7"]
+
 // Labs
-
-export const GLUCOSE = ["41653-7", "2345-7", "2339-0", "74774-1", "41652-9", "41651-1", "32016-8", "5792-7", "2350-7", "2349-9", "25428-4"];
-export const SERUM_CO2 = ["2028-9"];
-export const SERUM_POTASSIUM = ["2823-3"];
-export const SERUM_SODIUM = ["2951-2"];
-export const ANION_GAP = ["1863-0"];
-export const PH_VENOUS = ["2746-6"];
+export const GLUCOSE_SERUM_POCT = ["41653-7", "2345-7", "2339-0", "74774-1", "41652-9", "41651-1", "32016-8", "5792-7", "2350-7", "2349-9", "25428-4"];
+export const SODIUM_SERUM_POCT = ["2951-2", "2947-0", "32717-1", "39792-7", "41657-8", "39791-9"];
+export const POTASSIUM_SERUM_POCT = ["2823-3", "6298-4", "32713-0", "39790-1", "41656-0", "39789-3"];
+export const BICARBONATE_SERUM = ["20565-8", "2028-9", "1959-6", "1962-0", "1963-8"];
+export const BICARBONATE_ARTERIAL = ["1960-4"];
+export const BICARBONATE_VENOUS = ["19229-4", "14627-4"];
+export const BICARBONATE_CAPILLARY = ["1961-2"];
 export const PH_ARTERIAL = ["2744-1"];
-export const PCO2_Venous = ["2021-4"];
-export const PCO2_ARTERIAL = ["2019-8"];
-export const BASE_DEFICIT_VENOUS = ["1924-0"];
-export const BASE_DEFICIT_ARTERIAL = ["1922-4"];
-export const URINE_KETONE = ["2514-8"];
-
-//Serum Ketones,Urine Glucose
-
+export const PH_VENOUS = ["19213-8", "2746-6"];
+export const PH_CAPILLARY = ["2745-8"];
+export const ANION_GAP_SERUM = ["33037-3", "10466-1", "73582-9", "1863-0", "77341-6"];
+export const GLUCOSE_URINE = ["5792-7", "2350-7", "2349-9", "25428-4"];
+export const KETONES_URINE = ["2514-8", "49779-2", "5797-6", "33903-6", "5569-9", "27132-0", "1702-0"];
+export const BETA_HYDROXYBUTYRATE_URINE = ["1947-1", "29622-8"];
+export const KETONES_SERUM = ["2513-0", "33058-9", "30574-8", "9425-0", "5567-3", "1705-3", "1704-6"];
+export const BETA_HYDROXYBUTYRATE_SERUM = ["29512-1", "43923-2", "66441-7"];
+export const HEMOGLOBIN_A1C = ["4548-4", "17856-6", "4549-2"];
 
 export const LONIC_CODES = new Map([
     ["Glucose", GLUCOSE],
-    ["SERUM_CO2", SERUM_CO2],
-    ["SERUM_POTASSIUM", SERUM_POTASSIUM],
-    ["SERUM_SODIUM", SERUM_SODIUM],
-    ["ANION_GAP", ANION_GAP],
-    ["PH_VENOUS", PH_VENOUS],
-    ["PH_ARTERIAL", PH_ARTERIAL],
-    ["PCO2_Venous", PCO2_Venous],
-    ["PCO2_ARTERIAL", PCO2_ARTERIAL],
-    ["BASE_DEFICIT_VENOUS", BASE_DEFICIT_VENOUS],
-    ["BASE_DEFICIT_ARTERIAL", BASE_DEFICIT_ARTERIAL],
-    ["URINE_KETONE", URINE_KETONE]
-
+    ["Glucose - serum/POCT", GLUCOSE_SERUM_POCT],
+    ["Sodium - serum/POCT", SODIUM_SERUM_POCT],
+    ["Potassium - serum/POCT", POTASSIUM_SERUM_POCT],
+    ["Bicarbonate - serum", BICARBONATE_SERUM],
+    ["Bicarbonate - arterial", BICARBONATE_ARTERIAL],
+    ["Bicarbonate - venous", BICARBONATE_VENOUS],
+    ["Bicarbonate - capillary", BICARBONATE_CAPILLARY],
+    ["pH - arterial", PH_ARTERIAL],
+    ["pH - venous", PH_VENOUS],
+    ["pH - capillary", PH_CAPILLARY],
+    ["Anion gap - serum", ANION_GAP_SERUM],
+    ["Glucose - urine", GLUCOSE_URINE],
+    ["Ketones - urine", KETONES_URINE],
+    ["Beta-hydroxybutyrate - urine", BETA_HYDROXYBUTYRATE_URINE],
+    ["Ketones - serum", KETONES_SERUM],
+    ["Beta-hydroxybutyrate - serum", BETA_HYDROXYBUTYRATE_SERUM],
+    ["Hemoglobin A1c", HEMOGLOBIN_A1C]
 ]);
 
 export const GLUCOSE_CODES = ["Glucose"];
 
-export const LABS_LOINIC_CODES = ["SERUM_CO2", "SERUM_POTASSIUM", "SERUM_SODIUM", "ANION_GAP", "PH_VENOUS", "PH_ARTERIAL", "PCO2_Venous", "PCO2_ARTERIAL", "BASE_DEFICIT_VENOUS", "BASE_DEFICIT_ARTERIAL", "URINE_KETONE"];
+export const LABS_LOINIC_CODES = ["Glucose - serum/POCT", "Sodium - serum/POCT", "Potassium - serum/POCT", "Bicarbonate - serum", "Bicarbonate - arterial", "Bicarbonate - venous", "Bicarbonate - capillary", "pH - arterial", "pH - venous", "pH - capillary", "Anion gap - serum", "Glucose - urine", "Ketones - urine", "Beta-hydroxybutyrate - urine", "Ketones - serum", "Beta-hydroxybutyrate - serum", "Hemoglobin A1c"];
 
 export const LAB_RESULT_COUNT = 2;
 

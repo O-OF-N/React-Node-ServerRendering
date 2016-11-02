@@ -22,7 +22,7 @@ const NonBolusMedications = ({medication}) => medication ? (
 const BolusMedications = ({medication}) => medication ? (
     <div style={MedicationTableStyle}>
         <h3>{medication.type}</h3>
-        <Table columns={columns} data={medication.medications} />
+        <Table columns={columns} data={medication.medications.toJS()} />
     </div>
 ) : null;
 

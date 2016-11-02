@@ -6,14 +6,14 @@ const drawChart = (context, labels, data) => {
         data: {
             labels: labels,
             datasets: [{
-                label: 'Glucose',
+                label: 'BG values',
+                lineTension: 0.1,
+                pointStyle: 'triangle',
                 type: 'line',
                 fill:false,
                 data: data,
-                backgroundColor:
-                'rgba(255, 99, 132, 0.2)',
-                borderColor:
-                'rgba(255,99,132,1)',
+                backgroundColor:'rgba(255, 99, 132, 0.2)',
+                borderColor:'rgba(255,99,132,1)',
                 borderWidth: 1,
                 responsive: true,
                 maintainAspectRatio: false,
@@ -21,6 +21,7 @@ const drawChart = (context, labels, data) => {
         },
         options: {
             scales: {
+                labelString: "texting",
                 yAxes: [{
                     ticks: {
                         beginAtZero: true,

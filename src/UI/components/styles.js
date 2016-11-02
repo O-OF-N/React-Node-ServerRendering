@@ -83,7 +83,7 @@ export const LabBodyDivStyle = {
   height: '90%',
   maxHeight: '90%',
   display: 'inline-block',
-  overflowY: 'scroll',
+  overflowY: 'auto',
   overflowX: 'hidden'
 };
 
@@ -218,7 +218,7 @@ export const MedicationTableStyle = {
 
 export const MedicationBodyDivStyle = {
   maxHeight: '50%',
-  overflowY: 'scroll',
+  overflowY: 'auto',
   display: 'inline-block'
 }
 

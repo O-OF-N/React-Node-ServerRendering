@@ -5,8 +5,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.fetchLabResults = exports.fetchGlucoseResults = undefined;
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
-
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
 var _models = require('../models/models');
@@ -33,6 +31,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 //Public functions
 var fetchGlucoseResults = exports.fetchGlucoseResults = regeneratorRuntime.mark(function fetchGlucoseResults(state) {
     var result;
@@ -55,7 +55,7 @@ var fetchGlucoseResults = exports.fetchGlucoseResults = regeneratorRuntime.mark(
 });
 
 var fetchLabResults = exports.fetchLabResults = regeneratorRuntime.mark(function fetchLabResults(state) {
-    var result, labs, result1;
+    var result, labs;
     return regeneratorRuntime.wrap(function fetchLabResults$(_context2) {
         while (1) {
             switch (_context2.prev = _context2.next) {
@@ -65,12 +65,9 @@ var fetchLabResults = exports.fetchLabResults = regeneratorRuntime.mark(function
                 case 1:
                     result = _context2.t0;
                     labs = HttpUtil.checkResponseStatus(result) ? buildLabResultsFromJson(result) : null;
-                    result1 = groupLabs(Constants.LABS_LOINIC_CODES, labs);
+                    return _context2.abrupt('return', groupLabs(Constants.LABS_LOINIC_CODES, labs));
 
-                    console.log(result1);
-                    return _context2.abrupt('return', labs);
-
-                case 6:
+                case 4:
                 case 'end':
                     return _context2.stop();
             }
@@ -79,7 +76,7 @@ var fetchLabResults = exports.fetchLabResults = regeneratorRuntime.mark(function
 });
 
 //Private functions
-var fetchObservationResultsHelper = regeneratorRuntime.mark(function fetchObservationResultsHelper(state, lonicCodes) {
+var fetchObservationResultsHelper = regeneratorRuntime.mark(function fetchObservationResultsHelper(state, lonicCodesList) {
     var date = arguments.length <= 2 || arguments[2] === undefined ? null : arguments[2];
     var duration = arguments.length <= 3 || arguments[3] === undefined ? 0 : arguments[3];
 
@@ -96,7 +93,7 @@ var fetchObservationResultsHelper = regeneratorRuntime.mark(function fetchObserv
                     _ref = _context3.sent;
                     _ref2 = _slicedToArray(_ref, 1);
                     userAuthenticationModel = _ref2[0];
-                    url = HttpUtil.buildObeservationURL(userAuthenticationModel.patient, lonicCodes, userAuthenticationModel.iss, getDateRange(date, duration));
+                    url = HttpUtil.buildObeservationURL(userAuthenticationModel.patient, flatMap(lonicCodesList), userAuthenticationModel.iss, getDateRange(date, duration));
                     authHeader = HttpUtil.buildAuthorizationHeader(userAuthenticationModel);
                     _context3.next = 9;
                     return (0, _httpService.get)(url, authHeader);
@@ -113,23 +110,33 @@ var fetchObservationResultsHelper = regeneratorRuntime.mark(function fetchObserv
     }, fetchObservationResultsHelper, this);
 });
 
-var groupLabs = function groupLabs(loincCodes, results) {
-    console.log(loincCodes);
-    console.log(typeof loincCodes === 'undefined' ? 'undefined' : _typeof(loincCodes));
-    var result = loincCodes.map(function (lc) {
-        return buildResultLoincMap(Constants.LONIC_CODES.get(lc), results);
-    });
-    console.log(result);
-    return result;
+var flatMap = function flatMap(lonicCodesList) {
+    var lonicCodes = [];
+    lonicCodesList ? lonicCodesList.forEach(function (codes) {
+        var lonicCode = Constants.LONIC_CODES.get(codes);
+        lonicCode instanceof Array ? lonicCodes.push.apply(lonicCodes, _toConsumableArray(lonicCode)) : lonicCodes.push(lonicCode);
+    }) : null;
+    console.log('lonic codes = ');
+    console.log(lonicCodes);
+    return lonicCodes;
 };
 
-var buildResultLoincMap = function buildResultLoincMap(code, results) {
-    console.log(code);
-    console.log(results);
-    return new Records.LabResult({ code: code, observation: results.filter(function (r) {
-            return r.code === code;
-        }) });
+var groupLabs = function groupLabs(loincCodes, results) {
+    return loincCodes.map(function (lc) {
+        return buildResultLoincMap(lc, Constants.LONIC_CODES.get(lc), results);
+    }).filter(function (r) {
+        return r.observation.size;
+    });
 };
+
+var buildResultLoincMap = function buildResultLoincMap(lc, code, results) {
+    return new Records.LabResult({ code: lc, observation: results.filter(function (r) {
+            return code.includes(r.resource);
+        }).sort(function (r) {
+            return r.date;
+        }).slice(0, Constants.LAB_RESULT_COUNT) });
+};
+
 var getDateRange = function getDateRange(date, duration) {
     if (date && duration) {
         var today = new Date(date);
@@ -160,7 +167,7 @@ var buildLabResultsFromJson = function buildLabResultsFromJson(json) {
         }
     }).filter(function (entry) {
         return entry ? true : false;
-    }).sort(compare) : null;
+    }) : null;
     return (0, _immutable.List)(lab);
 };
 
@@ -173,7 +180,10 @@ var buildObservationFromResource = function buildObservationFromResource(resourc
         date: resource.issued,
         quantity: resource.valueQuantity && resource.valueQuantity.value ? resource.valueQuantity.value : null,
         unit: resource.valueQuantity && resource.valueQuantity.unit ? resource.valueQuantity.unit : null,
-        interpretation: resource.interpretation && resource.interpretation.coding ? resource.interpretation.coding[0].code : null
+        interpretation: resource.interpretation && resource.interpretation.coding ? resource.interpretation.coding[0].code : null,
+        source: resource.category && resource.category.coding ? resource.category.coding.filter(function (code) {
+            return code.system === Constants.OBSERVATION_CATEGORY_URL;
+        })[0]['code'] : null
     });
 };
 

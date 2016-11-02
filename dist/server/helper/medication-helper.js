@@ -33,7 +33,7 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 
 //public functions
 var fetchMedications = exports.fetchMedications = regeneratorRuntime.mark(function fetchMedications(state) {
-    var result;
+    var result, insulinOrders;
     return regeneratorRuntime.wrap(function fetchMedications$(_context) {
         while (1) {
             switch (_context.prev = _context.next) {
@@ -42,9 +42,10 @@ var fetchMedications = exports.fetchMedications = regeneratorRuntime.mark(functi
 
                 case 1:
                     result = _context.t0;
-                    return _context.abrupt('return', HttpUtil.checkResponseStatus(result) ? buildInsulinOrdersResult(result) : null);
+                    insulinOrders = HttpUtil.checkResponseStatus(result) ? buildInsulinOrdersResult(result) : null;
+                    return _context.abrupt('return', insulinOrders ? categorizeOrders(insulinOrders) : null);
 
-                case 3:
+                case 4:
                 case 'end':
                     return _context.stop();
             }
@@ -104,11 +105,12 @@ var buildInsulinOrdersResult = function buildInsulinOrdersResult(json) {
             var medication = fetchMedicationFromResource(medicationCodeableConcept);
             insulin = medication ? new Records.InsulinOrder({
                 status: status,
-                prescriber: prescriber ? prescriber.display : null,
                 date: dateWritten,
-                dosage: dosageInstruction && dosageInstruction instanceof array && dosageInstruction[0] ? dosageInstruction[0].text : null,
-                medication: medication,
-                administration: fetchMedicationAdministration(dosageInstruction)
+                dosage: dosageInstruction && dosageInstruction instanceof Array && dosageInstruction[0] ? dosageInstruction[0].text : null,
+                medication: medication.name,
+                administration: fetchMedicationAdministration(dosageInstruction),
+                code: parseInt(medication.code),
+                comments: dosageInstruction && dosageInstruction instanceof Array && dosageInstruction[0] ? dosageInstruction[0].additionalInstructions : null
             }) : null;
         };
         return insulin;
@@ -119,14 +121,23 @@ var buildInsulinOrdersResult = function buildInsulinOrdersResult(json) {
 };
 
 var fetchMedicationFromResource = function fetchMedicationFromResource(concept) {
-    return concept ? concept.text : null;
+    return concept ? { name: concept.text, code: concept.coding ? concept.coding.filter(function (codes) {
+            return codes.system === Constants.RXNORM_URL;
+        })[0].code : null } : null;
 };
 
 var fetchMedicationAdministration = function fetchMedicationAdministration(dosage) {
-    return dosage && dosage instanceof array && dosage[0] && dosage[0].route && dosage[0].route.coding && dosage[0].route.coding instanceof array && dosage[0].route.coding[0] ? dosage[0].route.coding[0].code === Constants.SUBCUTANEOUS ? Constants.SUBCUTANEOUS_TEXT : Constants.INTRAVENOUS_TEXT : null;
+    return dosage && dosage instanceof Array && dosage[0] && dosage[0].route && dosage[0].route.coding && dosage[0].route.coding instanceof Array && dosage[0].route.coding[0] ? dosage[0].route.coding[0].code === Constants.SUBCUTANEOUS ? Constants.SUBCUTANEOUS_TEXT : Constants.INTRAVENOUS_TEXT : null;
 };
 
-var array = function () {
-    return [].constructor;
-}();
+var categorizeOrders = function categorizeOrders(insulinOrders) {
+    var medicationOrders = [];
+    Constants.ORDER_CATEGORIZATION.forEach(function (value, key) {
+        var medicationOrder = new Records.MedicationOrder({ type: key, medications: new _immutable.List(insulinOrders.filter(function (order) {
+                return value.code.includes(order.code) && (value.dosage && value.dosage === order.administration || !value.dosage);
+            })) });
+        medicationOrders.push(medicationOrder);
+    });
+    return medicationOrders;
+};
 //# sourceMappingURL=medication-helper.js.map

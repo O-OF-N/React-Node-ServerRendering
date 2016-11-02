@@ -5,6 +5,7 @@ import BolusMedicationsHeader from './bolus/medications-bolus-header';
 import BolusMedicationsBody from './bolus/medications-bolus-body';
 import { connect } from 'react-redux';
 import { MedicationTableStyle, MedicationBodyDivStyle } from '../styles';
+import Table from 'rc-table';
 
 const NonBolusMedications = ({medication}) => medication ? (
     <div style={MedicationTableStyle}>
@@ -21,12 +22,7 @@ const NonBolusMedications = ({medication}) => medication ? (
 const BolusMedications = ({medication}) => medication ? (
     <div style={MedicationTableStyle}>
         <h3>{medication.type}</h3>
-        <BolusMedicationsHeader />
-        <div id="div-med-body" style={MedicationBodyDivStyle}>
-            {
-                medication.medications.map((m, i) => <BolusMedicationsBody key={i} {...m.toJS() } />)
-            }
-        </div>
+        <Table columns={columns} data={medication.medications} />
     </div>
 ) : null;
 
@@ -40,6 +36,17 @@ const Medications = ({medications}) => {
         </div>
     )
 };
+
+const columns = [{
+  title: 'Medication', dataIndex: 'medication', key:'medication', width: 100,
+}, {
+  title: 'Dosage', dataIndex: 'dosage', key:'dosage', width: 100,
+}, {
+  title: 'Date', dataIndex: 'date', key:'date', width: 200,
+}, {
+  title: 'Comments', dataIndex: 'comments', key:'comments', width: 200
+}];
+
 export default connect(state => ({
     medications: state.medicationObject.medications
 }))(Medications);

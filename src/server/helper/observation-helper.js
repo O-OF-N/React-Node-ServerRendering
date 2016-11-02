@@ -26,6 +26,7 @@ export const fetchLabResults = function* (state) {
 const fetchObservationResultsHelper = function* (state, lonicCodesList, date = null, duration = 0) {
     const [userAuthenticationModel] = yield UserAuthenticationModel.findByState(state);
     const url = HttpUtil.buildObeservationURL(userAuthenticationModel.patient, flatMap(lonicCodesList), userAuthenticationModel.iss, getDateRange(date, duration));
+    console.log('url = ' + url);
     const authHeader = HttpUtil.buildAuthorizationHeader(userAuthenticationModel);
     const result = yield get(url, authHeader);
     return result;
@@ -33,9 +34,11 @@ const fetchObservationResultsHelper = function* (state, lonicCodesList, date = n
 
 const flatMap = (lonicCodesList) => {
     let lonicCodes = [];
-    lonicCodesList.forEach(codes => codes instanceof Array ? lonicCodes.push(...codes) : lonicCodes.push(codes));
+    lonicCodesList ? lonicCodesList.forEach(codes => codes instanceof Array ? lonicCodes.push(...codes) : lonicCodes.push(codes)) : null;
+    console.log('lonic codes = ');
+    console.log(lonicCodes);
     return lonicCodes;
-}
+};
 
 const groupLabs = (loincCodes, results) => loincCodes.map(lc => buildResultLoincMap(Constants.LONIC_CODES.get(lc), results)).filter(r => r.observation.size).sort(r => r.date);
 

@@ -16,18 +16,18 @@ export const OBSERVATION_CATEGORY_URL = "http://hl7.org/fhir/observation-categor
 
 // Labs
 
-export const GLUCOSE = ["41653-7", "2345-7", "2339-0", "74774-1", "41652-9", "41651-1", "32016-8","5792-7", "2350-7", "2349-9", "25428-4"];
-export const SERUM_CO2 = "2028-9";
-export const SERUM_POTASSIUM = "2823-3";
-export const SERUM_SODIUM = "2951-2";
-export const ANION_GAP = "1863-0";
-export const PH_VENOUS = "2746-6";
-export const PH_ARTERIAL = "2744-1";
-export const PCO2_Venous = "2021-4";
-export const PCO2_ARTERIAL = "2019-8";
-export const BASE_DEFICIT_VENOUS = "1924-0";
-export const BASE_DEFICIT_ARTERIAL = "1922-4";
-export const URINE_KETONE = "2514-8";
+export const GLUCOSE = ["41653-7", "2345-7", "2339-0", "74774-1", "41652-9", "41651-1", "32016-8", "5792-7", "2350-7", "2349-9", "25428-4"];
+export const SERUM_CO2 = ["2028-9"];
+export const SERUM_POTASSIUM = ["2823-3"];
+export const SERUM_SODIUM = ["2951-2"];
+export const ANION_GAP = ["1863-0"];
+export const PH_VENOUS = ["2746-6"];
+export const PH_ARTERIAL = ["2744-1"];
+export const PCO2_Venous = ["2021-4"];
+export const PCO2_ARTERIAL = ["2019-8"];
+export const BASE_DEFICIT_VENOUS = ["1924-0"];
+export const BASE_DEFICIT_ARTERIAL = ["1922-4"];
+export const URINE_KETONE = ["2514-8"];
 
 //Serum Ketones,Urine Glucose
 
@@ -48,7 +48,7 @@ export const LONIC_CODES = new Map([
 
 ]);
 
-export const GLUCOSE_CODES = ["GLUCOSE"];
+export const GLUCOSE_CODES = ["Glucose"];
 
 export const LABS_LOINIC_CODES = ["SERUM_CO2", "SERUM_POTASSIUM", "SERUM_SODIUM", "ANION_GAP", "PH_VENOUS", "PH_ARTERIAL", "PCO2_Venous", "PCO2_ARTERIAL", "BASE_DEFICIT_VENOUS", "BASE_DEFICIT_ARTERIAL", "URINE_KETONE"];
 

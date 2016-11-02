@@ -6,6 +6,7 @@ import BolusMedicationsBody from './bolus/medications-bolus-body';
 import { connect } from 'react-redux';
 import { MedicationTableStyle, MedicationBodyDivStyle } from '../styles';
 import Table from 'rc-table';
+require('rc-table/assets/index.css');
 
 const NonBolusMedications = ({medication}) => medication ? (
     <div style={MedicationTableStyle}>

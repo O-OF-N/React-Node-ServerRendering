@@ -79,7 +79,7 @@ export const LabDivStyle = {
   padding: '0.5%'
 };
 
-const LabBodyDivStyle = {
+export const LabBodyDivStyle = {
   height: '90%',
   maxHeight: '90%',
   display: 'inline-block',

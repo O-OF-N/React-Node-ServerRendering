@@ -18,6 +18,7 @@ export const fetchMedications = function* (state) {
 const fetchMedicationsHelper = function* (state) {
     const [userAuthenticationModel] = yield UserAuthenticationModel.findByState(state);
     const url = HttpUtil.buildMedicationURL(userAuthenticationModel.patient, userAuthenticationModel.iss);
+    console.log(url);
     const authHeader = HttpUtil.buildAuthorizationHeader(userAuthenticationModel);
     const result = yield get(url, authHeader);
     return result;
@@ -32,7 +33,6 @@ const buildInsulinOrdersResult = (json) => {
             const resource = entry.resource;
             ({ status, prescriber, dateWritten, dosageInstruction, medicationCodeableConcept } = resource);
             const medication = fetchMedicationFromResource(medicationCodeableConcept);
-            console.log(medication);
             insulin = (medication) ? new Records.InsulinOrder({
                 status,
                 date: dateWritten,
@@ -45,7 +45,6 @@ const buildInsulinOrdersResult = (json) => {
         };
         return insulin;
     }).filter(entry => (entry) ? true : false) : null;
-    console.log(insulinOrder);
     return List(insulinOrder);
 };
 
@@ -54,7 +53,6 @@ const fetchMedicationFromResource = (concept) => (concept) ? { name: concept.tex
 const fetchMedicationAdministration = (dosage) => (dosage && dosage instanceof Array && dosage[0] && dosage[0].route && dosage[0].route.coding && dosage[0].route.coding instanceof Array && dosage[0].route.coding[0]) ? dosage[0].route.coding[0].code === Constants.SUBCUTANEOUS ? Constants.SUBCUTANEOUS_TEXT : Constants.INTRAVENOUS_TEXT : null;
 
 const categorizeOrders = (insulinOrders) => {
-    console.log(insulinOrders)
     let medicationOrders = [];
     Constants.ORDER_CATEGORIZATION.forEach((value, key) => {
         const medicationOrder = new Records.MedicationOrder({type: key, medications: new List(insulinOrders.filter(order => value.code.includes(order.code) && ((value.dosage && value.dosage === order.administration) || (!value.dosage))))});

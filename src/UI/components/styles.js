@@ -71,6 +71,22 @@ export const LabValuesStyle = {
   float: 'left'
 };
 
+export const LabDivStyle = {
+  width: '48%',
+  height: '100%',
+  float: 'left',
+  marginLeft: '0.5%',
+  padding: '0.5%'
+};
+
+const LabBodyDivStyle = {
+  height: '90%',
+  maxHeight: '90%',
+  display: 'inline-block',
+  overflowY: 'scroll',
+  overflowX: 'hidden'
+};
+
 //Medication
 export const MedicationHeaderSpanStyle = {
   float: 'left',

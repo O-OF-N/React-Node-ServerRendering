@@ -32,7 +32,7 @@ const BolusMedications = ({medication}) => medication ? (
 
 const Medications = ({medications}) => {
     return (
-        <div style={{ width: '96%', height: 'auto', padding: '1%', marginTop: '0.5%' }}>
+        <div style={{ width: '96%', height: '100%', padding: '1%', marginTop: '0.5%' }}>
             {medications ? medications.map(medication =>
                 medication.type === 'Bolus / Sliding Scale' ? <BolusMedications medication={medication} /> : <NonBolusMedications medication={medication} />
             ) : null}

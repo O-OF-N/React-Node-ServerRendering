@@ -19,12 +19,15 @@ const NonBolusMedications = ({medication}) => medication ? (
     </div>
 ) : null;
 
-const BolusMedications = ({medication}) => medication ? (
-    <div style={MedicationTableStyle}>
-        <h3>{medication.type}</h3>
-        <Table columns={columns} data={medication.medications.toJS()} />
-    </div>
-) : null;
+const BolusMedications = ({medication}) => {
+    const med = medication ? medication.medications.map(m => m.toJS()) : null;
+    return (
+        <div style={MedicationTableStyle}>
+            <h3>{medication.type}</h3>
+            <Table columns={columns} data={med} />
+        </div>
+    );
+}
 
 const Medications = ({medications}) => {
     return (
@@ -38,13 +41,13 @@ const Medications = ({medications}) => {
 };
 
 const columns = [{
-  title: 'Medication', dataIndex: 'medication', key:'medication', width: 100,
+    title: 'Medication', dataIndex: 'medication', key: 'medication', width: 100,
 }, {
-  title: 'Dosage', dataIndex: 'dosage', key:'dosage', width: 100,
+    title: 'Dosage', dataIndex: 'dosage', key: 'dosage', width: 100,
 }, {
-  title: 'Date', dataIndex: 'date', key:'date', width: 200,
+    title: 'Date', dataIndex: 'date', key: 'date', width: 200,
 }, {
-  title: 'Comments', dataIndex: 'comments', key:'comments', width: 200
+    title: 'Comments', dataIndex: 'comments', key: 'comments', width: 200
 }];
 
 export default connect(state => ({

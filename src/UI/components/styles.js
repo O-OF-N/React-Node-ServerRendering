@@ -85,7 +85,7 @@ export const LabBodyDivStyle = {
   display: 'inline-block',
   overflowY: 'auto',
   overflowX: 'hidden'*/
-  width:'99%'
+  width:'99.2%'
 };
 
 //Medication

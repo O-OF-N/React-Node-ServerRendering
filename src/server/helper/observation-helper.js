@@ -43,9 +43,9 @@ const flatMap = (lonicCodesList) => {
     return lonicCodes;
 };
 
-const groupLabs = (loincCodes, results) => loincCodes.map(lc => buildResultLoincMap(Constants.LONIC_CODES.get(lc), results)).filter(r => r.observation.size);
+const groupLabs = (loincCodes, results) => loincCodes.map(lc => buildResultLoincMap(lc, Constants.LONIC_CODES.get(lc), results)).filter(r => r.observation.size);
 
-const buildResultLoincMap = (code, results) => new Records.LabResult({ code: code, observation: results.filter(r => code.includes(r.resource)).sort(r => r.date).slice(0, Constants.LAB_RESULT_COUNT) });
+const buildResultLoincMap = (lc, code, results) => new Records.LabResult({ code: lc, observation: results.filter(r => code.includes(r.resource)).sort(r => r.date).slice(0, Constants.LAB_RESULT_COUNT) });
 
 const getDateRange = (date, duration) => {
     if (date && duration) {

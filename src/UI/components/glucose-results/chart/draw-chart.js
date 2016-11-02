@@ -20,7 +20,6 @@ const drawChart = (context, labels, data, toolTip) => {
             }]
         },
         options: {
-            legend: {
             display: true,
             labels: {
                 fontColor: 'rgb(255, 99, 132)'

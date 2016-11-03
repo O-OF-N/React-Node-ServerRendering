@@ -76,16 +76,10 @@ export const LabDivStyle = {
   height: '100%',
   float: 'left',
   marginLeft: '0.5%',
-  padding: '0.5%'
-};
-
-export const LabBodyDivStyle = {
-  height: '90%',
-  /*maxHeight: '90%',
-  display: 'inline-block',
-  overflowY: 'auto',
-  overflowX: 'hidden'*/
-  width:'99.2%'
+  padding: '0.5%',
+  maxWidth: '100%',
+  maxHeight: '100%',
+  overflow: 'auto'
 };
 
 //Medication

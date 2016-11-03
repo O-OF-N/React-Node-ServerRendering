@@ -3,7 +3,7 @@ import LabResultsHeader from './lab-results-header';
 import LabResultsBody from './lab-results-body';
 import LabTable from './lab-results-table';
 import { connect } from 'react-redux';
-import { LabDivStyle, LabBodyDivStyle } from '../styles';
+import { LabDivStyle } from '../styles';
 
 const LabResults = ({labMaps}) => (
     <div style={LabDivStyle}>

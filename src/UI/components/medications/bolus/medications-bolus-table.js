@@ -13,7 +13,7 @@ const columns = [{
     render: (date, row, index) => {
         console.log('inside this?????');
         console.log(date, row, index);
-        return { children: new Date(date).toLocaleString() , props: { colSpan: 1, rowSpan:1 } }
+        return [{ children: new Date(date).toLocaleString() , props: { colSpan: 1, rowSpan:1 } },{ children: new Date(date).toLocaleString() , props: { colSpan: 1, rowSpan:1 } }]
     }
 }, {
     title: 'Comments', dataIndex: 'comments', key: 'comments', width: '24%'

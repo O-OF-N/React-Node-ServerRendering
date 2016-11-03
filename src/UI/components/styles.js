@@ -214,8 +214,8 @@ export const MedicationItemsStyle = {
 export const MedicationTableStyle = {
   float: 'left',
   width: '48%',
-  height: '50%',
-  paddingLeft: '0.5%'
+  height: '48%',
+  padding: '0.5%'
 };
 
 export const MedicationBodyDivStyle = {

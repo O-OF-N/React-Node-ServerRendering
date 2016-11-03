@@ -14,6 +14,6 @@ const columns = [{
 }];
 
 const BolusMedicationsTable = ({medication}) =>
-    <Table columns={columns} data={medication} className="table" />
+    (<Table columns={columns} data={medication} className="table" />);
 
 export default BolusMedicationsTable;

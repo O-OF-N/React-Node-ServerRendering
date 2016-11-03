@@ -21,24 +21,22 @@ const dateFormat = (date) => {
     return { children: new Date(date).toLocaleString(), props: { colSpan: 1, rowSpan: 1 } }
 };
 
-const buildData = (data) => {
-    data.map(d => {
-        let lab1, lab2;
-        const code = d.code;
-        const labs = d.labs;
-        [lab1, lab2] = labs;
-        return {
-            code: code,
-            quantity: lab1.quantity,
-            date: lab1.date,
-            unit: lab1.unit,
-            children: [{
-                quantity: lab2.quantity,
-                date: lab2.date,
-                unit: lab2.unit
-            }]
-        };
-    });
-};
+const buildData = (data) => data.map(d => {
+    let lab1, lab2;
+    const code = d.code;
+    const labs = d.labs;
+    [lab1, lab2] = labs;
+    return {
+        code: code,
+        quantity: lab1.quantity,
+        date: lab1.date,
+        unit: lab1.unit,
+        children: [{
+            quantity: lab2.quantity,
+            date: lab2.date,
+            unit: lab2.unit
+        }]
+    };
+});
 
 export default LabTable;

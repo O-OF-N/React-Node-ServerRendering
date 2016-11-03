@@ -214,7 +214,6 @@ export const MedicationItemsStyle = {
 export const MedicationTableStyle = {
   float: 'left',
   width: '48%',
-  height: '48%',
   padding: '0.5%'
 };
 

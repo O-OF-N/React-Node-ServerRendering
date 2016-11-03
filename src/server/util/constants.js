@@ -14,9 +14,6 @@ export const LONIC_URL = "http://loinc.org";
 export const RXNORM_URL = "http://www.nlm.nih.gov/research/umls/rxnorm";
 export const OBSERVATION_CATEGORY_URL = "http://hl7.org/fhir/observation-category";
 
-//Blood Glucose
-export const GLUCOSE = ["2345-7"]
-
 // Labs
 export const GLUCOSE_SERUM_POCT = ["41653-7", "2345-7", "2339-0", "74774-1", "41652-9", "41651-1", "32016-8", "5792-7", "2350-7", "2349-9", "25428-4"];
 export const SODIUM_SERUM_POCT = ["2951-2", "2947-0", "32717-1", "39792-7", "41657-8", "39791-9"];
@@ -37,7 +34,7 @@ export const BETA_HYDROXYBUTYRATE_SERUM = ["29512-1", "43923-2", "66441-7"];
 export const HEMOGLOBIN_A1C = ["4548-4", "17856-6", "4549-2"];
 
 export const LONIC_CODES = new Map([
-    ["Glucose", GLUCOSE],
+    ["Glucose", GLUCOSE_SERUM_POCT],
     ["Glucose - serum/POCT", GLUCOSE_SERUM_POCT],
     ["Sodium - serum/POCT", SODIUM_SERUM_POCT],
     ["Potassium - serum/POCT", POTASSIUM_SERUM_POCT],

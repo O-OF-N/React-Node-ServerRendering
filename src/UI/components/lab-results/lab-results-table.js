@@ -14,7 +14,7 @@ const columns = [{
 
 const LabTable = ({data}) => {
     const dataBuilt = buildData(data).toJS();
-    return (<Table columns={columns} data={dataBuilt} className="table" scroll={{ y: '350' }} defaultExpandAllRows = {true} indentSize={30} onExpand={onExpand} />);
+    return (<Table columns={columns} data={dataBuilt} className="table" scroll={{ y: '350' }} defaultExpandAllRows = {true} indentSize={30} />);
 };
 
 const dateFormat = (date) => {

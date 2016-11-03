@@ -10,6 +10,7 @@ const columns = [{
     title: 'Dosage', dataIndex: 'dosage', key: 'dosage', width: '24%',
 }, {
     title: 'Date', dataIndex: 'date', key: 'date', width: '24%',
+    render:render
 }, {
     title: 'Comments', dataIndex: 'comments', key: 'comments', width: '24%'
 }];
@@ -19,7 +20,7 @@ const BolusMedicationsTable = ({data}) =>
 
 const render = (value, row, index) =>{
     console.log('inside this?????');
-    consol.elog(value,row,index);
+    console.log(value,row,index);
 }
 
 export default BolusMedicationsTable;

@@ -10,7 +10,7 @@ const columns = [{
     title: 'Dosage', dataIndex: 'dosage', key: 'dosage', width: '24%',
 }, {
     title: 'Date', dataIndex: 'date', key: 'date', width: '24%',
-    render: (date)=>dateRender(date)
+    render: (date)=>dateFormat(date)
 }, {
     title: 'Comments', dataIndex: 'comments', key: 'comments', width: '24%'
 }];

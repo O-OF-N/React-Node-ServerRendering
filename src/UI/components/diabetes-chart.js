@@ -20,6 +20,7 @@ const DiabetesChart = ({dispatch, slidingScale}) => (
             <span><button onClick={toggle.bind(null, dispatch)}>Sliding scale</button></span>
         </div>
         {slidingScale.visible ? (<div>
+            <BR/><BR/><BR/><BR/><BR/><BR/><BR/><BR/><BR/><BR/><BR/><BR/><BR/>
             <App />
         </div>) : null
         }

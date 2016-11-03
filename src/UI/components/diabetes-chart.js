@@ -5,6 +5,7 @@ import Medications from './medications/medications';
 import App from './sliding-scale/App';
 import { inheritStyle } from './styles';
 import * as Constants from '../utils/constants';
+import { connect } from 'react-redux';
 
 const DiabetesChart = ({dispatch, slidingScale}) => (
     <div style={inheritStyle}>

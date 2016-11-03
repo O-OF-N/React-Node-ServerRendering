@@ -15,7 +15,7 @@ const columns = [{
 const LabTable = ({data}) => {
     const dataBuilt = buildData(data);
     console.log('here???');
-    console.log(dataBuilt);
+    console.log(dataBuilt.toJS());
     return (<Table columns={columns} data={dataBuilt} className="table" scroll={{ y: '150' }} />);
 };
 

@@ -18,7 +18,7 @@ const columns = [{
 const BolusMedicationsTable = ({data}) =>
     (<Table columns={columns} data={data} className="table" scroll={{ y: '150' }} />);
 
-const dateRender = (date) => {
+const dateFormat = (date) => {
     return { children: new Date(date).toLocaleString(), props: { colSpan: 1, rowSpan: 1 } }
 };
 

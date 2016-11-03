@@ -1,5 +1,6 @@
 import React from 'react';
 import { MedicationTableStyle, MedicationBodyDivStyle } from '../../styles';
+import Table from 'rc-table';
 
 
 const columns = [{

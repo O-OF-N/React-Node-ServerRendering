@@ -10,9 +10,10 @@ const columns = [{
     title: 'Dosage', dataIndex: 'dosage', key: 'dosage', width: '24%',
 }, {
     title: 'Date', dataIndex: 'date', key: 'date', width: '24%',
-    render: () => {
+    render: (date, row, index) => {
         console.log('inside this?????');
         console.log(value, row, index);
+        return { children: new Date(date).toLocaleString() , props: { colSpan: 1, rowSpan:1 } }
     }
 }, {
     title: 'Comments', dataIndex: 'comments', key: 'comments', width: '24%'

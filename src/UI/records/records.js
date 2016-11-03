@@ -76,3 +76,26 @@ export const HGB = immutableRecord({
 export const HttpError = immutableRecord({
     message: ''
 });
+
+export const CarbohydrateCoverage = immutableRecord({
+    result: '',
+    nocarb: '',
+    gluc: '',
+    CC: '',
+    CF: ''
+});
+
+export const BloodGlucoseCoverage = immutableRecord({
+    result: '',
+    nocarb: '',
+    gluc: '',
+    CC: '',
+    CF: ''
+});
+
+export const SlidingScale = immutableRecord({
+    bloodGlucoseCoverage: new BloodGlucoseCoverage(),
+    carbohydrateCoverage: new CarbohydrateCoverage(),
+    totalResult: 0,
+    visible: false
+});

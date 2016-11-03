@@ -10,17 +10,20 @@ const columns = [{
     title: 'Dosage', dataIndex: 'dosage', key: 'dosage', width: '24%',
 }, {
     title: 'Date', dataIndex: 'date', key: 'date', width: '24%',
-    render:render
+    render: () => {
+        console.log('inside this?????');
+        console.log(value, row, index);
+    }
 }, {
     title: 'Comments', dataIndex: 'comments', key: 'comments', width: '24%'
 }];
 
 const BolusMedicationsTable = ({data}) =>
-    (<Table columns={columns} data={data} className="table" scroll={{ y: '150' }}/>);
+    (<Table columns={columns} data={data} className="table" scroll={{ y: '150' }} />);
 
-const render = (value, row, index) =>{
+const render = (value, row, index) => {
     console.log('inside this?????');
-    console.log(value,row,index);
+    console.log(value, row, index);
 }
 
 export default BolusMedicationsTable;

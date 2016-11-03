@@ -12,7 +12,7 @@ const columns = [{
     title: 'Date', dataIndex: 'date', key: 'date', width: '24%',
     render: (date, row, index) => {
         console.log('inside this?????');
-        console.log(value, row, index);
+        console.log(date, row, index);
         return { children: new Date(date).toLocaleString() , props: { colSpan: 1, rowSpan:1 } }
     }
 }, {

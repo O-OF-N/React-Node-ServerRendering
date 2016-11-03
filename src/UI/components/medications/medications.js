@@ -14,7 +14,7 @@ const NonBolusMedications = ({medication}) => {
     return (
         <div style={MedicationTableStyle}>
             <h3>{medication.type}</h3>
-            <BolusMedicationsTable data={med} />
+            <MedicationsTable data={med} />
         </div>
     );
 };

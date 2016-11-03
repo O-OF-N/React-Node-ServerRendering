@@ -1,7 +1,7 @@
 import React from 'react';
 import { MedicationTableStyle, MedicationBodyDivStyle } from '../styles';
 import Table from 'rc-table';
-require('rc-table/assets/index.css');
+require('rc-table/assets/ind    ex.css');
 
 
 const columns = [{

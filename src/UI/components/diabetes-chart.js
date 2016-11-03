@@ -2,7 +2,7 @@ import React from 'react';
 import GlucoseResults from './glucose-results/glucose-results';
 import LabResults from './lab-results/lab-results';
 import Medications from './medications/medications';
-import App from './sliding-scale/App';
+import App1 from './sliding-scale/App';
 import { inheritStyle } from './styles';
 import * as Constants from '../utils/constants';
 import { connect } from 'react-redux';

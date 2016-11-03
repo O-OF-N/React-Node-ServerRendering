@@ -27,17 +27,19 @@ function onExpand(expanded, record) {
   console.log('onExpand', expanded, record);
 }
 
-const buildData = (data) => data.map(d => {
+const buildData = (data) => data.map((d,i) => {
     let lab1, lab2;
     const code = d.code;
     const labs = d.labs;
     [lab1, lab2] = labs;
     return {
+        key: i,
         code: code,
         quantity: lab1.quantity,
         date: lab1.date,
         unit: lab1.unit,
         children: [{
+            key: i+1000,
             code: '',
             quantity: lab2.quantity,
             date: lab2.date,

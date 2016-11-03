@@ -34,6 +34,7 @@ const buildData = (data) => data.map(d => {
         date: lab1.date,
         unit: lab1.unit,
         children: [{
+            code: '',
             quantity: lab2.quantity,
             date: lab2.date,
             unit: lab2.unit

@@ -16,7 +16,7 @@ const LabTable = ({data}) => {
     const dataBuilt = buildData(data).toJS();
     console.log('here???');
     console.log(dataBuilt);
-    return (<Table columns={columns} data={dataBuilt} className="table" scroll={{ y: '350' }} />);
+    return (<Table columns={columns} data={dataBuilt} className="table" scroll={{ y: '350' }} defaultExpandAllRows={true} />);
 };
 
 const dateFormat = (date) => {

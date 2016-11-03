@@ -13,6 +13,6 @@ const columns = [{
 }];
 
 const MedicationsTable = ({data}) =>
-    (<Table columns={columns} data={data} className="table" />);
+    (<Table columns={columns} data={data} className="table" scroll={{ y: '50%' }}/>);
 
 export default MedicationsTable;

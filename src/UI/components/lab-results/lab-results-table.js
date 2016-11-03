@@ -4,7 +4,8 @@ require('rc-table/assets/index.css');
 
 
 const columns = [{
-lab}, {
+    lab
+}, {
     title: 'Dosage', dataIndex: 'dosage', key: 'dosage', width: '33%',
 }, {
     title: 'Result', dataIndex: 'result', key: 'result', width: '33%',
@@ -13,6 +14,6 @@ lab}, {
 }];
 
 const LabTable = ({data}) =>
-    (<Table columns={columns} data={data} className="table" scroll={{ y: '150' }}/>);
+    (<Table columns={columns} data={data} className="table" scroll={{ y: '150' }} />);
 
 export default LabTable;

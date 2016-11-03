@@ -15,8 +15,8 @@ const columns = [{
     title: 'Comments', dataIndex: 'comments', key: 'comments', width: '24%'
 }];
 
-const BolusMedicationsTable = ({data}) =>
-    (<Table columns={columns} data={data} className="table" scroll={{ y: '150' }} />);
+const BolusMedicationsTable = ({data,title}) =>
+    (<Table columns={columns} data={data} className="table" scroll={{ y: '150' }} title={<div><h3>{title}</h3></div>}/>);
 
 const dateFormat = (date) => {
     return { children: new Date(date).toLocaleString(), props: { colSpan: 1, rowSpan: 1 } }

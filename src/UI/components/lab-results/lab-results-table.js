@@ -13,9 +13,9 @@ const columns = [{
 }];
 
 const LabTable = ({data}) => {
-    const dataBuilt = buildData(data);
+    const dataBuilt = buildData(data).toJS();
     console.log('here???');
-    console.log(dataBuilt.toJS());
+    console.log(dataBuilt);
     return (<Table columns={columns} data={dataBuilt} className="table" scroll={{ y: '150' }} />);
 };
 

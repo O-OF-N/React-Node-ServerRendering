@@ -1,6 +1,7 @@
 import React from 'react';
 import { MedicationTableStyle, MedicationBodyDivStyle } from '../../styles';
 import Table from 'rc-table';
+require('rc-table/assets/index.css');
 
 
 const columns = [{
@@ -13,7 +14,7 @@ const columns = [{
     title: 'Comments', dataIndex: 'comments', key: 'comments', width: '24%'
 }];
 
-const BolusMedicationsTable = ({medication}) =>
-    (<Table columns={columns} data={medication} className="table" />);
+const BolusMedicationsTable = ({data}) =>
+    (<Table columns={columns} data={data} className="table" />);
 
 export default BolusMedicationsTable;

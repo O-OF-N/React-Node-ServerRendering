@@ -1,5 +1,5 @@
 import React from 'react';
-import { MedicationTableStyle, MedicationBodyDivStyle } from '../styles';
+import { MedicationTableStyle, MedicationBodyDivStyle } from '../../styles';
 
 
 const columns = [{

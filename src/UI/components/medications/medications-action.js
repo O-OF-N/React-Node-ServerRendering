@@ -22,7 +22,6 @@ const fetchMedicationsHelper = function* (state, dispatch) {
         console.log(data);
         if (data) {
             const medObj = data.map(med => med.medications.length ? new Records.MedicationOrder({ type: med.type, medications: med.medications.map(m => (Records.Medication(m))) }) : null);
-            console.log(medObj)
             dispatch({ type: Constants.MEDICATIONS_FETCHED, payLoad: medObj.filter(a => a) });
         } else
             throw { message: "medications not fetched" };

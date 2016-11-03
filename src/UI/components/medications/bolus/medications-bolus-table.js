@@ -15,6 +15,6 @@ const columns = [{
 }];
 
 const BolusMedicationsTable = ({data}) =>
-    (<Table columns={columns} data={data} className="table" scroll={{ y: '50%' }}/>);
+    (<Table columns={columns} data={data} className="table" scroll={{ y: true }}/>);
 
 export default BolusMedicationsTable;

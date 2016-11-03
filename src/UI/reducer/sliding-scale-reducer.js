@@ -19,13 +19,9 @@ const reducer = (slidingScale = init, action) => {
             });
         case Constants.CLEAR_SLIDING_SCALE:
             return new slidingScale();
-        case Constants.SLIDING_SCALE_SHOW:
+        case Constants.SLIDING_SCALE_TOGGLE_VISIBILITY:
             return slidingScale.merge({
-                visible: true
-            });
-        case Constants.SLIDING_SCALE_HIDE:
-            return slidingScale.merge({
-                visible: false
+                visible: !slidingScale.visible
             });
         default:
             return slidingScale;

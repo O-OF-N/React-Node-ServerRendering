@@ -4,7 +4,7 @@ import MedicationsBody from './medications-body';
 import BolusMedicationsHeader from './bolus/medications-bolus-header';
 import BolusMedicationsBody from './bolus/medications-bolus-body';
 import BolusMedicationsTable from './bolus/medications-bolus-table';
-import MedicationsTable from './medications-bolus-table';
+import MedicationsTable from './medications-table';
 import { connect } from 'react-redux';
 import { MedicationTableStyle, MedicationBodyDivStyle } from '../styles';
 

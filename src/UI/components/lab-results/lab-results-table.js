@@ -14,18 +14,12 @@ const columns = [{
 
 const LabTable = ({data}) => {
     const dataBuilt = buildData(data).toJS();
-    console.log('here???');
-    console.log(dataBuilt);
-    return (<Table columns={columns} data={dataBuilt} className="table" scroll={{ y: '350' }} defaultExpandAllRows indentSize={30} onExpand={onExpand} />);
+    return (<Table columns={columns} data={dataBuilt} className="table" scroll={{ y: '350' }} defaultExpandAllRows = {true} indentSize={30} onExpand={onExpand} />);
 };
 
 const dateFormat = (date) => {
     return { children: new Date(date).toLocaleString(), props: { colSpan: 1, rowSpan: 1 } }
 };
-
-function onExpand(expanded, record) {
-  console.log('onExpand', expanded, record);
-}
 
 const buildData = (data) => data.map((d,i) => {
     let lab1, lab2;

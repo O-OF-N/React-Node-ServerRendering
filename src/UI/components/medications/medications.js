@@ -4,31 +4,29 @@ import MedicationsBody from './medications-body';
 import BolusMedicationsHeader from './bolus/medications-bolus-header';
 import BolusMedicationsBody from './bolus/medications-bolus-body';
 import BolusMedicationsTable from './bolus/medications-bolus-table';
+import MedicationsTable from './medications-bolus-table';
 import { connect } from 'react-redux';
 import { MedicationTableStyle, MedicationBodyDivStyle } from '../styles';
 
 
-const NonBolusMedications = ({medication}) => medication ? (
-    <div style={MedicationTableStyle}>
-        <h3>{medication.type}</h3>
-        <MedicationsHeader />
-        <div id="div-med-body" style={MedicationBodyDivStyle}>
-            {
-                medication.medications.map((m, i) => <MedicationsBody key={i} {...m.toJS() } />)
-            }
+const NonBolusMedications = ({medication}) => {
+    const med = medication ? medication.medications.map(m => m.toJS()) : null;
+    return (
+        <div style={MedicationTableStyle}>
+            <h3>{medication.type}</h3>
+            <BolusMedicationsTable data={med} />
         </div>
-    </div>
-) : null;
-
+    );
+};
 const BolusMedications = ({medication}) => {
     const med = medication ? medication.medications.map(m => m.toJS()) : null;
     return (
         <div style={MedicationTableStyle}>
             <h3>{medication.type}</h3>
-            <BolusMedicationsTable data = {med} />
+            <BolusMedicationsTable data={med} />
         </div>
     );
-}
+};
 
 const Medications = ({medications}) => {
     return (

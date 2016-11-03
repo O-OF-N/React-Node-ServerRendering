@@ -11,6 +11,7 @@ const columns = [{
 }, {
     title: 'Date', dataIndex: 'date', key: 'date', width: '24%',
     render: (date) => {
+        console.log(dateRender);
         return { children: new Date(date).toLocaleString(), props: { colSpan: 1, rowSpan: 1 } }
     }
 }, {
@@ -20,9 +21,8 @@ const columns = [{
 const BolusMedicationsTable = ({data}) =>
     (<Table columns={columns} data={data} className="table" scroll={{ y: '150' }} />);
 
-const render = (value, row, index) => {
-    console.log('inside this?????');
-    console.log(value, row, index);
-}
+const dateRender = (date) => {
+    return { children: new Date(date).toLocaleString(), props: { colSpan: 1, rowSpan: 1 } }
+};
 
 export default BolusMedicationsTable;

@@ -7,8 +7,7 @@ import { LabDivStyle, LabBodyDivStyle } from '../styles';
 
 const LabResults = ({labMaps}) => (
     <div style={LabDivStyle}>
-        <h3>Diabetes Labs(Most recent two results captured in the past 24hrs)</h3>
-        <LabTable data={labMaps} />
+        <LabTable data={labMaps} title = "Diabetes Labs(Most recent two results captured in the past 24hrs)"/>
     </div>
 );
 

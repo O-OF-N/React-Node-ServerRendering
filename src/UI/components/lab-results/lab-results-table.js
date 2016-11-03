@@ -12,9 +12,9 @@ const columns = [{
     render: (date) => dateFormat(date)
 }];
 
-const LabTable = ({data}) => {
+const LabTable = ({data,title}) => {
     const dataBuilt = buildData(data).toJS();
-    return (<Table columns={columns} data={dataBuilt} className="table" scroll={{ y: '350' }} defaultExpandAllRows = {true} indentSize={30} />);
+    return (<Table defaultExpandAllRows columns={columns} data={dataBuilt} className="table" scroll={{ y: '350' }} indentSize={30} title={()=><div><h3>{title}</h3></div>} />);
 };
 
 const dateFormat = (date) => {

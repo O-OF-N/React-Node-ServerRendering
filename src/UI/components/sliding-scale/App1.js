@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { Modal, Popover, Tooltip, OverlayTrigger, Button, closeButton } from 'react-bootstrap';
 import { render } from 'react-dom';
 
-const toggle = dispatch => dispatch({ type: Constants.SLIDING_SCALE_TOGGLE_VISIBILITY });
+const openClose = dispatch => dispatch({ type: Constants.SLIDING_SCALE_TOGGLE_VISIBILITY });
 
 const popover = () => (
   <Popover id="modal-popover" title="popover">
@@ -21,7 +21,7 @@ const tooltip = () => (
 );
 
 const Example = ({slidingScale, dispatch}) => {
-  const toggle  = toggle.bind(null, dispatch);
+  const toggle = openClose.bind(null, dispatch);
   return (
     <Modal show={slidingScale.visible} onHide={toggle}>
       <Modal.Header closeButton>

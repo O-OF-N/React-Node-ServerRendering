@@ -14,6 +14,8 @@ const modalStyle = {
   position: 'fixed',
   zIndex: 1040,
   top: '100px', bottom: '0px', left: '100px', right: '0px',
+  width: '50%',
+  height: '50%'
 };
 
 const backdropStyle = {
@@ -21,7 +23,9 @@ const backdropStyle = {
   top: '100px', bottom: '0px', left: '100px', right: '0px',
   zIndex: 'auto',
   backgroundColor: '#F2F2F2',
-  opacity: 1.5
+  opacity: 1.5,
+  width: '50%',
+  height: '50%'
 };
 
 

@@ -23,7 +23,7 @@ const tooltip = () => (
 const Example = ({slidingScale, dispatch}) => {
   const toggle = openClose.bind(null, dispatch);
   return (
-    <Modal show={slidingScale.visible} onHide={toggle}>
+    <Modal className="static-modal" show={slidingScale.visible} onHide={toggle}>
       <Modal.Header closeButton>
         <Modal.Title>Modal heading</Modal.Title>
       </Modal.Header>

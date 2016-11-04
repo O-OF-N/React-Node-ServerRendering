@@ -56,7 +56,7 @@ const bolusMedications = () => {
         medication: 'Regular Insulin, Human 100 UNT/ML [HumuLIN R]',
         administration: Constants.SUBCUTANEOUS_TEXT,
         code: 575148,
-        comments: 'Test comments'
+        comments: '2 units, Injection, Subcutaneously,Bedtime,Routine,Start Date 02/11/2016 8:00.'
     });
     const bolus2 = new Records.InsulinOrder({
         status: 'active',
@@ -65,7 +65,7 @@ const bolusMedications = () => {
         medication: 'Insulin, Aspart, Human 100 UNT/ML [NovoLOG]',
         administration: Constants.SUBCUTANEOUS_TEXT,
         code: 575679,
-        comments: 'Test comments-1'
+        comments: '1 unit, Injection, Subcutaneously,WM,Routine,Start Date 02/11/2016 8:00. Please give NovoLOG with lunch and dinner'
     });
     return new List([bolus1, bolus2]);
 }
@@ -75,7 +75,6 @@ const fetchMedicationFromResource = (concept) => (concept) ? { name: concept.tex
 const fetchMedicationAdministration = (dosage) => (dosage && dosage instanceof Array && dosage[0] && dosage[0].route && dosage[0].route.coding && dosage[0].route.coding instanceof Array && dosage[0].route.coding[0]) ? dosage[0].route.coding[0].code === Constants.SUBCUTANEOUS ? Constants.SUBCUTANEOUS_TEXT : Constants.INTRAVENOUS_TEXT : null;
 
 const categorizeOrders = (insulinOrders) => {
-    console.log(insulinOrders);
     let medicationOrders = [];
     Constants.ORDER_CATEGORIZATION.forEach((value, key) => {
         const medicationOrder = new Records.MedicationOrder({ type: key, medications: new List(insulinOrders.filter(order => value.code.includes(order.code) && ((value.dosage && value.dosage === order.administration) || (!value.dosage)))) });

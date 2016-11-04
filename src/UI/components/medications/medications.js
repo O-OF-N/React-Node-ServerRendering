@@ -25,7 +25,7 @@ const BolusMedications = ({medication}) => {
 const Header = ({dis}) => (<div>
     <h3>Active Diabetes Med Orders</h3>
     <span style={{ paddingLeft: "1%" }}>
-        <button onClick={toggle.bind(null, dis)}>Sliding scale</button>
+        <button onClick={toggle.bind(null, dis)}>Insulin Bolus Calculator</button>
     </span>
 </div>
 );

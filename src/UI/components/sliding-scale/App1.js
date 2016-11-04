@@ -21,7 +21,6 @@ const tooltip = () => (
 );
 
 const Example = ({slidingScale, dispatch}) => (
-
     <Modal show={slidingScale.visible} onHide={toggle}>
       <Modal.Header closeButton>
         <Modal.Title>Modal heading</Modal.Title>

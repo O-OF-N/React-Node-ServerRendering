@@ -2,7 +2,7 @@ import React from 'react';
 import * as Records from '../../records/records';
 import { } from '../styles';
 import { connect } from 'react-redux';
-import { Modal } from 'react-bootstrap';
+import { Modal, Popover, Tooltip } from 'react-bootstrap';
 
 
 const toggle = dispatch => dispatch({ type: Constants.SLIDING_SCALE_TOGGLE_VISIBILITY });

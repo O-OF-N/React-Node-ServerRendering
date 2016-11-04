@@ -20,7 +20,9 @@ const tooltip = () => (
       </Tooltip>
 );
 
-const Example = ({slidingScale, dispatch}) => (
+const Example = ({slidingScale, dispatch}) => {
+  const toggle  = toggle.bind(null, dispatch);
+  return (
     <Modal show={slidingScale.visible} onHide={toggle}>
       <Modal.Header closeButton>
         <Modal.Title>Modal heading</Modal.Title>
@@ -52,7 +54,8 @@ const Example = ({slidingScale, dispatch}) => (
         <Button onClick={toggle}>Close</Button>
       </Modal.Footer>
     </Modal>
-);
+  );
+}
 
 
 export default connect(state => ({

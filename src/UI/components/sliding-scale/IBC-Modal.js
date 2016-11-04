@@ -34,7 +34,7 @@ const IBCModal = ({slidingScale, dispatch}) => {
         <Modal.Title>Insulin Bolus Calculator</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <App />
+        <IBC />
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={toggle}>Close</Button>

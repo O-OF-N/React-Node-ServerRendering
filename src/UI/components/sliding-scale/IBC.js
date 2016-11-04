@@ -1,6 +1,6 @@
 import React from 'react';
 import * as Records from '../../records/records';
-import { carbCoverage, bloodGlucose, bolusCalc, buttonImage, disclaimer } from '../styles';
+import { carbCoverage, bloodGlucose, bolusCalc, disclaimer,buttonStyle } from '../styles';
 import InfoImg from '../../images/info.png';
 
 
@@ -123,7 +123,7 @@ class popup extends React.Component {
 
 
         <div style={carbCoverage}>
-        <a style={buttonStyle1} href='#' onClick={this.handleCarbFormula}>Formula</a>
+        <a style={buttonStyle} href='#' onClick={this.handleCarbFormula}>Formula</a>
           <h2>Carbohydrate Coverage</h2>
           <div>
             <label>Insulin-to-Carbohydrate Ratio: 1 unit covers: </label>
@@ -152,7 +152,7 @@ class popup extends React.Component {
         </div>
 
         <div style={bloodGlucose}>
-        <a style={buttonStyle1} href='#' onClick={this.handleBloodGluFormula}>Formula</a>
+        <a style={buttonStyle} href='#' onClick={this.handleBloodGluFormula}>Formula</a>
           <div>
             <h2>Blood Glucose Correction</h2>
           </div>

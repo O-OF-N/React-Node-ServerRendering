@@ -298,13 +298,4 @@ export const bolusCalc = {
   //marginBottom: '-20px'
 }
 
-export const buttonImage = {
-  backgroundColor: 'Transparent',
-  backgroundRepeat: 'no-repeat',
-  border: 'none',
-  cursor: 'pointer',
-  overflow: 'hidden',
-  outline: 'none'
-}
-
 export const inheritStyle = { width: 'inherit', height: 'inherit' };

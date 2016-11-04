@@ -11,8 +11,8 @@ import UserAuthenticationModel from '../models/UserAuthenticationSchema';
 export const fetchMedications = function* (state) {
     const result = yield* fetchMedicationsHelper(state);
     const insulinOrders = HttpUtil.checkResponseStatus(result) ? buildInsulinOrdersResult(result) : null;
-    insulinOrders.push(...bolusMedications());
-    return insulinOrders ? categorizeOrders(insulinOrders) : null;
+    //return insulinOrders ? categorizeOrders(insulinOrders) : null;
+    return insulinOrders ? categorizeOrders(insulinOrders.push(...bolusMedications())) : null;
 };
 
 //Private functions

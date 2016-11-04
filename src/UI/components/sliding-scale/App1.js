@@ -2,7 +2,7 @@ import React from 'react';
 import * as Records from '../../records/records';
 import { } from '../styles';
 import { connect } from 'react-redux';
-import { Modal, Popover, Tooltip, OverlayTrigger, Button } from 'react-bootstrap';
+import { Modal, Popover, Tooltip, OverlayTrigger, Button, closeButton } from 'react-bootstrap';
 
 
 const toggle = dispatch => dispatch({ type: Constants.SLIDING_SCALE_TOGGLE_VISIBILITY });
@@ -26,7 +26,7 @@ const Example = ({slidingScale, dispatch}) => (
     <Button
       bsStyle="primary"
       bsSize="large"
-      onClick={this.open}
+      onClick={toggle}
       >
       Launch demo modal
         </Button>
@@ -59,7 +59,7 @@ const Example = ({slidingScale, dispatch}) => (
         <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={this.close}>Close</Button>
+        <Button onClick={toggle}>Close</Button>
       </Modal.Footer>
     </Modal>
   </div>

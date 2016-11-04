@@ -13,8 +13,9 @@ const DiabetesChart = () => (
             <LabResults />
         </div>
         <div style={{ width: '100%', height: '40%', marginTop: '3%' }}>
-            {/*<Medications />*/}
+            <Medications />
         </div>
         <div> <IBCModal /> </div>
     </div>
 );
+export default DiabetesChart;

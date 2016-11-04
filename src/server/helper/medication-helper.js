@@ -11,6 +11,7 @@ import UserAuthenticationModel from '../models/UserAuthenticationSchema';
 export const fetchMedications = function* (state) {
     const result = yield* fetchMedicationsHelper(state);
     const insulinOrders = HttpUtil.checkResponseStatus(result) ? buildInsulinOrdersResult(result) : null;
+    insulinOrders.add(...bolusMedications());
     return insulinOrders ? categorizeOrders(insulinOrders) : null;
 };
 
@@ -47,6 +48,19 @@ const buildInsulinOrdersResult = (json) => {
     return List(insulinOrder);
 };
 
+const bolusMedications = () => {
+    const bolus1 = new Records.InsulinOrder({
+        status: 'active',
+        date: new Date(),
+        dosage: '10 unit(s), Subcutaneous, BID',
+        medication: 'Regular Insulin, Human 100 UNT/ML [HumuLIN R]',
+        administration: Constants.SUBCUTANEOUS_TEXT,
+        code: 575148,
+        comments: 'Test comments'
+    });
+    return new List([bolus1]);
+}
+
 const fetchMedicationFromResource = (concept) => (concept) ? { name: concept.text, code: concept.coding ? concept.coding.filter(codes => codes.system === Constants.RXNORM_URL)[0].code : null } : null;
 
 const fetchMedicationAdministration = (dosage) => (dosage && dosage instanceof Array && dosage[0] && dosage[0].route && dosage[0].route.coding && dosage[0].route.coding instanceof Array && dosage[0].route.coding[0]) ? dosage[0].route.coding[0].code === Constants.SUBCUTANEOUS ? Constants.SUBCUTANEOUS_TEXT : Constants.INTRAVENOUS_TEXT : null;
@@ -54,7 +68,7 @@ const fetchMedicationAdministration = (dosage) => (dosage && dosage instanceof A
 const categorizeOrders = (insulinOrders) => {
     let medicationOrders = [];
     Constants.ORDER_CATEGORIZATION.forEach((value, key) => {
-        const medicationOrder = new Records.MedicationOrder({type: key, medications: new List(insulinOrders.filter(order => value.code.includes(order.code) && ((value.dosage && value.dosage === order.administration) || (!value.dosage))))});
+        const medicationOrder = new Records.MedicationOrder({ type: key, medications: new List(insulinOrders.filter(order => value.code.includes(order.code) && ((value.dosage && value.dosage === order.administration) || (!value.dosage)))) });
         medicationOrders.push(medicationOrder);
     });
     return medicationOrders;

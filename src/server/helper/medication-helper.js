@@ -58,7 +58,16 @@ const bolusMedications = () => {
         code: 575148,
         comments: 'Test comments'
     });
-    return new List([bolus1]);
+    const bolus2 = new Records.InsulinOrder({
+        status: 'active',
+        date: new Date(),
+        dosage: '10 unit(s), Subcutaneous, BID',
+        medication: 'Insulin, Aspart, Human 100 UNT/ML [NovoLOG]',
+        administration: Constants.SUBCUTANEOUS_TEXT,
+        code: 575679,
+        comments: 'Test comments-1'
+    });
+    return new List([bolus1, bolus2]);
 }
 
 const fetchMedicationFromResource = (concept) => (concept) ? { name: concept.text, code: concept.coding ? concept.coding.filter(codes => codes.system === Constants.RXNORM_URL)[0].code : null } : null;

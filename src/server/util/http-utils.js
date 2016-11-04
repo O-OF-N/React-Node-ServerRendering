@@ -19,4 +19,4 @@ export const buildObeservationURL = (patient, lonicCodes, url,dates) => {
     return urlConstructed;
 };
 
-export const buildMedicationURL = (patient, url) => `${url}/${Constants.MEDICATION_ORDER}?patient=${4638007}`;
+export const buildMedicationURL = (patient, url) => `${url}/${Constants.MEDICATION_ORDER}?patient=${4638007}&status=active`;

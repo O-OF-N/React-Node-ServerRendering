@@ -105,7 +105,7 @@ class popup extends React.Component {
   render() {
     return (
       <div>
-        <form style={carbCoverage}>
+        <form>
 
           <h2>Carbohydrate Coverage </h2>
 

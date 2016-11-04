@@ -53,7 +53,7 @@ const IBCModal = ({slidingScale, dispatch}) => {
       >
 
       <h2 ref="subtitle">Hello</h2>
-      <button onClick={this.closeModal}>close</button>
+      <button onClick={toggle}>close</button>
       <div>I am a modal</div>
       <form>
         <input />

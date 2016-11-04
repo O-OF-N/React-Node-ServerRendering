@@ -2,7 +2,7 @@ import React from 'react';
 import * as Records from '../../records/records';
 import * as Constants from '../../utils/constants';
 import { connect } from 'react-redux';
-import { Modal, Popover, Tooltip, OverlayTrigger, Button, closeButton } from 'react-bootstrap';
+//import { Modal, Popover, Tooltip, OverlayTrigger, Button, closeButton } from 'react-bootstrap';
 import { render } from 'react-dom';
 import IBC from './IBC';
 var Modal = require('react-modal');

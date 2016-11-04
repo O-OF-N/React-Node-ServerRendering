@@ -31,6 +31,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
 //public functions
 var fetchMedications = exports.fetchMedications = regeneratorRuntime.mark(function fetchMedications(state) {
     var result, insulinOrders;
@@ -43,7 +45,9 @@ var fetchMedications = exports.fetchMedications = regeneratorRuntime.mark(functi
                 case 1:
                     result = _context.t0;
                     insulinOrders = HttpUtil.checkResponseStatus(result) ? buildInsulinOrdersResult(result) : null;
-                    return _context.abrupt('return', insulinOrders ? categorizeOrders(insulinOrders) : null);
+                    //return insulinOrders ? categorizeOrders(insulinOrders) : null;
+
+                    return _context.abrupt('return', insulinOrders ? categorizeOrders(insulinOrders.push.apply(insulinOrders, _toConsumableArray(bolusMedications()))) : null);
 
                 case 4:
                 case 'end':
@@ -120,6 +124,28 @@ var buildInsulinOrdersResult = function buildInsulinOrdersResult(json) {
     return (0, _immutable.List)(insulinOrder);
 };
 
+var bolusMedications = function bolusMedications() {
+    var bolus1 = new Records.InsulinOrder({
+        status: 'active',
+        date: new Date(),
+        dosage: '10 unit(s), Subcutaneous, BID',
+        medication: 'Regular Insulin, Human 100 UNT/ML [HumuLIN R]',
+        administration: Constants.SUBCUTANEOUS_TEXT,
+        code: 575148,
+        comments: 'Test comments'
+    });
+    var bolus2 = new Records.InsulinOrder({
+        status: 'active',
+        date: new Date(),
+        dosage: '10 unit(s), Subcutaneous, BID',
+        medication: 'Insulin, Aspart, Human 100 UNT/ML [NovoLOG]',
+        administration: Constants.SUBCUTANEOUS_TEXT,
+        code: 575679,
+        comments: 'Test comments-1'
+    });
+    return new _immutable.List([bolus1, bolus2]);
+};
+
 var fetchMedicationFromResource = function fetchMedicationFromResource(concept) {
     return concept ? { name: concept.text, code: concept.coding ? concept.coding.filter(function (codes) {
             return codes.system === Constants.RXNORM_URL;
@@ -131,6 +157,7 @@ var fetchMedicationAdministration = function fetchMedicationAdministration(dosag
 };
 
 var categorizeOrders = function categorizeOrders(insulinOrders) {
+    console.log(insulinOrders);
     var medicationOrders = [];
     Constants.ORDER_CATEGORIZATION.forEach(function (value, key) {
         var medicationOrder = new Records.MedicationOrder({ type: key, medications: new _immutable.List(insulinOrders.filter(function (order) {

@@ -217,6 +217,25 @@ export const MedicationBodyDivStyle = {
   display: 'inline-block'
 };
 
+export const disclaimer = {
+  float: 'left',
+  width: '50%',
+  fontWeight: 'bold',
+  color: '#666',
+  display: 'table-cell',
+  verticalAlign: 'middle',
+  textAlign: 'center',
+  border: 'black',
+  borderStyle: 'solid',
+  borderWidth: '0.5px',
+  fontSize: '12px',
+  left: '25%',
+  position: 'relative',
+  paddingBottom: '5px',
+  padding: '5px 8px'
+  //marginBottom: '-20px'
+}
+
 export const carbCoverage = {
   float: 'left',
   width: '50%',
@@ -272,6 +291,15 @@ export const bolusCalc = {
   paddingBottom: '20px',
   padding: '16px 8px'
   //marginBottom: '-20px'
+}
+
+export const buttonImage = {
+  backgroundColor: 'Transparent',
+  backgroundRepeat: 'no-repeat',
+  border: 'none',
+  cursor: 'pointer',
+  overflow: 'hidden',
+  outline: 'none'
 }
 
 export const inheritStyle = { width: 'inherit', height: 'inherit' };

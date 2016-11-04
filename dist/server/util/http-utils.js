@@ -24,6 +24,7 @@ var checkResponseStatus = exports.checkResponseStatus = function checkResponseSt
     return json && json.status && json.status === Constants.HTTP_SUCCESS ? true : false;
 };
 
+//test patient ids: 4640007,4638007
 var buildObeservationURL = exports.buildObeservationURL = function buildObeservationURL(patient, lonicCodes, url, dates) {
     var codes = lonicCodes.map(function (l) {
         return Constants.LONIC_URL.concat('|').concat(l);
@@ -37,6 +38,6 @@ var buildObeservationURL = exports.buildObeservationURL = function buildObeserva
 };
 
 var buildMedicationURL = exports.buildMedicationURL = function buildMedicationURL(patient, url) {
-    return url + '/' + Constants.MEDICATION_ORDER + '?patient=' + 4638007;
+    return url + '/' + Constants.MEDICATION_ORDER + '?patient=' + 4638007 + '&status=active';
 };
 //# sourceMappingURL=http-utils.js.map

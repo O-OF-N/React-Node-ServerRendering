@@ -19,9 +19,6 @@ var LONIC_URL = exports.LONIC_URL = "http://loinc.org";
 var RXNORM_URL = exports.RXNORM_URL = "http://www.nlm.nih.gov/research/umls/rxnorm";
 var OBSERVATION_CATEGORY_URL = exports.OBSERVATION_CATEGORY_URL = "http://hl7.org/fhir/observation-category";
 
-//Blood Glucose
-var GLUCOSE = exports.GLUCOSE = ["2345-7"];
-
 // Labs
 var GLUCOSE_SERUM_POCT = exports.GLUCOSE_SERUM_POCT = ["41653-7", "2345-7", "2339-0", "74774-1", "41652-9", "41651-1", "32016-8", "5792-7", "2350-7", "2349-9", "25428-4"];
 var SODIUM_SERUM_POCT = exports.SODIUM_SERUM_POCT = ["2951-2", "2947-0", "32717-1", "39792-7", "41657-8", "39791-9"];
@@ -41,7 +38,7 @@ var KETONES_SERUM = exports.KETONES_SERUM = ["2513-0", "33058-9", "30574-8", "94
 var BETA_HYDROXYBUTYRATE_SERUM = exports.BETA_HYDROXYBUTYRATE_SERUM = ["29512-1", "43923-2", "66441-7"];
 var HEMOGLOBIN_A1C = exports.HEMOGLOBIN_A1C = ["4548-4", "17856-6", "4549-2"];
 
-var LONIC_CODES = exports.LONIC_CODES = new Map([["Glucose", GLUCOSE], ["Glucose - serum/POCT", GLUCOSE_SERUM_POCT], ["Sodium - serum/POCT", SODIUM_SERUM_POCT], ["Potassium - serum/POCT", POTASSIUM_SERUM_POCT], ["Bicarbonate - serum", BICARBONATE_SERUM], ["Bicarbonate - arterial", BICARBONATE_ARTERIAL], ["Bicarbonate - venous", BICARBONATE_VENOUS], ["Bicarbonate - capillary", BICARBONATE_CAPILLARY], ["pH - arterial", PH_ARTERIAL], ["pH - venous", PH_VENOUS], ["pH - capillary", PH_CAPILLARY], ["Anion gap - serum", ANION_GAP_SERUM], ["Glucose - urine", GLUCOSE_URINE], ["Ketones - urine", KETONES_URINE], ["Beta-hydroxybutyrate - urine", BETA_HYDROXYBUTYRATE_URINE], ["Ketones - serum", KETONES_SERUM], ["Beta-hydroxybutyrate - serum", BETA_HYDROXYBUTYRATE_SERUM], ["Hemoglobin A1c", HEMOGLOBIN_A1C]]);
+var LONIC_CODES = exports.LONIC_CODES = new Map([["Glucose", GLUCOSE_SERUM_POCT], ["Glucose - serum/POCT", GLUCOSE_SERUM_POCT], ["Sodium - serum/POCT", SODIUM_SERUM_POCT], ["Potassium - serum/POCT", POTASSIUM_SERUM_POCT], ["Bicarbonate - serum", BICARBONATE_SERUM], ["Bicarbonate - arterial", BICARBONATE_ARTERIAL], ["Bicarbonate - venous", BICARBONATE_VENOUS], ["Bicarbonate - capillary", BICARBONATE_CAPILLARY], ["pH - arterial", PH_ARTERIAL], ["pH - venous", PH_VENOUS], ["pH - capillary", PH_CAPILLARY], ["Anion gap - serum", ANION_GAP_SERUM], ["Glucose - urine", GLUCOSE_URINE], ["Ketones - urine", KETONES_URINE], ["Beta-hydroxybutyrate - urine", BETA_HYDROXYBUTYRATE_URINE], ["Ketones - serum", KETONES_SERUM], ["Beta-hydroxybutyrate - serum", BETA_HYDROXYBUTYRATE_SERUM], ["Hemoglobin A1c", HEMOGLOBIN_A1C]]);
 
 var GLUCOSE_CODES = exports.GLUCOSE_CODES = ["Glucose"];
 
@@ -57,13 +54,12 @@ var DRIP = exports.DRIP = { code: [575148, 575628, 575146], dosage: INTRAVENOUS_
 
 var BASAL = exports.BASAL = { code: [51428, 274783, 261551, 400560, 1670012, 92880, 93558, 977838, 752386], dosage: null };
 
-var BOLUS = exports.BOLUS = { code: [51428, 274783, 261551, 400560, 1670012, 92880, 93558, 977838, 752386, 575148, 575628, 575146, 575679, 575151, 1652240, 803192], dosage: null };
+var BOLUS = exports.BOLUS = { code: [575148, 575628, 575146, 575679, 575151, 1652240, 803192], dosage: SUBCUTANEOUS_TEXT };
 
 /*export const BASAL = { code: [261551, 400560, 1670012, 92880, 93558, 977838, 752386], dosage: null };
-
-export const BOLUS = { code: [575148, 575628, 575146, 575679, 575151, 1652240, 803192], dosage: SUBCUTANEOUS_TEXT };*/
+*/
 
 var ORAL_HYPOGLYCEMICS = exports.ORAL_HYPOGLYCEMICS = { code: [6809, 4821, 73044, 4815], dosage: null };
 
-var ORDER_CATEGORIZATION = exports.ORDER_CATEGORIZATION = new Map([['Insulin Drip', DRIP], ['Basal / Premixed', BASAL], ['Bolus / Sliding Scale', BOLUS], ['Oral Hypoglycemics', ORAL_HYPOGLYCEMICS]]);
+var ORDER_CATEGORIZATION = exports.ORDER_CATEGORIZATION = new Map([['Insulin Drip', DRIP], ['Basal / Premixed Insulin', BASAL], ['Bolus / Sliding Scale Insulin', BOLUS], ['Oral Hypoglycemics', ORAL_HYPOGLYCEMICS]]);
 //# sourceMappingURL=constants.js.map

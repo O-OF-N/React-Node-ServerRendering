@@ -1,6 +1,6 @@
 var webpack = require('webpack');
 var path = require('path');
-
+const PATHS = path.join(__dirname, 'public');
 module.exports = {
     devtool: 'inline-source-map',
     entry: [
@@ -21,9 +21,13 @@ module.exports = {
                 test: /\.js?$/,
                 exclude: /node_modules/,
                 loaders: ['babel?presets[]=react,presets[]=es2015']
-            },{
+            }, {
                 test: /\.css?$/,
                 loader: 'style-loader!css-loader'
+            }, {
+                test: /\.(jpg|png|gif)$/,
+                loader: 'file?name=[path][name].[hash].[ext]',
+                include: PATHS.images
             }
         ]
     },

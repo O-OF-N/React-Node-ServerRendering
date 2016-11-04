@@ -4,8 +4,7 @@ import LabResults from './lab-results/lab-results';
 import Medications from './medications/medications';
 import IBCModal from './sliding-scale/IBC-Modal';
 import { inheritStyle } from './styles';
-import * as Constants from '../utils/constants';
-import { connect } from 'react-redux';
+
 
 const DiabetesChart = ({dispatch, slidingScale}) => (
     <div style={inheritStyle}>
@@ -16,16 +15,6 @@ const DiabetesChart = ({dispatch, slidingScale}) => (
         <div style={{ width: '100%', height: '40%', marginTop: '3%' }}>
             <Medications />
         </div>
-        <div style={{ width: '100%', height: '5%' }}>
-            <span><button onClick={toggle.bind(null, dispatch)}>Sliding scale</button></span>
-        </div>
          <div> <IBCModal /> </div>
     </div>
 );
-
-const toggle = dispatch => dispatch({ type: Constants.SLIDING_SCALE_TOGGLE_VISIBILITY })
-
-export default connect(state => ({
-    dispatch: state.dispatch,
-    slidingScale: state.slidingScale
-}))(DiabetesChart);

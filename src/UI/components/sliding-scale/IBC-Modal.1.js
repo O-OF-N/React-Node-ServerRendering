@@ -5,8 +5,6 @@ import { connect } from 'react-redux';
 import { Modal, Popover, Tooltip, OverlayTrigger, Button, closeButton } from 'react-bootstrap';
 import { render } from 'react-dom';
 import IBC from './IBC';
-var Modal = require('react-modal');
-
 require('react-bootstrap');
 
 
@@ -30,39 +28,21 @@ const backdropStyle = {
   height: '50%'
 };
 
-const customStyles = {
-  content : {
-    top                   : '50%',
-    left                  : '50%',
-    right                 : 'auto',
-    bottom                : 'auto',
-    marginRight           : '-50%',
-    transform             : 'translate(-50%, -50%)'
-  }
-};
-
 
 const IBCModal = ({slidingScale, dispatch}) => {
   const toggle = openClose.bind(null, dispatch);
   return (
-    <Modal
-      isOpen={this.state.modalIsOpen}
-      onAfterOpen={this.afterOpenModal}
-      onRequestClose={this.closeModal}
-      style={customStyles}
-      contentLabel="Example Modal"
-      >
-
-      <h2 ref="subtitle">Hello</h2>
-      <button onClick={this.closeModal}>close</button>
-      <div>I am a modal</div>
-      <form>
-        <input />
-        <button>tab navigation</button>
-        <button>stays</button>
-        <button>inside</button>
-        <button>the modal</button>
-      </form>
+    <Modal dialogClassName="custom-modal" show={slidingScale.visible} onHide={toggle} style={modalStyle}
+      backdropStyle={backdropStyle}>
+      <Modal.Header closeButton>
+        <Modal.Title>Insulin Bolus Calculator</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <IBC />
+      </Modal.Body>
+      <Modal.Footer>
+        <Button onClick={toggle}>Close</Button>
+      </Modal.Footer>
     </Modal>
   );
 }

@@ -215,6 +215,63 @@ export const MedicationBodyDivStyle = {
   maxHeight: '50%',
   overflowY: 'hidden',
   display: 'inline-block'
+};
+
+export const carbCoverage = {
+  float: 'left',
+  width: '50%',
+  fontWeight: 'bold',
+  color: '#666',
+  display: 'table-cell',
+  verticalAlign: 'middle',
+  textAlign: 'center',
+  border: 'black',
+  borderStyle: 'solid',
+  borderWidth: '0.5px',
+  fontSize: '12px',
+  left: '25%',
+  position: 'relative',
+  paddingBottom: '20px',
+  padding: '16px 8px'
+  //marginBottom: '-20px'
+}
+
+export const bloodGlucose = {
+  float: 'left',
+  width: '50%',
+  fontWeight: 'bold',
+  color: '#666',
+  display: 'table-cell',
+  verticalAlign: 'middle',
+  textAlign: 'center',
+  border: 'black',
+  borderStyle: 'solid',
+  borderWidth: '0.5px',
+  fontSize: '12px',
+  left: '25%',
+  position: 'relative',
+  paddingBottom: '20px',
+  padding: '16px 8px'
+  //marginBottom: '-20px'
+}
+
+export const bolusCalc = {
+  float: 'left',
+  width: '50%',
+  fontWeight: 'bold',
+  color: '#666',
+  display: 'table-cell',
+  verticalAlign: 'middle',
+  textAlign: 'center',
+  border: 'black',
+  borderStyle: 'solid',
+  borderWidth: '0.5px',
+  fontSize: '12px',
+  left: '25%',
+  position: 'relative',
+  paddingBottom: '20px',
+  padding: '16px 8px'
+  //marginBottom: '-20px'
 }
 
 export const inheritStyle = { width: 'inherit', height: 'inherit' };

@@ -1,6 +1,6 @@
 import React from 'react';
 import * as Records from '../../records/records';
-import {} from '../styles';
+import { carbCoverage, bloodGlucose, bolusCalc } from '../styles';
 
 class popup extends React.Component {
 
@@ -105,7 +105,7 @@ class popup extends React.Component {
   render() {
     return (
       <div>
-        <form className="carbCount">
+        <form style={carbCoverage}>
 
           <h2>Carbohydrate Coverage </h2>
 

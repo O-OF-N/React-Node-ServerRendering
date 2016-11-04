@@ -10,6 +10,18 @@ require('react-bootstrap');
 
 const openClose = dispatch => dispatch({ type: Constants.SLIDING_SCALE_TOGGLE_VISIBILITY });
 
+const modal = {
+  display: 'none',
+  position: 'fixed',
+  zIndex: '1',
+  left: '0',
+  top: '0',
+  width: '100%',
+  height: '100%', /* Full height */
+  overflow: 'auto', /* Enable scroll if needed */
+  backgroundColor: 'rgba(0,0,0,0.4)'
+};
+
 const popover = () => (
   <Popover id="modal-popover" title="popover">
     very popover. such engagement
@@ -25,7 +37,7 @@ const tooltip = () => (
 const Example = ({slidingScale, dispatch}) => {
   const toggle = openClose.bind(null, dispatch);
   return (
-    <div>
+    <div style={modal}>
       <Modal dialogClassName="custom-modal" show={slidingScale.visible} onHide={toggle}>
         <Modal.Header closeButton>
           <Modal.Title>Modal heading</Modal.Title>

@@ -19,12 +19,7 @@ const DiabetesChart = ({dispatch, slidingScale}) => (
         <div style={{ width: '100%', height: '5%' }}>
             <span><button onClick={toggle.bind(null, dispatch)}>Sliding scale</button></span>
         </div>
-         <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
          <div> <App1 /> </div>
-        {/*slidingScale.visible ? (<div>
-            <App1 />
-        </div>) : null
-        */}
     </div>
 );
 

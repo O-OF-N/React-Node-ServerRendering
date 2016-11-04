@@ -4,7 +4,7 @@ import * as Constants from '../../utils/constants';
 import { } from '../styles';
 import { connect } from 'react-redux';
 import { Modal, Popover, Tooltip, OverlayTrigger, Button, closeButton } from 'react-bootstrap';
-
+import { render } from 'react-dom';
 
 const toggle = dispatch => dispatch({ type: Constants.SLIDING_SCALE_TOGGLE_VISIBILITY });
 
@@ -54,9 +54,11 @@ const Example = ({slidingScale, dispatch}) => (
     </Modal>
 );
 
-
+render(<Example />, document.getElementById('app'));
 
 export default connect(state => ({
   dispatch: state.dispatch,
   slidingScale: state.slidingScale
 }))(Example);
+
+

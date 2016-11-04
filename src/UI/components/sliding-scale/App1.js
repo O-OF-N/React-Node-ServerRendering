@@ -4,7 +4,7 @@ import * as Constants from '../../utils/constants';
 import { connect } from 'react-redux';
 import { Modal, Popover, Tooltip, OverlayTrigger, Button, closeButton } from 'react-bootstrap';
 import { render } from 'react-dom';
-import { App } from './App';
+import App from './App';
 require('react-bootstrap');
 
 

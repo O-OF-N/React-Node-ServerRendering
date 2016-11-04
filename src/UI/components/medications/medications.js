@@ -38,7 +38,6 @@ const Medications = ({medications, dispatch}) => medications ? (
         {medications.map(medication =>
             medication.type === 'Bolus / Sliding Scale Insulin' ? <BolusMedications medication={medication} /> : <NonBolusMedications medication={medication} />
         )}
-
     </div>
 ) : null;
 

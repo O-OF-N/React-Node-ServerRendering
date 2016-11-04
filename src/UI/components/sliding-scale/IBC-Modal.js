@@ -4,7 +4,7 @@ import * as Constants from '../../utils/constants';
 import { connect } from 'react-redux';
 import { Modal, Popover, Tooltip, OverlayTrigger, Button, closeButton } from 'react-bootstrap';
 import { render } from 'react-dom';
-import App from './App';
+import IBC from './IBC';
 require('react-bootstrap');
 
 
@@ -13,7 +13,7 @@ const openClose = dispatch => dispatch({ type: Constants.SLIDING_SCALE_TOGGLE_VI
 const modalStyle = {
   position: 'fixed',
   zIndex: 1040,
-  top: 0, bottom: 0, left: 0, right: 0
+  top: '100px', bottom: '0px', left: '100px', right: '0px',
 };
 
 const backdropStyle = {
@@ -24,19 +24,8 @@ const backdropStyle = {
   opacity: 1.5
 };
 
-const popover = () => (
-  <Popover id="modal-popover" title="popover">
-    very popover. such engagement
-      </Popover>
-);
 
-const tooltip = () => (
-  <Tooltip id="modal-tooltip">
-    wow.
-      </Tooltip>
-);
-
-const Example = ({slidingScale, dispatch}) => {
+const IBCModal = ({slidingScale, dispatch}) => {
   const toggle = openClose.bind(null, dispatch);
   return (
     <Modal dialogClassName="custom-modal" show={slidingScale.visible} onHide={toggle} style={modalStyle}
@@ -58,6 +47,6 @@ const Example = ({slidingScale, dispatch}) => {
 export default connect(state => ({
   dispatch: state.dispatch,
   slidingScale: state.slidingScale
-}))(Example);
+}))(IBCModal);
 
 

@@ -2,7 +2,7 @@ import React from 'react';
 import GlucoseResults from './glucose-results/glucose-results';
 import LabResults from './lab-results/lab-results';
 import Medications from './medications/medications';
-import App1 from './sliding-scale/App1';
+import IBCModal from './sliding-scale/IBC-Modal';
 import { inheritStyle } from './styles';
 import * as Constants from '../utils/constants';
 import { connect } from 'react-redux';
@@ -19,7 +19,7 @@ const DiabetesChart = ({dispatch, slidingScale}) => (
         <div style={{ width: '100%', height: '5%' }}>
             <span><button onClick={toggle.bind(null, dispatch)}>Sliding scale</button></span>
         </div>
-         <div> <App1 /> </div>
+         <div> <IBCModal /> </div>
     </div>
 );
 

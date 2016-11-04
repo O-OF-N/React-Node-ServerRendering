@@ -23,39 +23,23 @@ const tooltip = () => (
 const Example = ({slidingScale, dispatch}) => {
   const toggle = openClose.bind(null, dispatch);
   return (
-    <div>
-    <Modal dialogClassName="custom-modal" show={slidingScale.visible} onHide={toggle}>
-      <Modal.Header closeButton>
-        <Modal.Title>Modal heading</Modal.Title>
-      </Modal.Header>
-      <Modal.Body>
-        <h4>Text in a modal</h4>
-        <p>Duis mollis, est non commodo luctus, nisi erat porttitor ligula.</p>
-
-        <h4>Popover in a modal</h4>
-        <p>there is a popover here</p>
-
-        <h4>Tooltips in a modal</h4>
-        <p>there is a tooltiphere</p>
-
-        <hr />
-
-        <h4>Overflowing text to show scroll behavior</h4>
-        <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-        <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
-        <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-        <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
-        <p>Cras mattis consectetur purus sit amet fermentum. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-        <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p>
-        <p>Aenean lacinia bibendum nulla sed consectetur. Praesent commodo cursus magna, vel scelerisque nisl consectetur et. Donec sed odio dui. Donec ullamcorper nulla non metus auctor fringilla.</p>
-      </Modal.Body>
-      <Modal.Footer>
-        <Button onClick={toggle}>Close</Button>
-      </Modal.Footer>
-    </Modal>
+    <div className="modal fade" tabindex="-1" role="dialog">
+  <div className="modal-dialog" role="document">
+    <div className="modal-content">
+      <div className="modal-header">
+        <button type="button" className="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 className="modal-title">Modal title</h4>
+      </div>
+      <div className="modal-body">
+        <p>One fine body&hellip;</p>
+      </div>
+      <div className="modal-footer">
+        <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" className="btn btn-primary">Save changes</button>
+      </div>
     </div>
+  </div>
+</div>
   );
 }
 

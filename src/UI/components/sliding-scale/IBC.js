@@ -123,8 +123,8 @@ class popup extends React.Component {
 
 
         <div style={carbCoverage}>
-          <h2>Carbohydrate Coverage
-          <button style={buttonImage}> <img src={InfoImg} className="btn btn-default" onClick={this.handleCarbFormula} /></button></h2>
+        <a style={buttonStyle1} href='#' onClick={this.handleCarbFormula}>Formula</a>
+          <h2>Carbohydrate Coverage</h2>
           <div>
             <label>Insulin-to-Carbohydrate Ratio: 1 unit covers: </label>
             <input type="number"
@@ -152,9 +152,9 @@ class popup extends React.Component {
         </div>
 
         <div style={bloodGlucose}>
+        <a style={buttonStyle1} href='#' onClick={this.handleBloodGluFormula}>Formula</a>
           <div>
-            <h2>Blood Glucose Correction
-          <button style={buttonImage}><img src={InfoImg} className="btn btn-default" onClick={this.handleBloodGluFormula} /></button></h2>
+            <h2>Blood Glucose Correction</h2>
           </div>
           <div>
             <label>Insulin Sensitivity Factor: 1 unit lowers blood glucose by </label>

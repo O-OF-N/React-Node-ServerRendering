@@ -30,6 +30,11 @@ export const LabHeaderRowStyle = {
   width: '100%'
 };
 
+export const buttonStyle = {
+ float: 'right'
+};
+
+
 export const LabItemsSpanStyle = {
   float: 'left',
   width: '49.5%',

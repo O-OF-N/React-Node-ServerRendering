@@ -105,7 +105,7 @@ class popup extends React.Component {
   render() {
     return (
       <div>
-        <form>
+        <div style={carbCoverage}>
 
           <h2>Carbohydrate Coverage </h2>
 
@@ -130,63 +130,66 @@ class popup extends React.Component {
           <label> grams of carb</label>
           <br></br>
           <button className="btn btn-default" onSubmit={this.handleSubmitForm} onClick={this.handleCarbSubmit}>Submit</button>
-        </form>
-        <div>
-          <label>{this.state.nocarb}</label>
+          <div>
+            <label>{this.state.nocarb}</label>
+          </div>
         </div>
 
 
 
-        <div>
-          <h2>Blood Glucose Correction </h2>
+        <div style={bloodGlucose}>
+          <div>
+            <h2>Blood Glucose Correction </h2>
+          </div>
+
+          <div>
+            <label>Insulin Sensitivity Factor: 1 unit lowers blood glucose by </label>
+            <input type="number"
+              placeholder="mg/dl"
+              ref="ISF"
+              required="required" />
+            <label>mg/dL</label>
+          </div>
+
+          <div>
+            <label>Current Blood Glucose: </label>
+            <input type="number"
+              placeholder="mg/dL"
+              ref="GLU" />
+            <label>mg/dL</label>
+          </div>
+
+          <div>
+            <label>Target Blood Glucose: </label>
+            <input type="number"
+              placeholder="mg/dL"
+              ref="TAR" />
+            <label>mg/dL</label>
+          </div>
+
+          <div>
+            <button className="btn btn-default" onClick={this.handleSubmit}>submit</button>
+          </div>
+
+          <div>
+            <label>{this.state.gluc}</label>
+          </div>
+
         </div>
 
-        <div>
-          <label>Insulin Sensitivity Factor: 1 unit lowers blood glucose by </label>
-          <input type="number"
-            placeholder="mg/dl"
-            ref="ISF"
-            required="required" />
-          <label>mg/dL</label>
+        <div style={bolusCalc}>
+          <div>
+            <h2>Total Rapid-Acting Insulin to Be Given:</h2>
+          </div>
+
+          <div>
+            <label>{this.state.result}</label>
+          </div>
+
+          <div>
+            <button className="btn btn-default" onClick={this.handleBolusDose}>Total Bolus Dose</button>
+          </div>
         </div>
-
-        <div>
-          <label>Current Blood Glucose: </label>
-          <input type="number"
-            placeholder="mg/dL"
-            ref="GLU" />
-          <label>mg/dL</label>
-        </div>
-
-        <div>
-          <label>Target Blood Glucose: </label>
-          <input type="number"
-            placeholder="mg/dL"
-            ref="TAR" />
-          <label>mg/dL</label>
-        </div>
-
-        <div>
-          <label>{this.state.gluc}</label>
-        </div>
-
-        <div>
-          <button className="btn btn-default" onClick={this.handleSubmit}>submit</button>
-        </div>
-
-
-        <div>
-          <h2>Total Rapid-Acting Insulin to Be Given:</h2>
-        </div>
-
-        <div>
-          <label>{this.state.result}</label>
-        </div>
-
-        <div>
-          <button className="btn btn-default" onClick={this.handleBolusDose}>Total Bolus Dose</button>
-        </div>
-
       </div>
     );
   }

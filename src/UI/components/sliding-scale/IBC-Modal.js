@@ -46,9 +46,8 @@ const IBCModal = ({slidingScale, dispatch}) => {
   const toggle = openClose.bind(null, dispatch);
   return (
     <Modal
-      isOpen={this.state.modalIsOpen}
-      onAfterOpen={this.afterOpenModal}
-      onRequestClose={this.closeModal}
+      isOpen={slidingScale.visible}
+      onRequestClose={toggle}
       style={customStyles}
       contentLabel="Example Modal"
       >

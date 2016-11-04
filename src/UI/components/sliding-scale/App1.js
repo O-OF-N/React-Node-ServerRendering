@@ -70,6 +70,4 @@ const Example = ({slidingScale, dispatch}) => (
 export default connect(state => ({
   dispatch: state.dispatch,
   slidingScale: state.slidingScale
-}))(DiabetesChart);
-
-export default popup;
+}))(Example);

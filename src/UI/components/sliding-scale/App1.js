@@ -1,5 +1,6 @@
 import React from 'react';
 import * as Records from '../../records/records';
+import * as Constants from '../../utils/constants';
 import { } from '../styles';
 import { connect } from 'react-redux';
 import { Modal, Popover, Tooltip, OverlayTrigger, Button, closeButton } from 'react-bootstrap';

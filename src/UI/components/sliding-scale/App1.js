@@ -54,7 +54,6 @@ const Example = ({slidingScale, dispatch}) => (
     </Modal>
 );
 
-render(<Example />, document.getElementById('app'));
 
 export default connect(state => ({
   dispatch: state.dispatch,

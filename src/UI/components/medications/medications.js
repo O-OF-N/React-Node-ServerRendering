@@ -22,27 +22,25 @@ const BolusMedications = ({medication}) => {
     );
 };
 
-const Header = ({dispatch}) => (<div>
+const Header = ({dis}) => (<div>
     <h3>Active Diabetes Med Orders</h3>
     <span style={{ paddingLeft: "1%" }}>
-        <button onClick={toggle.bind(null, dispatch)}>Sliding scale</button>
+        <button onClick={toggle.bind(null, dis)}>Sliding scale</button>
     </span>
 </div>
 );
 
 const toggle = dispatch => dispatch({ type: Constants.SLIDING_SCALE_TOGGLE_VISIBILITY })
 
-const Medications = ({medications, dispatch}) => {
-    return (
-        <div style={{ width: '96%', height: '100%', padding: '1%', marginTop: '0.5%' }}>
-            {medications ? (<Header dispatch={dispatch} /> ,
-                medications.map(medication =>
-                    medication.type === 'Bolus / Sliding Scale' ? <BolusMedications medication={medication} /> : <NonBolusMedications medication={medication} />
-                )) : null}
+const Medications = ({medications, dispatch}) => medications ? (
+    <div style={{ width: '96%', height: '100%', padding: '1%', marginTop: '0.5%' }}>
+        <Header dis={dispatch} />
+        {medications.map(medication =>
+            medication.type === 'Bolus / Sliding Scale Insulin' ? <BolusMedications medication={medication} /> : <NonBolusMedications medication={medication} />
+        )}
 
-        </div>
-    )
-};
+    </div>
+) : null;
 
 export default connect(state => ({
     dispatch: state.dispatch,

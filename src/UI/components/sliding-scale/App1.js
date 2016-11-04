@@ -7,13 +7,13 @@ import { Modal } from 'react-bootstrap';
 
 const toggle = dispatch => dispatch({ type: Constants.SLIDING_SCALE_TOGGLE_VISIBILITY });
 
-const popover = (
+const popover = () => (
   <Popover id="modal-popover" title="popover">
     very popover. such engagement
       </Popover>
 );
 
-const tooltip = (
+const tooltip = () => (
   <Tooltip id="modal-tooltip">
     wow.
       </Tooltip>

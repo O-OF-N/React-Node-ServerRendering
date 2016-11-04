@@ -12,32 +12,14 @@ require('react-bootstrap');
 
 const openClose = dispatch => dispatch({ type: Constants.SLIDING_SCALE_TOGGLE_VISIBILITY });
 
-const modalStyle = {
-  position: 'fixed',
-  zIndex: 1040,
-  top: '100px', bottom: '0px', left: '100px', right: '0px',
-  width: '50%',
-  height: '50%'
-};
-
-const backdropStyle = {
-  position: 'fixed',
-  top: '100px', bottom: '0px', left: '100px', right: '0px',
-  zIndex: 'auto',
-  backgroundColor: '#F2F2F2',
-  opacity: 1.5,
-  width: '50%',
-  height: '50%'
-};
-
 const customStyles = {
-  content : {
-    top                   : '50%',
-    left                  : '50%',
-    right                 : 'auto',
-    bottom                : 'auto',
-    marginRight           : '-50%',
-    transform             : 'translate(-50%, -50%)'
+  content: {
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginRight: '-50%',
+    transform: 'translate(-50%, -50%)'
   }
 };
 
@@ -51,17 +33,7 @@ const IBCModal = ({slidingScale, dispatch}) => {
       style={customStyles}
       contentLabel="Example Modal"
       >
-
-      <h2 ref="subtitle">Hello</h2>
-      <button onClick={toggle}>close</button>
-      <div>I am a modal</div>
-      <form>
-        <input />
-        <button>tab navigation</button>
-        <button>stays</button>
-        <button>inside</button>
-        <button>the modal</button>
-      </form>
+      <IBC />
     </Modal>
   );
 }

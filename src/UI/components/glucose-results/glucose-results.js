@@ -27,7 +27,7 @@ class GlucoseResults extends React.Component {
     overflow: 'auto' };
         return (
             <div style={style}>
-                <h3>BG Graph</h3>
+                <h3>Blood Glucose (all sources for past 24 hours)</h3>
                 <div>
                     <canvas ref="chart">
                     </canvas>

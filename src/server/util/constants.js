@@ -79,7 +79,7 @@ export const ORAL_HYPOGLYCEMICS = { code: [6809, 4821, 73044, 4815], dosage: nul
 
 export const ORDER_CATEGORIZATION = new Map([
     ['Insulin Drip', DRIP],
-    ['Basal / Premixed', BASAL],
-    ['Bolus / Sliding Scale', BOLUS],
+    ['Basal / Premixed Insulin', BASAL],
+    ['Bolus / Sliding Scale Insulin', BOLUS],
     ['Oral Hypoglycemics', ORAL_HYPOGLYCEMICS]
 ]);

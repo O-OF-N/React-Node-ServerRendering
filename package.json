@@ -25,6 +25,7 @@
     "chart.js": "^2.2.2",
     "co": "^4.6.0",
     "cookie-parser": "~1.4.3",
+    "css-loader": "^0.25.0",
     "debug": "~2.2.0",
     "express": "~4.13.4",
     "fhir.js": "0.0.19",
@@ -33,18 +34,18 @@
     "mongoose": "^4.6.0",
     "morgan": "~1.7.0",
     "querystring": "0.2.0",
+    "rc-table": "*",
     "react": "^15.3.1",
+    "react-bootstrap": "^0.30.6",
     "react-dom": "^15.3.1",
     "react-redux": "^4.4.5",
     "redux": "^3.5.2",
     "redux-logger": "^2.6.1",
     "redux-thunk": "^2.1.0",
     "serve-favicon": "~2.3.0",
+    "style-loader": "^0.13.1",
     "thunk": "0.0.1",
-    "webpack": "^1.13.2",
-    "rc-table": "*",
-    "css-loader": "^0.25.0",
-    "style-loader": "^0.13.1"
+    "webpack": "^1.13.2"
   },
   "babel": {
     "presets": [

@@ -79,7 +79,7 @@ export const LabDivStyle = {
   padding: '0.5%',
   maxWidth: '100%',
   maxHeight: '100%',
-  overflow: 'auto'
+  overflow: 'hidden'
 };
 
 //Medication

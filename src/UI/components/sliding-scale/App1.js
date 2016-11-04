@@ -21,16 +21,6 @@ const tooltip = () => (
 );
 
 const Example = ({slidingScale, dispatch}) => (
-  <div>
-    <p>Click to get the full Modal experience!</p>
-
-    <Button
-      bsStyle="primary"
-      bsSize="large"
-      onClick={toggle}
-      >
-      Launch demo modal
-        </Button>
 
     <Modal show={slidingScale.visible} onHide={toggle}>
       <Modal.Header closeButton>
@@ -63,7 +53,6 @@ const Example = ({slidingScale, dispatch}) => (
         <Button onClick={toggle}>Close</Button>
       </Modal.Footer>
     </Modal>
-  </div>
 );
 
 

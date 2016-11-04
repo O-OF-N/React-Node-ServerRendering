@@ -17,8 +17,8 @@ const modal = {
   left: '0',
   top: '0',
   width: '100%',
-  height: '100%', /* Full height */
-  overflow: 'auto', /* Enable scroll if needed */
+  height: '100%', 
+  overflow: 'auto', 
   backgroundColor: 'rgba(0,0,0,0.4)'
 };
 
@@ -37,8 +37,17 @@ const tooltip = () => (
 const Example = ({slidingScale, dispatch}) => {
   const toggle = openClose.bind(null, dispatch);
   return (
-    <div>
-      <Modal dialogClassName="custom-modal" show={slidingScale.visible} onHide={toggle} style={modal}>
+      <Modal dialogClassName="custom-modal" show={slidingScale.visible} onHide={toggle} style={{
+  display: 'none',
+  position: 'fixed',
+  zIndex: '1',
+  left: '0',
+  top: '0',
+  width: '100%',
+  height: '100%', 
+  overflow: 'auto', 
+  backgroundColor: 'rgba(0,0,0,0.4)'
+}}>
         <Modal.Header closeButton>
           <Modal.Title>Modal heading</Modal.Title>
         </Modal.Header>
@@ -49,7 +58,6 @@ const Example = ({slidingScale, dispatch}) => {
           <Button onClick={toggle}>Close</Button>
         </Modal.Footer>
       </Modal>
-    </div>
   );
 }
 

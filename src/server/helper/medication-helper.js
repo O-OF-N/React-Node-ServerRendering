@@ -102,10 +102,11 @@ const getRxNormIngredients = function* (rxNormCode) {
 };
 
 const processIngredients = rxNormData => {
-    //console.log(rxNormData.data.relatedGroup);
+    console.log(rxNormData.data.relatedGroup);
     const ingredients = rxNormData.data.relatedGroup.conceptGroup.filter(group => group.tty === 'IN');
-    //console.log('property =' + ingredients);
-    return ingredients.conceptProperties.map(conceptProperty => {
+    console.log('property =' + ingredients.conceptProperties);
+    console.log(ingredients.conceptProperties);
+    return ingredients.conceptGroup.map(conceptGroup => {
         console.log('here????');
         const code = { code: conceptProperty.rxcui, name: conceptProperty.name };
         console.log(code);

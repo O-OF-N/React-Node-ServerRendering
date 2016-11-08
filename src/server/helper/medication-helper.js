@@ -97,5 +97,6 @@ const getRxNormIngredients = function*(rxNormCode) {
     console.log('I reached here but not there>........');
     const rxnormdata = yield axios.get(`https://rxnav.nlm.nih.gov/REST/rxcui/${rxNormCode.code}/related?tty=IN+SBDC`);
     console.log('date>>>>>>>>>');
-    console.log(rxnormdata);
+    console.log(rxnormdata.data.relatedGroup.termType);
+    console.log(rxnormdata.data.relatedGroup.conceptGroup);
 }

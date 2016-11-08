@@ -80,7 +80,7 @@ const fetchMedicationAdministration = (dosage) => (dosage && dosage instanceof A
 const categorizeOrders = (insulinOrders) => {
     let medicationOrders = [];
     getAndMapRxNormIngredients(insulinOrders);
-    insulinOrders.forEach(v=>co(getRxNormIngredients(v)));
+    insulinOrders.forEach(v => co(getRxNormIngredients(v)));
     Constants.ORDER_CATEGORIZATION.forEach((value, key) => {
         const medicationOrder = new Records.MedicationOrder({ type: key, medications: new List(insulinOrders.filter(order => value.code.includes(order.code) && ((value.dosage && value.dosage === order.administration) || (!value.dosage)))) });
         medicationOrders.push(medicationOrder);
@@ -90,13 +90,20 @@ const categorizeOrders = (insulinOrders) => {
 
 const getAndMapRxNormIngredients = insulinOrders => {
     const medicationCodes = insulinOrders.map(insulin => insulin.code);
-    console.log('medication codes = ' + medicationCodes );
+    console.log('medication codes = ' + medicationCodes);
 };
 
-const getRxNormIngredients = function*(rxNormCode) {
+const getRxNormIngredients = function* (rxNormCode) {
     console.log('I reached here but not there>........');
     const rxnormdata = yield axios.get(`https://rxnav.nlm.nih.gov/REST/rxcui/${rxNormCode.code}/related?tty=IN+SBDC`);
     console.log('date>>>>>>>>>');
-    console.log(rxnormdata.data.relatedGroup.termType);
-    console.log(rxnormdata.data.relatedGroup.conceptGroup);
-}
+    const ingredientCodes = processIngredients(rxnormdata);
+    console.log(ingredientCodes);
+};
+
+const processIngredients = rxNormData => {
+    const ingredients = rxNormData.data.relatedGroup.filter(group => group.tty === 'IN');
+    return ingredients.conceptProperties.map(conceptProperty => {
+        return { code: conceptProperty.rxcui, name: conceptProperty.name };
+    });
+};

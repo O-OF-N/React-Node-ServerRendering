@@ -7,6 +7,9 @@ import { get } from '../service/http-service'
 import * as HttpUtil from '../util/http-utils';
 import UserAuthenticationModel from '../models/UserAuthenticationSchema';
 
+
+import axios from 'axios';
+import co from 'co';
 //public functions
 export const fetchMedications = function* (state) {
     const result = yield* fetchMedicationsHelper(state);
@@ -77,7 +80,7 @@ const fetchMedicationAdministration = (dosage) => (dosage && dosage instanceof A
 const categorizeOrders = (insulinOrders) => {
     let medicationOrders = [];
     getAndMapRxNormIngredients(insulinOrders);
-    insulinOrders.forEach(v=>getRxNormIngredients(v));
+    insulinOrders.forEach(v=>co(getRxNormIngredients(v)));
     Constants.ORDER_CATEGORIZATION.forEach((value, key) => {
         const medicationOrder = new Records.MedicationOrder({ type: key, medications: new List(insulinOrders.filter(order => value.code.includes(order.code) && ((value.dosage && value.dosage === order.administration) || (!value.dosage)))) });
         medicationOrders.push(medicationOrder);

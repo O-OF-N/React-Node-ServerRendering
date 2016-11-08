@@ -103,6 +103,7 @@ const getRxNormIngredients = function* (rxNormCode) {
 
 const processIngredients = rxNormData => {
     const ingredients = rxNormData.data.relatedGroup.filter(group => group.tty === 'IN');
+        console.log('property ='+ ingredients);
     return ingredients.map(ingredient => {
         console.log('property ='+ ingredient);
         return ingredient.conceptProperties.map(conceptProperty => {

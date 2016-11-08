@@ -37,8 +37,6 @@ const flatMap = (lonicCodesList) => {
         const lonicCode = Constants.LONIC_CODES.get(codes);
         lonicCode instanceof Array ? lonicCodes.push(...lonicCode) : lonicCodes.push(lonicCode);
     }) : null;
-    console.log('lonic codes = ');
-    console.log(lonicCodes);
     return lonicCodes;
 };
 

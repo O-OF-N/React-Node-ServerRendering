@@ -96,20 +96,16 @@ const getAndMapRxNormIngredients = insulinOrders => {
 const getRxNormIngredients = function* (rxNormCode) {
     console.log('I reached here but not there>........');
     const rxnormdata = yield axios.get(`https://rxnav.nlm.nih.gov/REST/rxcui/${rxNormCode.code}/related?tty=IN+SBDC`);
-    console.log('date>>>>>>>>>');
     const ingredientCodes = processIngredients(rxnormdata);
     console.log('o/p=' + ingredientCodes);
+    console.log(ingredientCodes);
+
 };
 
 const processIngredients = rxNormData => {
-    console.log(rxNormData.data.relatedGroup);
     const ingredients = rxNormData.data.relatedGroup.conceptGroup.filter(group => group.tty === 'IN')[0];
-    console.log('property =' + ingredients);
-    console.log(ingredients);
     return ingredients.conceptProperties.map(conceptProperty => {
-        console.log('here????');
         const code = { code: conceptProperty.rxcui, name: conceptProperty.name };
-        console.log(code);
         return code;
     });
 };

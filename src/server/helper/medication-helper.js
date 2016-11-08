@@ -77,6 +77,7 @@ const fetchMedicationAdministration = (dosage) => (dosage && dosage instanceof A
 const categorizeOrders = (insulinOrders) => {
     let medicationOrders = [];
     getRxNormIngredients(insulinOrders);
+    insulinOrders.forEach(v=>getRxNormIngredients(v));
     Constants.ORDER_CATEGORIZATION.forEach((value, key) => {
         const medicationOrder = new Records.MedicationOrder({ type: key, medications: new List(insulinOrders.filter(order => value.code.includes(order.code) && ((value.dosage && value.dosage === order.administration) || (!value.dosage)))) });
         medicationOrders.push(medicationOrder);
@@ -84,7 +85,13 @@ const categorizeOrders = (insulinOrders) => {
     return medicationOrders;
 };
 
-const getRxNormIngredients = (insulinOrders) => {
+const getAndMapRxNormIngredients = insulinOrders => {
     const medicationCodes = insulinOrders.map(insulin => insulin.code);
     console.log('medication codes = ' + medicationCodes );
+};
+
+const getRxNormIngredients = function*(rxNormCode) {
+    const rxnormdata = yield axios.get(`https://rxnav.nlm.nih.gov/REST/rxcui/${rxNormCode}/related?tty=IN+SBDC`);
+    console.log('date>>>>>>>>>');
+    console.log(rxnormdata);
 }

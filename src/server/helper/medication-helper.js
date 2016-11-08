@@ -105,7 +105,7 @@ const processIngredients = rxNormData => {
     console.log(rxNormData.data.relatedGroup);
     const ingredients = rxNormData.data.relatedGroup.conceptGroup.filter(group => group.tty === 'IN');
     console.log('property =' + ingredients);
-    return conceptGroup.conceptProperties.map(conceptProperty => {
+    return ingredients.conceptProperties.map(conceptProperty => {
         console.log(conceptProperty);
         const code = { code: conceptProperty.rxcui, name: conceptProperty.name };
         console.log(code);

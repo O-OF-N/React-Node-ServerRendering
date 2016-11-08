@@ -98,10 +98,11 @@ const getRxNormIngredients = function* (rxNormCode) {
     const rxnormdata = yield axios.get(`https://rxnav.nlm.nih.gov/REST/rxcui/${rxNormCode.code}/related?tty=IN+SBDC`);
     console.log('date>>>>>>>>>');
     const ingredientCodes = processIngredients(rxnormdata);
-    console.log(ingredientCodes);
+    console.log('o/p='+ingredientCodes);
 };
 
 const processIngredients = rxNormData => {
+    console.log(rxNormData);
     const ingredients = rxNormData.data.relatedGroup.filter(group => group.tty === 'IN');
         console.log('property ='+ ingredients);
     return ingredients.map(ingredient => {

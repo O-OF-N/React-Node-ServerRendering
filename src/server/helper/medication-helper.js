@@ -98,20 +98,17 @@ const getRxNormIngredients = function* (rxNormCode) {
     const rxnormdata = yield axios.get(`https://rxnav.nlm.nih.gov/REST/rxcui/${rxNormCode.code}/related?tty=IN+SBDC`);
     console.log('date>>>>>>>>>');
     const ingredientCodes = processIngredients(rxnormdata);
-    console.log('o/p='+ingredientCodes);
+    console.log('o/p=' + ingredientCodes);
 };
 
 const processIngredients = rxNormData => {
     console.log(rxNormData.data.relatedGroup);
-    const ingredients = rxNormData.data.relatedGroup.filter(group => group.tty === 'IN');
-        console.log('property ='+ ingredients);
-    return ingredients.map(ingredient => {
-        console.log('property ='+ ingredient);
-        return ingredient.conceptProperties.map(conceptProperty => {
-            console.log(conceptProperty);
-            const code = { code: conceptProperty.rxcui, name: conceptProperty.name };
-            console.log(code);
-            return code;
-        })
+    const ingredients = rxNormData.data.relatedGroup.conceptGroup.filter(group => group.tty === 'IN');
+    console.log('property =' + ingredients);
+    return conceptGroup.conceptProperties.map(conceptProperty => {
+        console.log(conceptProperty);
+        const code = { code: conceptProperty.rxcui, name: conceptProperty.name };
+        console.log(code);
+        return code;
     });
 };

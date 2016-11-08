@@ -67,14 +67,14 @@ export const LAB_RESULT_COUNT = 2;
 
 export const DRIP = { code: [575148, 575628, 575146], dosage: INTRAVENOUS_TEXT };
 
-export const BASAL = { code: [51428, 274783, 261551, 400560, 1670012, 92880, 93558, 977838, 752386], dosage: null };
+export const BASAL = { code: [[1605101], [1670007], [139825], [274783], [51428, 352385], [86009, 314684], [253182, 1605101]], dosage: null };
 
-export const BOLUS = { code: [575148, 575628, 575146, 575679, 575151, 1652240, 803192], dosage: SUBCUTANEOUS_TEXT };
+export const BOLUS = { code: [[51428], [400008], [86009], [253182]], dosage: SUBCUTANEOUS_TEXT };
 
 /*export const BASAL = { code: [261551, 400560, 1670012, 92880, 93558, 977838, 752386], dosage: null };
 */
 
-export const ORAL_HYPOGLYCEMICS = { code: [6809, 4821, 73044, 4815], dosage: null };
+export const ORAL_HYPOGLYCEMICS = { code: [[6809], [4821], [4815], [73044]], dosage: null };
 
 export const ORDER_CATEGORIZATION = new Map([
     ['Insulin Drip', DRIP],

@@ -76,7 +76,7 @@ const fetchMedicationAdministration = (dosage) => (dosage && dosage instanceof A
 
 const categorizeOrders = (insulinOrders) => {
     let medicationOrders = [];
-    getRxNormIngredients(insulinOrders);
+    getAndMapRxNormIngredients(insulinOrders);
     insulinOrders.forEach(v=>getRxNormIngredients(v));
     Constants.ORDER_CATEGORIZATION.forEach((value, key) => {
         const medicationOrder = new Records.MedicationOrder({ type: key, medications: new List(insulinOrders.filter(order => value.code.includes(order.code) && ((value.dosage && value.dosage === order.administration) || (!value.dosage)))) });

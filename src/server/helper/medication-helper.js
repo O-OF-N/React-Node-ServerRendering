@@ -15,7 +15,7 @@ export const fetchMedications = function* (state) {
     const result = yield* fetchMedicationsHelper(state);
     const insulinOrders = HttpUtil.checkResponseStatus(result) ? buildInsulinOrdersResult(result) : null;
     //return insulinOrders ? categorizeOrders(insulinOrders) : null;
-    return insulinOrders ? yield* categorizeOrders(insulinOrders.push(...bolusMedications())) : null;
+    return insulinOrders ? categorizeOrders(insulinOrders.push(...bolusMedications())) : null;
 };
 
 //Private functions
@@ -78,9 +78,9 @@ const fetchMedicationFromResource = (concept) => (concept) ? { name: concept.tex
 const fetchMedicationAdministration = (dosage) => (dosage && dosage instanceof Array && dosage[0] && dosage[0].route && dosage[0].route.coding && dosage[0].route.coding instanceof Array && dosage[0].route.coding[0]) ? dosage[0].route.coding[0].code === Constants.SUBCUTANEOUS ? Constants.SUBCUTANEOUS_TEXT : Constants.INTRAVENOUS_TEXT : null;
 
 
-const categorizeOrders = function* (insulinOrders) {
+const categorizeOrders = insulinOrders => {
     let medicationOrders = [];
-    yield* getAndMapRxNormIngredients(insulinOrders);
+    getAndMapRxNormIngredients(insulinOrders);
     Constants.ORDER_CATEGORIZATION.forEach((value, key) => {
         const medicationOrder = new Records.MedicationOrder({ type: key, medications: new List(insulinOrders.filter(order => value.code.includes(order.code) && ((value.dosage && value.dosage === order.administration) || (!value.dosage)))) });
         medicationOrders.push(medicationOrder);
@@ -88,14 +88,14 @@ const categorizeOrders = function* (insulinOrders) {
     return medicationOrders;
 };
 
-const getAndMapRxNormIngredients = function* (insulinOrders) {
+const getAndMapRxNormIngredients = insulinOrders => {
     let insulin = [];
-   for(let insulinOrder of insulinOrders){
-       console.log(insulinOrder);
-       for(let item of co.bind(null,getRxNormIngredientsMapper(insulinOrder)) ){
-           insulin.push(item);
-       }
-   }
+    for (let insulinOrder of insulinOrders) {
+        console.log(insulinOrder);
+        for (let item of co(getRxNormIngredientsMapper.bind(null, insulinOrder))) {
+            insulin.push(item);
+        }
+    }
     console.log('medication insulin = ' + insulin);
     console.log(insulin);
 };

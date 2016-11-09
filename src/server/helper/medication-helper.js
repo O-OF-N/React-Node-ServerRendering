@@ -93,7 +93,7 @@ const getAndMapRxNormIngredients = function* (insulinOrders) {
     try {
         let insulin = [];
         for (let insulinOrder of insulinOrders) {
-            insulin.push(co(getRxNormIngredientsMapper.bind(null, insulinOrder)));
+            co(getRxNormIngredientsMapper.bind(null, insulinOrder)).then(x => insulin.push(x));
         }
         console.log('medication insulin = ' + insulin);
     } catch (err) {

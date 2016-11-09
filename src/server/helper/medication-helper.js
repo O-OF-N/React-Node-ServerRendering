@@ -111,8 +111,7 @@ const getRxNormIngredientsMapper = function* (insulinOrder) {
 
 const getRxNormIngredients = function* (rxNormCode) {
     try {
-        const authHeader = HttpUtil.buildAuthorizationHeader(userAuthenticationModel);
-        const rxnormdata = yield get(`https://rxnav.nlm.nih.gov/REST/rxcui/${rxNormCode.code}/related?tty=IN+SBDC`, authHeader);
+        const rxnormdata = axios.get(`https://rxnav.nlm.nih.gov/REST/rxcui/${rxNormCode.code}/related?tty=IN+SBDC`);
         const ingredientCodes = yield processIngredients(rxnormdata);
         yield ingredientCodes;
     } catch (err) {

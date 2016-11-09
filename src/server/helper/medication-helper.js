@@ -88,11 +88,13 @@ const categorizeOrders = (insulinOrders) => {
 };
 
 const getAndMapRxNormIngredients = insulinOrders => {
-    const insulin = insulinOrders.map(insulinOrder => getRxNormIngredients(insulinOrder));
+    const insulin = insulinOrders.map(insulinOrder => getRxNormIngredientsMapper(insulinOrder));
     console.log('medication insulin = ' + insulin);
 };
 
-const getRxNormIngredients = co.wrap(function* (rxNormCode) {
+const getRxNormIngredientsMapper = insulinOrder => co(getRxNormIngredients.insulinOrder);
+
+const getRxNormIngredients = function* (rxNormCode) {
     //console.log('I reached here but not there>........');
     const rxnormdata = yield axios.get(`https://rxnav.nlm.nih.gov/REST/rxcui/${rxNormCode.code}/related?tty=IN+SBDC`);
     const ingredientCodes = processIngredients(rxnormdata);
@@ -100,7 +102,7 @@ const getRxNormIngredients = co.wrap(function* (rxNormCode) {
     //console.log('o/p=' + ingredientCodes);
     //console.log(ingredientCodes);
     return ingredientCodes;
-});
+};
 
 const processIngredients = rxNormData => {
     const ingredientsList = rxNormData.data.relatedGroup.conceptGroup.filter(group => group.tty === 'IN')[0];

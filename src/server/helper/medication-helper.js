@@ -90,7 +90,7 @@ const categorizeOrders = function* (insulinOrders) {
 
 const getAndMapRxNormIngredients = function* (insulinOrders) {
     let insulin = [];
-   for(let insulinOrder in insulinOrders){
+   for(let insulinOrder of insulinOrders){
        console.log(insulinOrder);
        for(let item of getRxNormIngredientsMapper(insulinOrder) ){
            insulin.push(item);

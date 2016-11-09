@@ -89,7 +89,7 @@ const categorizeOrders = function* (insulinOrders) {
 };
 
 const getAndMapRxNormIngredients = function* (insulinOrders) {
-    const insulin = yield* insulinOrders.map(insulinOrder => co(getRxNormIngredientsMapper.bind(null, insulinOrder)));
+    const insulin = yield* insulinOrders.map(insulinOrder => getRxNormIngredientsMapper(insulinOrder));
     console.log('medication insulin = ' + insulin);
 };
 

@@ -92,15 +92,16 @@ const getAndMapRxNormIngredients = insulinOrders => {
     console.log('medication insulin = ' + insulin);
 };
 
-const getRxNormIngredientsMapper = insulinOrder => co(getRxNormIngredients.bind(null, insulinOrder)).then(console.log).catch(console.log);
+const getRxNormIngredientsMapper = insulinOrder => {
+    co(getRxNormIngredients.bind(null, insulinOrder))
+    .then(res=>{return res;})
+    .catch(console.log);
+};
 
 const getRxNormIngredients = function* (rxNormCode) {
-    //console.log('I reached here but not there>........');
     const rxnormdata = yield axios.get(`https://rxnav.nlm.nih.gov/REST/rxcui/${rxNormCode.code}/related?tty=IN+SBDC`);
     const ingredientCodes = processIngredients(rxnormdata);
-    //Constants.BOLUS
-    //console.log('o/p=' + ingredientCodes);
-    //console.log(ingredientCodes);
+    //Constants.BOLUS;
     return ingredientCodes;
 };
 

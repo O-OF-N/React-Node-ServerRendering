@@ -101,10 +101,10 @@ const getRxNormIngredientsMapper = insulinOrder => {
     return ingredients;
 };
 
-const getRxNormIngredients = function* (rxNormCode) {
-    const rxnormdata = axios.get(`https://rxnav.nlm.nih.gov/REST/rxcui/${rxNormCode.code}/related?tty=IN+SBDC`);
+const getRxNormIngredients = function (rxNormCode) {
+    const rxnormdata =  axios.get(`https://rxnav.nlm.nih.gov/REST/rxcui/${rxNormCode.code}/related?tty=IN+SBDC`);
     const ingredientCodes = processIngredients(rxnormdata);
-    return ingredientCodes;
+    yield ingredientCodes;
 };
 
 const processIngredients = rxNormData => {

@@ -114,7 +114,7 @@ const getRxNormIngredients = function* (rxNormCode) {
     try {
         const rxnormdata = yield axios.get(`https://rxnav.nlm.nih.gov/REST/rxcui/${rxNormCode.code}/related?tty=IN+SBDC`);
         const ingredientCodes = yield processIngredients(rxnormdata);
-        yield ingredientCodes;
+        return ingredientCodes;
     } catch (err) {
         console.log(err);
     }

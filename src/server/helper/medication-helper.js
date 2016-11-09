@@ -77,6 +77,7 @@ const fetchMedicationFromResource = (concept) => (concept) ? { name: concept.tex
 
 const fetchMedicationAdministration = (dosage) => (dosage && dosage instanceof Array && dosage[0] && dosage[0].route && dosage[0].route.coding && dosage[0].route.coding instanceof Array && dosage[0].route.coding[0]) ? dosage[0].route.coding[0].code === Constants.SUBCUTANEOUS ? Constants.SUBCUTANEOUS_TEXT : Constants.INTRAVENOUS_TEXT : null;
 
+
 const categorizeOrders = function* (insulinOrders) {
     let medicationOrders = [];
     yield* getAndMapRxNormIngredients(insulinOrders);
@@ -88,14 +89,14 @@ const categorizeOrders = function* (insulinOrders) {
 };
 
 const getAndMapRxNormIngredients = function* (insulinOrders) {
-    const insulin = insulinOrders.map(insulinOrder => yield* getRxNormIngredientsMapper(insulinOrder));
+    const insulin = insulinOrders.map(insulinOrder => co(getRxNormIngredientsMapper.bind(null, insulinOrder)));
     console.log('medication insulin = ' + insulin);
 };
 
 const getRxNormIngredientsMapper = function* (insulinOrder) {
-   const ingredients =  yield* getRxNormIngredients(insulinOrder);
-   console.log(ingredients);
-   return ingredients;
+    const ingredients = yield* getRxNormIngredients(insulinOrder);
+    console.log(ingredients);
+    return ingredients;
 };
 
 const getRxNormIngredients = function* (rxNormCode) {

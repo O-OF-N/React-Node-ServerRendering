@@ -97,15 +97,15 @@ const getAndMapRxNormIngredients = insulinOrders => {
 };
 
 const getRxNormIngredientsMapper = insulinOrder => {
-    const ingredients = getRxNormIngredients(insulinOrder);
+    const ingredients = co(getRxNormIngredients.bind(null,insulinOrder));
     return ingredients;
 };
 
-const getRxNormIngredients = co.wrap(function* (rxNormCode) {
+const getRxNormIngredients = function* (rxNormCode) {
     const rxnormdata = yield get(`https://rxnav.nlm.nih.gov/REST/rxcui/${rxNormCode.code}/related?tty=IN+SBDC`, authHeader);
     const ingredientCodes = yield processIngredients(rxnormdata);
     yield ingredientCodes;
-});
+};
 
 const processIngredients = rxNormData => {
     const ingredientsList = rxNormData.data.relatedGroup.conceptGroup.filter(group => group.tty === 'IN');

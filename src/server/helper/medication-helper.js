@@ -93,9 +93,9 @@ const getAndMapRxNormIngredients = insulinOrders => {
 };
 
 const getRxNormIngredientsMapper = insulinOrder => {
-    co(getRxNormIngredients.bind(null, insulinOrder))
-    .then(res=>{return res;})
-    .catch(console.log);
+   const ingredients =  co(getRxNormIngredients.bind(null, insulinOrder));
+   console.log(ingredients);
+   return ingredients;
 };
 
 const getRxNormIngredients = function* (rxNormCode) {

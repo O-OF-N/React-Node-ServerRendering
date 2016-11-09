@@ -80,7 +80,8 @@ const fetchMedicationAdministration = (dosage) => (dosage && dosage instanceof A
 
 const categorizeOrders = insulinOrders => {
     let medicationOrders = [];
-    getAndMapRxNormIngredients(insulinOrders);
+    const x = co(getAndMapRxNormIngredients.bind(null, insulinOrders));
+    console.log('x=', x);
     Constants.ORDER_CATEGORIZATION.forEach((value, key) => {
         const medicationOrder = new Records.MedicationOrder({ type: key, medications: new List(insulinOrders.filter(order => value.code.includes(order.code) && ((value.dosage && value.dosage === order.administration) || (!value.dosage)))) });
         medicationOrders.push(medicationOrder);
@@ -88,7 +89,7 @@ const categorizeOrders = insulinOrders => {
     return medicationOrders;
 };
 
-const getAndMapRxNormIngredients = insulinOrders => {
+const getAndMapRxNormIngredients = function* (insulinOrders) {
     try {
         let insulin = [];
         for (let insulinOrder of insulinOrders) {

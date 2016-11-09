@@ -108,10 +108,9 @@ const getRxNormIngredientsMapper = function* (insulinOrder) {
 
 const getRxNormIngredients = function* (rxNormCode) {
     const rxnormdata = yield axios.get(`https://rxnav.nlm.nih.gov/REST/rxcui/${rxNormCode.code}/related?tty=IN+SBDC`);
-    console.log(rxnormdata);
     const ingredientCodes = processIngredients(rxnormdata);
     //Constants.BOLUS;
-    //console.log(ingredientCodes);
+    console.log(ingredientCodes);
     return ingredientCodes;
 };
 

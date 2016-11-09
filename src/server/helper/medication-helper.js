@@ -92,7 +92,7 @@ const getAndMapRxNormIngredients = insulinOrders => {
     let insulin = [];
     for (let insulinOrder of insulinOrders) {
         console.log(insulinOrder);
-        for (let item of co(getRxNormIngredientsMapper.bind(null, insulinOrder))) {
+        for (let item of getRxNormIngredientsMapper(insulinOrder)) {
             insulin.push(item);
         }
     }
@@ -103,7 +103,7 @@ const getAndMapRxNormIngredients = insulinOrders => {
 const getRxNormIngredientsMapper = function* (insulinOrder) {
     const ingredients = yield* getRxNormIngredients(insulinOrder);
     console.log(ingredients);
-    return ingredients;
+    yield ingredients;
 };
 
 const getRxNormIngredients = function* (rxNormCode) {

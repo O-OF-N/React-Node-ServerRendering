@@ -103,7 +103,8 @@ const getAndMapRxNormIngredients = insulinOrders => {
 const getRxNormIngredientsMapper = function* (insulinOrder) {
     try {
         const ingredients = yield* getRxNormIngredients(insulinOrder);
-        yield ingredients;
+        console.log(ingredients);
+        return ingredients;
     } catch (err) {
         console.log(err);
     }

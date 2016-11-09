@@ -15,7 +15,7 @@ export const fetchMedications = function* (state) {
     const result = yield* fetchMedicationsHelper(state);
     const insulinOrders = HttpUtil.checkResponseStatus(result) ? buildInsulinOrdersResult(result) : null;
     //return insulinOrders ? categorizeOrders(insulinOrders) : null;
-    return insulinOrders ? categorizeOrders(insulinOrders.push(...bolusMedications())) : null;
+    return insulinOrders ? yield* categorizeOrders(insulinOrders.push(...bolusMedications())) : null;
 };
 
 //Private functions
@@ -77,9 +77,9 @@ const fetchMedicationFromResource = (concept) => (concept) ? { name: concept.tex
 
 const fetchMedicationAdministration = (dosage) => (dosage && dosage instanceof Array && dosage[0] && dosage[0].route && dosage[0].route.coding && dosage[0].route.coding instanceof Array && dosage[0].route.coding[0]) ? dosage[0].route.coding[0].code === Constants.SUBCUTANEOUS ? Constants.SUBCUTANEOUS_TEXT : Constants.INTRAVENOUS_TEXT : null;
 
-const categorizeOrders = (insulinOrders) => {
+const categorizeOrders = function* (insulinOrders) {
     let medicationOrders = [];
-    getAndMapRxNormIngredients(insulinOrders);
+    yield* getAndMapRxNormIngredients(insulinOrders);
     Constants.ORDER_CATEGORIZATION.forEach((value, key) => {
         const medicationOrder = new Records.MedicationOrder({ type: key, medications: new List(insulinOrders.filter(order => value.code.includes(order.code) && ((value.dosage && value.dosage === order.administration) || (!value.dosage)))) });
         medicationOrders.push(medicationOrder);
@@ -87,14 +87,14 @@ const categorizeOrders = (insulinOrders) => {
     return medicationOrders;
 };
 
-const getAndMapRxNormIngredients = insulinOrders => {
-    const insulin = insulinOrders.map(insulinOrder => getRxNormIngredientsMapper(insulinOrder));
+const getAndMapRxNormIngredients = function* (insulinOrders) {
+    const insulin = insulinOrders.map(insulinOrder => yield* getRxNormIngredientsMapper(insulinOrder));
     console.log('medication insulin = ' + insulin);
 };
 
-const getRxNormIngredientsMapper = insulinOrder => {
-   const ingredients =  co(getRxNormIngredients.bind(null, insulinOrder));
-   //console.log(ingredients);
+const getRxNormIngredientsMapper = function* (insulinOrder) {
+   const ingredients =  yield* getRxNormIngredients(insulinOrder);
+   console.log(ingredients);
    return ingredients;
 };
 
@@ -102,7 +102,7 @@ const getRxNormIngredients = function* (rxNormCode) {
     const rxnormdata = yield axios.get(`https://rxnav.nlm.nih.gov/REST/rxcui/${rxNormCode.code}/related?tty=IN+SBDC`);
     const ingredientCodes = processIngredients(rxnormdata);
     //Constants.BOLUS;
-    console.log(ingredientCodes);
+    //console.log(ingredientCodes);
     return ingredientCodes;
 };
 

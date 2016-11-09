@@ -89,22 +89,35 @@ const categorizeOrders = insulinOrders => {
 };
 
 const getAndMapRxNormIngredients = insulinOrders => {
-    let insulin = [];
-    for (let insulinOrder of insulinOrders) {
-        insulin.push(co(getRxNormIngredientsMapper.bind(null, insulinOrder)));
+    try {
+        let insulin = [];
+        for (let insulinOrder of insulinOrders) {
+            insulin.push(co(getRxNormIngredientsMapper.bind(null, insulinOrder)));
+        }
+        console.log('medication insulin = ' + insulin);
+    } catch (err) {
+        console.log(err);
     }
-    console.log('medication insulin = ' + insulin);
 };
 
 const getRxNormIngredientsMapper = function* (insulinOrder) {
-    const ingredients = yield* getRxNormIngredients(insulinOrder);
-    return ingredients;
+    try {
+        const ingredients = yield* getRxNormIngredients(insulinOrder);
+        return ingredients;
+    } catch (err) {
+        console.log(err);
+    }
 };
 
 const getRxNormIngredients = function* (rxNormCode) {
-    const rxnormdata = yield get(`https://rxnav.nlm.nih.gov/REST/rxcui/${rxNormCode.code}/related?tty=IN+SBDC`, authHeader);
-    const ingredientCodes = yield processIngredients(rxnormdata);
-    yield ingredientCodes;
+    try {
+        const authHeader = HttpUtil.buildAuthorizationHeader(userAuthenticationModel);
+        const rxnormdata = yield get(`https://rxnav.nlm.nih.gov/REST/rxcui/${rxNormCode.code}/related?tty=IN+SBDC`, authHeader);
+        const ingredientCodes = yield processIngredients(rxnormdata);
+        yield ingredientCodes;
+    } catch (err) {
+        console.log(err);
+    }
 };
 
 const processIngredients = rxNormData => {

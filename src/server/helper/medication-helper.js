@@ -92,7 +92,7 @@ const getAndMapRxNormIngredients = insulinOrders => {
     console.log('medication insulin = ' + insulin);
 };
 
-const getRxNormIngredientsMapper = insulinOrder => co(getRxNormIngredients.insulinOrder);
+const getRxNormIngredientsMapper = insulinOrder => co(getRxNormIngredients.insulinOrder).then(console.log).catch(console.log);
 
 const getRxNormIngredients = function* (rxNormCode) {
     //console.log('I reached here but not there>........');

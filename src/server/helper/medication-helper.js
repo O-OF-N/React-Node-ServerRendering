@@ -100,6 +100,7 @@ const getRxNormIngredients = function* (rxNormCode) {
     const ingredientCodes = processIngredients(rxnormdata);
     console.log('o/p=' + ingredientCodes);
     console.log(ingredientCodes);
+    return ingredientCodes;
 };
 
 const processIngredients = rxNormData => {

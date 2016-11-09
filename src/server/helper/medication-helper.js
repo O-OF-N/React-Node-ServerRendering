@@ -88,25 +88,28 @@ const categorizeOrders = (insulinOrders) => {
 };
 
 const getAndMapRxNormIngredients = insulinOrders => {
-    const medicationCodes = insulinOrders.map(insulin => insulin.code);
-    console.log('medication codes = ' + medicationCodes);
-    const insulin = insulinOrders.map(insulinOrder => co(getRxNormIngredients(insulinOrder)));
+    const insulin = insulinOrders.map(insulinOrder => getRxNormIngredients(insulinOrder));
     console.log('medication insulin = ' + insulin);
 };
 
-const getRxNormIngredients = function* (rxNormCode) {
+const getRxNormIngredients = co.wrap(function* (rxNormCode) {
     //console.log('I reached here but not there>........');
     const rxnormdata = yield axios.get(`https://rxnav.nlm.nih.gov/REST/rxcui/${rxNormCode.code}/related?tty=IN+SBDC`);
     const ingredientCodes = processIngredients(rxnormdata);
+    //Constants.BOLUS
     //console.log('o/p=' + ingredientCodes);
     //console.log(ingredientCodes);
     return ingredientCodes;
-};
+});
 
 const processIngredients = rxNormData => {
-    const ingredients = rxNormData.data.relatedGroup.conceptGroup.filter(group => group.tty === 'IN')[0];
-    return ingredients.conceptProperties.map(conceptProperty => {
+    const ingredientsList = rxNormData.data.relatedGroup.conceptGroup.filter(group => group.tty === 'IN')[0];
+    const sbdcList = rxNormData.data.relatedGroup.conceptGroup.filter(group => group.tty === 'SBDC')[0];
+    const response = ingredientsList && sbdcList && ingredientsList instanceof Array && sbdcList instanceof Array && ingredientsList.length > 0 && sbdcList.length > 0 && ingredientsList[0] && sbdcList[0] && sbdcList[0].conceptProperties && sbdcList[0].conceptProperties instanceof Array && sbdcList[0].conceptProperties.length > 0 ? { ingredients: ingredientsList[0], sbdcName: sbdcList[0].conceptProperties[0].name } : null;
+    const ingredients = response ? response.conceptProperties.map(conceptProperty => {
         const code = { code: conceptProperty.rxcui, name: conceptProperty.name };
         return code;
-    });
+    }) : null;
+    const sbdcName = response ? response.sbdcName : null;
+    return { ingredients, sbdcName };
 };

@@ -91,13 +91,13 @@ const categorizeOrders = insulinOrders => {
 const getAndMapRxNormIngredients = insulinOrders => {
     let insulin = [];
     for (let insulinOrder of insulinOrders) {
-        insulin.push(getRxNormIngredientsMapper(insulinOrder));
+        insulin.push(co(getRxNormIngredientsMapper.bind(null, insulinOrder)));
     }
     console.log('medication insulin = ' + insulin);
 };
 
-const getRxNormIngredientsMapper = insulinOrder => {
-    const ingredients = co(getRxNormIngredients.bind(null,insulinOrder));
+const getRxNormIngredientsMapper = function* (insulinOrder) {
+    const ingredients = co(getRxNormIngredients.bind(null, insulinOrder));
     return ingredients;
 };
 

@@ -125,22 +125,23 @@ const getRxNormIngredients = function* (rxNormCode) {
 const getIngredients = insulinOrders => {
     try {
         console.log('I am here')
-        const getFunctions = insulinOrders.map(insulinOrder => axiosGet.bind(null, insulinOrder.code));
-        console.log(getFunctions.size);
+        const getFunctions = insulinOrders.map(insulinOrder => axiosGet.bind(null, insulinOrder.code)).toJS();
+        console.log(getFunctions.length);
         console.log(getFunctions);
-        axios.all([getFunctions.get(0)(), getFunctions.get(1)(), getFunctions.get(2)(), getFunctions.get(3)(), getFunctions.get(4)(), getFunctions.get(5)(), getFunctions.get(6)(), getFunctions.get(7)()])
-        .then(axios.spread(function (...ingredients) {
-            ingredients.forEach(ingredient => {
-                console.log(processIngredients(ingredient))
-            });
-        }));
+        /*axios.all([getFunctions.get(0)(), getFunctions.get(1)(), getFunctions.get(2)(), getFunctions.get(3)(), getFunctions.get(4)(), getFunctions.get(5)(), getFunctions.get(6)(), getFunctions.get(7)()])*/
+        axios.all(getFunctions.map(fn => fn()))
+            .then(axios.spread(function (...ingredients) {
+                ingredients.forEach(ingredient => {
+                    console.log(processIngredients(ingredient))
+                });
+            }));
     } catch (err) {
         console.log(err);
     }
 }
 
 const axiosGet = (code) => {
-    console.log('called with code ',code);
+    console.log('called with code ', code);
     return axios.get(`https://rxnav.nlm.nih.gov/REST/rxcui/${code}/related?tty=IN+SBDC`);
 };
 

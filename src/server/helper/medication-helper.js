@@ -95,7 +95,7 @@ const getIngredients = function* (insulinOrders) {
         const getFunctions = insulinOrders.map(insulinOrder => axiosGet.bind(null, insulinOrder.code)).toJS();
         const ingredients = yield axios.all(getFunctions.map(fn => fn()));
         const processedIngredients = ingredients.map(ingredient => processIngredients(ingredient));
-        return insulinOrders.map((insulinOrder, index) => insulinOrder.merge({ ingredients: new Records.Ingredients({ code: processedIngredients[index].code, name: processedIngredients[index].name }) }));
+        return insulinOrders.map((insulinOrder, index) => insulinOrder.merge({ ingredients: processedIngredients }));
     } catch (err) {
         console.log(err);
     }
@@ -111,6 +111,6 @@ const processIngredients = rxNormData => {
         const code = { code: conceptProperty.rxcui, name: conceptProperty.name };
         return code;
     }) : null;
-    return ingredients ? ingredients.length === 1 ? { codes: [ingredients[0].code], name: ingredients[0].name } :
-        { codes: ingredients.map(ingredient => ingredient.code), name: response.sbdcName } : null;
+    return ingredients ? ingredients.length === 1 ? new Records.Ingredients({ codes: [ingredients[0].code], name: ingredients[0].name }) :
+        new Records.Ingredients({ codes: ingredients.map(ingredient => ingredient.code), name: response.sbdcName }) : null;
 };

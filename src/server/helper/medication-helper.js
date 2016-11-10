@@ -85,7 +85,7 @@ const checkDosage = (value, order) => (value.dosage && value.dosage === order.ad
 
 const getIngredients = function* (insulinOrders) {
     try {
-        const getFunctions = insulinOrders.map(insulinOrder => axiosGet.bind(null, insulinOrder.code)()).toJS();
+        const getFunctions = insulinOrders.map(insulinOrder => axiosGet.bind(null, insulinOrder.code).bind(null)).toJS();
         const ingredients = yield all(getFunctions);
         const processedIngredients = ingredients.map(ingredient => processIngredients(ingredient));
         return insulinOrders.map((insulinOrder, index) => insulinOrder.merge({ ingredients: processedIngredients[index] }));

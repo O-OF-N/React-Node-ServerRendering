@@ -85,7 +85,7 @@ const checkDosage = (value, order) => (value.dosage && value.dosage === order.ad
 
 const getIngredients = function* (insulinOrders) {
     try {
-        const getFunctions = insulinOrders.map(insulinOrder => axiosGet.bind(null, insulinOrder.code).bind(null)).toJS();
+        const getFunctions = insulinOrders.map(insulinOrder => axiosGet.bind(null, insulinOrder.code)).toJS();
         const ingredients = yield all(getFunctions);
         const processedIngredients = ingredients.map(ingredient => processIngredients(ingredient));
         return insulinOrders.map((insulinOrder, index) => insulinOrder.merge({ ingredients: processedIngredients[index] }));
@@ -95,7 +95,7 @@ const getIngredients = function* (insulinOrders) {
     }
 };
 
-const axiosGet = (code) => get(`https://rxnav.nlm.nih.gov/REST/rxcui/${code}/related?tty=IN+SBDC`);
+const axiosGet = (code) => (get(`https://rxnav.nlm.nih.gov/REST/rxcui/${code}/related?tty=IN+SBDC`))();
 
 const processIngredients = rxNormData => {
     const ingredientsList = rxNormData.data.relatedGroup.conceptGroup.filter(group => group.tty === 'IN');

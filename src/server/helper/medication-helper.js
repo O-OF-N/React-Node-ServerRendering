@@ -128,7 +128,7 @@ const getIngredients = insulinOrders => {
         const getFunctions = insulinOrders.map(insulinOrder => axiosGet.bind(null, insulinOrder.code));
         console.log(getFunctions.size);
         console.log(getFunctions);
-        axios.all([getFunctions.forEach(fn => fn())]).then(axios.spread(function (a, b, c, d, e, f, g, h) {
+        axios.all([getFunctions[0](), getFunctions[1](), getFunctions[2](), getFunctions[3](), getFunctions[4](), getFunctions[5](), getFunctions[6](), getFunctions[7](), getFunctions[8]()]).then(axios.spread(function (a, b, c, d, e, f, g, h) {
             console.log('answer= ', a, b, c, d, e, f, g, h);
             ingredients.forEach(ingredient => {
                 console.log(processIngredients(ingredient))
@@ -139,7 +139,10 @@ const getIngredients = insulinOrders => {
     }
 }
 
-const axiosGet = (code) => axios.get(`https://rxnav.nlm.nih.gov/REST/rxcui/${code}/related?tty=IN+SBDC`);
+const axiosGet = (code) => {
+    console.log('called with code ',code);
+    return axios.get(`https://rxnav.nlm.nih.gov/REST/rxcui/${code}/related?tty=IN+SBDC`);
+};
 
 const processIngredients = rxNormData => {
     //console.log('rxnorm',rxNormData);

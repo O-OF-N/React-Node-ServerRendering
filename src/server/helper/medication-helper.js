@@ -104,7 +104,8 @@ const categorizeOrders = insulinOrders => {
 const getIngredients = function* (insulinOrders) {
     try {
         const getFunctions = insulinOrders.map(insulinOrder => axiosGet.bind(null, insulinOrder.code)).toJS();
-        const z = yield axios.all(getFunctions.map(fn => fn()));
+        const ingredients = yield axios.all(getFunctions.map(fn => fn()));
+        const z = ingredients.map(ingredient => processIngredients(ingredient));
         console.log(z);
     } catch (err) {
         console.log(err);

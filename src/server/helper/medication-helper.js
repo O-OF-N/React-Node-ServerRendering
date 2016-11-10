@@ -83,12 +83,18 @@ const categorizeOrders = function* (insulinOrders) {
     const insulinOrdersWithIngredients = yield* getIngredients(insulinOrders);
     console.log(insulinOrdersWithIngredients);
     Constants.ORDER_CATEGORIZATION.forEach((value, key) => {
-        console.log(key, value.code.length, order.ingredients.codes.size);
-        console.log('value.code=', value.code);
-        console.log('order.ingredients.codes=', order.ingredients.codes);
-        console.log('value.dosage=', value.dosage);
-        console.log('order.administration=', order.administration);
-        const medicationOrder = new Records.MedicationOrder({ type: key, medications: new List(insulinOrdersWithIngredients.filter(order => value.code.length === order.ingredients.codes.size && value.code.includes(...order.ingredients.codes) && ((value.dosage && value.dosage === order.administration) || (!value.dosage)))) });
+
+        const medicationOrder = new Records.MedicationOrder({
+            type: key, medications: new List(insulinOrdersWithIngredients.filter(order => {
+                console.log(key, value.code.length, order.ingredients.codes.size);
+                console.log('value.code=', value.code);
+                console.log('order.ingredients.codes=', order.ingredients.codes);
+                console.log('value.dosage=', value.dosage);
+                console.log('order.administration=', order.administration);
+
+                return value.code.length === order.ingredients.codes.size && value.code.includes(...order.ingredients.codes) && ((value.dosage && value.dosage === order.administration) || (!value.dosage))
+            }))
+        });
         medicationOrders.push(medicationOrder);
     });
     console.log(medicationOrders);

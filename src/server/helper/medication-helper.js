@@ -15,7 +15,7 @@ export const fetchMedications = function* (state) {
     const result = yield* fetchMedicationsHelper(state);
     const insulinOrders = HttpUtil.checkResponseStatus(result) ? buildInsulinOrdersResult(result) : null;
     //return insulinOrders ? categorizeOrders(insulinOrders) : null;
-    return insulinOrders ? categorizeOrders(insulinOrders.push(...bolusMedications())) : null;
+    return insulinOrders ? yield* categorizeOrders(insulinOrders.push(...bolusMedications())) : null;
 };
 
 //Private functions
@@ -78,9 +78,10 @@ const fetchMedicationFromResource = (concept) => (concept) ? { name: concept.tex
 const fetchMedicationAdministration = (dosage) => (dosage && dosage instanceof Array && dosage[0] && dosage[0].route && dosage[0].route.coding && dosage[0].route.coding instanceof Array && dosage[0].route.coding[0]) ? dosage[0].route.coding[0].code === Constants.SUBCUTANEOUS ? Constants.SUBCUTANEOUS_TEXT : Constants.INTRAVENOUS_TEXT : null;
 
 
-const categorizeOrders = insulinOrders => {
+const categorizeOrders = function* (insulinOrders) {
     let medicationOrders = [];
-    const ingredients = co(getIngredients.bind(null, insulinOrders)).then(console.log);
+    //const ingredients = co(getIngredients.bind(null, insulinOrders)).then(console.log);
+    const ingredients = yield* getIngredients(insulinOrders);
     console.log(ingredients);
     Constants.ORDER_CATEGORIZATION.forEach((value, key) => {
         const medicationOrder = new Records.MedicationOrder({ type: key, medications: new List(insulinOrders.filter(order => value.code.includes(order.code) && ((value.dosage && value.dosage === order.administration) || (!value.dosage)))) });
@@ -88,19 +89,6 @@ const categorizeOrders = insulinOrders => {
     });
     return medicationOrders;
 };
-
-/*const getIngredients = insulinOrders => {
-    try {
-        const getFunctions = insulinOrders.map(insulinOrder => axiosGet.bind(null, insulinOrder.code)).toJS();
-        axios.all(getFunctions.map(fn => fn()))
-            .then(axios.spread((...ingredients) => {
-                const z = ingredients.map(ingredient => processIngredients(ingredient));
-                console.log(z);
-            }));
-    } catch (err) {
-        console.log(err);
-    }
-};*/
 
 const getIngredients = function* (insulinOrders) {
     try {

@@ -80,8 +80,9 @@ const fetchMedicationAdministration = (dosage) => (dosage && dosage instanceof A
 
 const categorizeOrders = insulinOrders => {
     let medicationOrders = [];
-    const x = co(getAndMapRxNormIngredients.bind(null, insulinOrders));
-    console.log('x=', x);
+    /*const x = co(getAndMapRxNormIngredients.bind(null, insulinOrders));
+    console.log('x=', x);*/
+    getIngredients(insulinOrders);
     Constants.ORDER_CATEGORIZATION.forEach((value, key) => {
         const medicationOrder = new Records.MedicationOrder({ type: key, medications: new List(insulinOrders.filter(order => value.code.includes(order.code) && ((value.dosage && value.dosage === order.administration) || (!value.dosage)))) });
         medicationOrders.push(medicationOrder);
@@ -89,7 +90,7 @@ const categorizeOrders = insulinOrders => {
     return medicationOrders;
 };
 
-const getAndMapRxNormIngredients = function* (insulinOrders) {
+/*const getAndMapRxNormIngredients = function* (insulinOrders) {
     try {
         let insulin = [];
         for (let insulinOrder of insulinOrders) {
@@ -113,13 +114,24 @@ const getRxNormIngredientsMapper = function* (insulinOrder) {
 
 const getRxNormIngredients = function* (rxNormCode) {
     try {
-        const rxnormdata = yield axios.get(`https://rxnav.nlm.nih.gov/REST/rxcui/${rxNormCode.code}/related?tty=IN+SBDC`);
+        const rxnormdata = yield 
         const ingredientCodes = yield processIngredients(rxnormdata);
         return ingredientCodes;
     } catch (err) {
         console.log(err);
     }
-};
+};*/
+
+const getIngredients = insulinOrders => {
+    const getFunctions = insulinOrders.map(insulinOrder => axiosGet.bind(null, insulinOrder.code));
+    axios.all(getFunctions.forEach(fn => fn())).then(axios.spread((...ingredients) => {
+        ingredients.forEach(ingredient => {
+            console.log(processIngredients(ingredient))
+        });
+    }));
+}
+
+const axiosGet = (code) => axios.get(`https://rxnav.nlm.nih.gov/REST/rxcui/${code}/related?tty=IN+SBDC`);
 
 const processIngredients = rxNormData => {
     //console.log('rxnorm',rxNormData);

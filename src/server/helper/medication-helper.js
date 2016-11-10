@@ -80,9 +80,7 @@ const fetchMedicationAdministration = (dosage) => (dosage && dosage instanceof A
 
 const categorizeOrders = insulinOrders => {
     let medicationOrders = [];
-    /*const x = co(getAndMapRxNormIngredients.bind(null, insulinOrders));
-    console.log('x=', x);*/
-    getIngredients(insulinOrders);
+    co(getIngredients.bind(null, insulinOrders));
     Constants.ORDER_CATEGORIZATION.forEach((value, key) => {
         const medicationOrder = new Records.MedicationOrder({ type: key, medications: new List(insulinOrders.filter(order => value.code.includes(order.code) && ((value.dosage && value.dosage === order.administration) || (!value.dosage)))) });
         medicationOrders.push(medicationOrder);
@@ -90,39 +88,7 @@ const categorizeOrders = insulinOrders => {
     return medicationOrders;
 };
 
-/*const getAndMapRxNormIngredients = function* (insulinOrders) {
-    try {
-        let insulin = [];
-        for (let insulinOrder of insulinOrders) {
-            co(getRxNormIngredientsMapper.bind(null, insulinOrder)).then(x => insulin.push(x));
-        }
-        console.log('medication insulin = ' + insulin);
-    } catch (err) {
-        console.log(err);
-    }
-};
-
-const getRxNormIngredientsMapper = function* (insulinOrder) {
-    try {
-        const ingredients = yield* getRxNormIngredients(insulinOrder);
-        console.log(ingredients);
-        return ingredients;
-    } catch (err) {
-        console.log(err);
-    }
-};
-
-const getRxNormIngredients = function* (rxNormCode) {
-    try {
-        const rxnormdata = yield 
-        const ingredientCodes = yield processIngredients(rxnormdata);
-        return ingredientCodes;
-    } catch (err) {
-        console.log(err);
-    }
-};*/
-
-const getIngredients = insulinOrders => {
+/*const getIngredients = insulinOrders => {
     try {
         const getFunctions = insulinOrders.map(insulinOrder => axiosGet.bind(null, insulinOrder.code)).toJS();
         axios.all(getFunctions.map(fn => fn()))
@@ -133,16 +99,21 @@ const getIngredients = insulinOrders => {
     } catch (err) {
         console.log(err);
     }
-}
+};*/
 
-const axiosGet = (code) => {
-    console.log('called with code ', code);
-    return axios.get(`https://rxnav.nlm.nih.gov/REST/rxcui/${code}/related?tty=IN+SBDC`);
+const getIngredients = function* (insulinOrders) {
+    try {
+        const getFunctions = insulinOrders.map(insulinOrder => axiosGet.bind(null, insulinOrder.code)).toJS();
+        const z = yield axios.all(getFunctions.map(fn => fn()));
+        console.log(z);
+    } catch (err) {
+        console.log(err);
+    }
 };
 
+const axiosGet = (code) => axios.get(`https://rxnav.nlm.nih.gov/REST/rxcui/${code}/related?tty=IN+SBDC`);
+
 const processIngredients = rxNormData => {
-    //console.log('rxnorm',rxNormData);
-    //console.log('rxnorm data',rxNormData.data)
     const ingredientsList = rxNormData.data.relatedGroup.conceptGroup.filter(group => group.tty === 'IN');
     const sbdcList = rxNormData.data.relatedGroup.conceptGroup.filter(group => group.tty === 'SBDC');
     const response = ingredientsList && sbdcList && ingredientsList instanceof Array && sbdcList instanceof Array && ingredientsList.length > 0 && sbdcList.length > 0 && ingredientsList[0] && sbdcList[0] && sbdcList[0].conceptProperties && sbdcList[0].conceptProperties instanceof Array && sbdcList[0].conceptProperties.length > 0 ? { ingredients: ingredientsList[0], sbdcName: sbdcList[0].conceptProperties[0].name } : null;

@@ -70,6 +70,15 @@ const bolusMedications = () => {
         code: 575679,
         comments: '1 unit, Injection, Subcutaneously,WM,Routine,Start Date 02/11/2016 8:00. Please give NovoLOG with lunch and dinner'
     });
+    const bolus3 = new Records.InsulinOrder({
+        status: 'active',
+        date: new Date(),
+        dosage: '10 unit(s), Subcutaneous, BID',
+        medication: 'HumaLOG Mix 75/25',
+        administration: Constants.SUBCUTANEOUS_TEXT,
+        code: 259111,
+        comments: '1 unit, Injection, Subcutaneously,WM,Routine,Start Date 02/11/2016 8:00. Please give NovoLOG with lunch and dinner'
+    });
     return new List([bolus1, bolus2]);
 }
 

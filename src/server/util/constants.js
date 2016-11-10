@@ -60,7 +60,7 @@ export const LABS_LOINIC_CODES = ["Glucose - serum/POCT", "Sodium - serum/POCT",
 
 export const LAB_RESULT_COUNT = 2;
 
-export const LAB_RESULT_DURATION_HOURS = 24; //If set to zero, no date condition will be added for lab results
+export const LAB_RESULT_DURATION_HOURS = 0; //If set to zero, no date condition will be added for lab results
 
 export const GLUCOSE_RESULT_DURATION_HOURS = 24; //If set to zero, no date condition will be added for glucose results
 

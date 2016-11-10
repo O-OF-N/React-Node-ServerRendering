@@ -83,9 +83,10 @@ const categorizeOrders = function* (insulinOrders) {
     const insulinOrdersWithIngredients = yield* getIngredients(insulinOrders);
     console.log(insulinOrdersWithIngredients);
     Constants.ORDER_CATEGORIZATION.forEach((value, key) => {
-        const medicationOrder = new Records.MedicationOrder({ type: key, medications: new List(insulinOrders.filter(order => value.code.includes(order.code) && ((value.dosage && value.dosage === order.administration) || (!value.dosage)))) });
+        const medicationOrder = new Records.MedicationOrder({ type: key, medications: new List(insulinOrdersWithIngredients.filter(order => value.code.length === order.ingredients.codes.size && value.code.includes(...order.ingredients.codes) && ((value.dosage && value.dosage === order.administration) || (!value.dosage)))) });
         medicationOrders.push(medicationOrder);
     });
+    console.log(medicationOrders);
     return medicationOrders;
 };
 

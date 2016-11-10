@@ -79,7 +79,7 @@ const bolusMedications = () => {
         code: 259111,
         comments: '1 unit, Injection, Subcutaneously,WM,Routine,Start Date 02/11/2016 8:00. Please give NovoLOG with lunch and dinner'
     });
-    return new List([bolus1, bolus2]);
+    return new List([bolus1, bolus2,bolus3]);
 }
 
 const fetchMedicationFromResource = (concept) => (concept) ? { name: concept.text, code: concept.coding ? concept.coding.filter(codes => codes.system === Constants.RXNORM_URL)[0].code : null } : null;

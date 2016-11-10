@@ -91,6 +91,7 @@ const categorizeOrders = function* (insulinOrders) {
 
 const getIngredients = function* (insulinOrders) {
     try {
+        console.log(insulinOrders);
         const getFunctions = insulinOrders.map(insulinOrder => axiosGet.bind(null, insulinOrder.code)).toJS();
         const ingredients = yield axios.all(getFunctions.map(fn => fn()));
         const processedIngredients = ingredients.map(ingredient => processIngredients(ingredient));

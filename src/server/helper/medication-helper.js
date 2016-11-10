@@ -128,7 +128,8 @@ const getIngredients = insulinOrders => {
         const getFunctions = insulinOrders.map(insulinOrder => axiosGet.bind(null, insulinOrder.code));
         console.log(getFunctions.size);
         console.log(getFunctions);
-        axios.all([getFunctions[0](), getFunctions[1](), getFunctions[2](), getFunctions[3](), getFunctions[4](), getFunctions[5](), getFunctions[6](), getFunctions[7](), getFunctions[8]()]).then(axios.spread(function (a, b, c, d, e, f, g, h) {
+        axios.all([getFunctions.get(0)(), getFunctions.get(1)(), getFunctions.get(2)(), getFunctions.get(3)(), getFunctions.get(4)(), getFunctions.get(5)(), getFunctions.get(6)(), getFunctions.get(7)()])
+        .then(axios.spread(function (a, b, c, d, e, f, g, h) {
             console.log('answer= ', a, b, c, d, e, f, g, h);
             ingredients.forEach(ingredient => {
                 console.log(processIngredients(ingredient))

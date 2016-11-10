@@ -96,7 +96,7 @@ const categorizeOrders = function* (insulinOrders) {
             type: key, medications: new List(insulinOrdersWithIngredients.filter(order => {
                 console.log(key, value.code.length, order.ingredients.codes.size);
                 console.log('checkIngredients=', checkIngredients(value.code, order.ingredients.codes));
-                return checkIngredients(value.code, order.ingredients.codes).length &&
+                return checkIngredients(value.code, order.ingredients.codes.toJS()).length &&
                     ((value.dosage && value.dosage === order.administration) || (!value.dosage))
             }))
         });
@@ -108,9 +108,9 @@ const categorizeOrders = function* (insulinOrders) {
 
 const checkIngredients = (valueCodes, orderCodes) => valueCodes.filter(valueCode => {
    console.log('valuecode = ', valueCode, 'ordercode = ', orderCodes);
-   console.log('valueCode.length = ', valueCode.length, 'orderCodes.size = ', orderCodes.size);
-   console.log('c1 = ', valueCode.length === orderCodes.size, 'c2= ', valueCode.includes(...orderCodes));
-   return valueCode.length === orderCodes.size && valueCode.includes(...orderCodes)
+   console.log('valueCode.length = ', valueCode.length, 'orderCodes.size = ', orderCodes.length);
+   console.log('c1 = ', valueCode.length === orderCodes.length, 'c2= ', valueCode.includes(...orderCodes));
+   return valueCode.length === orderCodes.length && valueCode.includes(...orderCodes)
 });
 
 const getIngredients = function* (insulinOrders) {

@@ -58,7 +58,13 @@ export const Medication = immutableRecord({
     dosage: 0,
     medication: '',
     administration: '',
-    comments: ''
+    comments: '',
+    ingredients: null
+});
+
+export const Ingredients = new Record({
+    codes: immutableList(),
+    name: ''
 });
 
 export const Height = immutableRecord({

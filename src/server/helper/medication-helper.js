@@ -111,6 +111,7 @@ const getIngredients = function* (insulinOrders) {
         return insulinOrders.map((insulinOrder, index) => insulinOrder.merge({ ingredients: processedIngredients[index] }));
     } catch (err) {
         console.log(err);
+        throw err;
     }
 };
 

@@ -128,7 +128,7 @@ const getIngredients = insulinOrders => {
         const getFunctions = insulinOrders.map(insulinOrder => axiosGet.bind(null, insulinOrder.code));
         console.log(getFunctions.size);
         console.log(getFunctions);
-        axios.all(getFunctions.forEach(fn => fn())).then(axios.spread((...ingredients) => {
+        axios.all([getFunctions.forEach(fn => fn())]).then(axios.spread((...ingredients) => {
             console.log('answer= ', ingredients.size);
             ingredients.forEach(ingredient => {
                 console.log(processIngredients(ingredient))

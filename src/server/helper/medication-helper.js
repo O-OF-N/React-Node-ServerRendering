@@ -80,7 +80,7 @@ const fetchMedicationAdministration = (dosage) => (dosage && dosage instanceof A
 
 const categorizeOrders = insulinOrders => {
     let medicationOrders = [];
-    const ingredients = co(getIngredients.bind(null, insulinOrders));
+    const ingredients = co(getIngredients.bind(null, insulinOrders)).then(console.log);
     console.log(ingredients);
     Constants.ORDER_CATEGORIZATION.forEach((value, key) => {
         const medicationOrder = new Records.MedicationOrder({ type: key, medications: new List(insulinOrders.filter(order => value.code.includes(order.code) && ((value.dosage && value.dosage === order.administration) || (!value.dosage)))) });

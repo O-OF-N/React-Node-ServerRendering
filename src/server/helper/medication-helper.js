@@ -95,7 +95,7 @@ const getIngredients = function* (insulinOrders) {
         const getFunctions = insulinOrders.map(insulinOrder => axiosGet.bind(null, insulinOrder.code)).toJS();
         const ingredients = yield axios.all(getFunctions.map(fn => fn()));
         const processedIngredients = ingredients.map(ingredient => processIngredients(ingredient));
-        return insulinOrders.map((insulinOrder, index) => insulinOrder.merge({ ingredients: new Records.Ingredients(processedIngredients[index]) }));
+        return insulinOrders.map((insulinOrder, index) => insulinOrder.merge({ ingredients: new Records.Ingredients({ code: processedIngredients[index].code, name: processedIngredients[index].name }) }));
     } catch (err) {
         console.log(err);
     }

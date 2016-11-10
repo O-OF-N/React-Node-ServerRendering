@@ -119,7 +119,7 @@ const processIngredients = rxNormData => {
     const sbdcList = rxNormData.data.relatedGroup.conceptGroup.filter(group => group.tty === 'SBDC');
     const response = ingredientsList && sbdcList && ingredientsList instanceof Array && sbdcList instanceof Array && ingredientsList.length > 0 && sbdcList.length > 0 && ingredientsList[0] && sbdcList[0] && sbdcList[0].conceptProperties && sbdcList[0].conceptProperties instanceof Array && sbdcList[0].conceptProperties.length > 0 ? { ingredients: ingredientsList[0], sbdcName: sbdcList[0].conceptProperties[0].name } : null;
     const ingredients = response && response.ingredients && response.ingredients.conceptProperties ? response.ingredients.conceptProperties.map(conceptProperty => {
-        const code = { code: conceptProperty.rxcui, name: conceptProperty.name };
+        const code = { code: parseInt(conceptProperty.rxcui), name: conceptProperty.name };
         return code;
     }) : null;
     return ingredients ? ingredients.length === 1 ? new Records.Ingredients({ codes: List([ingredients[0].code]), name: ingredients[0].name }) :

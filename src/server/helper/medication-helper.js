@@ -87,10 +87,7 @@ const categorizeOrders = function* (insulinOrders) {
         const medicationOrder = new Records.MedicationOrder({
             type: key, medications: new List(insulinOrdersWithIngredients.filter(order => {
                 console.log(key, value.code.length, order.ingredients.codes.size);
-                console.log('value.code=', value.code);
-                console.log('order.ingredients.codes=', order.ingredients.codes);
-                console.log('value.dosage=', value.dosage);
-                console.log('order.administration=', order.administration);
+                console.log('checkIngredients=', checkIngredients(value.code, order.ingredients.codes));
 
                 return checkIngredients(value.code, order.ingredients.codes).length && ((value.dosage && value.dosage === order.administration) || (!value.dosage))
             }))

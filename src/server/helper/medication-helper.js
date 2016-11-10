@@ -90,28 +90,21 @@ const fetchMedicationAdministration = (dosage) => (dosage && dosage instanceof A
 const categorizeOrders = function* (insulinOrders) {
     let medicationOrders = [];
     const insulinOrdersWithIngredients = yield* getIngredients(insulinOrders);
-    console.log(insulinOrdersWithIngredients);
     Constants.ORDER_CATEGORIZATION.forEach((value, key) => {
         const medicationOrder = new Records.MedicationOrder({
             type: key, medications: new List(insulinOrdersWithIngredients.filter(order => {
-                console.log(key, value.code.length, order.ingredients.codes.size);
-                console.log('checkIngredients=', checkIngredients(value.code, order.ingredients.codes));
                 return checkIngredients(value.code, order.ingredients.codes).length &&
                     ((value.dosage && value.dosage === order.administration) || (!value.dosage))
             }))
         });
         medicationOrders.push(medicationOrder);
     });
-    console.log(medicationOrders);
     return medicationOrders;
 };
 
 const checkIngredients = (valueCodes, orderCodes) => valueCodes.filter(valueCode => {
     const vc = new List(valueCode);
-    console.log('valuecode = ', vc, 'ordercode = ', orderCodes);
-    console.log('valueCode.length = ', vc.size, 'orderCodes.size = ', orderCodes.size);
-    console.log('c1 = ', vc.size === orderCodes.size, 'c2= ', vc.contains(...orderCodes));
-    return vc.size === orderCodes.size && vc.contains(...orderCodes)
+    return vc.size === orderCodes.size && vc.contains(...orderCodes);
 });
 
 const getIngredients = function* (insulinOrders) {

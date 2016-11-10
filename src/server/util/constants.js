@@ -60,6 +60,10 @@ export const LABS_LOINIC_CODES = ["Glucose - serum/POCT", "Sodium - serum/POCT",
 
 export const LAB_RESULT_COUNT = 2;
 
+export const LAB_RESULT_DURATION_HOURS = 24; //If set to zero, no date condition will be added for lab results
+
+export const GLUCOSE_RESULT_DURATION_HOURS = 24; //If set to zero, no date condition will be added for glucose results
+
 
 //Orders
 
@@ -70,9 +74,6 @@ export const DRIP = { code: [[575148], [575628], [575146]], dosage: INTRAVENOUS_
 export const BASAL = { code: [[1605101], [1670007], [139825], [274783], [51428, 352385], [86009, 314684], [253182, 1605101]], dosage: null };
 
 export const BOLUS = { code: [[51428], [400008], [86009], [253182]], dosage: SUBCUTANEOUS_TEXT };
-
-/*export const BASAL = { code: [261551, 400560, 1670012, 92880, 93558, 977838, 752386], dosage: null };
-*/
 
 export const ORAL_HYPOGLYCEMICS = { code: [[6809], [4821], [4815], [73044]], dosage: null };
 

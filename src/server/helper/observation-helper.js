@@ -9,14 +9,16 @@ import UserAuthenticationModel from '../models/UserAuthenticationSchema';
 
 //Public functions
 export const fetchGlucoseResults = function* (state) {
-    /*const result = yield* fetchObservationResultsHelper(state, Constants.GLUCOSE_CODES, new Date(), 24);*/
-    const result = yield* fetchObservationResultsHelper(state, Constants.GLUCOSE_CODES);
+    const result = Constants.GLUCOSE_RESULT_DURATION_HOURS ?
+        yield* fetchObservationResultsHelper(state, Constants.GLUCOSE_CODES, new Date(), Constants.GLUCOSE_RESULT_DURATION_HOURS) :
+        yield* fetchObservationResultsHelper(state, Constants.GLUCOSE_CODES);
     return HttpUtil.checkResponseStatus(result) ? buildGlucoseResultsFromJson(result) : null;
 };
 
 export const fetchLabResults = function* (state) {
-    /*const result = yield* fetchObservationResultsHelper(state, Constants.LABS_LOINIC_CODES, new Date(), 24);*/
-    const result = yield* fetchObservationResultsHelper(state, Constants.LABS_LOINIC_CODES);
+    const result = Constants.LAB_RESULT_DURATION_HOURS ?
+        yield* fetchObservationResultsHelper(state, Constants.LABS_LOINIC_CODES, new Date(), Constants.LAB_RESULT_DURATION_HOURS) :
+        yield* fetchObservationResultsHelper(state, Constants.LABS_LOINIC_CODES);
     const labs = HttpUtil.checkResponseStatus(result) ? buildLabResultsFromJson(result) : null;
     return groupLabs(Constants.LABS_LOINIC_CODES, labs);
 };

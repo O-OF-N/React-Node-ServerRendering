@@ -15,7 +15,7 @@ export const fetchMedications = function* (state) {
     const result = yield* fetchMedicationsHelper(state);
     const insulinOrders = HttpUtil.checkResponseStatus(result) ? buildInsulinOrdersResult(result) : null;
     //return insulinOrders ? categorizeOrders(insulinOrders) : null;
-    return insulinOrders ? yield* categorizeOrders(insulinOrders.push(...bolusMedications())) : null;
+    return insulinOrders ? yield* categorizeOrders(insulinOrders.push(...addTestMedications())) : null;
 };
 
 //Private functions
@@ -51,7 +51,65 @@ const buildInsulinOrdersResult = (json) => {
     return List(insulinOrder);
 };
 
-const bolusMedications = () => {
+const fetchMedicationFromResource = (concept) => (concept) ? {
+    name: concept.text, code: concept.coding ?
+        concept.coding.filter(codes => codes.system === Constants.RXNORM_URL)[0].code : null
+} : null;
+
+const fetchMedicationAdministration = (dosage) => (dosage && dosage instanceof Array && dosage[0] && dosage[0].route &&
+    dosage[0].route.coding && dosage[0].route.coding instanceof Array && dosage[0].route.coding[0]) ?
+    dosage[0].route.coding[0].code === Constants.SUBCUTANEOUS ? Constants.SUBCUTANEOUS_TEXT : Constants.INTRAVENOUS_TEXT : null;
+
+
+const categorizeOrders = function* (insulinOrders) {
+    let medicationOrders = [];
+    const insulinOrdersWithIngredients = yield* getIngredients(insulinOrders);
+    Constants.ORDER_CATEGORIZATION.forEach((value, key) => {
+        const medicationOrder = new Records.MedicationOrder({
+            type: key, medications: new List(insulinOrdersWithIngredients.filter(order =>
+                checkIngredients(value.code, order.ingredients.codes).length &&
+                checkDosage(value, order)
+            ))
+        });
+        medicationOrders.push(medicationOrder);
+    });
+    return medicationOrders;
+};
+
+const checkIngredients = (valueCodes, orderCodes) => valueCodes.filter(valueCode => {
+    const vc = new List(valueCode);
+    return vc.size === orderCodes.size && vc.contains(...orderCodes);
+});
+
+const checkDosage = (value, order) => (value.dosage && value.dosage === order.administration) || (!value.dosage);
+
+const getIngredients = function* (insulinOrders) {
+    try {
+        const getFunctions = insulinOrders.map(insulinOrder => axiosGet.bind(null, insulinOrder.code)).toJS();
+        const ingredients = yield axios.all(getFunctions.map(fn => fn()));
+        const processedIngredients = ingredients.map(ingredient => processIngredients(ingredient));
+        return insulinOrders.map((insulinOrder, index) => insulinOrder.merge({ ingredients: processedIngredients[index] }));
+    } catch (err) {
+        console.log(err);
+        throw err;
+    }
+};
+
+const axiosGet = (code) => axios.get(`https://rxnav.nlm.nih.gov/REST/rxcui/${code}/related?tty=IN+SBDC`);
+
+const processIngredients = rxNormData => {
+    const ingredientsList = rxNormData.data.relatedGroup.conceptGroup.filter(group => group.tty === 'IN');
+    const sbdcList = rxNormData.data.relatedGroup.conceptGroup.filter(group => group.tty === 'SBDC');
+    const response = ingredientsList && sbdcList && ingredientsList instanceof Array && sbdcList instanceof Array && ingredientsList.length > 0 && sbdcList.length > 0 && ingredientsList[0] && sbdcList[0] && sbdcList[0].conceptProperties && sbdcList[0].conceptProperties instanceof Array && sbdcList[0].conceptProperties.length > 0 ? { ingredients: ingredientsList[0], sbdcName: sbdcList[0].conceptProperties[0].name } : null;
+    const ingredients = response && response.ingredients && response.ingredients.conceptProperties ? response.ingredients.conceptProperties.map(conceptProperty => {
+        const code = { code: parseInt(conceptProperty.rxcui), name: conceptProperty.name };
+        return code;
+    }) : null;
+    return ingredients ? ingredients.length === 1 ? new Records.Ingredients({ codes: List([ingredients[0].code]), name: ingredients[0].name }) :
+        new Records.Ingredients({ codes: List(ingredients.map(ingredient => ingredient.code)), name: response.sbdcName }) : null;
+};
+
+const addTestMedications = () => {
     const bolus1 = new Records.InsulinOrder({
         status: 'active',
         date: new Date(),
@@ -80,55 +138,4 @@ const bolusMedications = () => {
         comments: '1 unit, Injection, Subcutaneously,WM,Routine,Start Date 02/11/2016 8:00. Please give NovoLOG with lunch and dinner'
     });
     return new List([bolus1, bolus2, bolus3]);
-}
-
-const fetchMedicationFromResource = (concept) => (concept) ? { name: concept.text, code: concept.coding ? concept.coding.filter(codes => codes.system === Constants.RXNORM_URL)[0].code : null } : null;
-
-const fetchMedicationAdministration = (dosage) => (dosage && dosage instanceof Array && dosage[0] && dosage[0].route && dosage[0].route.coding && dosage[0].route.coding instanceof Array && dosage[0].route.coding[0]) ? dosage[0].route.coding[0].code === Constants.SUBCUTANEOUS ? Constants.SUBCUTANEOUS_TEXT : Constants.INTRAVENOUS_TEXT : null;
-
-
-const categorizeOrders = function* (insulinOrders) {
-    let medicationOrders = [];
-    const insulinOrdersWithIngredients = yield* getIngredients(insulinOrders);
-    Constants.ORDER_CATEGORIZATION.forEach((value, key) => {
-        const medicationOrder = new Records.MedicationOrder({
-            type: key, medications: new List(insulinOrdersWithIngredients.filter(order => {
-                return checkIngredients(value.code, order.ingredients.codes).length &&
-                    ((value.dosage && value.dosage === order.administration) || (!value.dosage))
-            }))
-        });
-        medicationOrders.push(medicationOrder);
-    });
-    return medicationOrders;
-};
-
-const checkIngredients = (valueCodes, orderCodes) => valueCodes.filter(valueCode => {
-    const vc = new List(valueCode);
-    return vc.size === orderCodes.size && vc.contains(...orderCodes);
-});
-
-const getIngredients = function* (insulinOrders) {
-    try {
-        const getFunctions = insulinOrders.map(insulinOrder => axiosGet.bind(null, insulinOrder.code)).toJS();
-        const ingredients = yield axios.all(getFunctions.map(fn => fn()));
-        const processedIngredients = ingredients.map(ingredient => processIngredients(ingredient));
-        return insulinOrders.map((insulinOrder, index) => insulinOrder.merge({ ingredients: processedIngredients[index] }));
-    } catch (err) {
-        console.log(err);
-        throw err;
-    }
-};
-
-const axiosGet = (code) => axios.get(`https://rxnav.nlm.nih.gov/REST/rxcui/${code}/related?tty=IN+SBDC`);
-
-const processIngredients = rxNormData => {
-    const ingredientsList = rxNormData.data.relatedGroup.conceptGroup.filter(group => group.tty === 'IN');
-    const sbdcList = rxNormData.data.relatedGroup.conceptGroup.filter(group => group.tty === 'SBDC');
-    const response = ingredientsList && sbdcList && ingredientsList instanceof Array && sbdcList instanceof Array && ingredientsList.length > 0 && sbdcList.length > 0 && ingredientsList[0] && sbdcList[0] && sbdcList[0].conceptProperties && sbdcList[0].conceptProperties instanceof Array && sbdcList[0].conceptProperties.length > 0 ? { ingredients: ingredientsList[0], sbdcName: sbdcList[0].conceptProperties[0].name } : null;
-    const ingredients = response && response.ingredients && response.ingredients.conceptProperties ? response.ingredients.conceptProperties.map(conceptProperty => {
-        const code = { code: parseInt(conceptProperty.rxcui), name: conceptProperty.name };
-        return code;
-    }) : null;
-    return ingredients ? ingredients.length === 1 ? new Records.Ingredients({ codes: List([ingredients[0].code]), name: ingredients[0].name }) :
-        new Records.Ingredients({ codes: List(ingredients.map(ingredient => ingredient.code)), name: response.sbdcName }) : null;
 };

@@ -5,7 +5,7 @@ require('rc-table/assets/index.css');
 
 
 const columns = [{
-    title: 'Medication', dataIndex: 'medication', key: 'medication', width: '24%',
+    title: 'Medication', dataIndex: 'ingredients.name', key: 'medication', width: '24%',
 }, {
     title: 'Dosage', dataIndex: 'dosage', key: 'dosage', width: '24%',
 }, {

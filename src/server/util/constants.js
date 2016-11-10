@@ -65,7 +65,7 @@ export const LAB_RESULT_COUNT = 2;
 
 //https://mor.nlm.nih.gov/RxNav/
 
-export const DRIP = { code: [575148, 575628, 575146], dosage: INTRAVENOUS_TEXT };
+export const DRIP = { code: [[575148], [575628], [575146]], dosage: INTRAVENOUS_TEXT };
 
 export const BASAL = { code: [[1605101], [1670007], [139825], [274783], [51428, 352385], [86009, 314684], [253182, 1605101]], dosage: null };
 

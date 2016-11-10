@@ -91,8 +91,7 @@ const categorizeOrders = function* (insulinOrders) {
                 console.log('order.ingredients.codes=', order.ingredients.codes);
                 console.log('value.dosage=', value.dosage);
                 console.log('order.administration=', order.administration);
-
-                return value.code.length === order.ingredients.codes.size && value.code.includes(...order.ingredients.codes) && ((value.dosage && value.dosage === order.administration) || (!value.dosage))
+                return checkIngrediens(value.code, order.ingredients.code) && ((value.dosage && value.dosage === order.administration) || (!value.dosage))
             }))
         });
         medicationOrders.push(medicationOrder);
@@ -100,6 +99,8 @@ const categorizeOrders = function* (insulinOrders) {
     console.log(medicationOrders);
     return medicationOrders;
 };
+
+const checkIngrediens = (valueCodes, orderCodes) => valueCodes.filter(valueCode => valueCode.length === orderCodes.length && valueCode.includes(...orderCodes));
 
 const getIngredients = function* (insulinOrders) {
     try {

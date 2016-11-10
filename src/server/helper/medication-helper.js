@@ -80,8 +80,8 @@ const fetchMedicationAdministration = (dosage) => (dosage && dosage instanceof A
 
 const categorizeOrders = function* (insulinOrders) {
     let medicationOrders = [];
-    const ingredients = yield* getIngredients(insulinOrders);
-    console.log(ingredients);
+    const insulinOrdersWithIngredients = yield* getIngredients(insulinOrders);
+    console.log(insulinOrdersWithIngredients);
     Constants.ORDER_CATEGORIZATION.forEach((value, key) => {
         const medicationOrder = new Records.MedicationOrder({ type: key, medications: new List(insulinOrders.filter(order => value.code.includes(order.code) && ((value.dosage && value.dosage === order.administration) || (!value.dosage)))) });
         medicationOrders.push(medicationOrder);
@@ -95,7 +95,7 @@ const getIngredients = function* (insulinOrders) {
         const getFunctions = insulinOrders.map(insulinOrder => axiosGet.bind(null, insulinOrder.code)).toJS();
         const ingredients = yield axios.all(getFunctions.map(fn => fn()));
         const processedIngredients = ingredients.map(ingredient => processIngredients(ingredient));
-        return processedIngredients;
+        return insulinOrders.map((insulinOrder, index) => insulinOrder.merge({ ingredients: processedIngredients[i] }));
     } catch (err) {
         console.log(err);
     }

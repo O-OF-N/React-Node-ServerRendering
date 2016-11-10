@@ -92,7 +92,7 @@ const categorizeOrders = function* (insulinOrders) {
                 console.log('value.dosage=', value.dosage);
                 console.log('order.administration=', order.administration);
 
-                return checkIngredients(value.code, order.ingredients.codes) && ((value.dosage && value.dosage === order.administration) || (!value.dosage))
+                return checkIngredients(value.code, order.ingredients.codes).length && ((value.dosage && value.dosage === order.administration) || (!value.dosage))
             }))
         });
         medicationOrders.push(medicationOrder);

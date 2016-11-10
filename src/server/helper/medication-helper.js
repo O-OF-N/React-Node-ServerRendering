@@ -79,7 +79,7 @@ const bolusMedications = () => {
         code: 259111,
         comments: '1 unit, Injection, Subcutaneously,WM,Routine,Start Date 02/11/2016 8:00. Please give NovoLOG with lunch and dinner'
     });
-    return new List([bolus1, bolus2,bolus3]);
+    return new List([bolus1, bolus2, bolus3]);
 }
 
 const fetchMedicationFromResource = (concept) => (concept) ? { name: concept.text, code: concept.coding ? concept.coding.filter(codes => codes.system === Constants.RXNORM_URL)[0].code : null } : null;
@@ -92,13 +92,12 @@ const categorizeOrders = function* (insulinOrders) {
     const insulinOrdersWithIngredients = yield* getIngredients(insulinOrders);
     console.log(insulinOrdersWithIngredients);
     Constants.ORDER_CATEGORIZATION.forEach((value, key) => {
-
         const medicationOrder = new Records.MedicationOrder({
             type: key, medications: new List(insulinOrdersWithIngredients.filter(order => {
                 console.log(key, value.code.length, order.ingredients.codes.size);
                 console.log('checkIngredients=', checkIngredients(value.code, order.ingredients.codes));
-
-                return checkIngredients(value.code, order.ingredients.codes).length && ((value.dosage && value.dosage === order.administration) || (!value.dosage))
+                return checkIngredients(value.code, order.ingredients.codes).length &&
+                    ((value.dosage && value.dosage === order.administration) || (!value.dosage))
             }))
         });
         medicationOrders.push(medicationOrder);
@@ -107,7 +106,10 @@ const categorizeOrders = function* (insulinOrders) {
     return medicationOrders;
 };
 
-const checkIngredients = (valueCodes, orderCodes) => valueCodes.filter(valueCode => valueCode.length === orderCodes.size && valueCode.includes(...orderCodes));
+const checkIngredients = (valueCodes, orderCodes) => valueCodes.filter(valueCode => {
+   console.log('valuecode = ', valueCode, 'ordercode = ', orderCodes);
+   return valueCode.length === orderCodes.size && valueCode.includes(...orderCodes)
+});
 
 const getIngredients = function* (insulinOrders) {
     try {

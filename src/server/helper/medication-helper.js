@@ -122,6 +122,6 @@ const processIngredients = rxNormData => {
         const code = { code: conceptProperty.rxcui, name: conceptProperty.name };
         return code;
     }) : null;
-    return ingredients ? ingredients.length === 1 ? new Records.Ingredients({ codes: [ingredients[0].code], name: ingredients[0].name }) :
-        new Records.Ingredients({ codes: ingredients.map(ingredient => ingredient.code), name: response.sbdcName }) : null;
+    return ingredients ? ingredients.length === 1 ? new Records.Ingredients({ codes: List([ingredients[0].code]), name: ingredients[0].name }) :
+        new Records.Ingredients({ codes: List(ingredients.map(ingredient => ingredient.code)), name: response.sbdcName }) : null;
 };

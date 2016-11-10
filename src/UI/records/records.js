@@ -62,7 +62,7 @@ export const Medication = immutableRecord({
     ingredients: null
 });
 
-export const Ingredients = new Record({
+export const Ingredients = immutableRecord({
     codes: immutableList(),
     name: ''
 });

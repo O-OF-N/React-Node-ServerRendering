@@ -124,16 +124,11 @@ const getRxNormIngredients = function* (rxNormCode) {
 
 const getIngredients = insulinOrders => {
     try {
-        console.log('I am here')
         const getFunctions = insulinOrders.map(insulinOrder => axiosGet.bind(null, insulinOrder.code)).toJS();
-        console.log(getFunctions.length);
-        console.log(getFunctions);
-        /*axios.all([getFunctions.get(0)(), getFunctions.get(1)(), getFunctions.get(2)(), getFunctions.get(3)(), getFunctions.get(4)(), getFunctions.get(5)(), getFunctions.get(6)(), getFunctions.get(7)()])*/
         axios.all(getFunctions.map(fn => fn()))
-            .then(axios.spread(function (...ingredients) {
-                ingredients.forEach(ingredient => {
-                    console.log(processIngredients(ingredient))
-                });
+            .then(axios.spread((...ingredients) => {
+                const z = ingredients.map(ingredient => processIngredients(ingredient));
+                console.log(z);
             }));
     } catch (err) {
         console.log(err);

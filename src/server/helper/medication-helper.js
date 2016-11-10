@@ -108,6 +108,8 @@ const categorizeOrders = function* (insulinOrders) {
 
 const checkIngredients = (valueCodes, orderCodes) => valueCodes.filter(valueCode => {
    console.log('valuecode = ', valueCode, 'ordercode = ', orderCodes);
+   console.log('valueCode.length = ', valueCode.length, 'orderCodes.size = ', orderCodes.size);
+   console.log('c1 = ', valueCode.length === orderCodes.size, 'c2= ', valueCode.includes(...orderCodes));
    return valueCode.length === orderCodes.size && valueCode.includes(...orderCodes)
 });
 

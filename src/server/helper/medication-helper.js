@@ -129,8 +129,7 @@ const getIngredients = insulinOrders => {
         console.log(getFunctions.size);
         console.log(getFunctions);
         axios.all([getFunctions.get(0)(), getFunctions.get(1)(), getFunctions.get(2)(), getFunctions.get(3)(), getFunctions.get(4)(), getFunctions.get(5)(), getFunctions.get(6)(), getFunctions.get(7)()])
-        .then(axios.spread(function (a, b, c, d, e, f, g, h) {
-            console.log('answer= ', a, b, c, d, e, f, g, h);
+        .then(axios.spread(function (...ingredients) {
             ingredients.forEach(ingredient => {
                 console.log(processIngredients(ingredient))
             });

@@ -29,7 +29,7 @@ export const InsulinOrder = new Record({
 });
 
 export const Ingredients = new Record({
-    code: immutableList(),
+    codes: immutableList(),
     name: ''
 });
 

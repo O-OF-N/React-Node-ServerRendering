@@ -123,12 +123,19 @@ const getRxNormIngredients = function* (rxNormCode) {
 };*/
 
 const getIngredients = insulinOrders => {
-    const getFunctions = insulinOrders.map(insulinOrder => axiosGet.bind(null, insulinOrder.code));
-    axios.all(getFunctions.forEach(fn => fn())).then(axios.spread((...ingredients) => {
-        ingredients.forEach(ingredient => {
-            console.log(processIngredients(ingredient))
-        });
-    }));
+    try {
+        console.log('I am here')
+        const getFunctions = insulinOrders.map(insulinOrder => axiosGet.bind(null, insulinOrder.code));
+        console.log(getFunctions.size);
+        console.log(getFunctions);
+        axios.all(getFunctions.forEach(fn => fn())).then(axios.spread((...ingredients) => {
+            ingredients.forEach(ingredient => {
+                console.log(processIngredients(ingredient))
+            });
+        }));
+    } catch (err) {
+        console.log(err);
+    }
 }
 
 const axiosGet = (code) => axios.get(`https://rxnav.nlm.nih.gov/REST/rxcui/${code}/related?tty=IN+SBDC`);

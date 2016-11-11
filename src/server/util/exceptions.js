@@ -1,7 +1,7 @@
 class ErrorRoot extends Error {
     constructor(message) {
         super(message);
-        this.name = constructor.name;
+        this.name = this.constructor.name;
         this.message = message;
     }
 };

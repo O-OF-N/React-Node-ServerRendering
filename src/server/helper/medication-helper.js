@@ -16,6 +16,8 @@ export const fetchMedications = function* (state) {
         //return insulinOrders ? categorizeOrders(insulinOrders) : null;
         return insulinOrders ? yield* categorizeOrders(insulinOrders.push(...addTestMedications())) : null;
     } catch (err) {
+        console.log('err type = ', err instanceof Exceptions.InvalidStateError);
+        console.log('err = ' + err.constructor.name);
         console.log(err.message);
         throw err;
     }

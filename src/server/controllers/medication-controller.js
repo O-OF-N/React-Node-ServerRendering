@@ -13,8 +13,8 @@ router.get('/orders/:state', co(function* (req, res, next) {
         res.send(medications);
     } catch (err) {
         console.log('err = ' + err);
-        console.log('err = ' + typeof err);
         console.log('err type = ', err instanceof Exceptions.InvalidStateError);
+        console.log('err = ' + err.constructor.name);
         next(err);
     }
 }));

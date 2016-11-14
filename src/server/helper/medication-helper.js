@@ -18,7 +18,7 @@ export const fetchMedications = function* (state) {
 
 //Private functions
 const fetchMedicationsHelper = function* (state) {
-    const [userAuthenticationModel] = yield* UserAuthenticationModel.findByState(state);
+    const [userAuthenticationModel] = yield UserAuthenticationModel.findByState(state);
     console.log('1>>>>>>>>>>')
     if (!userAuthenticationModel) throw new Exceptions.InvalidStateError(`State ${state} is invalid`);
     console.log('2>>>>>>>>>>')

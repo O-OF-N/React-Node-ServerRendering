@@ -8,13 +8,13 @@ class ErrorRoot extends Error {
 
 export class InvalidStateError extends ErrorRoot {
     constructor(message) {
-        super(message, this.constructor.name);
+        super(message, 'InvalidStateError');
     }
 };
 
 
 export class AuthenticationError extends ErrorRoot {
     constructor(message) {
-        super(message, this.constructor.name);
+        super(message, 'AuthenticationError');
     }
 };

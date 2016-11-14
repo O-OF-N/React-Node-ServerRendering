@@ -18,7 +18,7 @@ export const fetchMedications = function* (state) {
     } catch (err) {
         console.log('err type = ', err instanceof Exceptions.InvalidStateError);
         console.log('err = ' + err.constructor.name);
-        console.log(err.message);
+        console.log(err);
         throw err;
     }
 };

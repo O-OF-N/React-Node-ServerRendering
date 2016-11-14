@@ -6,7 +6,8 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 mongoose.Promise = global.Promise
-import {ActiveEnv, DBConfig} from './config/app-config';
+import { ActiveEnv, DBConfig } from './config/app-config';
+import * as ErrorHandle from './error-handler';
 
 const getDBURL = () => {
   let userName, password, url, schema;
@@ -52,26 +53,11 @@ app.use((req, res, next) => {
 
 // error handlers
 
-// development error handler
-// will print stacktrace
-if (app.get('env') === 'development') {
-  app.use((err, req, res) => {
-    res.status(err.status || 500);
-    res.render('error', {
-      message: err
-    });
-  });
-}
 
-// production error handler
-// no stacktraces leaked to user
-app.use((err, req, res) => {
-  res.status(err.status || 500);
-  res.render('error', {
-    message: err.message,
-    error: {}
-  });
-});
+if (app.get('env') === 'development') {
+  app.use(DevErrorHandle);
+}
+app.use(ProdErrorHandle);
 
 
 module.exports = app;

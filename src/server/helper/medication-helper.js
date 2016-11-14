@@ -12,6 +12,7 @@ import * as Exceptions from '../util/exceptions'
 export const fetchMedications = function* (state) {
     try {
         const result = yield* fetchMedicationsHelper(state);
+        console.log(result instanceof Exceptions.InvalidStateError)
         const insulinOrders = result && HttpUtil.checkResponseStatus(result) ? buildInsulinOrdersResult(result) : null;
         //return insulinOrders ? categorizeOrders(insulinOrders) : null;
         return insulinOrders ? yield* categorizeOrders(insulinOrders.push(...addTestMedications())) : null;
@@ -26,7 +27,7 @@ export const fetchMedications = function* (state) {
 //Private functions
 const fetchMedicationsHelper = function* (state) {
     const [userAuthenticationModel] = yield UserAuthenticationModel.findByState(state);
-    if (!userAuthenticationModel) throw new Exceptions.InvalidStateError(`State ${state} is invalid`);
+    if (!userAuthenticationModel) return new Exceptions.InvalidStateError(`State ${state} is invalid`);
     const url = userAuthenticationModel ? HttpUtil.buildMedicationURL(userAuthenticationModel.patient, userAuthenticationModel.iss) : null;
     const authHeader = userAuthenticationModel ? HttpUtil.buildAuthorizationHeader(userAuthenticationModel) : null;
     return url && authHeader ? yield get(url, authHeader) : null;

@@ -1,27 +1,21 @@
 class ErrorRoot extends Error {
-    constructor(message) {
+    constructor(message,name) {
     super(message);
-    this.name = this.constructor.name;
+    this.name = name;
     this.message = message; 
     Error.captureStackTrace(this, this.constructor.name);
     }
 };
 
-export class InvalidStateError extends Error {
+export class InvalidStateError extends ErrorRoot {
     constructor(message) {
-        super(message);
-    this.name = this.constructor.name;
-    this.message = message; 
-    Error.captureStackTrace(this, this.constructor.name);
+        super(message,'InvalidStateError');
     }
 };
 
 
-export class AuthenticationError extends Error {
+export class AuthenticationError extends ErrorRoot {
     constructor(message) {
-        super(message);
-    this.name = this.constructor.name;
-    this.message = message; 
-    Error.captureStackTrace(this, this.constructor.name);
+        super(message,'AuthenticationError');
     }
 };

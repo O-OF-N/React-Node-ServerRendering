@@ -10,18 +10,10 @@ import * as Exceptions from '../util/exceptions'
 
 //public functions
 export const fetchMedications = function* (state) {
-    try {
-        const result = yield* fetchMedicationsHelper(state);
-        console.log(result instanceof Exceptions.InvalidStateError)
-        const insulinOrders = result && HttpUtil.checkResponseStatus(result) ? buildInsulinOrdersResult(result) : null;
-        //return insulinOrders ? categorizeOrders(insulinOrders) : null;
-        return insulinOrders ? yield* categorizeOrders(insulinOrders.push(...addTestMedications())) : null;
-    } catch (err) {
-        console.log('err type = ', err instanceof Exceptions.InvalidStateError);
-        console.log('err = ' + err.constructor.name);
-        console.log(err);
-        throw err;
-    }
+    const result = yield* fetchMedicationsHelper(state);
+    const insulinOrders = result && HttpUtil.checkResponseStatus(result) ? buildInsulinOrdersResult(result) : null;
+    //return insulinOrders ? categorizeOrders(insulinOrders) : null;
+    return insulinOrders ? yield* categorizeOrders(insulinOrders.push(...addTestMedications())) : null;
 };
 
 //Private functions

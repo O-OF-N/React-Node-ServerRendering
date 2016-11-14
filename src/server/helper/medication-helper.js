@@ -19,9 +19,13 @@ export const fetchMedications = function* (state) {
 //Private functions
 const fetchMedicationsHelper = function* (state) {
     const [userAuthenticationModel] = yield* UserAuthenticationModel.findByState(state);
+    console.log('1>>>>>>>>>>')
     if (!userAuthenticationModel) throw new Exceptions.InvalidStateError(`State ${state} is invalid`);
+    console.log('2>>>>>>>>>>')
     const url = userAuthenticationModel ? HttpUtil.buildMedicationURL(userAuthenticationModel.patient, userAuthenticationModel.iss) : null;
+    console.log('3>>>>>>>>>>')
     const authHeader = userAuthenticationModel ? HttpUtil.buildAuthorizationHeader(userAuthenticationModel) : null;
+    console.log('4>>>>>>>>>>')
     return url && authHeader ? yield get(url, authHeader) : null;
 };
 

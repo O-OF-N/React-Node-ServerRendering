@@ -11,7 +11,7 @@ import * as Exceptions from '../util/exceptions'
 //public functions
 export const fetchMedications = function* (state) {
     const result = yield* fetchMedicationsHelper(state);
-    const insulinOrders = buildInsulinOrdersResult(result);
+    const insulinOrders = HttpUtil.checkResponseStatus(result) ? buildInsulinOrdersResult(result) : null;
     //return insulinOrders ? categorizeOrders(insulinOrders) : null;
     return insulinOrders ? yield* categorizeOrders(insulinOrders.push(...addTestMedications())) : null;
 };
@@ -22,15 +22,9 @@ const fetchMedicationsHelper = function* (state) {
     if (!userAuthenticationModel) throw new Exceptions.InvalidStateError(`State ${state} is invalid`);
     const url = userAuthenticationModel ? HttpUtil.buildMedicationURL(userAuthenticationModel.patient, userAuthenticationModel.iss) : null;
     const authHeader = userAuthenticationModel ? HttpUtil.buildAuthorizationHeader(userAuthenticationModel) : null;
-    const result = url && authHeader ? yield get(url, authHeader) : null;
-    
-    if (result && HttpUtil.checkResponseStatus(result)) return result;
-    else throw new Exceptions.AuthenticationError('Authentication Failed', userAuthenticationModel);
+    return url && authHeader ? yield get(url, authHeader) : null;
 };
 
-const fetchUserAuthenticationModel = function* (state) {
-    yield UserAuthenticationModel.findByState(state);
-};
 
 const buildInsulinOrdersResult = (json) => {
     let insulinOrder = (json.data && json.data.entry) ? json.data.entry.map((entry) => {

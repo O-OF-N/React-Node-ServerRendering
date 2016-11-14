@@ -7,7 +7,7 @@ class ErrorRoot extends Error {
     }
 };
 
-export class InvalidStateError {
+export class InvalidStateError extends Error {
     constructor(message) {
         super(message);
     this.name = this.constructor.name;
@@ -17,7 +17,7 @@ export class InvalidStateError {
 };
 
 
-export class AuthenticationError {
+export class AuthenticationError extends Error {
     constructor(message) {
         super(message);
     this.name = this.constructor.name;

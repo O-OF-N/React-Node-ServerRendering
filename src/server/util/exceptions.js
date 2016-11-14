@@ -17,6 +17,18 @@ export class InvalidStateError extends ErrorRoot {
 
 export class AuthenticationError extends ErrorRoot {
     constructor(message,params) {
-        super(message,'AuthenticationError');
+        super(message,'AuthenticationError',params);
+    }
+};
+
+export class MedicationFetchError extends ErrorRoot {
+    constructor(message,params) {
+        super(message,'MedicationFetchError');
+    }
+};
+
+export class ObservationFetchError extends ErrorRoot {
+    constructor(message,params) {
+        super(message,'ObservationFetchError');
     }
 };

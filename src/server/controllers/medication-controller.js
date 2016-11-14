@@ -13,7 +13,6 @@ router.get('/orders/:state', co(function* (req, res, next) {
         const medications = yield MedicationHelper.fetchMedications(req.params.state);
         res.send(medications);
     } catch (err) {
-        console.log(err);
         ErrorHandle.ErrorHandler(err.name,req,res,err.params);
     }
 }));

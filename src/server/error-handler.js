@@ -25,5 +25,9 @@ export const ErrorHandler = pattern({
     '"InvalidStateError",req,res,params': (req, res, params) =>
         res.status(500).send({
             message: 'Invalid authentication parameters sent'
-        })
+        }),
+    '"AuthenticationError",req,res,params': (req, res, params) => {
+        console.log(`${req.baseUrl}/?iss=${params.iss}&launch=${params.launch}`);
+        res.redirect(`${req.baseUrl}/?iss=${params.iss}&launch=${params.launch}`);
+    }
 });

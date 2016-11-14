@@ -4,6 +4,7 @@ import * as MedicationHelper from '../helper/medication-helper';
 import * as Records from '../models/models';
 import * as Constants from '../util/constants';
 import * as Exceptions from '../util/exceptions'
+import * as ErrorHandle from '../error-handler';
 
 const router = express.Router();
 
@@ -12,10 +13,7 @@ router.get('/orders/:state', co(function* (req, res, next) {
         const medications = yield MedicationHelper.fetchMedications(req.params.state);
         res.send(medications);
     } catch (err) {
-        console.log('err = ' + err);
-        console.log('err type = ', err.name);
-        console.log('err = ' + err.constructor.name);
-        next(err);
+        ErrorHandle.ErrorHandler(err.name,req,res,err.params);
     }
 }));
 

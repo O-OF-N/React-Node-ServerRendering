@@ -1,3 +1,6 @@
+var pattern = require("matches").pattern;
+
+
 // development error handler
 // will print stacktrace
 export const DevErrorHandle = (err, req, res) => {
@@ -15,4 +18,15 @@ export const ProdErrorHandle = (err, req, res) => {
         message: err.message,
         error: {}
     });
-}
+};
+
+
+export const ErrorHandler = pattern({
+    '"InvalidStateError",req,res,params': (req, res, params) => {
+        res.status(500);
+        res.send('error', {
+            message: 'Invalid authentication parameters sent',
+            error: {}
+        });
+    }
+});

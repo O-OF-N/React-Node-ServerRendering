@@ -1,20 +1,20 @@
 class ErrorRoot extends Error {
-    constructor(message) {
+    constructor(message,name) {
         super(message);
-        this.name = this.constructor.name;
+        this.name = name;
         this.message = message;
     }
 };
 
 export class InvalidStateError extends ErrorRoot {
     constructor(message) {
-        super(message);
+        super(message, this.constructor.name);
     }
 };
 
 
 export class AuthenticationError extends ErrorRoot {
     constructor(message) {
-        super(message);
+        super(message, this.constructor.name);
     }
 };

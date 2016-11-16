@@ -25,8 +25,10 @@ const fetchMedicationsHelper = function* (state) {
     const url = userAuthenticationModel ? HttpUtil.buildMedicationURL(userAuthenticationModel.patient, userAuthenticationModel.iss) : null;
     console.log('url = ', url);
     const authHeader = userAuthenticationModel ? HttpUtil.buildAuthorizationHeader(userAuthenticationModel) : null;
-    console.log('authHeader = ', authHeader);
-    const result = url && authHeader ? yield get(url, authHeader) : null;
+    let result;
+    if (url && authHeader)
+        result = yield get(url, authHeader)
+    else result = null;
     console.log('result = ', result);
     if (result && HttpUtil.checkResponseStatus(result)) return result;
     else throw new Exceptions.AuthenticationError('Authentication failed');

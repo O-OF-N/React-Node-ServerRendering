@@ -11,7 +11,7 @@ import * as Exceptions from '../util/exceptions'
 //public functions
 export const fetchMedications = function* (state) {
     const result = yield* fetchMedicationsHelper(state);
-    const insulinOrders = HttpUtil.checkResponseStatus(result) ? buildInsulinOrdersResult(result) : null;
+    const insulinOrders = buildInsulinOrdersResult(result);
     //return insulinOrders ? categorizeOrders(insulinOrders) : null;
     return insulinOrders ? yield* categorizeOrders(insulinOrders.push(...addTestMedications())) : null;
 };
@@ -19,14 +19,12 @@ export const fetchMedications = function* (state) {
 //Private functions
 const fetchMedicationsHelper = function* (state) {
     const [userAuthenticationModel] = yield UserAuthenticationModel.findByState(state);
-    console.log('1>>>>>>>>>>')
     if (!userAuthenticationModel) throw new Exceptions.InvalidStateError(`State ${state} is invalid`);
-    console.log('2>>>>>>>>>>')
     const url = userAuthenticationModel ? HttpUtil.buildMedicationURL(userAuthenticationModel.patient, userAuthenticationModel.iss) : null;
-    console.log('3>>>>>>>>>>')
     const authHeader = userAuthenticationModel ? HttpUtil.buildAuthorizationHeader(userAuthenticationModel) : null;
-    console.log('4>>>>>>>>>>')
-    return url && authHeader ? yield get(url, authHeader) : null;
+    const result=  url && authHeader ? yield get(url, authHeader) : null;
+    if(result && HttpUtil.checkResponseStatus(result)) return result;
+    else throw new Exceptions.AuthenticationError('Authentication failed'); 
 };
 
 

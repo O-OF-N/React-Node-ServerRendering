@@ -4,7 +4,7 @@ import * as Constants from '../util/constants';
 import * as httpService from '../service/http-service'
 import * as Records from '../models/models';
 import UserAuthenticationModel from '../models/UserAuthenticationSchema';
-import {ActiveEnv, FHIRConfig} from '../config/app-config';
+import { ActiveEnv, FHIRConfig } from '../config/app-config';
 import util from 'util';
 
 //public methods
@@ -37,7 +37,7 @@ const authorizeHelper = function* (iss, launch) {
     const authorizationURL = extension.filter(ext => ext.url === 'authorize')[0].valueUri;
     const tokenURL = extension.filter(ext => ext.url === 'token')[0].valueUri;
     const authModel = new Records.UserAuthentication({
-        iss, state, authorizationURL, tokenURL
+        iss, state, authorizationURL, tokenURL, launch
     });
     const model = yield UserAuthenticationModel.save(authModel);
     params = { response_type, client_id, redirect_uri, scope };

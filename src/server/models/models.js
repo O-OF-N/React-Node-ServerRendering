@@ -1,20 +1,20 @@
-import {Record, List as immutableList} from 'immutable';
+import { Record, List as immutableList } from 'immutable';
 import * as Constants from '../util/constants';
-import {ActiveEnv, FHIRConfig} from '../config/app-config';
+import { ActiveEnv, FHIRConfig } from '../config/app-config';
 
 export const Observation = new Record({
     resource: '',
     text: '',
     date: '',
     quantity: 0,
-    unit:'',
+    unit: '',
     interpretation: '',
     source: ''
 });
 
 export const LabResult = new Record({
-    code:'',
-    observation:null
+    code: '',
+    observation: null
 });
 
 export const InsulinOrder = new Record({
@@ -60,7 +60,8 @@ export const UserAuthentication = new Record({
     accessToken: '',
     authorizationURL: '',
     tokenURL: '',
-    patient: 0
+    patient: 0,
+    launch: ''
 });
 
 export const DatabaseConfig = new Record({

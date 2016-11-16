@@ -11,7 +11,8 @@ const UserAuthenticationSchema = new Schema({
     accessToken: String,
     authorizationURL: String,
     tokenURL: String,
-    patient: Number
+    patient: Number,
+    launch: String
 });
 
 const UserAuthenticationModel = mongoose.model('UserAuth', UserAuthenticationSchema);

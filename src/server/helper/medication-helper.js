@@ -22,9 +22,10 @@ const fetchMedicationsHelper = function* (state) {
     if (!userAuthenticationModel) throw new Exceptions.InvalidStateError(`State ${state} is invalid`);
     const url = userAuthenticationModel ? HttpUtil.buildMedicationURL(userAuthenticationModel.patient, userAuthenticationModel.iss) : null;
     const authHeader = userAuthenticationModel ? HttpUtil.buildAuthorizationHeader(userAuthenticationModel) : null;
-    const result=  url && authHeader ? yield get(url, authHeader) : null;
-    if(result && HttpUtil.checkResponseStatus(result)) return result;
-    else throw new Exceptions.AuthenticationError('Authentication failed'); 
+    const result = url && authHeader ? yield get(url, authHeader) : null;
+    console.log('result = ', result);
+    if (result && HttpUtil.checkResponseStatus(result)) return result;
+    else throw new Exceptions.AuthenticationError('Authentication failed');
 };
 
 

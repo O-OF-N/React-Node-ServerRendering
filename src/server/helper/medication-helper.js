@@ -26,8 +26,10 @@ const fetchMedicationsHelper = function* (state) {
     console.log('url = ', url);
     const authHeader = userAuthenticationModel ? HttpUtil.buildAuthorizationHeader(userAuthenticationModel) : null;
     let result;
-    if (url && authHeader)
+    if (url && authHeader){
+        console.log('it is here.......');
         result = yield get(url, authHeader)
+    }
     else result = null;
     console.log('result = ', result);
     if (result && HttpUtil.checkResponseStatus(result)) return result;

@@ -10,10 +10,14 @@ import * as Exceptions from '../util/exceptions'
 
 //public functions
 export const fetchMedications = function* (state) {
+    try{
     const result = yield* fetchMedicationsHelper(state);
     const insulinOrders = buildInsulinOrdersResult(result);
     //return insulinOrders ? categorizeOrders(insulinOrders) : null;
     return insulinOrders ? yield* categorizeOrders(insulinOrders.push(...addTestMedications())) : null;
+    }catch(err){
+        console.log(err);
+    }
 };
 
 //Private functions

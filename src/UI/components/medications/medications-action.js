@@ -16,7 +16,7 @@ export const fetchMedications = state => dispatch => {
 
 const fetchMedicationsHelper = function* (state, dispatch) {
     dispatch({ type: Constants.MEDICATIONS_FETCHING });
-    const medList = yield axios.get(Constants.MEDICATIONS_FETCH_URL.concat(`/${state.state}`), { headers: Constants.AUTHORIZATION_HEADER });
+    const medList = yield axios.get(Constants.MEDICATIONS_FETCH_URL.concat(`/a614a069-d293-492a-8a5e-c6d7d3d9ad18956351479334182608`), { headers: Constants.AUTHORIZATION_HEADER });
     try {
         const data = (medList && medList.data) ? medList.data : null;
         console.log(data);

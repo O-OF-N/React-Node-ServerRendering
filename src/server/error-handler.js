@@ -28,6 +28,6 @@ export const ErrorHandler = pattern({
         }),
     '"AuthenticationError",req,res,params': (req, res, params) => {
         console.log(`${req.hostname}/?iss=${params.iss}&launch=${params.launch}`);
-        res.redirect(`${req.hostname}/?iss=${params.iss}&launch=${params.launch}`);
+        res.redirect(`https://${req.hostname}/?iss=${params.iss}&launch=${params.launch}`);
     }
 });

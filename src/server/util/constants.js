@@ -1,5 +1,9 @@
-export const DOMAIN = "https://fhir-open.sandboxcernerpowerchart.com/may2015";
-export const TENANT = "d075cf8b-3261-481d-97e5-ba6c48d3b41f";
+//Reference URLs
+export const LONIC_URL = "http://loinc.org";
+export const RXNORM_URL = "http://www.nlm.nih.gov/research/umls/rxnorm";
+export const OBSERVATION_CATEGORY_URL = "http://hl7.org/fhir/observation-category";
+
+//Application Constants
 export const OBSERVATIONS = "Observation";
 export const MEDICATION_ORDER = "MedicationOrder";
 export const HTTP_SUCCESS = 200;
@@ -10,11 +14,7 @@ export const SUBCUTANEOUS_TEXT = 'SUBCUTANEOUS';
 
 export const AUTHORIZATION_HEADER = { Accept: "application/json+fhir" };
 
-export const LONIC_URL = "http://loinc.org";
-export const RXNORM_URL = "http://www.nlm.nih.gov/research/umls/rxnorm";
-export const OBSERVATION_CATEGORY_URL = "http://hl7.org/fhir/observation-category";
-
-// Labs
+// Labs constants
 export const GLUCOSE_SERUM_POCT = ["41653-7", "2345-7", "2339-0", "74774-1", "41652-9", "41651-1", "32016-8", "5792-7", "2350-7", "2349-9", "25428-4"];
 export const SODIUM_SERUM_POCT = ["2951-2", "2947-0", "32717-1", "39792-7", "41657-8", "39791-9"];
 export const POTASSIUM_SERUM_POCT = ["2823-3", "6298-4", "32713-0", "39790-1", "41656-0", "39789-3"];
@@ -65,7 +65,7 @@ export const LAB_RESULT_DURATION_HOURS = 0; //If set to zero, no date condition 
 export const GLUCOSE_RESULT_DURATION_HOURS = 0; //If set to zero, no date condition will be added for glucose results
 
 
-//Orders
+//Orders constants
 
 //https://mor.nlm.nih.gov/RxNav/
 

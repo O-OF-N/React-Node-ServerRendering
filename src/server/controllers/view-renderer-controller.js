@@ -48,6 +48,12 @@ const renderFullPage = (html, state) => {
     <html style="width:100%;height:100%">
       <head>
         <title>Diabetes Dashboard</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <script type="text/javascript">  
+        function evaluate(x) {
+            return eval(x);
+        }
         <script>
           window.__PRELOADED_STATE__ = '${state}'
         </script>

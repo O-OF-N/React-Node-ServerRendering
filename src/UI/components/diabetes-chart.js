@@ -6,9 +6,7 @@ import IBCModal from './sliding-scale/IBC-Modal';
 import { inheritStyle } from './styles';
 
 
-const DiabetesChart = () => {
-    console.log('Heyyy!! I got here!!!!');
-    return (
+const DiabetesChart = () =>  (
     <div style={inheritStyle}>
         <div style={{ width: '100%', height: '50%' }}>
             <GlucoseResults />
@@ -19,5 +17,5 @@ const DiabetesChart = () => {
         </div>
         <div> <IBCModal /> </div>
     </div>
-)};
+);
 export default DiabetesChart;

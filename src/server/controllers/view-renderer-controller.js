@@ -51,10 +51,10 @@ const renderFullPage = (html, state) => {
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <script type="text/javascript">  
-        function evaluate(x) {
-            return eval(x);
-        }
-          window.__PRELOADED_STATE__ = '${state}'
+            function evaluate(x) {
+                return eval(x);
+            }
+            window.__PRELOADED_STATE__ = '${state}'
         </script>
       </head>
       <body style="width:inherit;height:inherit">

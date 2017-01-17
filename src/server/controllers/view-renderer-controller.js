@@ -54,7 +54,6 @@ const renderFullPage = (html, state) => {
         function evaluate(x) {
             return eval(x);
         }
-        <script>
           window.__PRELOADED_STATE__ = '${state}'
         </script>
       </head>

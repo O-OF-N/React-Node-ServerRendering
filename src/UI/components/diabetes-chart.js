@@ -6,7 +6,7 @@ import IBCModal from './sliding-scale/IBC-Modal';
 import { inheritStyle } from './styles';
 
 
-const DiabetesChart = () =>  (
+const DiabetesChart = () => (
     <div style={inheritStyle}>
         <div style={{ width: '100%', height: '50%' }}>
             <GlucoseResults />

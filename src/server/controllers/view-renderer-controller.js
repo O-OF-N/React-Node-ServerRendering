@@ -26,7 +26,9 @@ router.get('/', co(function* (req, res, next) {
 router.get('/callback', co(function* (req, res, next) {
     try {
         let code = null, state = null, accessToken = null, patient = 0;
+        console.log('I made it to here');
         ({ code, state } = req.query);
+        console.log(code,state);
         yield AuthorizationHelper.accessToken(code, state);
         res.send(handleRenderer(state));
     } catch (err) {

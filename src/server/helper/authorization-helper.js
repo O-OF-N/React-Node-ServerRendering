@@ -17,14 +17,15 @@ export const accessToken = (code, state) => co(accessTokenHelper.bind(this, code
 const accessTokenHelper = function* (authorizationCode, state) {
     let patient, accessToken;
     const [userAuthenticationModel] = yield UserAuthenticationModel.findByState(state);
-    console.log('uam = ',userAuthenticationModel);
-    const requestBody = new Records.AccessTokenRequestBody({ code: authorizationCode });
-    const response = yield httpService.post(userAuthenticationModel.tokenURL, requestBody, new Records.POSTHeader());
-    ({ patient } = response.data);
-    accessToken = response.data.access_token;
-    const updateResponse = yield UserAuthenticationModel.update(userAuthenticationModel._id,
-        { authorizationCode, patient, accessToken });
-    return updateResponse;
+    console.log('uam = ', userAuthenticationModel);
+    if (!userAuthenticationModel.accessToken) {
+        const requestBody = new Records.AccessTokenRequestBody({ code: authorizationCode });
+        const response = yield httpService.post(userAuthenticationModel.tokenURL, requestBody, new Records.POSTHeader());
+        ({ patient } = response.data);
+        accessToken = response.data.access_token;
+        yield UserAuthenticationModel.update(userAuthenticationModel._id,
+            { authorizationCode, patient, accessToken });
+    }
 };
 
 const authorizeHelper = function* (iss, launch) {

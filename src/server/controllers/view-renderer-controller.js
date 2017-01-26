@@ -29,7 +29,8 @@ router.get('/callback', co(function* (req, res, next) {
         console.log('I made it to here');
         ({ code, state } = req.query);
         console.log(code,state);
-        yield AuthorizationHelper.accessToken(code, state);
+        const stateReturned=  yield AuthorizationHelper.accessToken(code, state);
+        console.log('stateReturned = ' ,stateReturned);
         res.send(handleRenderer(state));
     } catch (err) {
         console.log('err = ' + err);

@@ -13,7 +13,8 @@ const UserAuthenticationSchema = new Schema({
     tokenURL: String,
     patient: Number,
     launch: String,
-    timestamps: true
+    created_at: {type: Date,default: new Date()},
+    updated_at: {type: Date,default: new Date()}
 });
 
 const UserAuthenticationModel = mongoose.model('UserAuth', UserAuthenticationSchema);

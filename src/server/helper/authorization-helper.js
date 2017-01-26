@@ -23,8 +23,9 @@ const accessTokenHelper = function* (authorizationCode, state) {
         const response = yield httpService.post(userAuthenticationModel.tokenURL, requestBody, new Records.POSTHeader());
         ({ patient } = response.data);
         accessToken = response.data.access_token;
+        const updated_at = new Date();
         yield UserAuthenticationModel.update(userAuthenticationModel._id,
-            { authorizationCode, patient, accessToken });
+            { authorizationCode, patient, accessToken, updated_at });
     } else{
 
     }

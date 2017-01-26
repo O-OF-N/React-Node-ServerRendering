@@ -28,7 +28,7 @@ const accessTokenHelper = function* (authorizationCode, state) {
             { authorizationCode, patient, accessToken, updated_at });
             return null;
     } else{
-            if(new Date()-userAuthenticationModel.updated_at()>20)
+            if(new Date()-userAuthenticationModel.updated_at>20)
                return authorize(userAuthenticationModel.iss,userAuthenticationModel.launch);
     }
 };

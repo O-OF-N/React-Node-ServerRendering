@@ -26,10 +26,10 @@ const accessTokenHelper = function* (authorizationCode, state) {
         const updated_at = new Date();
         yield UserAuthenticationModel.update(userAuthenticationModel._id,
             { authorizationCode, patient, accessToken, updated_at });
-            return null;
-    } else{
-            if(new Date()-userAuthenticationModel.updated_at>20)
-               return authorize(userAuthenticationModel.iss,userAuthenticationModel.launch);
+        return null;
+    } else {
+        return (new Date() - userAuthenticationModel.updated_at > Constants.EXPIRATION_TIME) ?
+            authorize(userAuthenticationModel.iss, userAuthenticationModel.launch) : null;
     }
 };
 

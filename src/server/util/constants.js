@@ -1,3 +1,5 @@
+export const EXPIRATION_TIME = 500;
+
 //Reference URLs
 export const LONIC_URL = "http://loinc.org";
 export const RXNORM_URL = "http://www.nlm.nih.gov/research/umls/rxnorm";

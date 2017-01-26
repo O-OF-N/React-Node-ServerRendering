@@ -19,7 +19,9 @@ router.get('/', co(function* (req, res, next) {
         res.redirect(url);
     } catch (err) {
         console.log('err = ' + err);
-        next(err);
+        res.render('error', {
+        message: 'What are you trying here???'
+    });
     }
 }));
 

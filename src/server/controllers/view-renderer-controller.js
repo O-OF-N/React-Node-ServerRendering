@@ -21,7 +21,7 @@ router.get('/', co(function* (req, res, next) {
             const url = yield AuthorizationHelper.authorize(iss, launch);
             res.redirect(url);
         } else{
-            throw new ErrorHandler.ErrorHandler("AuthenticationError");
+            throw new ErrorHandler.ErrorHandler("AuthenticationError",res);
         }
     } catch (err) {
         console.log('err = ' + err);

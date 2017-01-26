@@ -23,10 +23,10 @@ export const ProdErrorHandle = (err, req, res) => {
 
 
 export const ErrorHandler = pattern({
-    '"InvalidStateError"': () => res.status(500).send({
+    '"InvalidStateError",res': (res) => res.status(500).send({
         message: 'Invalid authentication parameters sent'
     }),
-    '"AuthenticationError"': () => res.status(401).send({
+    '"AuthenticationError",res': (res) => res.status(401).send({
         message: 'Invalid authentication parameters sent'
     })
 });

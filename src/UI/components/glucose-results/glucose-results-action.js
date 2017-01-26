@@ -24,8 +24,6 @@ const fetchGlucoseHelper = function* (state, dispatch) {
         } else
             throw { message: "glucose list is not fetched" };
     } catch (err) {
-        console.log(err.message);
-        console.log(err);
         const errImmutable = err ? new Records.HttpError(err.message) : new Records.HttpError();
         dispatch({ type: Constants.GLUCOSE_ERROR, payLoad: errImmutable });
     }

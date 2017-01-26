@@ -5,6 +5,7 @@ import ReactDomServer from 'react-dom/server';
 import Component from '../index';
 import * as AuthorizationHelper from '../helper/authorization-helper';
 import co from '../util/wrap';
+import * as Exceptions from '../util/exceptions';
 import { get } from '../service/http-service'
 import * as Records from '../models/models';
 import * as Constants from '../util/constants';
@@ -15,13 +16,15 @@ router.get('/', co(function* (req, res, next) {
     try {
         let iss = null, launch = null;
         ({ iss, launch } = req.query);
-        const url = yield AuthorizationHelper.authorize(iss, launch);
-        res.redirect(url);
+        if (iss && launch) {
+            const url = yield AuthorizationHelper.authorize(iss, launch);
+            res.redirect(url);
+        } else{
+            throw new Exceptions.AuthenticationError("Invalid authentication parameters sent");
+        }
     } catch (err) {
         console.log('err = ' + err);
-        res.render('error', {
-        message: 'What are you trying here???'
-    });
+        throw err;
     }
 }));
 
@@ -30,8 +33,8 @@ router.get('/callback', co(function* (req, res, next) {
         let code = null, state = null, accessToken = null, patient = 0;
         ({ code, state } = req.query);
         const authentication = yield AuthorizationHelper.accessToken(code, state);
-        if (!authentication.authenticated){
-            const url = yield AuthorizationHelper.authorize(authentication.iss,authentication.launch);
+        if (!authentication.authenticated) {
+            const url = yield AuthorizationHelper.authorize(authentication.iss, authentication.launch);
             res.redirect(url);
         }
         else

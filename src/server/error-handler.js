@@ -4,6 +4,7 @@ var pattern = require("matches").pattern;
 // development error handler
 // will print stacktrace
 export const DevErrorHandle = (err, req, res) => {
+    console.log('I reached here some how. But dont now how',err)
     res.status(err.status || 500);
     res.render('error', {
         message: 'What are you trying here???'

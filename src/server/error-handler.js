@@ -23,11 +23,18 @@ export const ProdErrorHandle = (err, req, res) => {
 
 export const ErrorHandler = pattern({
     '"InvalidStateError",req,res,params': (req, res, params) =>
-        res.status(500).send({
+        res.render('error',{
+        message: 'Are you cheating??',
+        error: {stack: 'Dont even try', status: 'caught a fraud'}
+    })
+        /*res.status(500).send({
             message: 'Invalid authentication parameters sent'
-        }),
+        })*/,
     '"AuthenticationError",req,res,params': (req, res, params) => {
         console.log(`${req.hostname}/?iss=${params.iss}&launch=${params.launch}`);
-        res.redirect(`${req.protocol}://${req.hostname}/?iss=${params.iss}&launch=${params.launch}`);
+         res.render('error',{
+        message: 'Are you cheating??',
+        error: {stack: 'Dont even try', status: 'caught a fraud'}
+    })
     }
 });

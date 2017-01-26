@@ -5,7 +5,7 @@ import ReactDomServer from 'react-dom/server';
 import Component from '../index';
 import * as AuthorizationHelper from '../helper/authorization-helper';
 import co from '../util/wrap';
-import {get} from '../service/http-service'
+import { get } from '../service/http-service'
 import * as Records from '../models/models';
 import * as Constants from '../util/constants';
 
@@ -28,10 +28,13 @@ router.get('/callback', co(function* (req, res, next) {
         let code = null, state = null, accessToken = null, patient = 0;
         console.log('I made it to here');
         ({ code, state } = req.query);
-        console.log(code,state);
-        const stateReturned=  yield AuthorizationHelper.accessToken(code, state);
-        console.log('stateReturned = ' ,stateReturned);
-        res.send(handleRenderer(state));
+        console.log(code, state);
+        const stateReturned = yield AuthorizationHelper.accessToken(code, state);
+        console.log('stateReturned = ', stateReturned);
+        if (stateReturned)
+            res.redirect(url);
+        else
+            res.send(handleRenderer(state));
     } catch (err) {
         console.log('err = ' + err);
         next(err);

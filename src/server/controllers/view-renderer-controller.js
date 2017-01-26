@@ -26,15 +26,13 @@ router.get('/', co(function* (req, res, next) {
 router.get('/callback', co(function* (req, res, next) {
     try {
         let code = null, state = null, accessToken = null, patient = 0;
-        console.log('I made it to here');
         ({ code, state } = req.query);
         console.log(code, state);
-        const stateReturned = yield AuthorizationHelper.accessToken(code, state);
-        console.log('stateReturned = ', stateReturned);
-        if (stateReturned)
-            res.redirect(stateReturned);
+        const authentication = yield AuthorizationHelper.accessToken(code, state);
+        if (!authentication.authenticated)
+            res.redirect(authorize(authentication.iss,authenticated.launch));
         else
-            res.send(handleRenderer(state));
+            res.send(handleRenderer(authentication.state));
     } catch (err) {
         console.log('err = ' + err);
         next(err);

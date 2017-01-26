@@ -12,6 +12,14 @@ export const Observation = new Record({
     source: ''
 });
 
+export const Authentication = new Record({
+    authenticated: true,
+    iss:'',
+    launch:'',
+    state:'',
+    hacker:false
+});
+
 export const LabResult = new Record({
     code: '',
     observation: null

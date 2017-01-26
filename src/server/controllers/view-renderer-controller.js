@@ -29,8 +29,10 @@ router.get('/callback', co(function* (req, res, next) {
         ({ code, state } = req.query);
         console.log(code, state);
         const authentication = yield AuthorizationHelper.accessToken(code, state);
-        if (!authentication.authenticated)
-            res.redirect(authorize(authentication.iss,authenticated.launch));
+        if (!authentication.authenticated){
+            const url = yield AuthorizationHelper.authorize(authentication.iss,authenticated.launch);
+            res.redirect(url);
+        }
         else
             res.send(handleRenderer(authentication.state));
     } catch (err) {

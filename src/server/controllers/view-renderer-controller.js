@@ -6,6 +6,7 @@ import Component from '../index';
 import * as AuthorizationHelper from '../helper/authorization-helper';
 import co from '../util/wrap';
 import * as Exceptions from '../util/exceptions';
+import * as ErrorHandler from '../error-handler';
 import { get } from '../service/http-service'
 import * as Records from '../models/models';
 import * as Constants from '../util/constants';
@@ -20,7 +21,7 @@ router.get('/', co(function* (req, res, next) {
             const url = yield AuthorizationHelper.authorize(iss, launch);
             res.redirect(url);
         } else{
-            throw new Exceptions.AuthenticationError("Invalid authentication parameters sent");
+            throw new ErrorHandler.ErrorHandler("AuthenticationError");
         }
     } catch (err) {
         console.log('err = ' + err);

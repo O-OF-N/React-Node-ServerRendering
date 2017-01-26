@@ -28,7 +28,7 @@ const accessTokenHelper = function* (authorizationCode, state) {
             { authorizationCode, patient, accessToken, updated_at });
         return new Records.Authentication({ state });
     } else {
-        return (new Date() - userAuthenticationModel.updated_at > Constants.EXPIRATION_TIME) ?
+        return (new Date() - userAuthenticationModel.updated_at < Constants.EXPIRATION_TIME) ?
             new Records.Authentication({ state }) :
             new Records.Authentication({ authenticated: false, iss: userAuthenticationModel.iss, launch: userAuthenticationModel.launch });
     }

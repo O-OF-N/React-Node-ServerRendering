@@ -20,12 +20,12 @@ router.get('/', co(function* (req, res, next) {
         if (iss && launch) {
             const url = yield AuthorizationHelper.authorize(iss, launch);
             res.redirect(url);
-        } else{
-            throw new ErrorHandler.ErrorHandler("AuthenticationError",res);
+        } else {
+            ErrorHandler.ErrorHandler("AuthenticationError", res, "Invalid authentication parameters sent");
         }
     } catch (err) {
         console.log('err = ' + err);
-        throw err;
+        ErrorHandler.ErrorHandler("InternalServerError", res, err.message);
     }
 }));
 

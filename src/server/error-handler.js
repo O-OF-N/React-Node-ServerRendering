@@ -23,10 +23,10 @@ export const ProdErrorHandle = (err, req, res) => {
 
 
 export const ErrorHandler = pattern({
-    '"InvalidStateError",res': (res) => res.status(500).send({
-        message: 'Invalid authentication parameters sent'
+    '"InternalServerError",res,message': (res, message) => res.status(500).send({
+        message
     }),
-    '"AuthenticationError",res': (res) => res.status(401).send({
-        message: 'Invalid authentication parameters sent'
+    '"AuthenticationError",res,message': (res, message) => res.status(401).send({
+        message
     })
 });

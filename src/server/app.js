@@ -56,8 +56,8 @@ app.use((req, res, next) => {
 
 if (app.get('env') === 'development') {
   app.use(ErrorHandle.DevErrorHandle);
+} else {
+  app.use(ErrorHandle.ProdErrorHandle);
 }
-app.use(ErrorHandle.ProdErrorHandle);
-
 
 module.exports = app;

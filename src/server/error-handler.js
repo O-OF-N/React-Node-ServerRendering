@@ -6,7 +6,7 @@ var pattern = require("matches").pattern;
 export const DevErrorHandle = (err, req, res) => {
     res.status(err.status || 500);
     res.render('error', {
-        message: err
+        message: 'What are you trying here???'
     });
 };
 

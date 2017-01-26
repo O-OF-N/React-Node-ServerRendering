@@ -32,7 +32,7 @@ router.get('/callback', co(function* (req, res, next) {
         const stateReturned = yield AuthorizationHelper.accessToken(code, state);
         console.log('stateReturned = ', stateReturned);
         if (stateReturned)
-            res.redirect(url);
+            res.redirect(stateReturned);
         else
             res.send(handleRenderer(state));
     } catch (err) {

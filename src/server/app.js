@@ -53,7 +53,7 @@ app.use((req, res, next) => {
 
 // error handlers
 
-
+console.log('app.get(env) = ', app.get('env'));
 if (app.get('env') === 'development') {
   app.use(ErrorHandle.DevErrorHandle);
 } else {

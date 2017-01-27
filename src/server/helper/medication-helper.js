@@ -27,7 +27,11 @@ const fetchMedicationsHelper = function* (state) {
         if (result && HttpUtil.checkResponseStatus(result)) return result;
         else throw new Exceptions.AuthenticationError('Authentication failed', userAuthenticationModel);
     } catch (err) {
-        throw new Exceptions.AuthenticationError('Authentication failed', userAuthenticationModel);
+        if (err.response.status === 500) {
+            throw new ObservationFetchError('Cerner services may be down');
+        } else {
+            throw new ObservationFetchError(err.message);
+        }
     }
 };
 
@@ -94,8 +98,7 @@ const getIngredients = function* (insulinOrders) {
         const processedIngredients = ingredients.map(ingredient => processIngredients(ingredient));
         return insulinOrders.map((insulinOrder, index) => insulinOrder.merge({ ingredients: processedIngredients[index] }));
     } catch (err) {
-        console.log(err);
-        throw err;
+        throw new ObservationFetchError(err.message);
     }
 };
 

@@ -5,7 +5,7 @@ import { List, Map as immutableMap } from 'immutable';
 import * as Constants from '../util/constants';
 import { get } from '../service/http-service'
 import * as HttpUtil from '../util/http-utils';
-import {ObservationFetchError} from '../util/exceptions';
+import { ObservationFetchError } from '../util/exceptions';
 import UserAuthenticationModel from '../models/UserAuthenticationSchema';
 
 //Public functions
@@ -27,19 +27,16 @@ export const fetchLabResults = function* (state) {
 
 //Private functions
 const fetchObservationResultsHelper = function* (state, lonicCodesList, date = null, duration = 0) {
-    try{
-    const [userAuthenticationModel] = yield UserAuthenticationModel.findByState(state);
-    console.log('userAuthenticationModel = ',userAuthenticationModel);
-    const url = HttpUtil.buildObeservationURL(userAuthenticationModel.patient, flatMap(lonicCodesList), userAuthenticationModel.iss, getDateRange(date, duration));
-    console.log('url = ',url);
-    const authHeader = HttpUtil.buildAuthorizationHeader(userAuthenticationModel);
-    const result = yield get(url, authHeader);
-    console.log('result = ',result);
-    return result;
-    } catch (err){
-        if(err.response.status === 500){
+    try {
+        const [userAuthenticationModel] = yield UserAuthenticationModel.findByState(state);
+        const url = HttpUtil.buildObeservationURL(userAuthenticationModel.patient, flatMap(lonicCodesList), userAuthenticationModel.iss, getDateRange(date, duration));
+        const authHeader = HttpUtil.buildAuthorizationHeader(userAuthenticationModel);
+        const result = yield get(url, authHeader);
+        return result;
+    } catch (err) {
+        if (err.response.status === 500) {
             throw new ObservationFetchError('Cerner services may be down');
-        } else{
+        } else {
             throw new ObservationFetchError(err.message);
         }
     }

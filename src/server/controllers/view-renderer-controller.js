@@ -5,7 +5,6 @@ import ReactDomServer from 'react-dom/server';
 import Component from '../index';
 import * as AuthorizationHelper from '../helper/authorization-helper';
 import co from '../util/wrap';
-import * as Exceptions from '../util/exceptions';
 import * as ErrorHandler from '../error-handler';
 import { get } from '../service/http-service'
 import * as Records from '../models/models';
@@ -20,9 +19,8 @@ router.get('/', co(function* (req, res, next) {
         if (iss && launch) {
             const url = yield AuthorizationHelper.authorize(iss, launch);
             res.redirect(url);
-        } else {
-            ErrorHandler.ErrorHandler("AuthenticationError", res, "Invalid authentication parameters sent");
-        }
+        } else
+            invalidAuthParams(res);
     } catch (err) {
         console.log('err = ' + err);
         ErrorHandler.ErrorHandler("InternalServerError", res, err.message);
@@ -33,25 +31,30 @@ router.get('/callback', co(function* (req, res, next) {
     try {
         let code = null, state = null, accessToken = null, patient = 0;
         ({ code, state } = req.query);
+        if (!(code && state)) invalidAuthParams(res);
         const authentication = yield AuthorizationHelper.accessToken(code, state);
-        if (!authentication.authenticated) {
+        if (!authentication) invalidAuthParams(res);
+        else if (!authentication.authenticated) {
             const url = yield AuthorizationHelper.authorize(authentication.iss, authentication.launch);
+            if (!url) invalidAuthParams(res);
             res.redirect(url);
-        }
-        else
-            res.send(handleRenderer(authentication.state));
+        } else res.send(handleRenderer(authentication.state));
     } catch (err) {
         console.log('err = ' + err);
-        next(err);
+        ErrorHandler.ErrorHandler("InternalServerError", res, err.message);
     }
 }));
+
+
+const invalidAuthParams = res =>
+    ErrorHandler.ErrorHandler("AuthenticationError", res, "Invalid authentication parameters sent");
 
 const handleRenderer = (state) => {
     const html = ReactDomServer.renderToString(
         React.createElement(Component)
     );
     return renderFullPage(renderFullPage(html, state))
-}
+};
 
 const renderFullPage = (html, state) => {
     return `

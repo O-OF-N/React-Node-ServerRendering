@@ -37,7 +37,7 @@ const fetchObservationResultsHelper = function* (state, lonicCodesList, date = n
     console.log('result = ',result);
     return result;
     } catch (err){
-        console.log('err = ',err);
+        console.log('err in catch block = ',err);
     }
 };
 

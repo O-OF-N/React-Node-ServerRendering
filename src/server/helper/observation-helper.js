@@ -38,9 +38,9 @@ const fetchObservationResultsHelper = function* (state, lonicCodesList, date = n
     return result;
     } catch (err){
         if(err.response.status === 500){
-            throw ObservationFetchError('Cerner services may be down');
+            throw new ObservationFetchError('Cerner services may be down');
         } else{
-            throw ObservationFetchError(err.message);
+            throw new ObservationFetchError(err.message);
         }
     }
 };

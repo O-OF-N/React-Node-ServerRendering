@@ -14,7 +14,7 @@ router.get('/orders/:state', co(function* (req, res, next) {
         res.send(medications);
     } catch (err) {
         console.log(err.name);
-        ErrorHandle.ErrorHandler(err.name,req,res,err.params);
+        ErrorHandle.ErrorHandler("InternalServerError", res, err);
     }
 }));
 

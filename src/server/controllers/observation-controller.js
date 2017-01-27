@@ -13,7 +13,8 @@ router.get('/glucose/:state', co(function* (req, res, next) {
         res.send(glucose);
     } catch (err) {
         console.log('err = ' + err);
-        next(err);
+        ErrorHandle.ErrorHandler("InternalServerError", res, err);
+
     }
 }));
 
@@ -23,7 +24,8 @@ router.get('/labs/:state', co(function* (req, res, next) {
         res.send(labs);
     } catch (err) {
         console.log('err = ' + err);
-        next(err);
+        ErrorHandle.ErrorHandler("InternalServerError", res, err);
+
     }
 }));
 

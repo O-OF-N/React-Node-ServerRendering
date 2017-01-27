@@ -27,7 +27,6 @@ export const fetchLabResults = function* (state) {
 //Private functions
 const fetchObservationResultsHelper = function* (state, lonicCodesList, date = null, duration = 0) {
     try{
-    console.log('state = ',state);
     const [userAuthenticationModel] = yield UserAuthenticationModel.findByState(state);
     console.log('userAuthenticationModel = ',userAuthenticationModel);
     const url = HttpUtil.buildObeservationURL(userAuthenticationModel.patient, flatMap(lonicCodesList), userAuthenticationModel.iss, getDateRange(date, duration));
@@ -37,7 +36,7 @@ const fetchObservationResultsHelper = function* (state, lonicCodesList, date = n
     console.log('result = ',result);
     return result;
     } catch (err){
-        console.log('err in catch block = ',err);
+        console.log('err in catch block = ',err.response.status);
     }
 };
 

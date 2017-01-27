@@ -51,13 +51,4 @@ app.use((req, res, next) => {
   next(err);
 });
 
-// error handlers
-
-
-if (app.get('env') === 'development') {
-  app.use(ErrorHandle.DevErrorHandle);
-}
-app.use(ErrorHandle.ProdErrorHandle);
-
-
 module.exports = app;

@@ -5,11 +5,10 @@ export const ErrorHandler = pattern({
         message
     }),
     '"AuthenticationError",res,message': (res, message) => res.status(401).render('error', {
-        title: 'Test',
-        message: 'Some sort of an error',
+        title: 'Authorization Failed',
+        message: 'Authorization Failed',
         error: {
             status:401,
-            stack: 'Some stack man'
         }
     })
 });

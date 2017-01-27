@@ -26,10 +26,14 @@ export const fetchLabResults = function* (state) {
 
 //Private functions
 const fetchObservationResultsHelper = function* (state, lonicCodesList, date = null, duration = 0) {
+    console.log('state = ',state);
     const [userAuthenticationModel] = yield UserAuthenticationModel.findByState(state);
+    console.log('userAuthenticationModel = ',userAuthenticationModel);
     const url = HttpUtil.buildObeservationURL(userAuthenticationModel.patient, flatMap(lonicCodesList), userAuthenticationModel.iss, getDateRange(date, duration));
+    console.log('url = ',url);
     const authHeader = HttpUtil.buildAuthorizationHeader(userAuthenticationModel);
     const result = yield get(url, authHeader);
+    console.log('result = ',result);
     return result;
 };
 

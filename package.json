@@ -8,7 +8,7 @@
     "copy-views": "cp -r views/* dist/views",
     "build-server": "./node_modules/.bin/babel -d dist/server src/server -s",
     "build-ui": "webpack -p",
-    "build": "npm run clean && npm run build-server && npm run build-ui && npm run copy-public",
+    "build": "npm run clean && npm run build-server && npm run build-ui && npm run copy-public && npm run copy-views",
     "postinstall": "npm run build",
     "start": "node ./bin/www",
     "dev": "npm run build && npm start"

@@ -5,7 +5,7 @@ import { List, Map as immutableMap } from 'immutable';
 import * as Constants from '../util/constants';
 import { get } from '../service/http-service'
 import * as HttpUtil from '../util/http-utils';
-import {ObservationFetchError} from '../util/exception';
+import {ObservationFetchError} from '../util/exceptions';
 import UserAuthenticationModel from '../models/UserAuthenticationSchema';
 
 //Public functions

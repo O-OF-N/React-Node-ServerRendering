@@ -26,6 +26,7 @@ export const fetchLabResults = function* (state) {
 
 //Private functions
 const fetchObservationResultsHelper = function* (state, lonicCodesList, date = null, duration = 0) {
+    try{
     console.log('state = ',state);
     const [userAuthenticationModel] = yield UserAuthenticationModel.findByState(state);
     console.log('userAuthenticationModel = ',userAuthenticationModel);
@@ -35,6 +36,9 @@ const fetchObservationResultsHelper = function* (state, lonicCodesList, date = n
     const result = yield get(url, authHeader);
     console.log('result = ',result);
     return result;
+    } catch (err){
+        console.log(err);
+    }
 };
 
 const flatMap = (lonicCodesList) => {

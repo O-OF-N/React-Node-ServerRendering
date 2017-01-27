@@ -5,6 +5,7 @@ import { List, Map as immutableMap } from 'immutable';
 import * as Constants from '../util/constants';
 import { get } from '../service/http-service'
 import * as HttpUtil from '../util/http-utils';
+import {ObservationFetchError} from '../util/exception';
 import UserAuthenticationModel from '../models/UserAuthenticationSchema';
 
 //Public functions
@@ -36,7 +37,11 @@ const fetchObservationResultsHelper = function* (state, lonicCodesList, date = n
     console.log('result = ',result);
     return result;
     } catch (err){
-        console.log('err in catch block = ',err.response.status);
+        if(err.response.status === 500){
+            throw ObservationFetchError('Cerner services may be down');
+        } else{
+            throw ObservationFetchError(err.message);
+        }
     }
 };
 

@@ -3,8 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "clean": "rm -rf dist/* && rm -rf dist && mkdir dist && mkdir dist/public && mkdir dist/server",
+    "clean": "rm -rf dist/* && rm -rf dist && mkdir dist && mkdir dist/public && mkdir dist/server && mkdir dist/views",
     "copy-public": "cp -r public/* dist/public/ ",
+    "copy-views": "cp -r views/* dist/views",
     "build-server": "./node_modules/.bin/babel -d dist/server src/server -s",
     "build-ui": "webpack -p",
     "build": "npm run clean && npm run build-server && npm run build-ui && npm run copy-public",

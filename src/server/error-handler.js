@@ -26,7 +26,8 @@ export const ErrorHandler = pattern({
     '"InternalServerError",res,message': (res, message) => res.status(500).send({
         message
     }),
-    '"AuthenticationError",res,message': (res, message) => res.status(401).send({
-        message
+    '"AuthenticationError",res,message': (res, message) => res.status(401).render('error', {
+        message: 'Some sort of an error',
+        error: {}
     })
 });

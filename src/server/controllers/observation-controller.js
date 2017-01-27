@@ -3,7 +3,7 @@ import co from '../util/wrap';
 import * as ObservationHelper from '../helper/observation-helper';
 import * as Records from '../models/models';
 import * as Constants from '../util/constants';
-import * as ErrorHandler from '../error-handler';
+import * as ErrorHandle from '../error-handler';
 
 const router = express.Router();
 

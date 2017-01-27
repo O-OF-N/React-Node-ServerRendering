@@ -8,7 +8,7 @@ export const ErrorHandler = pattern({
         title: 'Authorization Failed',
         message: 'Authorization Failed',
         error: {
-            status:401,
+            status:401
         }
     })
 });

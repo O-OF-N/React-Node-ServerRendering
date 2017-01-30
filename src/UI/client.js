@@ -17,9 +17,12 @@ import * as Records from './records/records';
 import * as Constants from './utils/constants';
 import co from 'co';
 import { inheritStyle } from './components/styles';
-require ("terra");
-require('../../node_modules/terra/dist/css/terra/application.css');
-require('../../node_modules/terra/dist/js/terra/application.js');
+const terra = require ("terra");
+console.log('terra = ', terra);
+const terraApp = require ("terra-application");
+console.log('terraApp = ', terraApp);
+//require('application.css');
+//require('application.js');
 
 const logger = createLogger();
 

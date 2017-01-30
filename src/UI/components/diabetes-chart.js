@@ -7,6 +7,7 @@ import { inheritStyle } from './styles';
 import {dropdown,btn} from '../vendor/terra/css/terra.css';
 
 const DiabetesChart = () =>{ 
+    console.log('here///////')
     console.log(dropdown,btn);
     return (
     <div style={inheritStyle}>

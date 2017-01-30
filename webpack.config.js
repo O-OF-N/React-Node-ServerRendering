@@ -1,6 +1,11 @@
 var webpack = require('webpack');
 var path = require('path');
 const PATHS = path.join(__dirname, 'public');
+const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
+
+const modulePaths = Object.keys(require("./package.json")["dependencies"])
+    .reduce(function (paths, module) { return paths.concat(require(module).includePaths) }, []);
+
 module.exports = {
     devtool: 'inline-source-map',
     entry: [
@@ -13,7 +18,8 @@ module.exports = {
     },
     resolve: {
         modulesDirectories: ['node_modules', 'src'],
-        extensions: ['', '.js']
+        extensions: ['', '.js'],
+        root: modulePaths
     },
     module: {
         loaders: [
@@ -28,8 +34,14 @@ module.exports = {
                 test: /\.(jpg|png|gif)$/,
                 loader: 'file?name=[path][name].[hash].[ext]',
                 include: PATHS.images
+            }, {
+                test: /\.scss$/,
+                loader: ExtractTextWebpackPlugin.extract('style', 'css!sass')
             }
         ]
+    },
+    sassLoader: {
+        includePaths: modulePaths
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
@@ -41,6 +53,7 @@ module.exports = {
             'process.env': {
                 'NODE_ENV': '"production"'
             }
-        })
+        }),
+        new ExtractTextWebpackPlugin(isDevelopmentEnv ? '[name].css' : '[name]-[hash].css')
     ]
 };

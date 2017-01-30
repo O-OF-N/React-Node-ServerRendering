@@ -17,7 +17,8 @@ import * as Records from './records/records';
 import * as Constants from './utils/constants';
 import co from 'co';
 import { inheritStyle } from './components/styles';
-
+require('./stylesheets/application.scss');
+require('./javascripts/application.js');
 
 const logger = createLogger();
 

@@ -5,6 +5,7 @@ import * as httpService from '../service/http-service'
 import * as Records from '../models/models';
 import UserAuthenticationModel from '../models/UserAuthenticationSchema';
 import { ActiveEnv, FHIRConfig } from '../config/app-config';
+import * as Exceptions from '../util/exceptions';
 import util from 'util';
 
 //public methods
@@ -17,6 +18,7 @@ export const accessToken = (code, state) => co(accessTokenHelper.bind(this, code
 const accessTokenHelper = function* (authorizationCode, state) {
     let patient, accessToken;
     const [userAuthenticationModel] = yield UserAuthenticationModel.findByState(state);
+    if(!userAuthenticationModel) throw new Exceptions.AuthenticationError('Invalid Authentication parameters');
     if (!userAuthenticationModel.accessToken) {
         const requestBody = new Records.AccessTokenRequestBody({ code: authorizationCode });
         const response = yield httpService.post(userAuthenticationModel.tokenURL, requestBody, new Records.POSTHeader());

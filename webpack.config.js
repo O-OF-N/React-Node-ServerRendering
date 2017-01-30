@@ -1,7 +1,6 @@
 var webpack = require('webpack');
 var path = require('path');
 const PATHS = path.join(__dirname, 'public');
-const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
     devtool: 'inline-source-map',
@@ -31,9 +30,6 @@ module.exports = {
                 loader: 'file?name=[path][name].[hash].[ext]',
                 include: PATHS.images
             }, {
-                test: /\.scss$/,
-                loader: ExtractTextWebpackPlugin.extract('style', 'css!sass')
-            }, {
                 test: /\.(eot|svg|ttf|woff|woff2)$/,
                 loader: 'file?name=public/fonts/[name].[ext]'
             }
@@ -49,7 +45,6 @@ module.exports = {
             'process.env': {
                 'NODE_ENV': '"production"'
             }
-        }),
-        new ExtractTextWebpackPlugin('[name]-[hash].css')
+        })
     ]
 };

@@ -17,7 +17,7 @@ import * as Records from './records/records';
 import * as Constants from './utils/constants';
 import co from 'co';
 import { inheritStyle } from './components/styles';
-require ("terra-application");
+require ("terra");
 require('../../node_modules/terra/dist/css/terra/application.css');
 require('../../node_modules/terra/dist/js/terra/application.js');
 

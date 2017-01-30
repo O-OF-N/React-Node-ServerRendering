@@ -24,7 +24,7 @@ module.exports = {
                 loaders: ['babel?presets[]=react,presets[]=es2015']
             }, {
                 test: /\.css?$/,
-                loaders: ['style,css']
+                loaders: ['style','css']
             }, {
                 test: /\.(jpg|png|gif)$/,
                 loader: 'file?name=[path][name].[hash].[ext]',

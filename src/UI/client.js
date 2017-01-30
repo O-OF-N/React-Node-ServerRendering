@@ -18,6 +18,8 @@ import * as Constants from './utils/constants';
 import co from 'co';
 import { inheritStyle } from './components/styles';
 require ("terra-application");
+require('./stylesheets/application.scss');
+require('./javascripts/application.js');
 
 const logger = createLogger();
 

@@ -14,7 +14,7 @@
     "dev": "npm run build && npm start"
   },
   "dependencies": {
-    "terra-application": "file:../../terra-application",
+    "terra-application": "file:../terra-application",
     "axios": "^0.13.1",
     "babel-cli": "^6.14.0",
     "babel-core": "^6.14.0",
@@ -52,7 +52,6 @@
     "sass-loader": "^4.1.1",
     "serve-favicon": "~2.3.0",
     "style-loader": "^0.13.1",
-    "terra": "^0.1.0",
     "thunk": "0.0.1",
     "webpack": "^1.13.2"
   },

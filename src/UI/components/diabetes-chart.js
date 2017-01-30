@@ -4,9 +4,11 @@ import LabResults from './lab-results/lab-results';
 import Medications from './medications/medications';
 import IBCModal from './sliding-scale/IBC-Modal';
 import { inheritStyle } from './styles';
+import {dropdown,btn} from '../vendor/terra/css/terra.css';
 
-
-const DiabetesChart = () => (
+const DiabetesChart = () =>{ 
+    console.log(dropdown,btn);
+    return (
     <div style={inheritStyle}>
         <div style={{ width: '100%', height: '50%' }}>
             <div className="dropdown">
@@ -37,5 +39,5 @@ const DiabetesChart = () => (
     </div>
 
 
-);
+)};
 export default DiabetesChart;

@@ -8,7 +8,7 @@ const modulePaths = Object.keys(require('./package.json')['dependencies'])
         console.log(module);
         return (module === 'terra') ? paths.concat(require(module).includePaths) : paths
     }, []);
-
+console.log('modulePaths = ', modulePaths);
 module.exports = {
     devtool: 'inline-source-map',
     entry: [

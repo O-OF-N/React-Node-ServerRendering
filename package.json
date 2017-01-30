@@ -53,7 +53,6 @@
     "serve-favicon": "~2.3.0",
     "style-loader": "^0.13.1",
     "terra": "^0.1.0",
-    "terra-application": "^0.2.0",
     "thunk": "0.0.1",
     "webpack": "^1.13.2"
   },

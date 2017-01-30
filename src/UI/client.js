@@ -17,10 +17,12 @@ import * as Records from './records/records';
 import * as Constants from './utils/constants';
 import co from 'co';
 import { inheritStyle } from './components/styles';
-const terra = require ("terra");
-console.log('terra = ', terra);
+//import 'terra-application';
+const terrapp = require ("terra-application");
+//require('./stylesheets/application.scss');
+//require('./javascripts/application.js');
 //const terraApp = require ("terra-application");
-//console.log('terraApp = ', terraApp);
+console.log('terraApp = ', terrapp);
 //require('application.css');
 //require('application.js');
 

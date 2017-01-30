@@ -57,6 +57,6 @@ module.exports = {
                 'NODE_ENV': '"production"'
             }
         }),
-        new ExtractTextWebpackPlugin('[name].css')
+        new ExtractTextWebpackPlugin('[name]-[hash].css')
     ]
 };

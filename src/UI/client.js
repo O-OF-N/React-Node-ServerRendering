@@ -19,8 +19,8 @@ import co from 'co';
 import { inheritStyle } from './components/styles';
 const terra = require ("terra");
 console.log('terra = ', terra);
-const terraApp = require ("terra-application");
-console.log('terraApp = ', terraApp);
+//const terraApp = require ("terra-application");
+//console.log('terraApp = ', terraApp);
 //require('application.css');
 //require('application.js');
 

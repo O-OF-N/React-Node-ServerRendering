@@ -14,8 +14,8 @@
     "dev": "npm run build && npm start"
   },
   "dependencies": {
+    "terra-application": "file:../terra-application",
     "axios": "^0.13.1",
-    "babel-cli": "^6.14.0",
     "babel-core": "^6.14.0",
     "babel-loader": "^6.2.5",
     "babel-polyfill": "^6.13.0",

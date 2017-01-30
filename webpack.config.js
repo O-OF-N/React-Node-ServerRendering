@@ -3,12 +3,6 @@ var path = require('path');
 const PATHS = path.join(__dirname, 'public');
 const ExtractTextWebpackPlugin = require('extract-text-webpack-plugin');
 
-const modulePaths = Object.keys(require('./package.json')['dependencies'])
-    .reduce(function (paths, module) {
-        console.log(module);
-        return (module === 'terra') ? paths.concat(require(module).includePaths) : paths
-    }, []);
-console.log('modulePaths = ', modulePaths);
 module.exports = {
     devtool: 'inline-source-map',
     entry: [
@@ -21,8 +15,7 @@ module.exports = {
     },
     resolve: {
         modulesDirectories: ['node_modules', 'src'],
-        extensions: ['', '.js'],
-        root: modulePaths
+        extensions: ['', '.js']
     },
     module: {
         loaders: [
@@ -40,11 +33,11 @@ module.exports = {
             }, {
                 test: /\.scss$/,
                 loader: ExtractTextWebpackPlugin.extract('style', 'css!sass')
+            }, {
+                test: /\.(eot|svg|ttf|woff|woff2)$/,
+                loader: 'file?name=public/fonts/[name].[ext]'
             }
         ]
-    },
-    sassLoader: {
-        includePaths: modulePaths
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin(),

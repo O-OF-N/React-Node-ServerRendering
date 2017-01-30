@@ -25,7 +25,10 @@ var UserAuthenticationSchema = new Schema({
     accessToken: String,
     authorizationURL: String,
     tokenURL: String,
-    patient: Number
+    patient: Number,
+    launch: String,
+    created_at: { type: Date, default: new Date() },
+    updated_at: { type: Date, default: new Date() }
 });
 
 var UserAuthenticationModel = _mongoose2.default.model('UserAuth', UserAuthenticationSchema);

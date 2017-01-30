@@ -28,6 +28,10 @@ var _wrap = require('../util/wrap');
 
 var _wrap2 = _interopRequireDefault(_wrap);
 
+var _errorHandler = require('../error-handler');
+
+var ErrorHandler = _interopRequireWildcard(_errorHandler);
+
 var _httpService = require('../service/http-service');
 
 var _models = require('../models/models');
@@ -56,33 +60,46 @@ router.get('/', (0, _wrap2.default)(regeneratorRuntime.mark(function _callee(req
                     _req$query = req.query;
                     iss = _req$query.iss;
                     launch = _req$query.launch;
-                    _context.next = 7;
+
+                    if (!(iss && launch)) {
+                        _context.next = 12;
+                        break;
+                    }
+
+                    _context.next = 8;
                     return AuthorizationHelper.authorize(iss, launch);
 
-                case 7:
+                case 8:
                     url = _context.sent;
 
                     res.redirect(url);
-                    _context.next = 15;
+                    _context.next = 13;
                     break;
 
-                case 11:
-                    _context.prev = 11;
+                case 12:
+                    invalidAuthParams(res);
+
+                case 13:
+                    _context.next = 19;
+                    break;
+
+                case 15:
+                    _context.prev = 15;
                     _context.t0 = _context['catch'](0);
 
                     console.log('err = ' + _context.t0);
-                    next(_context.t0);
+                    ErrorHandler.ErrorHandler("InternalServerError", res, _context.t0.message);
 
-                case 15:
+                case 19:
                 case 'end':
                     return _context.stop();
             }
         }
-    }, _callee, this, [[0, 11]]);
+    }, _callee, this, [[0, 15]]);
 })));
 
 router.get('/callback', (0, _wrap2.default)(regeneratorRuntime.mark(function _callee2(req, res, next) {
-    var code, state, accessToken, patient, _req$query2;
+    var code, state, accessToken, patient, _req$query2, authentication, url;
 
     return regeneratorRuntime.wrap(function _callee2$(_context2) {
         while (1) {
@@ -93,28 +110,65 @@ router.get('/callback', (0, _wrap2.default)(regeneratorRuntime.mark(function _ca
                     _req$query2 = req.query;
                     code = _req$query2.code;
                     state = _req$query2.state;
-                    _context2.next = 7;
+
+                    if (!(code && state)) invalidAuthParams(res);
+                    _context2.next = 8;
                     return AuthorizationHelper.accessToken(code, state);
 
-                case 7:
-                    res.send(handleRenderer(state));
-                    _context2.next = 14;
+                case 8:
+                    authentication = _context2.sent;
+
+                    if (authentication) {
+                        _context2.next = 13;
+                        break;
+                    }
+
+                    invalidAuthParams(res);
+                    _context2.next = 22;
                     break;
 
-                case 10:
-                    _context2.prev = 10;
+                case 13:
+                    if (authentication.authenticated) {
+                        _context2.next = 21;
+                        break;
+                    }
+
+                    _context2.next = 16;
+                    return AuthorizationHelper.authorize(authentication.iss, authentication.launch);
+
+                case 16:
+                    url = _context2.sent;
+
+                    if (!url) invalidAuthParams(res);
+                    res.redirect(url);
+                    _context2.next = 22;
+                    break;
+
+                case 21:
+                    res.send(handleRenderer(authentication.state));
+
+                case 22:
+                    _context2.next = 28;
+                    break;
+
+                case 24:
+                    _context2.prev = 24;
                     _context2.t0 = _context2['catch'](0);
 
                     console.log('err = ' + _context2.t0);
-                    next(_context2.t0);
+                    ErrorHandler.ErrorHandler("InternalServerError", res, _context2.t0.message);
 
-                case 14:
+                case 28:
                 case 'end':
                     return _context2.stop();
             }
         }
-    }, _callee2, this, [[0, 10]]);
+    }, _callee2, this, [[0, 24]]);
 })));
+
+var invalidAuthParams = function invalidAuthParams(res) {
+    return ErrorHandler.ErrorHandler("AuthenticationError", res, "Invalid authentication parameters sent");
+};
 
 var handleRenderer = function handleRenderer(state) {
     var html = _server2.default.renderToString(_react2.default.createElement(_index2.default));
@@ -122,7 +176,7 @@ var handleRenderer = function handleRenderer(state) {
 };
 
 var renderFullPage = function renderFullPage(html, state) {
-    return '\n    <!doctype html>\n    <html style="width:100%;height:100%">\n      <head>\n        <title>Diabetes Dashboard</title>\n        <script>\n          window.__PRELOADED_STATE__ = \'' + state + '\'\n        </script>\n      </head>\n      <body style="width:inherit;height:inherit">\n        <div id="root-app" style="width:inherit;height:inherit">' + html + '</div>\n      </body>\n    </html>\n    ';
+    return '\n    <!doctype html>\n    <html style="width:100%;height:100%">\n      <head>\n        <title>Diabetes Dashboard</title>\n        <meta charset="utf-8">\n        <meta http-equiv="X-UA-Compatible" content="IE=edge">\n        <script type="text/javascript">  \n            function evaluate(x) {\n                return eval(x);\n            }\n            window.__PRELOADED_STATE__ = \'' + state + '\'\n        </script>\n      </head>\n      <body style="width:inherit;height:inherit">\n        <div id="root-app" style="width:inherit;height:inherit">' + html + '</div>\n      </body>\n    </html>\n    ';
 };
 
 exports.default = router;

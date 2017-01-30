@@ -24,6 +24,14 @@ var _constants = require('../util/constants');
 
 var Constants = _interopRequireWildcard(_constants);
 
+var _exceptions = require('../util/exceptions');
+
+var Exceptions = _interopRequireWildcard(_exceptions);
+
+var _errorHandler = require('../error-handler');
+
+var ErrorHandle = _interopRequireWildcard(_errorHandler);
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -51,8 +59,8 @@ router.get('/orders/:state', (0, _wrap2.default)(regeneratorRuntime.mark(functio
                     _context.prev = 7;
                     _context.t0 = _context['catch'](0);
 
-                    console.log('err = ' + _context.t0);
-                    next(_context.t0);
+                    console.log(_context.t0.name);
+                    ErrorHandle.ErrorHandler("InternalServerError", res, _context.t0);
 
                 case 11:
                 case 'end':

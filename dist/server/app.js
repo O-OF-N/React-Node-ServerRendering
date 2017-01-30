@@ -2,6 +2,10 @@
 
 var _appConfig = require('./config/app-config');
 
+var _errorHandler = require('./error-handler');
+
+var ErrorHandle = _interopRequireWildcard(_errorHandler);
+
 var _viewRendererController = require('./controllers/view-renderer-controller');
 
 var _viewRendererController2 = _interopRequireDefault(_viewRendererController);
@@ -15,6 +19,8 @@ var _medicationController = require('./controllers/medication-controller');
 var _medicationController2 = _interopRequireDefault(_medicationController);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 var express = require('express');
 var path = require('path');
@@ -58,7 +64,7 @@ db.once('open', function () {
 var app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, '/../views'));
+app.set('views', path.join(__dirname, '../views'));
 app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
@@ -78,29 +84,6 @@ app.use(function (req, res, next) {
   var err = new Error('Not Found');
   err.status = 404;
   next(err);
-});
-
-// error handlers
-
-// development error handler
-// will print stacktrace
-if (app.get('env') === 'development') {
-  app.use(function (err, req, res) {
-    res.status(err.status || 500);
-    res.render('error', {
-      message: err
-    });
-  });
-}
-
-// production error handler
-// no stacktraces leaked to user
-app.use(function (err, req, res) {
-  res.status(err.status || 500);
-  res.render('error', {
-    message: err.message,
-    error: {}
-  });
 });
 
 module.exports = app;

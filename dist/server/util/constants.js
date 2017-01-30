@@ -3,8 +3,14 @@
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
-var DOMAIN = exports.DOMAIN = "https://fhir-open.sandboxcernerpowerchart.com/may2015";
-var TENANT = exports.TENANT = "d075cf8b-3261-481d-97e5-ba6c48d3b41f";
+var EXPIRATION_TIME = exports.EXPIRATION_TIME = 500;
+
+//Reference URLs
+var LONIC_URL = exports.LONIC_URL = "http://loinc.org";
+var RXNORM_URL = exports.RXNORM_URL = "http://www.nlm.nih.gov/research/umls/rxnorm";
+var OBSERVATION_CATEGORY_URL = exports.OBSERVATION_CATEGORY_URL = "http://hl7.org/fhir/observation-category";
+
+//Application Constants
 var OBSERVATIONS = exports.OBSERVATIONS = "Observation";
 var MEDICATION_ORDER = exports.MEDICATION_ORDER = "MedicationOrder";
 var HTTP_SUCCESS = exports.HTTP_SUCCESS = 200;
@@ -15,11 +21,7 @@ var SUBCUTANEOUS_TEXT = exports.SUBCUTANEOUS_TEXT = 'SUBCUTANEOUS';
 
 var AUTHORIZATION_HEADER = exports.AUTHORIZATION_HEADER = { Accept: "application/json+fhir" };
 
-var LONIC_URL = exports.LONIC_URL = "http://loinc.org";
-var RXNORM_URL = exports.RXNORM_URL = "http://www.nlm.nih.gov/research/umls/rxnorm";
-var OBSERVATION_CATEGORY_URL = exports.OBSERVATION_CATEGORY_URL = "http://hl7.org/fhir/observation-category";
-
-// Labs
+// Labs constants
 var GLUCOSE_SERUM_POCT = exports.GLUCOSE_SERUM_POCT = ["41653-7", "2345-7", "2339-0", "74774-1", "41652-9", "41651-1", "32016-8", "5792-7", "2350-7", "2349-9", "25428-4"];
 var SODIUM_SERUM_POCT = exports.SODIUM_SERUM_POCT = ["2951-2", "2947-0", "32717-1", "39792-7", "41657-8", "39791-9"];
 var POTASSIUM_SERUM_POCT = exports.POTASSIUM_SERUM_POCT = ["2823-3", "6298-4", "32713-0", "39790-1", "41656-0", "39789-3"];
@@ -46,20 +48,22 @@ var LABS_LOINIC_CODES = exports.LABS_LOINIC_CODES = ["Glucose - serum/POCT", "So
 
 var LAB_RESULT_COUNT = exports.LAB_RESULT_COUNT = 2;
 
-//Orders
+var LAB_RESULT_DURATION_HOURS = exports.LAB_RESULT_DURATION_HOURS = 0; //If set to zero, no date condition will be added for lab results
+
+var GLUCOSE_RESULT_DURATION_HOURS = exports.GLUCOSE_RESULT_DURATION_HOURS = 0; //If set to zero, no date condition will be added for glucose results
+
+
+//Orders constants
 
 //https://mor.nlm.nih.gov/RxNav/
 
-var DRIP = exports.DRIP = { code: [575148, 575628, 575146], dosage: INTRAVENOUS_TEXT };
+var DRIP = exports.DRIP = { code: [[575148], [575628], [575146]], dosage: INTRAVENOUS_TEXT };
 
-var BASAL = exports.BASAL = { code: [51428, 274783, 261551, 400560, 1670012, 92880, 93558, 977838, 752386], dosage: null };
+var BASAL = exports.BASAL = { code: [[1605101], [1670007], [139825], [274783], [51428, 352385], [86009, 314684], [253182, 1605101]], dosage: null };
 
-var BOLUS = exports.BOLUS = { code: [575148, 575628, 575146, 575679, 575151, 1652240, 803192], dosage: SUBCUTANEOUS_TEXT };
+var BOLUS = exports.BOLUS = { code: [[51428], [400008], [86009], [253182]], dosage: SUBCUTANEOUS_TEXT };
 
-/*export const BASAL = { code: [261551, 400560, 1670012, 92880, 93558, 977838, 752386], dosage: null };
-*/
-
-var ORAL_HYPOGLYCEMICS = exports.ORAL_HYPOGLYCEMICS = { code: [6809, 4821, 73044, 4815], dosage: null };
+var ORAL_HYPOGLYCEMICS = exports.ORAL_HYPOGLYCEMICS = { code: [[6809], [4821], [4815], [73044]], dosage: null };
 
 var ORDER_CATEGORIZATION = exports.ORDER_CATEGORIZATION = new Map([['Insulin Drip', DRIP], ['Basal / Premixed Insulin', BASAL], ['Bolus / Sliding Scale Insulin', BOLUS], ['Oral Hypoglycemics', ORAL_HYPOGLYCEMICS]]);
 //# sourceMappingURL=constants.js.map

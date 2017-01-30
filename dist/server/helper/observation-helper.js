@@ -23,6 +23,8 @@ var _httpUtils = require('../util/http-utils');
 
 var HttpUtil = _interopRequireWildcard(_httpUtils);
 
+var _exceptions = require('../util/exceptions');
+
 var _UserAuthenticationSchema = require('../models/UserAuthenticationSchema');
 
 var _UserAuthenticationSchema2 = _interopRequireDefault(_UserAuthenticationSchema);
@@ -40,13 +42,29 @@ var fetchGlucoseResults = exports.fetchGlucoseResults = regeneratorRuntime.mark(
         while (1) {
             switch (_context.prev = _context.next) {
                 case 0:
-                    return _context.delegateYield(fetchObservationResultsHelper(state, Constants.GLUCOSE_CODES), 't0', 1);
+                    if (!Constants.GLUCOSE_RESULT_DURATION_HOURS) {
+                        _context.next = 5;
+                        break;
+                    }
 
-                case 1:
+                    return _context.delegateYield(fetchObservationResultsHelper(state, Constants.GLUCOSE_CODES, new Date(), Constants.GLUCOSE_RESULT_DURATION_HOURS), 't1', 2);
+
+                case 2:
+                    _context.t0 = _context.t1;
+                    _context.next = 7;
+                    break;
+
+                case 5:
+                    return _context.delegateYield(fetchObservationResultsHelper(state, Constants.GLUCOSE_CODES), 't2', 6);
+
+                case 6:
+                    _context.t0 = _context.t2;
+
+                case 7:
                     result = _context.t0;
                     return _context.abrupt('return', HttpUtil.checkResponseStatus(result) ? buildGlucoseResultsFromJson(result) : null);
 
-                case 3:
+                case 9:
                 case 'end':
                     return _context.stop();
             }
@@ -60,14 +78,30 @@ var fetchLabResults = exports.fetchLabResults = regeneratorRuntime.mark(function
         while (1) {
             switch (_context2.prev = _context2.next) {
                 case 0:
-                    return _context2.delegateYield(fetchObservationResultsHelper(state, Constants.LABS_LOINIC_CODES), 't0', 1);
+                    if (!Constants.LAB_RESULT_DURATION_HOURS) {
+                        _context2.next = 5;
+                        break;
+                    }
 
-                case 1:
+                    return _context2.delegateYield(fetchObservationResultsHelper(state, Constants.LABS_LOINIC_CODES, new Date(), Constants.LAB_RESULT_DURATION_HOURS), 't1', 2);
+
+                case 2:
+                    _context2.t0 = _context2.t1;
+                    _context2.next = 7;
+                    break;
+
+                case 5:
+                    return _context2.delegateYield(fetchObservationResultsHelper(state, Constants.LABS_LOINIC_CODES), 't2', 6);
+
+                case 6:
+                    _context2.t0 = _context2.t2;
+
+                case 7:
                     result = _context2.t0;
                     labs = HttpUtil.checkResponseStatus(result) ? buildLabResultsFromJson(result) : null;
                     return _context2.abrupt('return', groupLabs(Constants.LABS_LOINIC_CODES, labs));
 
-                case 4:
+                case 10:
                 case 'end':
                     return _context2.stop();
             }
@@ -86,28 +120,43 @@ var fetchObservationResultsHelper = regeneratorRuntime.mark(function fetchObserv
         while (1) {
             switch (_context3.prev = _context3.next) {
                 case 0:
-                    _context3.next = 2;
+                    _context3.prev = 0;
+                    _context3.next = 3;
                     return _UserAuthenticationSchema2.default.findByState(state);
 
-                case 2:
+                case 3:
                     _ref = _context3.sent;
                     _ref2 = _slicedToArray(_ref, 1);
                     userAuthenticationModel = _ref2[0];
                     url = HttpUtil.buildObeservationURL(userAuthenticationModel.patient, flatMap(lonicCodesList), userAuthenticationModel.iss, getDateRange(date, duration));
                     authHeader = HttpUtil.buildAuthorizationHeader(userAuthenticationModel);
-                    _context3.next = 9;
+                    _context3.next = 10;
                     return (0, _httpService.get)(url, authHeader);
 
-                case 9:
+                case 10:
                     result = _context3.sent;
                     return _context3.abrupt('return', result);
 
-                case 11:
+                case 14:
+                    _context3.prev = 14;
+                    _context3.t0 = _context3['catch'](0);
+
+                    if (!(_context3.t0.response.status === 500)) {
+                        _context3.next = 20;
+                        break;
+                    }
+
+                    throw new _exceptions.ObservationFetchError('Cerner services may be down');
+
+                case 20:
+                    throw new _exceptions.ObservationFetchError(_context3.t0.message);
+
+                case 21:
                 case 'end':
                     return _context3.stop();
             }
         }
-    }, fetchObservationResultsHelper, this);
+    }, fetchObservationResultsHelper, this, [[0, 14]]);
 });
 
 var flatMap = function flatMap(lonicCodesList) {
@@ -116,8 +165,6 @@ var flatMap = function flatMap(lonicCodesList) {
         var lonicCode = Constants.LONIC_CODES.get(codes);
         lonicCode instanceof Array ? lonicCodes.push.apply(lonicCodes, _toConsumableArray(lonicCode)) : lonicCodes.push(lonicCode);
     }) : null;
-    console.log('lonic codes = ');
-    console.log(lonicCodes);
     return lonicCodes;
 };
 

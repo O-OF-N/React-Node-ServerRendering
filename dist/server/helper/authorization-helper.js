@@ -29,6 +29,10 @@ var _UserAuthenticationSchema2 = _interopRequireDefault(_UserAuthenticationSchem
 
 var _appConfig = require('../config/app-config');
 
+var _exceptions = require('../util/exceptions');
+
+var Exceptions = _interopRequireWildcard(_exceptions);
+
 var _util = require('util');
 
 var _util2 = _interopRequireDefault(_util);
@@ -48,7 +52,7 @@ var accessToken = exports.accessToken = function accessToken(code, state) {
 
 //private methods
 var accessTokenHelper = regeneratorRuntime.mark(function accessTokenHelper(authorizationCode, state) {
-    var patient, accessToken, _ref, _ref2, userAuthenticationModel, requestBody, response, updateResponse;
+    var patient, accessToken, _ref, _ref2, userAuthenticationModel, requestBody, response, updated_at;
 
     return regeneratorRuntime.wrap(function accessTokenHelper$(_context) {
         while (1) {
@@ -62,23 +66,40 @@ var accessTokenHelper = regeneratorRuntime.mark(function accessTokenHelper(autho
                     _ref = _context.sent;
                     _ref2 = _slicedToArray(_ref, 1);
                     userAuthenticationModel = _ref2[0];
+
+                    if (userAuthenticationModel) {
+                        _context.next = 8;
+                        break;
+                    }
+
+                    throw new Exceptions.AuthenticationError('Invalid Authentication parameters');
+
+                case 8:
+                    if (userAuthenticationModel.accessToken) {
+                        _context.next = 21;
+                        break;
+                    }
+
                     requestBody = new Records.AccessTokenRequestBody({ code: authorizationCode });
-                    _context.next = 9;
+                    _context.next = 12;
                     return httpService.post(userAuthenticationModel.tokenURL, requestBody, new Records.POSTHeader());
 
-                case 9:
+                case 12:
                     response = _context.sent;
                     patient = response.data.patient;
 
                     accessToken = response.data.access_token;
-                    _context.next = 14;
-                    return _UserAuthenticationSchema2.default.update(userAuthenticationModel._id, { authorizationCode: authorizationCode, patient: patient, accessToken: accessToken });
+                    updated_at = new Date();
+                    _context.next = 18;
+                    return _UserAuthenticationSchema2.default.update(userAuthenticationModel._id, { authorizationCode: authorizationCode, patient: patient, accessToken: accessToken, updated_at: updated_at });
 
-                case 14:
-                    updateResponse = _context.sent;
-                    return _context.abrupt('return', updateResponse);
+                case 18:
+                    return _context.abrupt('return', new Records.Authentication({ state: state }));
 
-                case 16:
+                case 21:
+                    return _context.abrupt('return', new Date() - userAuthenticationModel.updated_at < Constants.EXPIRATION_TIME ? new Records.Authentication({ state: state }) : new Records.Authentication({ authenticated: false, iss: userAuthenticationModel.iss, launch: userAuthenticationModel.launch }));
+
+                case 22:
                 case 'end':
                     return _context.stop();
             }
@@ -115,7 +136,7 @@ var authorizeHelper = regeneratorRuntime.mark(function authorizeHelper(iss, laun
                         return ext.url === 'token';
                     })[0].valueUri;
                     authModel = new Records.UserAuthentication({
-                        iss: iss, state: state, authorizationURL: authorizationURL, tokenURL: tokenURL
+                        iss: iss, state: state, authorizationURL: authorizationURL, tokenURL: tokenURL, launch: launch
                     });
                     _context2.next = 18;
                     return _UserAuthenticationSchema2.default.save(authModel);

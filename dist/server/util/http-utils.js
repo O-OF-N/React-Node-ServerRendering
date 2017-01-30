@@ -13,6 +13,10 @@ var _models = require('../models/models');
 
 var Records = _interopRequireWildcard(_models);
 
+var _exceptions = require('./exceptions');
+
+var Exceptions = _interopRequireWildcard(_exceptions);
+
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 var buildAuthorizationHeader = exports.buildAuthorizationHeader = function buildAuthorizationHeader(userModel) {

@@ -14,7 +14,7 @@ module.exports = {
     },
     resolve: {
         modulesDirectories: ['node_modules', 'src'],
-        extensions: ['', '.js','.css']
+        extensions: ['', '.js']
     },
     module: {
         loaders: [
@@ -24,7 +24,7 @@ module.exports = {
                 loaders: ['babel?presets[]=react,presets[]=es2015']
             }, {
                 test: /\.css?$/,
-                loader: 'style-loader!css-loader'
+                loader: 'style-loader!css-loader?modules=true'
             }, {
                 test: /\.(jpg|png|gif)$/,
                 loader: 'file?name=[path][name].[hash].[ext]',

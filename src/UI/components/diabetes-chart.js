@@ -4,7 +4,6 @@ import LabResults from './lab-results/lab-results';
 import Medications from './medications/medications';
 import IBCModal from './sliding-scale/IBC-Modal';
 import { inheritStyle } from './styles';
-import './terra/css/terra.css';
 
 const DiabetesChart = () => (
     <div style={inheritStyle}>

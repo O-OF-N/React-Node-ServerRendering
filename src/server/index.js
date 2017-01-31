@@ -6,7 +6,8 @@ export default class Component extends React.Component {
         return (
             <div style={style}>
                 <div id="app" style={style}></div>
-                <script src = '/javascripts/bundle.js'/>
+                <script src='/terra/js/terra.js' />
+                <script src='/javascripts/bundle.js' />
             </div>
         )
     }

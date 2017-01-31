@@ -1,6 +1,8 @@
 import React from 'react';
 import drawChart from './chart/draw-chart';
 import { connect } from 'react-redux';
+const C3Chart = require("./C3Chart.jsx");
+
 
 
 class GlucoseResults extends React.Component {
@@ -22,17 +24,22 @@ class GlucoseResults extends React.Component {
         }
     }
     render() {
-        const style = { width: '48%', float: 'left', paddingLeft: '0.5%',maxWidth: '100%',
-    maxHeight: '100%',
-    overflow: 'auto' };
+        const style = {
+            width: '48%', float: 'left', paddingLeft: '0.5%', maxWidth: '100%',
+            maxHeight: '100%',
+            overflow: 'auto'
+        };
+        const data = this.props.glucose.map(glucose => glucose.quantity).toJS();
         return (
             <div style={style}>
                 <h3>Blood Glucose (all sources for past 24 hours)</h3>
-                <div>
+                <C3Chart data={data} type="line" />
+
+                {/* <div>
                     <canvas ref="chart">
                     </canvas>
                     {this.logit()}
-                </div>
+                </div>*/}
             </div>
         )
     }

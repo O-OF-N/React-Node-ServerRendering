@@ -11,7 +11,7 @@ const DiabetesChart = () => (
             <div class="dropdown">
                 <button class="btn" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Default Dropdown
-    <span class="icon-decrement icon-fallback-img" aria-label="Decrement"></span>
+                 <span class="icon-decrement icon-fallback-img" aria-label="Decrement"></span>
                 </button>
                 <ul role="menu" aria-hidden="true">
                     <li>

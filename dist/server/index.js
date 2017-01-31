@@ -35,6 +35,7 @@ var Component = function (_React$Component) {
                 'div',
                 { style: style },
                 _react2.default.createElement('div', { id: 'app', style: style }),
+                _react2.default.createElement('script', { src: '/terra/js/terra.min.js' }),
                 _react2.default.createElement('script', { src: '/javascripts/bundle.js' })
             );
         }

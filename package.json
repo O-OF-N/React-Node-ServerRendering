@@ -60,6 +60,5 @@
       "es2015",
       "react"
     ]
-  },
-  "devDependencies": {}
+  }
 }

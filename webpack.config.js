@@ -2,6 +2,8 @@ var webpack = require('webpack');
 var path = require('path');
 const PATHS = path.join(__dirname, 'public');
 
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
+
 module.exports = {
     devtool: 'inline-source-map',
     entry: [
@@ -23,8 +25,18 @@ module.exports = {
                 exclude: /node_modules/,
                 loaders: ['babel?presets[]=react,presets[]=es2015']
             }, {
-                test: /\.css?$/,
-                loaders: ['style','css']
+                test: /\.css$/,
+                loader: combineLoaders([
+                    {
+                        loader: 'style-loader'
+                    }, {
+                        loader: 'css-loader',
+                        query: {
+                            modules: true,
+                            localIdentName: '[name]__[local]___[hash:base64:5]'
+                        }
+                    }
+                ])
             }, {
                 test: /\.(jpg|png|gif)$/,
                 loader: 'file?name=[path][name].[hash].[ext]',

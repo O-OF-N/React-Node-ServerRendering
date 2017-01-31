@@ -15,9 +15,6 @@ const DiabetesChart = () => (
             <Medications />
         </div>
         <div> <IBCModal /> </div>
-
     </div>
-
-
 );
 export default DiabetesChart;

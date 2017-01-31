@@ -18,7 +18,7 @@ import * as Constants from './utils/constants';
 import co from 'co';
 import { inheritStyle } from './components/styles';
 
-import styles from './terra.css';
+//import styles from './terra.css';
 
 const logger = createLogger();
 

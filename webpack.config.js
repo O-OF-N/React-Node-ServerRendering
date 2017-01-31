@@ -26,17 +26,14 @@ module.exports = {
                 loaders: ['babel?presets[]=react,presets[]=es2015']
             }, {
                 test: /\.css$/,
-                loader: combineLoaders([
-                    {
-                        loader: 'style-loader'
-                    }, {
-                        loader: 'css-loader',
-                        query: {
-                            modules: true,
-                            localIdentName: '[name]__[local]___[hash:base64:5]'
-                        }
-                    }
-                ])
+                loader: 'style-loader'
+            }, {
+                test: /\.css$/,
+                loader: 'css-loader',
+                query: {
+                    modules: true,
+                    localIdentName: '[name]__[local]___[hash:base64:5]'
+                }
             }, {
                 test: /\.(jpg|png|gif)$/,
                 loader: 'file?name=[path][name].[hash].[ext]',

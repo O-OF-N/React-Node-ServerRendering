@@ -70,8 +70,8 @@ const renderFullPage = (html, state) => {
             }
             window.__PRELOADED_STATE__ = '${state}'
         </script>
-        <script src=""public/terra/js/terra.min.js"></script>
-        <link rel="stylesheet" href="public/terra/css/terra.min.css">
+        <script src="terra/js/terra.min.js"></script>
+        <link rel="stylesheet" href="terra/css/terra.min.css">
       </head>
       <body style="width:inherit;height:inherit">
         <div id="root-app" style="width:inherit;height:inherit">${html}</div>

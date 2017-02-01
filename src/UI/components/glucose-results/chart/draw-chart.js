@@ -15,10 +15,7 @@ const drawChart = (labels, data, toolTip) => {
         },
         axis: {
             x: {
-                type: 'timeseries',
-                tick: {
-                    format: '%Y-%m-%d'
-                }
+                type: 'category' // this needed to load string x value
             }
         }
     })

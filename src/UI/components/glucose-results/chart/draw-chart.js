@@ -15,7 +15,7 @@ const drawChart = (labels, data, toolTip) => {
         },
         axis: {
             x: {
-                type: 'category' // this needed to load string x value
+                type: 'category'
             }
         }
     })

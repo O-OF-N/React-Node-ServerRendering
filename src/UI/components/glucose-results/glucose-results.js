@@ -13,7 +13,8 @@ class GlucoseResults extends React.Component {
         super(props);
         this.logit = this.logit.bind(this);
     }
-    generateChart(data) {
+    generateChart(data) { 
+        console.log(data);
         var chart = c3.generate({
             bindto: '#chart',
             data: {

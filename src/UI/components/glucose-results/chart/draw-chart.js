@@ -1,7 +1,7 @@
 import Chart from 'chart.js'
 
 const drawChart = (context, labels, data, toolTip) => {
-    const myChart = new Chart(context, {
+    /*const myChart = new Chart(context, {
         type: 'bar',
         data: {
             labels: labels,
@@ -30,7 +30,15 @@ const drawChart = (context, labels, data, toolTip) => {
                 }]
             }
         }
-    });
+    });*/
+    var chart = c3.generate({
+        bindto: '#chart',
+        data: {
+            columns: [
+                data
+            ]
+        }
+    })
 };
 
 export default drawChart;

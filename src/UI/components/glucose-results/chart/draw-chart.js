@@ -10,7 +10,8 @@ const drawChart = (labels, data, toolTip) => {
             columns: [
                 labels,
                 data
-            ]
+            ],
+            type: 'spline'
         }
     })
 };

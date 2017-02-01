@@ -1,7 +1,10 @@
 import React from 'react';
 import drawChart from './chart/draw-chart';
 import { connect } from 'react-redux';
-const C3Chart = require("./C3Chart.jsx");
+import 'c3/c3.css';
+import 'd3/d3.v3.min.js';
+import 'c3/c3.min.js';
+
 
 
 
@@ -33,13 +36,13 @@ class GlucoseResults extends React.Component {
         return (
             <div style={style}>
                 <h3>Blood Glucose (all sources for past 24 hours)</h3>
-                <C3Chart data={data} type="line" />
-
                 {/* <div>
                     <canvas ref="chart">
                     </canvas>
                     {this.logit()}
                 </div>*/}
+
+                <div id="chart"></div>
             </div>
         )
     }
@@ -48,3 +51,4 @@ class GlucoseResults extends React.Component {
 export default connect(state => ({
     glucose: state.glucoseObject.glucose
 }))(GlucoseResults);
+

@@ -1,6 +1,6 @@
 import Chart from 'chart.js'
 
-const drawChart = (context, labels, data, toolTip) => {
+const drawChart = (labels, data, toolTip) => {
     /*const myChart = new Chart(context, {
         type: 'bar',
         data: {

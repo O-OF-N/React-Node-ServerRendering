@@ -7,10 +7,10 @@ import { inheritStyle } from './styles';
 
 const DiabetesChart = () => (
     <div style={inheritStyle}>
-        <div style={{ width: '100%' }}>
+        <div style={{ width: '100%', maxHeight: '45%' }}>
             <GlucoseResults />
         </div>
-        <div style={{ width: '100%', marginTop: '3%' }}>
+        <div style={{ width: '100%', height: '45%', marginTop: '3%' }}>
             <LabResults />
             <Medications />
         </div>

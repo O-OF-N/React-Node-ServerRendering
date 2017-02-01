@@ -6,12 +6,20 @@ const drawChart = (labels, data, toolTip) => {
     var chart = c3.generate({
         bindto: '#chart',
         data: {
-            x:'x',
+            x: 'x',
             columns: [
                 labels,
                 data
             ],
             type: 'spline'
+        },
+        axis: {
+            x: {
+                type: 'timeseries',
+                tick: {
+                    format: '%Y-%m-%d'
+                }
+            }
         }
     })
 };

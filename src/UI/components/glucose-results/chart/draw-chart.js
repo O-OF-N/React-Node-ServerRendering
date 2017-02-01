@@ -21,7 +21,11 @@ const drawChart = (labels, data, toolTip) => {
         },
         axis: {
             x: {
-                type: 'category'
+                type: 'category',
+                label: {
+                    text: 'Glucose Level (mg/dl)',
+                    position: 'outer-center'
+                }
             }
         }
     })

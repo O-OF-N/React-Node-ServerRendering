@@ -6,9 +6,9 @@ const drawChart = (labels, data, toolTip) => {
     var chart = c3.generate({
         bindto: '#chart',
         padding: {
-            top: 40,
+            top: 20,
             right: 100,
-            bottom: 40,
+            bottom: 20,
             left: 100,
         },
         data: {

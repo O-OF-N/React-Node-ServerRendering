@@ -13,6 +13,17 @@ class GlucoseResults extends React.Component {
         super(props);
         this.logit = this.logit.bind(this);
     }
+    generateChart() {
+        var chart = c3.generate({
+            bindto: '#chart',
+            data: {
+                columns: [
+                    ['data1', 30, 200, 100, 400, 150, 250],
+                    ['data2', 50, 20, 10, 40, 15, 25]
+                ]
+            }
+        })
+    }
     logit() {
         if (this.refs.chart && this.props.glucose) {
             const labels = this.props.glucose.map(glucose => glucose.date ? new Date(glucose.date).toLocaleTimeString() : null).toJS();
@@ -33,6 +44,7 @@ class GlucoseResults extends React.Component {
             overflow: 'auto'
         };
         const data = this.props.glucose.map(glucose => glucose.quantity).toJS();
+        this.generateChart();
         return (
             <div style={style}>
                 <h3>Blood Glucose (all sources for past 24 hours)</h3>
@@ -43,15 +55,6 @@ class GlucoseResults extends React.Component {
                 </div>*/}
 
                 <div id="chart"></div>
-                {c3.generate({
-                    bindto: '#chart',
-                    data: {
-                        columns: [
-                            ['data1', 30, 200, 100, 400, 150, 250],
-                            ['data2', 50, 20, 10, 40, 15, 25]
-                        ]
-                    }
-                })};
             </div>
         )
     }

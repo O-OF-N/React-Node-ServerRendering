@@ -176,7 +176,7 @@ var handleRenderer = function handleRenderer(state) {
 };
 
 var renderFullPage = function renderFullPage(html, state) {
-    return '\n    <!doctype html>\n    <html style="width:100%;height:100%">\n      <head>\n        <title>Diabetes Dashboard</title>\n        <meta charset="utf-8">\n        <meta http-equiv="X-UA-Compatible" content="IE=edge">\n        <script type="text/javascript">  \n            function evaluate(x) {\n                return eval(x);\n            }\n            window.__PRELOADED_STATE__ = \'' + state + '\'\n        </script>\n        <script src="/terra/js/terra.min.js"></script>\n        <link rel="stylesheet" href="/terra/css/terra.min.css">\n      </head>\n      <body style="width:inherit;height:inherit">\n        <div id="root-app" style="width:inherit;height:inherit">' + html + '</div>\n      </body>\n    </html>\n    ';
+    return '\n    <!doctype html>\n    <html style="width:100%;height:100%">\n      <head>\n        <title>Diabetes Dashboard</title>\n        <meta charset="utf-8">\n        <meta http-equiv="X-UA-Compatible" content="IE=edge">\n        <script type="text/javascript">  \n            function evaluate(x) {\n                return eval(x);\n            }\n            window.__PRELOADED_STATE__ = \'' + state + '\'\n        </script>\n      </head>\n      <body style="width:inherit;height:inherit">\n        <div id="root-app" style="width:inherit;height:inherit">' + html + '</div>\n      </body>\n    </html>\n    ';
 };
 
 exports.default = router;

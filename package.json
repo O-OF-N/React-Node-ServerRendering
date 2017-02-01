@@ -44,6 +44,7 @@
     "rc-table": "^5.0.5",
     "react": "^15.4.2",
     "react-bootstrap": "^0.30.7",
+    "react-c3js": "^0.1.15",
     "react-dom": "^15.4.2",
     "react-modal": "^1.5.2",
     "react-redux": "^4.4.5",

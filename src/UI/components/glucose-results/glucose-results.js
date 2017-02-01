@@ -25,10 +25,16 @@ class GlucoseResults extends React.Component {
             maxHeight: '100%',
             overflow: 'auto'
         };
+
+        const styleFull = {
+            width: '95%', float: 'left', paddingLeft: '0.5%', maxWidth: '100%',
+            maxHeight: '100%',
+            overflow: 'auto'
+        };
         const data = this.props.glucose.map(glucose => glucose.quantity).toJS();
         this.logit();
         return (
-            <div style={style}>
+            <div style={styleFull}>
                 <h3>Blood Glucose (all sources for past 24 hours)</h3>
                 <div id="chart"></div>
             </div>

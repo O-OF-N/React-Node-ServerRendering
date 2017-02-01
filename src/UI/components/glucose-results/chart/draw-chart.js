@@ -5,6 +5,12 @@ import * as c3 from 'c3/c3';
 const drawChart = (labels, data, toolTip) => {
     var chart = c3.generate({
         bindto: '#chart',
+        padding: {
+            top: 40,
+            right: 100,
+            bottom: 40,
+            left: 100,
+        },
         data: {
             x: 'x',
             columns: [

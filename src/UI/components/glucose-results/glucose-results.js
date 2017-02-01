@@ -27,7 +27,7 @@ class GlucoseResults extends React.Component {
         };
 
         const styleFull = {
-            width: '95%', float: 'left', paddingLeft: '0.5%', maxWidth: '100%',
+            width: '95%', height: '100%', float: 'left', paddingLeft: '0.5%', maxWidth: '100%',
             maxHeight: '100%',
             overflow: 'auto'
         };
@@ -36,7 +36,7 @@ class GlucoseResults extends React.Component {
         return (
             <div style={styleFull}>
                 <h3>Blood Glucose (all sources for past 24 hours)</h3>
-                <div id="chart"></div>
+                <div id="chart" style={{ width: '100%', height: '100%' }}></div>
             </div>
         )
     }

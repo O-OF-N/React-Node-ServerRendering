@@ -3,7 +3,7 @@ import drawChart from './chart/draw-chart';
 import { connect } from 'react-redux';
 import 'c3/c3.css';
 import 'd3';
-import 'c3/c3.min.js';
+import c3 from 'c3/c3.min.js';
 
 
 

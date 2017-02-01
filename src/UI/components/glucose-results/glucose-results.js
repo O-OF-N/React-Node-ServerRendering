@@ -1,12 +1,6 @@
 import React from 'react';
 import drawChart from './chart/draw-chart';
 import { connect } from 'react-redux';
-import 'c3/c3.css';
-import 'd3';
-import * as c3 from 'c3/c3';
-
-
-
 
 class GlucoseResults extends React.Component {
     constructor(props) {
@@ -15,11 +9,11 @@ class GlucoseResults extends React.Component {
     }
     generateChart(data) {
         console.log(data);
-        
+
     }
     logit() {
         if (this.props.glucose) {
-            const labels = this.props.glucose.map(glucose => glucose.date ? new Date(glucose.date).toLocaleTimeString() : null).toJS();
+            const labels = ['x',...this.props.glucose.map(glucose => glucose.date ? new Date(glucose.date).toLocaleTimeString() : null).toJS()];
             const data = ['Blood Glucose', ...this.props.glucose.map(glucose => glucose.quantity).toJS()];
             const toolTip = this.props.glucose.map(glucose => { return { date: glucose.quantity, toolTip: glucose.source } })
             drawChart(labels, data, toolTip);

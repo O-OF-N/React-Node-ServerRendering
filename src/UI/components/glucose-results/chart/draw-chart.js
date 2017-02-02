@@ -35,8 +35,8 @@ const drawChart = (labels, data, toolTip) => {
                     const toolTip = toolTip.find(t => t.index === x);
                     console.log(`${toolTip.toolTipDate}(${toolTip.source})`);
                     return `${toolTip.toolTipDate}(${toolTip.source})`
-                }
-
+                },
+                value: (value, ratio, id, index) => value
             }
         }
     });

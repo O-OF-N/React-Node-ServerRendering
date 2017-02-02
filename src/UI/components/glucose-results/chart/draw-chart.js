@@ -2,7 +2,7 @@ import 'c3/c3.css';
 import 'd3';
 import * as c3 from 'c3/c3';
 
-const drawChart = (labels, data, toolTip) => {
+const drawChart = (labels, data, tt) => {
     var chart = c3.generate({
         bindto: '#chart',
         padding: {
@@ -32,7 +32,7 @@ const drawChart = (labels, data, toolTip) => {
         tooltip: {
             format: {
                 title: (x) => {
-                    const toolTip = toolTip.find(t => t.index === x);
+                    const toolTip = tt.find(t => t.index === x);
                     console.log(`${toolTip.toolTipDate}(${toolTip.source})`);
                     return `${toolTip.toolTipDate}(${toolTip.source})`
                 },

@@ -18,26 +18,27 @@ const drawChart = (labels, data, toolTip) => {
                 data
             ]
         },
+        axis: {
+            x: {
+                type: 'category'
+            },
+            y: {
+                label: {
+                    text: 'Glucose Level (mg/dl)',
+                    position: 'outer-middle'
+                }
+            }
+        }/*,
         tooltip: {
             format: {
                 title: (x) => {
                     const toolTip = toolTip.find(t => t.index === x);
                     console.log(`${toolTip.toolTipDate}(${toolTip.source})`);
                     return `${toolTip.toolTipDate}(${toolTip.source})`
-                },
-                axis: {
-                    x: {
-                        type: 'category'
-                    },
-                    y: {
-                        label: {
-                            text: 'Glucose Level (mg/dl)',
-                            position: 'outer-middle'
-                        }
-                    }
                 }
+
             }
-        }
+        }*/
     });
 };
 

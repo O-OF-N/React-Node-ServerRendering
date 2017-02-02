@@ -28,7 +28,7 @@ const drawChart = (labels, data, toolTip) => {
                     position: 'outer-middle'
                 }
             }
-        }/*,
+        },
         tooltip: {
             format: {
                 title: (x) => {
@@ -38,7 +38,7 @@ const drawChart = (labels, data, toolTip) => {
                 }
 
             }
-        }*/
+        }
     });
 };
 

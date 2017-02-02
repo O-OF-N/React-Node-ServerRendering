@@ -2,20 +2,18 @@ import React from 'react';
 import drawChart from './chart/draw-chart';
 import { connect } from 'react-redux';
 
+const timeStringForGraph = date => new Date(glucose.date).toLocaleTimeString([], { hour12: false, hour: '2-digit', minute: '2-digit' });
+
 class GlucoseResults extends React.Component {
     constructor(props) {
         super(props);
         this.logit = this.logit.bind(this);
     }
-    generateChart(data) {
-        console.log(data);
-
-    }
     logit() {
         if (this.props.glucose) {
-            const glucose = this.props.glucose.filter(glucose=>glucose.quantity!=null && glucose.date!=null).sort((g1,g2)=>g1.date>g2.date);
-            const data = ['Blood Glucose', ...glucose.map(glucose => glucose.quantity).toJS()];
-            const labels = ['x', ...glucose.map(glucose => new Date(glucose.date).toLocaleTimeString([],{hour12:false,hour: '2-digit', minute:'2-digit'})).toJS()];
+            const glucose = this.props.glucose.filter(g => g.quantity != null && g.date != null).sort((g1, g2) => g1.date > g2.date);
+            const data = ['Blood Glucose', ...glucose.map(g => g.quantity).toJS()];
+            const labels = ['x', ...glucose.map(timeStringForGraph).toJS()];
             const toolTip = glucose.map(glucose => { return { date: glucose.quantity, toolTip: glucose.source } })
             drawChart(labels, data, toolTip);
         }

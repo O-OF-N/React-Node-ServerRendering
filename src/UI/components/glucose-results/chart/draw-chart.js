@@ -21,7 +21,7 @@ const drawChart = (labels, data, toolTip) => {
         },
         axis: {
             x: {
-                type: 'Category'
+                type: 'category'
             },
             y: {
                 label: {

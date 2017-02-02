@@ -12,8 +12,7 @@ const drawChart = (labels, data, toolTip) => {
             left: 100,
         },
         data: {
-            x: 'x',
-            xFormat: '%H:%M:%S',
+            x: 'labels',
             columns: [
                 labels,
                 data
@@ -22,10 +21,7 @@ const drawChart = (labels, data, toolTip) => {
         },
         axis: {
             x: {
-                type: 'timeseries',
-                tick: {
-                    format: '%H:%M'
-                }
+                type: 'Category'
             },
             y: {
                 label: {

@@ -13,12 +13,12 @@ const drawChart = (labels, data, tt) => {
         },
         data: {
             x: 'x',
+            type: 'spline',
             columns: [
                 labels,
                 data
             ]
         },
-        type:'spline',
         axis: {
             x: {
                 type: 'category'

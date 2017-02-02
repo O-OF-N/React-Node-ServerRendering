@@ -13,9 +13,10 @@ class GlucoseResults extends React.Component {
     }
     logit() {
         if (this.props.glucose) {
-            const labels = ['labels', ...this.props.glucose.map(glucose => glucose.date ? new Date(glucose.date).toLocaleTimeString([],{hour12:false,hour: '2-digit', minute:'2-digit'}) : null).toJS().splice(0, 9)]
-            const data = ['Blood Glucose', ...this.props.glucose.map(glucose => glucose.quantity).toJS().splice(0, 9)];
-            const toolTip = this.props.glucose.map(glucose => { return { date: glucose.quantity, toolTip: glucose.source } })
+            const glucose = this.props.glucose.filter(glucose=>glucose.quantity!=null && glucose.date!=null).sort((g1,g2)=>g1.date>g2.date);
+            const data = ['Blood Glucose', ...glucose.map(glucose => glucose.quantity).toJS()];
+            const labels = ['x', ...glucose.map(glucose => new Date(glucose.date).toLocaleTimeString([],{hour12:false,hour: '2-digit', minute:'2-digit'})).toJS()];
+            const toolTip = glucose.map(glucose => { return { date: glucose.quantity, toolTip: glucose.source } })
             drawChart(labels, data, toolTip);
         }
     }

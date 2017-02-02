@@ -22,7 +22,7 @@ const drawChart = (labels, data, toolTip) => {
             format: {
                 title: (x) => {
                     const toolTip = toolTip.find(t => t.index === x);
-                    console.log(`${toolTip.toolTipDate}(${toolTip.source})`)
+                    console.log(`${toolTip.toolTipDate}(${toolTip.source})`);
                     return `${toolTip.toolTipDate}(${toolTip.source})`
                 },
                 axis: {
@@ -36,7 +36,9 @@ const drawChart = (labels, data, toolTip) => {
                         }
                     }
                 }
-            })
+            }
+        }
+    });
 };
 
 export default drawChart;

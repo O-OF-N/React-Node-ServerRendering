@@ -18,6 +18,7 @@ const drawChart = (labels, data, tt) => {
                 data
             ]
         },
+        type:'spline',
         axis: {
             x: {
                 type: 'category'
@@ -27,16 +28,6 @@ const drawChart = (labels, data, tt) => {
                     text: 'Glucose Level (mg/dl)',
                     position: 'outer-middle'
                 }
-            }
-        },
-        tooltip: {
-            format: {
-                title: (x) => {
-                    const toolTip = tt.find(t => t.index === x);
-                    console.log(`${toolTip.toolTipDate}(${toolTip.source})`);
-                    return `${toolTip.toolTipDate}(${toolTip.source})`
-                },
-                value: (value, ratio, id, index) => value
             }
         }
     });

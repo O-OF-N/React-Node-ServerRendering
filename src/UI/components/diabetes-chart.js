@@ -8,15 +8,11 @@ import { inheritStyle } from './styles';
 const DiabetesChart = () => (
     <div style={inheritStyle}>
 
-        <section class="demographics-banner">
+        <section className="demographics-banner">
             <header>
-                <div class="demographics-row">
-                    <h1>Doe, Jane</h1>
-                    <h1>St. John's Heroes Wing Bed Eight</h1>
-                </div>
-                <div class="demographics-row">
-                    <span><b>22 yrs</b> <b>F</b> DOB: <b>04/13/92</b></span>
-                    <span>MRN: <b>6789235423</b></span>
+                <div className="demographics-row">
+                    <h1>Diabetes Management</h1>
+                    <button className="btn btn-outline">Insulin Bolus Calculator</button>
                 </div>
             </header>
         </section>

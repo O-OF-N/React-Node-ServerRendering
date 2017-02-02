@@ -13,6 +13,7 @@ const drawChart = (labels, data, toolTip) => {
         },
         data: {
             x: 'x',
+            xFormat: '%H:%M:%S',
             columns: [
                 labels,
                 data
@@ -21,12 +22,15 @@ const drawChart = (labels, data, toolTip) => {
         },
         axis: {
             x: {
-                type: 'category'
+                type: 'timeseries',
+                tick: {
+                    format: '%H:%M'
+                }
             },
             y: {
                 label: {
                     text: 'Glucose Level (mg/dl)',
-                    position: 'outer-center'
+                    position: 'outer-middle'
                 }
             }
         }

@@ -13,7 +13,7 @@ class GlucoseResults extends React.Component {
         if (this.props.glucose) {
             const glucose = this.props.glucose.filter(g => g.quantity != null && g.date != null).sort((g1, g2) => g1.date > g2.date);
             const data = ['Blood Glucose', ...glucose.map(g => g.quantity).toJS()];
-            const labels = ['x', ...glucose.map(timeStringForGraph).toJS()];
+            const labels = ['x', ...glucose.map(g => timeStringForGraph(g.date)).toJS()];
             const toolTip = glucose.map(g => { return { date: g.quantity, toolTip: g.source } })
             drawChart(labels, data, toolTip);
         }

@@ -12,7 +12,7 @@ const drawChart = (labels, data, toolTip) => {
             left: 100,
         },
         data: {
-            x: 'labels',
+            x: 'x',
             columns: [
                 labels,
                 data

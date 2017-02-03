@@ -33,9 +33,9 @@ class GlucoseResults extends React.Component {
         const data = this.props.glucose.map(glucose => glucose.quantity).toJS();
         this.logit();
         return (
-            <div style={this.props.slidingScale.visible ? style : styleFull}>
+            <div style={this.props.slidingScale.visible ? styleHalf : styleFull}>
                 <h3>Blood Glucose (all sources for past 24 hours)</h3>
-                <div style={this.props.slidingScale.visible ? style : styleFull}>
+                <div style={this.props.slidingScale.visible ? styleHalf : styleFull}>
                     <div id="chart"></div>
                 </div>
             </div>

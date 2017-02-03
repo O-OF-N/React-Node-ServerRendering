@@ -8,7 +8,15 @@ import { connect } from 'react-redux';
 import * as Constants from '../utils/constants';
 
 const toggle = dispatch => dispatch({ type: Constants.SLIDING_SCALE_TOGGLE_VISIBILITY });
+const styleHalf = {
+    width: '48%', height: '100%', float: 'left', paddingLeft: '0.5%', maxWidth: '48%',
+    maxHeight: '100%'
+};
 
+const styleFull = {
+    width: '95%', height: '100%', float: 'left', paddingLeft: '0.5%', maxWidth: '100%',
+    maxHeight: '100%'
+};
 const DiabetesChart = ({slidingScale, dispatch}) => (
     <div style={inheritStyle}>
 
@@ -21,13 +29,16 @@ const DiabetesChart = ({slidingScale, dispatch}) => (
                 </div>
             </header>
         </section>
-        <div style={{ width: '100%', maxHeight: '45%' }}>
-            <GlucoseResults />
-            {
-                slidingScale.visible ?
-                    <div style={{ width: '40%', overflow:'auto' }}> <IBC /> </div> : null
-            }
-        </div>
+        {
+            slidingScale.visible ?
+                <div style={{ width: '100%', maxHeight: '45%' }}>
+                    <GlucoseResults style={styleHalf} />
+                    <div style={{ width: '40%', overflow: 'auto' }}> <IBC /> </div>
+                </div>
+                : <div style={{ width: '100%', maxHeight: '45%' }}>
+                    <GlucoseResults style={styleFull} />
+                </div>
+        }
         <div style={{ width: '100%', height: '45%', marginTop: '3%' }}>
             <LabResults />
             <Medications />

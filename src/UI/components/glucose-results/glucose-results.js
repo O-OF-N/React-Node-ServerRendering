@@ -6,15 +6,7 @@ const timeStringForGraph = date => new Date(date).toLocaleTimeString([], { hour1
 
 const timeStringForTooltip = date => new Date(date).toLocaleTimeString([], { hour12: true });
 
-const styleHalf = {
-    width: '48%', height: '100%', float: 'left', paddingLeft: '0.5%', maxWidth: '48%',
-    maxHeight: '100%'
-};
 
-const styleFull = {
-    width: '95%', height: '100%', float: 'left', paddingLeft: '0.5%', maxWidth: '100%',
-    maxHeight: '100%'
-};
 
 class GlucoseResults extends React.Component {
     constructor(props) {
@@ -30,15 +22,12 @@ class GlucoseResults extends React.Component {
             drawChart(labels, data, toolTip);
         }
     }
-    componentWillUpdate() {
-        this.style = this.props.slidingScale.visible ? styleHalf : styleFull;
-    }
     render() {
         const data = this.props.glucose.map(glucose => glucose.quantity).toJS();
         this.logit();
-        console.log(this.style);
+        console.log(this.props.style);
         return (
-            <div style={this.style}>
+            <div style={this.props.style}>
                 <h3>Blood Glucose</h3> <h5>(all sources for past 24 hours)</h5>
                 <div>
                     <div id="chart"></div>
@@ -50,6 +39,6 @@ class GlucoseResults extends React.Component {
 
 export default connect(state => ({
     glucose: state.glucoseObject.glucose,
-    slidingScale: state.slidingScale
+    style: state.style
 }))(GlucoseResults);
 

@@ -15,7 +15,7 @@ const DiabetesChart = dispatch => (
             <header>
                 <div className="demographics-row">
                     <h1>Diabetes Management
-                    <button className="btn btn-default" onClick={toggle.bind(null, dis)}>Insulin Bolus Calculator</button>
+                    <button className="btn btn-default" onClick={toggle.bind(null, dispatch)}>Insulin Bolus Calculator</button>
                     </h1>
                 </div>
             </header>
@@ -24,7 +24,7 @@ const DiabetesChart = dispatch => (
             <GlucoseResults />
             {
                 slidingScale.visible ?
-                    <div style={{ width: '40%' }}> <IBC /> </div> : null
+                    <div style={{ width: '40%', overflow:'auto' }}> <IBC /> </div> : null
             }
         </div>
         <div style={{ width: '100%', height: '45%', marginTop: '3%' }}>

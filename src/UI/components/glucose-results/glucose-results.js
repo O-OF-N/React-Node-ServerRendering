@@ -20,6 +20,9 @@ class GlucoseResults extends React.Component {
             drawChart(labels, data, toolTip);
         }
     }
+    componentDidMount() {
+        this.style = this.props.slidingScale.visible ? styleHalf : styleFull;
+    }
     render() {
         const styleHalf = {
             width: '48%', height: '100%', float: 'left', paddingLeft: '0.5%', maxWidth: '48%',
@@ -32,10 +35,11 @@ class GlucoseResults extends React.Component {
         };
         const data = this.props.glucose.map(glucose => glucose.quantity).toJS();
         this.logit();
+        console.log(this.style);
         return (
-            <div style={this.props.slidingScale.visible ? styleHalf : styleFull}>
-                <h3>Blood Glucose (all sources for past 24 hours)</h3>
-                <div style={this.props.slidingScale.visible ? styleHalf : styleFull}>
+            <div style={this.style}>
+                <h3>Blood Glucose</h3> <h5>(all sources for past 24 hours)</h5>
+                <div>
                     <div id="chart"></div>
                 </div>
             </div>

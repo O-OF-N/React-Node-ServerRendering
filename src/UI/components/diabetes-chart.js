@@ -11,12 +11,9 @@ const DiabetesChart = () => (
         <section className="demographics-banner">
             <header>
                 <div className="demographics-row">
-                    <h1>Diabetes Management</h1>
-                    <button className="btn btn-outline">Insulin Bolus Calculator</button>
-                </div>
-                <div class="demographics-row">
-                    <span><b>22 yrs</b> <b>F</b> DOB: <b>04/13/92</b></span>
-                    <span>MRN: <b>6789235423</b></span>
+                    <h1>Diabetes Management
+                    <button className="btn btn-default">Insulin Bolus Calculator</button>
+                    </h1>
                 </div>
             </header>
         </section>

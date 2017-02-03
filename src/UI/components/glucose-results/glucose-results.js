@@ -30,7 +30,7 @@ class GlucoseResults extends React.Component {
             drawChart(labels, data, toolTip);
         }
     }
-    componentDidMount() {
+    componentWillUpdate() {
         this.style = this.props.slidingScale.visible ? styleHalf : styleFull;
     }
     render() {

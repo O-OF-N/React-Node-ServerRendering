@@ -5,6 +5,7 @@ import Medications from './medications/medications';
 import IBC from './sliding-scale/IBC';
 import { inheritStyle } from './styles';
 import { connect } from 'react-redux';
+import * as Constants from '../utils/constants';
 
 const toggle = dispatch => dispatch({ type: Constants.SLIDING_SCALE_TOGGLE_VISIBILITY });
 

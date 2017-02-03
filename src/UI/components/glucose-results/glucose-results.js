@@ -6,6 +6,16 @@ const timeStringForGraph = date => new Date(date).toLocaleTimeString([], { hour1
 
 const timeStringForTooltip = date => new Date(date).toLocaleTimeString([], { hour12: true });
 
+const styleHalf = {
+    width: '48%', height: '100%', float: 'left', paddingLeft: '0.5%', maxWidth: '48%',
+    maxHeight: '100%'
+};
+
+const styleFull = {
+    width: '95%', height: '100%', float: 'left', paddingLeft: '0.5%', maxWidth: '100%',
+    maxHeight: '100%'
+};
+
 class GlucoseResults extends React.Component {
     constructor(props) {
         super(props);
@@ -24,15 +34,6 @@ class GlucoseResults extends React.Component {
         this.style = this.props.slidingScale.visible ? styleHalf : styleFull;
     }
     render() {
-        const styleHalf = {
-            width: '48%', height: '100%', float: 'left', paddingLeft: '0.5%', maxWidth: '48%',
-            maxHeight: '100%'
-        };
-
-        const styleFull = {
-            width: '95%', height: '100%', float: 'left', paddingLeft: '0.5%', maxWidth: '100%',
-            maxHeight: '100%'
-        };
         const data = this.props.glucose.map(glucose => glucose.quantity).toJS();
         this.logit();
         console.log(this.style);

@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 
 const toggle = dispatch => dispatch({ type: Constants.SLIDING_SCALE_TOGGLE_VISIBILITY });
 
-const DiabetesChart = dispatch => (
+const DiabetesChart = ({slidingScale, dispatch}) => (
     <div style={inheritStyle}>
 
         <section className="demographics-banner">

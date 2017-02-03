@@ -14,6 +14,10 @@ const DiabetesChart = () => (
                     <h1>Diabetes Management</h1>
                     <button className="btn btn-outline">Insulin Bolus Calculator</button>
                 </div>
+                <div class="demographics-row">
+                    <span><b>22 yrs</b> <b>F</b> DOB: <b>04/13/92</b></span>
+                    <span>MRN: <b>6789235423</b></span>
+                </div>
             </header>
         </section>
         <div style={{ width: '100%', maxHeight: '45%' }}>

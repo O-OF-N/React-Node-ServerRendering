@@ -27,10 +27,10 @@ class GlucoseResults extends React.Component {
         this.logit();
         console.log(this.props.style);
         return (
-            <div style={this.props.style}>
+            <div>
                 <h3>Blood Glucose</h3> <h5>(all sources for past 24 hours)</h5>
                 <div>
-                    <div id="chart"></div>
+                    <div id="chart" style={this.props.style}></div>
                 </div>
             </div>
         )

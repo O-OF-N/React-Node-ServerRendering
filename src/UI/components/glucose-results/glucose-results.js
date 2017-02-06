@@ -24,7 +24,7 @@ class GlucoseResults extends React.Component {
 
     logit() {
         if (this.props.glucoseObject.glucose) {
-            const glucose = this.props.glucose.glucose.filter(g => g.quantity != null && g.date != null).sort((g1, g2) => g1.date > g2.date);
+            const glucose = this.props.glucoseObject.glucose.filter(g => g.quantity != null && g.date != null).sort((g1, g2) => g1.date > g2.date);
             const data = ['Blood Glucose', ...glucose.map(g => g.quantity).toJS()];
             const labels = ['x', ...glucose.map(g => timeStringForGraph(g.date)).toJS()];
             const toolTip = glucose.map((g, index) => { return { index: labels[index + 1], toolTipDate: timeStringForTooltip(g.date), source: g.source, value: g.value } })
@@ -39,8 +39,7 @@ class GlucoseResults extends React.Component {
             <div style={this.props.style}>
                 <h3>Blood Glucose</h3> <h5>(all sources for past 24 hours)</h5>
                 {
-                    this.props.glucoseObject.fetching ? <Loading /> :
-                        this.props.glucoseObject.error ? <Error /> :
+                    this.props.glucoseObject.fetching? <Loading /> :
                             <div id="chart"></div>
                 }
             </div>

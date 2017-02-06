@@ -34,8 +34,8 @@ const toggle = dispatch => dispatch({ type: Constants.SLIDING_SCALE_TOGGLE_VISIB
 const Medications = ({medicationObject, dispatch}) => medicationObject.medications ? (
     <div style={{ width: '96%', height: '100%', padding: '1%', marginTop: '0.5%' }}>
         <Header dis={dispatch} />
-        {this.props.medicationObject.fetching ? <Loading /> :
-            this.props.medicationObject.error ? <Error /> :
+        {medicationObject.fetching ? <Loading /> :
+            medicationObject.error ? <Error /> :
                 medicationObject.medications.map(medication =>
                     medication.type === 'Bolus / Sliding Scale Insulin' ? <BolusMedications medication={medication} /> : <NonBolusMedications medication={medication} />
                 )}

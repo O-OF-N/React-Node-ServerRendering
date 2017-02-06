@@ -11,8 +11,8 @@ const LabResults = ({labObject}) => (
     <div style={LabDivStyle}>
         <h3>Diabetes Labs</h3> <h5>(last 2 results in past 24 hours)</h5>
         {
-            this.props.labObject.fetching ? <Loading /> :
-                this.props.labObject.error ? <Error /> :
+            labObject.fetching ? <Loading /> :
+                labObject.error ? <Error /> :
                     <LabTable data={labObject.labMaps} />
         }
     </div>

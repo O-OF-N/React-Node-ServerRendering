@@ -24,9 +24,6 @@ const BolusMedications = ({medication}) => {
 
 const Header = ({dis}) => (<div>
     <h3>Active Diabetes Med Orders</h3>
-    <span style={{ paddingLeft: "1%" }}>
-        <button className="btn-positive" onClick={toggle.bind(null, dis)}>Insulin Bolus Calculator</button>
-    </span>
 </div>
 );
 

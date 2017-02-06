@@ -30,9 +30,10 @@ class GlucoseResults extends React.Component {
             <div>
                 <h3>Blood Glucose</h3> <h5>(all sources for past 24 hours)</h5>
                 <div>
-                    <div id="chart" style={this.props.style}></div>
+                    <div id="chart" style={this.props.style}>
+                        {document.getElementById("chart") ? chart.resize({ width: document.getElementById("chart").offsetWidth }) : null}
+                    </div>
                 </div>
-                {document.getElementById("chart") ? chart.resize({ width: document.getElementById("chart").offsetWidth }) : null}
             </div>
         )
     }

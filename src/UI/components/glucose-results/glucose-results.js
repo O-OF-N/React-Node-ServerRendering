@@ -30,8 +30,9 @@ class GlucoseResults extends React.Component {
             <div>
                 <h3>Blood Glucose</h3> <h5>(all sources for past 24 hours)</h5>
                 <div>
-                    <div id="chart" style={this.props.style}>{chart.resize()}</div>
+                    <div id="chart" style={this.props.style}></div>
                 </div>
+                {chart.resize()}
             </div>
         )
     }

@@ -19,7 +19,7 @@ class GlucoseResults extends React.Component {
             const data = ['Blood Glucose', ...glucose.map(g => g.quantity).toJS()];
             const labels = ['x', ...glucose.map(g => timeStringForGraph(g.date)).toJS()];
             const toolTip = glucose.map((g, index) => { return { index: labels[index + 1], toolTipDate: timeStringForTooltip(g.date), source: g.source, value: g.value } })
-            drawChart(labels, data, toolTip);
+            return drawChart(labels, data, toolTip);
         }
     }
     render() {

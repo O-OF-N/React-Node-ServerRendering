@@ -16,7 +16,7 @@ class GlucoseResults extends React.Component {
 
     componentDidUpdate() {
         if (document.getElementById("chart")) {
-            console.log("width = " + document.getElementById("chart").offsetWidth); chart.resize({ width: document.getElementById("chart").offsetWidth });
+            console.log("width = " + document.getElementById("chart").offsetWidth); this.chart.resize({ width: document.getElementById("chart").offsetWidth });
         }
     }
 
@@ -32,7 +32,7 @@ class GlucoseResults extends React.Component {
 
     render() {
         const data = this.props.glucose.map(glucose => glucose.quantity).toJS();
-        const chart = this.logit();
+        this.chart = this.logit();
         console.log(this.props.style);
         return (
             <div>

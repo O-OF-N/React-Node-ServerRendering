@@ -36,13 +36,13 @@ class GlucoseResults extends React.Component {
         const data = this.props.glucoseObject.glucose.map(glucose => glucose.quantity).toJS();
         this.chart = this.logit();
         return (
-            <div>
+            <div style={this.props.style}>
                 <h3>Blood Glucose</h3> <h5>(all sources for past 24 hours)</h5>
                 {
                     this.props.glucoseObject.fetching ? <Loading /> :
                         this.props.glucoseObject.errr ? <Error /> :
                             <div>
-                                <div id="chart" style={this.props.style}>
+                                <div id="chart">
                                 </div>
                             </div>
                 }

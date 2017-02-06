@@ -25,6 +25,7 @@ router.get('/', co(function* (req, res, next) {
         console.log('err = ' + err);
         ErrorHandler.ErrorHandler("InternalServerError", res, err.message);
     }
+    //res.send(handleRenderer('Test state'));
 }));
 
 router.get('/callback', co(function* (req, res, next) {

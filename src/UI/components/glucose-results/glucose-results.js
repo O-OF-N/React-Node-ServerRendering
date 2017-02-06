@@ -1,6 +1,7 @@
 import React from 'react';
 import drawChart from './chart/draw-chart';
 import { connect } from 'react-redux';
+import Loading from '../loading/loading';
 
 const timeStringForGraph = date => new Date(date).toLocaleTimeString([], { hour12: false, hour: '2-digit', minute: '2-digit' });
 
@@ -16,13 +17,13 @@ class GlucoseResults extends React.Component {
 
     componentDidUpdate() {
         if (document.getElementById("chart")) {
-         this.chart.resize({ width: document.getElementById("chart").offsetWidth });
+            this.chart.resize({ width: document.getElementById("chart").offsetWidth });
         }
     }
 
     logit() {
-        if (this.props.glucose) {
-            const glucose = this.props.glucose.filter(g => g.quantity != null && g.date != null).sort((g1, g2) => g1.date > g2.date);
+        if (this.props.glucose.glucose) {
+            const glucose = this.props.glucose.glucose.filter(g => g.quantity != null && g.date != null).sort((g1, g2) => g1.date > g2.date);
             const data = ['Blood Glucose', ...glucose.map(g => g.quantity).toJS()];
             const labels = ['x', ...glucose.map(g => timeStringForGraph(g.date)).toJS()];
             const toolTip = glucose.map((g, index) => { return { index: labels[index + 1], toolTipDate: timeStringForTooltip(g.date), source: g.source, value: g.value } })
@@ -31,21 +32,24 @@ class GlucoseResults extends React.Component {
     }
 
     render() {
-        const data = this.props.glucose.map(glucose => glucose.quantity).toJS();
+        const data = this.props.glucose.glucose.map(glucose => glucose.quantity).toJS();
         this.chart = this.logit();
         return (
             <div>
                 <h3>Blood Glucose</h3> <h5>(all sources for past 24 hours)</h5>
-                <div>
-                    <div id="chart" style={this.props.style}>
-                    </div>
-                </div>
+                {
+                    this.props.glucose.fetching ? <Loading /> :
+                        <div>
+                            <div id="chart" style={this.props.style}>
+                            </div>
+                        </div>
+                }
             </div>
         )
     }
 };
 
 export default connect(state => ({
-    glucose: state.glucoseObject.glucose
+    glucose: state.glucoseObject
 }))(GlucoseResults);
 

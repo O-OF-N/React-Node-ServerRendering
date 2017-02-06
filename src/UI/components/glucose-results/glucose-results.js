@@ -13,6 +13,13 @@ class GlucoseResults extends React.Component {
         super(props);
         this.logit = this.logit.bind(this);
     }
+
+    componentDidUpdate() {
+        if (document.getElementById("chart")) {
+            console.log("width = " + document.getElementById("chart").offsetWidth); chart.resize({ width: document.getElementById("chart").offsetWidth });
+        }
+    }
+
     logit() {
         if (this.props.glucose) {
             const glucose = this.props.glucose.filter(g => g.quantity != null && g.date != null).sort((g1, g2) => g1.date > g2.date);
@@ -22,6 +29,7 @@ class GlucoseResults extends React.Component {
             return drawChart(labels, data, toolTip);
         }
     }
+
     render() {
         const data = this.props.glucose.map(glucose => glucose.quantity).toJS();
         const chart = this.logit();
@@ -31,7 +39,6 @@ class GlucoseResults extends React.Component {
                 <h3>Blood Glucose</h3> <h5>(all sources for past 24 hours)</h5>
                 <div>
                     <div id="chart" style={this.props.style}>
-                        {document.getElementById("chart") ? chart.resize({ width: document.getElementById("chart").offsetWidth }) : null}
                     </div>
                 </div>
             </div>

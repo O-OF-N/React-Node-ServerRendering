@@ -4,13 +4,20 @@ import LabResultsBody from './lab-results-body';
 import LabTable from './lab-results-table';
 import { connect } from 'react-redux';
 import { LabDivStyle } from '../styles';
+import Loading from '../loading/loading';
+import Error from '../error/error';
 
-const LabResults = ({labMaps}) => (
+const LabResults = ({labObject}) => (
     <div style={LabDivStyle}>
-        <LabTable data={labMaps} title = "Diabetes Labs (last 2 results in past 24 hours)"/>
+        <h3>Diabetes Labs</h3> <h5>(last 2 results in past 24 hours)</h5>
+        {
+            this.props.labObject.fetching ? <Loading /> :
+                this.props.labObject.error ? <Error /> :
+                    <LabTable data={labObject.labMaps} />
+        }
     </div>
 );
 
 export default connect(state => ({
-    labMaps: state.labObject.labMaps
+    labObject: state.labObject
 }))(LabResults);

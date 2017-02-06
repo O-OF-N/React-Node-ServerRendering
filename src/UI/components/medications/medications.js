@@ -4,6 +4,8 @@ import MedicationsTable from './medications-table';
 import { connect } from 'react-redux';
 import { MedicationTableStyle } from '../styles';
 import * as Constants from '../../utils/constants';
+import Loading from '../loading/loading';
+import Error from '../error/error';
 
 const NonBolusMedications = ({medication}) => {
     const med = medication ? medication.medications.map(m => m.toJS()) : null;
@@ -29,16 +31,18 @@ const Header = ({dis}) => (<div>
 
 const toggle = dispatch => dispatch({ type: Constants.SLIDING_SCALE_TOGGLE_VISIBILITY })
 
-const Medications = ({medications, dispatch}) => medications ? (
+const Medications = ({medicationObject, dispatch}) => medicationObject.medications ? (
     <div style={{ width: '96%', height: '100%', padding: '1%', marginTop: '0.5%' }}>
         <Header dis={dispatch} />
-        {medications.map(medication =>
-            medication.type === 'Bolus / Sliding Scale Insulin' ? <BolusMedications medication={medication} /> : <NonBolusMedications medication={medication} />
-        )}
+        {this.props.medicationObject.fetching ? <Loading /> :
+            this.props.medicationObject.error ? <Error /> :
+                medicationObject.medications.map(medication =>
+                    medication.type === 'Bolus / Sliding Scale Insulin' ? <BolusMedications medication={medication} /> : <NonBolusMedications medication={medication} />
+                )}
     </div>
 ) : null;
 
 export default connect(state => ({
     dispatch: state.dispatch,
-    medications: state.medicationObject.medications
+    medicationObject: state.medicationObject
 }))(Medications);

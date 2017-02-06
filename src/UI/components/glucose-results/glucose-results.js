@@ -32,7 +32,7 @@ class GlucoseResults extends React.Component {
                 <div>
                     <div id="chart" style={this.props.style}></div>
                 </div>
-                {chart.resize()}
+                {chart.resize({ width: document.getElementById("chart").offsetWidth })}
             </div>
         )
     }

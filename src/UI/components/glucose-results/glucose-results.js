@@ -2,6 +2,7 @@ import React from 'react';
 import drawChart from './chart/draw-chart';
 import { connect } from 'react-redux';
 import Loading from '../loading/loading';
+import Error from '../error/error';
 
 const timeStringForGraph = date => new Date(date).toLocaleTimeString([], { hour12: false, hour: '2-digit', minute: '2-digit' });
 
@@ -22,7 +23,7 @@ class GlucoseResults extends React.Component {
     }
 
     logit() {
-        if (this.props.glucose.glucose) {
+        if (this.props.glucoseObject.glucose) {
             const glucose = this.props.glucose.glucose.filter(g => g.quantity != null && g.date != null).sort((g1, g2) => g1.date > g2.date);
             const data = ['Blood Glucose', ...glucose.map(g => g.quantity).toJS()];
             const labels = ['x', ...glucose.map(g => timeStringForGraph(g.date)).toJS()];
@@ -32,17 +33,18 @@ class GlucoseResults extends React.Component {
     }
 
     render() {
-        const data = this.props.glucose.glucose.map(glucose => glucose.quantity).toJS();
+        const data = this.props.glucoseObject.glucose.map(glucose => glucose.quantity).toJS();
         this.chart = this.logit();
         return (
             <div>
                 <h3>Blood Glucose</h3> <h5>(all sources for past 24 hours)</h5>
                 {
-                    this.props.glucose.fetching ? <Loading /> :
-                        <div>
-                            <div id="chart" style={this.props.style}>
+                    this.props.glucoseObject.fetching ? <Loading /> :
+                        this.props.glucoseObject.errr ? <Error /> :
+                            <div>
+                                <div id="chart" style={this.props.style}>
+                                </div>
                             </div>
-                        </div>
                 }
             </div>
         )
@@ -50,6 +52,6 @@ class GlucoseResults extends React.Component {
 };
 
 export default connect(state => ({
-    glucose: state.glucoseObject
+    glucoseObject: state.glucoseObject
 }))(GlucoseResults);
 

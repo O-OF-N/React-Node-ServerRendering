@@ -24,16 +24,16 @@ class GlucoseResults extends React.Component {
     }
     render() {
         const data = this.props.glucose.map(glucose => glucose.quantity).toJS();
+        const chart = this.logit();
         console.log(this.props.style);
         return (
             <div>
                 <h3>Blood Glucose</h3> <h5>(all sources for past 24 hours)</h5>
                 <div>
-                    <div id="chart" style={this.props.style}></div>
+                    <div id="chart" style={this.props.style}>{chart.resize()}</div>
                 </div>
             </div>
         )
-        this.logit();
     }
 };
 

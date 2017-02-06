@@ -3,7 +3,7 @@ import 'd3';
 import * as c3 from 'c3/c3';
 
 const drawChart = (labels, data, tt) => {
-    var chart = c3.generate({
+    return c3.generate({
         bindto: '#chart',
         padding: {
             top: 40,

@@ -24,7 +24,6 @@ class GlucoseResults extends React.Component {
     }
     render() {
         const data = this.props.glucose.map(glucose => glucose.quantity).toJS();
-        this.logit();
         console.log(this.props.style);
         return (
             <div>
@@ -34,6 +33,7 @@ class GlucoseResults extends React.Component {
                 </div>
             </div>
         )
+        this.logit();
     }
 };
 

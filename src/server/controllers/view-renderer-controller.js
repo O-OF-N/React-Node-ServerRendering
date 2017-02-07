@@ -71,6 +71,11 @@ const renderFullPage = (html, state) => {
             }
             window.__PRELOADED_STATE__ = '${state}'
         </script>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap-theme.min.css">
       </head>
       <body style="width:inherit;height:inherit">
         <div id="root-app" style="width:inherit;height:inherit">${html}</div>

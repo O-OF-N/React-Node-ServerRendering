@@ -3,6 +3,7 @@ import drawChart from './chart/draw-chart';
 import { connect } from 'react-redux';
 import Loading from '../loading/loading';
 import Error from '../error/error';
+import './glucose-results.css';
 
 const timeStringForGraph = date => new Date(date).toLocaleTimeString([], { hour12: false, hour: '2-digit', minute: '2-digit' });
 
@@ -37,7 +38,7 @@ class GlucoseResults extends React.Component {
         this.chart = this.logit();
         return (
             <div style={this.props.style}>
-                <h3>Blood Glucose</h3> <h5>(all sources for past 24 hours)</h5>
+                <h3 className="header" >Blood Glucose</h3> <h5 className="header" >(all sources for past 24 hours)</h5>
                 {
                     this.props.glucoseObject.fetching ? <Loading /> :
                         this.props.glucoseObject.error ? <Error /> : null

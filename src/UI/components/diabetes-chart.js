@@ -25,7 +25,7 @@ const DiabetesChart = ({slidingScale, dispatch}) => (
             slidingScale.visible ?
                 <div style={{ width: '100%', maxHeight: '45%', minHeight: '45%' }}>
                     <GlucoseResults style={styleHalf} />
-                    <div style={{ width: '40%', overflow: 'auto' }}> <IBC /> </div>
+                    <div style={{ width: '40%', overflow: 'auto', padding: '0.5%' }}> <IBC /> </div>
                 </div>
                 : <div style={{ width: '100%', maxHeight: '45%', minHeight: '45%' }}>
                     <GlucoseResults style={styleFull} />

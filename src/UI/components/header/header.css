@@ -8,7 +8,6 @@
   letter-spacing: normal;
   text-align: left;
   color: #ffffff;
-  float: left;
   width: 75%;
   padding: 0.5%;
 }
@@ -24,6 +23,6 @@
 }
 
 .section {
-    background-color: '#0092e0';
+    background-color: #0092e0;
     height: 5%;
 }

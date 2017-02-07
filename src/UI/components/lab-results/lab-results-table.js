@@ -14,7 +14,39 @@ const columns = [{
 
 const LabTable = ({data,title}) => {
     const dataBuilt = buildData(data).toJS();
-    return (<Table defaultExpandAllRows columns={columns} data={dataBuilt} className="table" scroll={{ y: '300' }} indentSize={30} title={()=><div><h3>{title}</h3></div>} />);
+    return (<table class="table-base" summary="An example of the base table styles with row headings.">
+  <caption>
+    With row headings (tbody th pattern)
+  </caption>
+  <thead>
+    <tr>
+      <th></th>
+      <th scope="col">Column Heading</th>
+      <th scope="col">Column Heading</th>
+      <th scope="col">Column Heading</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">Row Heading</th>
+      <td>Content</td>
+      <td>Content</td>
+      <td>Content</td>
+    </tr>
+    <tr>
+      <th scope="row">Row Heading</th>
+      <td>Content</td>
+      <td>Content</td>
+      <td>Content</td>
+    </tr>
+    <tr>
+      <th scope="row">Row Heading</th>
+      <td>Content</td>
+      <td>Content</td>
+      <td>Content</td>
+    </tr>
+  </tbody>
+</table>);
 };
 
 const dateFormat = (date) => {

@@ -1,7 +1,7 @@
 import React from 'react';
 import './header.css';
 
-const header = ({toggle}) => (<section style={{ backgroundColor: '#0092e0' }}>
+const header = ({toggle}) => (<section className="section">
     <header>
         <div>
             <h1 className="header-text">Diabetes Management</h1>

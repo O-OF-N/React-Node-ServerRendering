@@ -8,3 +8,11 @@
     letter-spacing: normal;
     color: #000000;
 }
+
+.chart-hidden{
+    visibility: false;
+}
+
+.chart-visible{
+    visibility: true;
+}

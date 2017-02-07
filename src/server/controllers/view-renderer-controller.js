@@ -13,19 +13,19 @@ import * as Constants from '../util/constants';
 const router = express.Router();
 
 router.get('/', co(function* (req, res, next) {
-    try {
-        let iss = null, launch = null;
-        ({ iss, launch } = req.query);
-        if (iss && launch) {
-            const url = yield AuthorizationHelper.authorize(iss, launch);
-            res.redirect(url);
-        } else
-            invalidAuthParams(res);
-    } catch (err) {
-        console.log('err = ' + err);
-        ErrorHandler.ErrorHandler("InternalServerError", res, err.message);
-    }
-    //res.send(handleRenderer('Test state'));
+    /* try {
+         let iss = null, launch = null;
+         ({ iss, launch } = req.query);
+         if (iss && launch) {
+             const url = yield AuthorizationHelper.authorize(iss, launch);
+             res.redirect(url);
+         } else
+             invalidAuthParams(res);
+     } catch (err) {
+         console.log('err = ' + err);
+         ErrorHandler.ErrorHandler("InternalServerError", res, err.message);
+     }*/
+    res.send(handleRenderer('Test state'));
 }));
 
 router.get('/callback', co(function* (req, res, next) {

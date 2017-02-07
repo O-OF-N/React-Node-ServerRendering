@@ -13,7 +13,7 @@ const columns = [{
 }];
 
 const LabTable = ({data,title}) => {
-    const dataBuilt = buildData(data).toJS();
+    //const dataBuilt = buildData(data).toJS();
     return (<table class="table-base" summary="An example of the base table styles with row headings.">
   <caption>
     With row headings (tbody th pattern)

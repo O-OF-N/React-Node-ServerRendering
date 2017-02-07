@@ -34,7 +34,11 @@ var Component = function (_React$Component) {
             return _react2.default.createElement(
                 'div',
                 { style: style },
-                _react2.default.createElement('div', { id: 'app', style: style }),
+                _react2.default.createElement(
+                    'div',
+                    { id: 'app', style: style },
+                    ' Loading.........'
+                ),
                 _react2.default.createElement('script', { src: '/javascripts/bundle.js' })
             );
         }

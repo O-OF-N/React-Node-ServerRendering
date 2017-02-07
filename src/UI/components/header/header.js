@@ -1,8 +1,8 @@
 import React from 'react';
 
-const header = ({toggle}) => (<section className="demographics-banner">
+const header = ({toggle}) => (<section style = {{backgroundColor:'blue'}}>
     <header>
-        <div className="demographics-row">
+        <div>
             <h1>Diabetes Management
                     <button className="btn btn-default" onClick={toggle}>Insulin Bolus Calculator</button>
             </h1>

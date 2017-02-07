@@ -8,4 +8,15 @@
   letter-spacing: normal;
   text-align: left;
   color: #ffffff;
+  float: left;
+  width: 75%;
+}
+
+.button-span {
+    width: 20%;
+    display: inline-block;
+}
+
+.ibc-button {
+    float: right;
 }

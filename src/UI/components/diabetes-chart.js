@@ -6,6 +6,7 @@ import IBC from './sliding-scale/IBC';
 import { inheritStyle } from './styles';
 import { connect } from 'react-redux';
 import * as Constants from '../utils/constants';
+import Header from './header/header';
 
 const toggle = dispatch => dispatch({ type: Constants.SLIDING_SCALE_TOGGLE_VISIBILITY });
 const styleHalf = {
@@ -19,16 +20,7 @@ const styleFull = {
 };
 const DiabetesChart = ({slidingScale, dispatch}) => (
     <div style={inheritStyle}>
-
-        <section className="demographics-banner">
-            <header>
-                <div className="demographics-row">
-                    <h1>Diabetes Management
-                    <button className="btn btn-default" onClick={toggle.bind(null, dispatch)}>Insulin Bolus Calculator</button>
-                    </h1>
-                </div>
-            </header>
-        </section>
+        <Header />
         {
             slidingScale.visible ?
                 <div style={{ width: '100%', maxHeight: '45%', minHeight: '45%' }}>

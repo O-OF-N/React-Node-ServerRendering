@@ -121,7 +121,7 @@ class popup extends React.Component {
     return (
       <div>
 
-      Testing this one. okay?
+
         <div style={carbCoverage}>
         <a style={buttonStyle} href='#' onClick={this.handleCarbFormula}>Formula</a>
           <h2>Carbohydrate Coverage</h2>

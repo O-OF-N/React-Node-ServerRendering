@@ -39,10 +39,10 @@ class GlucoseResults extends React.Component {
             <div style={this.props.style}>
                 <h3>Blood Glucose</h3> <h5>(all sources for past 24 hours)</h5>
                 {
-                    this.props.glucoseObject.fetching ? <div id="chart"><Loading /> </div> :
-                        this.props.glucoseObject.error ? <div id="chart"><Error /></div> :
-                            <div id="chart"></div>
+                    this.props.glucoseObject.fetching ? <Loading /> :
+                        this.props.glucoseObject.error ? <Error /> : null
                 }
+                <div id="chart"></div>
             </div>
         )
     }

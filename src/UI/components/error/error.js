@@ -6,7 +6,7 @@ import '../../terra/fonts/terra_icons/terra_icons.ttf'
 import '../../terra/img/icon_sprite.png'
 
 const error = () => (
-    <div class="alert alert-error" role="alert">
+    <div className="alert alert-error" role="alert">
         <p><strong>Error!</strong> Your action was unsuccessful.</p>
     </div>
 );

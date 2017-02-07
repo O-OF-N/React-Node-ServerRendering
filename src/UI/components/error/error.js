@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../terra/vendor/jquery/jquery-2.2.0'
+import '../../terra/vendor/jquery/jquery-2.2.0.min'
 import '../../terra/css/terra.css'
 import '../../terra/fonts/terra_icons/terra_icons.eot'
 import '../../terra/fonts/terra_icons/terra_icons.svg'

@@ -24,7 +24,7 @@ const DiabetesChart = ({slidingScale, dispatch}) => (
             <header>
                 <div className="demographics-row">
                     <h1>Diabetes Management
-                    <button className="btn btn-default" style={{ float: 'left' }} onClick={toggle.bind(null, dispatch)}>Insulin Bolus Calculator</button>
+                    <button className="btn btn-default" onClick={toggle.bind(null, dispatch)}>Insulin Bolus Calculator</button>
                     </h1>
                 </div>
             </header>

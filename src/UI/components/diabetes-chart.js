@@ -20,7 +20,7 @@ const styleFull = {
 };
 const DiabetesChart = ({slidingScale, dispatch}) => (
     <div style={inheritStyle}>
-        <Header />
+        <Header toggle={toggle.bind(null, dispatch)} />
         {
             slidingScale.visible ?
                 <div style={{ width: '100%', maxHeight: '45%', minHeight: '45%' }}>

@@ -10,7 +10,7 @@ import Header from './header/header';
 
 const toggle = dispatch => dispatch({ type: Constants.SLIDING_SCALE_TOGGLE_VISIBILITY });
 const styleHalf = {
-    width: '48%', height: '100%', float: 'left', paddingLeft: '0.5%', maxWidth: '48%',
+    width: '58%', height: '100%', float: 'left', paddingLeft: '0.5%', maxWidth: '48%',
     maxHeight: '100%'
 };
 

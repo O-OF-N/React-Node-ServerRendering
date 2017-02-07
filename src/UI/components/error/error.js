@@ -1,4 +1,5 @@
 import React from 'react';
+import '../../terra/css/terra.css'
 
 const error = () => (
     <div class="alert alert-error" role="alert">

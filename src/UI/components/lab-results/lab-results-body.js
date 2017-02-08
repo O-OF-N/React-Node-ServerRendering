@@ -1,11 +1,4 @@
 import React from 'react';
-import {
-    LabItemsStyle,
-    LabItemsSpanStyle,
-    LabFirstItemsSpanStyle,
-    LabValuesStyle,
-    LabValuesDivStyle
-} from '../styles';
 
 const LabResultValues = ({text, quantity, date, unit}) => (
     <div style={LabValuesStyle}>
@@ -19,12 +12,26 @@ const LabResultName = ({code}) => (
 );
 
 const LabResultsBody = ({code, labs}) => (
-    <div style={LabItemsStyle}>
-        <LabResultName code={code} />
-        <div style={LabValuesDivStyle}>
-            {labs.map((l) => <LabResultValues {...l.toJS() } />)}
-        </div>
-    </div>
+    <tbody>
+      <tr>
+        <th scope="row">Row Heading</th>
+        <td>Content</td>
+        <td>Content</td>
+        <td>Content</td>
+      </tr>
+      <tr>
+        <th scope="row">Row Heading</th>
+        <td>Content</td>
+        <td>Content</td>
+        <td>Content</td>
+      </tr>
+      <tr>
+        <th scope="row">Row Heading</th>
+        <td>Content</td>
+        <td>Content</td>
+        <td>Content</td>
+      </tr>
+    </tbody>
 )
 
 export default LabResultsBody;

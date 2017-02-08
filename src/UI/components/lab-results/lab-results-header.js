@@ -1,16 +1,14 @@
 import React from 'react';
-import {
-    LabHeaderRowStyle,
-    LabHeaderSpanStyle,
-    LabFirstHeaderSpanStyle
-} from '../styles';
 
 const LabResultsHeader = () => (
-    <div id="div-lab-header" style={LabHeaderRowStyle} >
-        <span style={LabFirstHeaderSpanStyle}>Lab </span>
-        <span style={LabHeaderSpanStyle}>Result </span>
-        <span style={LabHeaderSpanStyle}>Date/Time </span>
-    </div >
+    <thead>
+        <tr>
+            <th></th>
+            <th scope="col"></th>
+            <th scope="col">Latest Result</th>
+            <th scope="col">Previous Result</th>
+        </tr>
+    </thead>
 )
 
 export default LabResultsHeader;

@@ -1,10 +1,9 @@
 import React from 'react';
 
 const buildRow = rowData => <tr>
-    <th scope="row">rowData.code</th>
-    <td>rowData.quantity1</td>
-    <td>rowData.quantity2</td>
-    <td>Content</td>
+    <th scope="row">{rowData.code}</th>
+    <td>{rowData.quantity1}</td>
+    <td>{rowData.quantity2}</td>
 </tr>
 
 const LabResultsBody = ({data}) => (

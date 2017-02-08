@@ -9,7 +9,7 @@ const buildRow = rowData => <tr>
 
 const LabResultsBody = ({data}) => (
     <tbody>
-        data.map(d1=>buildRow(d1));
+        {data.map(d1 => buildRow(d1))};
     </tbody>
 )
 

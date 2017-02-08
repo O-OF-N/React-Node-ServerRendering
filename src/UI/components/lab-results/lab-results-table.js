@@ -11,7 +11,7 @@ const LabTable = ({data, title}) => {
       Current Diabetes Lab Results
   </caption>
     <LabResultsHeader />
-    <LabResultsBody/>
+    <LabResultsBody data={dataBuilt} />
   </table>);
 };
 

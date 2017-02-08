@@ -978,7 +978,7 @@ a.text-positive {
 .no-terraicons .icon-fallback-img[aria-label]:before,
 .no-terraicons .icon-fallback-img[aria-label] [class^="icon-"]:before,
 .no-terraicons .icon-fallback-img[aria-label] [class*=" icon-"]:before {
-  background-image: url("../img/icon_sprite.png");
+  background-image: url("./UI/terra/img/icon_sprite.png");
   content: "";
   margin-bottom: -5px;
 }
@@ -986,7 +986,7 @@ a.text-positive {
   .no-terraicons .icon-fallback-img[aria-label]:before,
   .no-terraicons .icon-fallback-img[aria-label] [class^="icon-"]:before,
   .no-terraicons .icon-fallback-img[aria-label] [class*=" icon-"]:before {
-    background-image: url("../img/icon_sprite@2x.png");
+    background-image: url("./UI/terra/img/icon_sprite@2x.png");
     background-size: 20px 920px;
   }
 }
@@ -5133,7 +5133,7 @@ section.tabpanel {
 }
 .no-terraicons .alert:before {
   background-position: 0px -600px;
-  background-image: url("../img/icon_sprite.png");
+  background-image: url("./UI/terra/img/icon_sprite.png");
   content: "";
   background-repeat: no-repeat;
   overflow: hidden;

@@ -18,6 +18,11 @@ const drawChart = (labels, data, tt) => c3.generate({
             data
         ]
     },
+    grid: {
+        y: {
+            show: true
+        }
+    },
     axis: {
         x: {
             type: 'category'

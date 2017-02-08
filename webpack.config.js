@@ -33,7 +33,7 @@ module.exports = {
                 include: PATHS.images
             }, {
                 test: /\.(eot|svg|ttf|woff|woff2)$/,
-                loader: 'file?name=[path][name].[ext]'
+                loader: 'file?name=[name].[ext]'
             }
         ]
     },

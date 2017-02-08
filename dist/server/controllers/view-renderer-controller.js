@@ -49,34 +49,57 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var router = _express2.default.Router();
 
 router.get('/', (0, _wrap2.default)(regeneratorRuntime.mark(function _callee(req, res, next) {
+    var iss, launch, _req$query, url;
+
     return regeneratorRuntime.wrap(function _callee$(_context) {
         while (1) {
             switch (_context.prev = _context.next) {
                 case 0:
-                    /* try {
-                         let iss = null, launch = null;
-                         ({ iss, launch } = req.query);
-                         if (iss && launch) {
-                             const url = yield AuthorizationHelper.authorize(iss, launch);
-                             res.redirect(url);
-                         } else
-                             invalidAuthParams(res);
-                     } catch (err) {
-                         console.log('err = ' + err);
-                         ErrorHandler.ErrorHandler("InternalServerError", res, err.message);
-                     }*/
-                    res.send(handleRenderer('Test state'));
+                    _context.prev = 0;
+                    iss = null, launch = null;
+                    _req$query = req.query;
+                    iss = _req$query.iss;
+                    launch = _req$query.launch;
 
-                case 1:
+                    if (!(iss && launch)) {
+                        _context.next = 12;
+                        break;
+                    }
+
+                    _context.next = 8;
+                    return AuthorizationHelper.authorize(iss, launch);
+
+                case 8:
+                    url = _context.sent;
+
+                    res.redirect(url);
+                    _context.next = 13;
+                    break;
+
+                case 12:
+                    invalidAuthParams(res);
+
+                case 13:
+                    _context.next = 19;
+                    break;
+
+                case 15:
+                    _context.prev = 15;
+                    _context.t0 = _context['catch'](0);
+
+                    console.log('err = ' + _context.t0);
+                    ErrorHandler.ErrorHandler("InternalServerError", res, _context.t0.message);
+
+                case 19:
                 case 'end':
                     return _context.stop();
             }
         }
-    }, _callee, this);
+    }, _callee, this, [[0, 15]]);
 })));
 
 router.get('/callback', (0, _wrap2.default)(regeneratorRuntime.mark(function _callee2(req, res, next) {
-    var code, state, accessToken, patient, _req$query, authentication, url;
+    var code, state, accessToken, patient, _req$query2, authentication, url;
 
     return regeneratorRuntime.wrap(function _callee2$(_context2) {
         while (1) {
@@ -84,9 +107,9 @@ router.get('/callback', (0, _wrap2.default)(regeneratorRuntime.mark(function _ca
                 case 0:
                     _context2.prev = 0;
                     code = null, state = null, accessToken = null, patient = 0;
-                    _req$query = req.query;
-                    code = _req$query.code;
-                    state = _req$query.state;
+                    _req$query2 = req.query;
+                    code = _req$query2.code;
+                    state = _req$query2.state;
 
                     if (!(code && state)) invalidAuthParams(res);
                     _context2.next = 8;

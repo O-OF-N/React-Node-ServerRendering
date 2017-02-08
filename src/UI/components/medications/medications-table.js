@@ -1,6 +1,6 @@
 import React from 'react';
 import { MedicationTableStyle, MedicationBodyDivStyle } from '../styles';
-import MedicationsHeder from './medications-header';
+import MedicationsHeader from './medications-header';
 
 
 const columns = [{

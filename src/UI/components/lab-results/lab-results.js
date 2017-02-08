@@ -6,10 +6,11 @@ import { connect } from 'react-redux';
 import { LabDivStyle } from '../styles';
 import Loading from '../loading/loading';
 import Error from '../error/error';
+import './lab-results.css';
 
 const LabResults = ({labObject}) => (
     <div style={LabDivStyle}>
-        <h3>Diabetes Labs</h3> <h5>(last 2 results in past 24 hours)</h5>
+        <h3 className="header">Diabetes Labs</h3>
         {
             labObject.fetching ? <Loading /> :
                 labObject.error ? <Error /> :

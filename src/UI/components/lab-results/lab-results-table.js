@@ -8,7 +8,7 @@ const LabTable = ({data, title}) => {
   console.log('data = ', dataBuilt);
   return (<table className="table-base">
     <caption>
-      Current Diabetes Lab Results
+      Last 2 results in past 24 hours
   </caption>
     <LabResultsHeader />
     <LabResultsBody data={dataBuilt} />

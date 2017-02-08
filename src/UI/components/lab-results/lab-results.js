@@ -1,6 +1,4 @@
 import React from 'react';
-import LabResultsHeader from './lab-results-header';
-import LabResultsBody from './lab-results-body';
 import LabTable from './lab-results-table';
 import { connect } from 'react-redux';
 import { LabDivStyle } from '../styles';
@@ -14,7 +12,9 @@ const LabResults = ({labObject}) => (
         {
             labObject.fetching ? <Loading /> :
                 labObject.error ? <Error /> :
-                    <LabTable data={labObject.labMaps} />
+                    <div className="table-div">
+                        <LabTable data={labObject.labMaps} />
+                    </div>
         }
     </div>
 );

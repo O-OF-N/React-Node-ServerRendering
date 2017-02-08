@@ -1,5 +1,4 @@
 import React from 'react';
-import Table from 'rc-table';
 import LabResultsHeader from './lab-results-header';
 import LabResultsBody from './lab-results-body';
 

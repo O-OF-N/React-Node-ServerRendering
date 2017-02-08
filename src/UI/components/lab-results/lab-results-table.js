@@ -4,11 +4,7 @@ import LabResultsBody from './lab-results-body';
 
 const LabTable = ({data, title}) => {
   const dataBuilt = buildData(data).toJS();
-  console.log('data = ', dataBuilt);
   return (<table className="table-base">
-    <caption>
-      Last 2 results in past 24 hours
-  </caption>
     <LabResultsHeader />
     <LabResultsBody data={dataBuilt} />
   </table>);

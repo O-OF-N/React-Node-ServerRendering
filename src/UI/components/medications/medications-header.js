@@ -7,8 +7,7 @@ import {
 
 const MedicationsHeader = () => (
     <div id="div-med-header" style={MedicationHeaderRowStyle} >
-        <span style={MedicationFirstHeaderSpanStyle}>Medication </span>
-        <span style={MedicationHeaderSpanStyle}>Dosage </span>
+        <span style={MedicationFirstHeaderSpanStyle}>Medication Order Details </span>
         <span style={MedicationHeaderSpanStyle}>Date </span>
     </div >
 )

@@ -19,6 +19,10 @@ import co from 'co';
 import { inheritStyle } from './components/styles';
 import './terra/css/terra.min.css';
 import './terra/img/icon_sprite.png';
+import './terra/fonts/terra_icons/terra_icons.ttf';
+import './terra/fonts/terra_icons/terra_icons.eot';
+import './terra/fonts/terra_icons/terra_icons.woff';
+import './terra/fonts/terra_icons/terra_icons.svg';
 
 const logger = createLogger();
 

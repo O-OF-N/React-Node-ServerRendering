@@ -1,13 +1,14 @@
 import React from 'react';
 import * as Records from '../../records/records';
-import { carbCoverage, bloodGlucose, bolusCalc, disclaimer,buttonStyle } from '../styles';
+import { carbCoverage, bloodGlucose, bolusCalc, disclaimer,buttonStyle, formStyle } from '../styles';
 import InfoImg from '../../images/info.png';
+import './IBC.css'
 
 
 class popup extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { result: '', nocarb: '', gluc: '', CC: '', CF: '' };
+    this.state = { result: 'Total Bolus Dose = - units', nocarb: 'Carb Coverage Dose = - units', gluc: 'Glucose Correction Dose = - units', CC: '', CF: '' };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleCarbSubmit = this.handleCarbSubmit.bind(this);
     this.handleBolusDose = this.handleBolusDose.bind(this);
@@ -16,7 +17,6 @@ class popup extends React.Component {
     this.handleDisclaimer = this.handleDisclaimer.bind(this);
     this.handleCarbFormula = this.handleCarbFormula.bind(this);
     this.handleBloodGluFormula = this.handleBloodGluFormula.bind(this);
-
 
   }
 
@@ -43,7 +43,7 @@ class popup extends React.Component {
   handleCarbSubmit(event) {
     this.ICR = 0;
     this.CCD = 0;
-    this.setState({ result: ('') })
+    this.setState({ result: ('Total Bolus Dose = - units') })
     this.carbCount = parseFloat(this.refs.CC.value)
     this.carbFactor = parseFloat(this.refs.CF.value)
 
@@ -56,12 +56,12 @@ class popup extends React.Component {
       if (isNaN(this.carbFactor) || this.carbFactor <= 0) {
         this.refs.CF.focus()
         this.CCD = -1;
-        this.setState({ nocarb: ('Carb factor can not be 0 or empty') })
+        this.setState({ nocarb: ('Carb factor can not be 0 or empty    ') })
       }
       else {
         this.refs.CC.focus()
         this.CCD = -1;
-        this.setState({ nocarb: ('Carb factor can not be empty') })
+        this.setState({ nocarb: ('Carb factor can not be empty    ') })
       }
     }
   }
@@ -74,138 +74,147 @@ class popup extends React.Component {
     this.glucoseValue = parseFloat(this.refs.GLU.value)
     this.targetValue = parseFloat(this.refs.TAR.value)
     this.insulinValue = parseFloat(this.refs.ISF.value)
-    this.setState({ result: ('') })
+    console.log(this.glucoseValue);
+    console.log('aaaaaaaaaaaaaaaaaaa');
+    this.setState({ result: ('Total Bolus Dose = - units') })
 
     if (isNaN(this.insulinValue) || this.insulinValue < 0) {
       this.refs.ISF.focus()
       this.GCD = -1
-      this.setState({ gluc: ('Alert - Insulin Sensitivity Factor can not be empty') });
+      this.setState({ gluc: ('Alert - Insulin Sensitivity Factor can not be empty    ') });
     }
     else if (isNaN(this.glucoseValue) || this.glucoseValue < 0) {
       this.refs.GLU.focus()
       this.GCD = -1
-      this.setState({ gluc: ('Alert - Current Blood Glucose can not be empty') });
+      this.setState({ gluc: ('Alert - Current Blood Glucose can not be empty    ') });
 
     }
     else if (isNaN(this.targetValue) || this.targetValue < 0) {
       this.refs.TAR.focus()
       this.GCD = -1
-      this.setState({ gluc: ('Alert - Target Blood Glucose can not be empty') });
+      this.setState({ gluc: ('Alert - Target Blood Glucose can not be empty    ') });
 
     }
     else {
       if (this.glucoseValue <= this.targetValue) {
-        this.setState({ gluc: ('Alert - blood glucose below target. Do not give any insulin for glucose correction.') });
+        this.setState({ gluc: ('Alert - blood glucose below target. Do not give any insulin.') });
         this.GCD = 0
       }
       else {
         this.COR = (this.glucoseValue - this.targetValue) / this.insulinValue
         this.GCD = this.COR * 1
         this.GCD = Math.floor(this.GCD * 2) / 2
-        this.setState({ gluc: ('Glucose Correction dose = ' + this.GCD + ' unit(s)') });
+        this.setState({ gluc: ('Glucose Correction dose = ' + this.GCD + ' unit(s)    ') });
       }
     }
   }
 
   handleBolusDose(event) {
     if (isNaN(this.CCD) || isNaN(this.GCD) || this.CCD < 0 || this.GCD < 0) {
-      this.setState({ result: ('Please fill all necessary fields to get TOTAL BOLUS DOSE') })
+      this.setState({ result: ('TOTAL BOLUS DOSE NOT PRESENT') })
     }
     else {
       this.TBD = this.CCD + this.GCD
-      this.setState({ result: ('TOTAL BOLUS DOSE = ' + this.TBD + ' unit(s)') })
+      this.setState({ result: ('TOTAL BOLUS DOSE = ' + this.TBD + ' unit(s)    ') })
     }
   }
 
   render() {
     return (
-      <div>
+      <div className = "Main-Div">
+          <div>
+          <div className = "Main-Div1" >
+                <a className="Disclaimer-Button" href='#'  onClick={this.handleDisclaimer}>*Disclaimer</a>
+                <h2 className="Insulin-Heading">Insulin Bolus Calculator </h2>
+          </div>
 
+          <div className = "Main-Div2" >
+                <a className="Formula-Button" href='#'  onClick={this.handleCarbFormula}>Formula</a>
+                <h4 className = "Carbohydrate-Coverage-Heading">Carbohydrate Coverage</h4>
+          </div>
 
-        <div style={carbCoverage}>
-        <a style={buttonStyle} href='#' onClick={this.handleCarbFormula}>Formula</a>
-          <h2>Carbohydrate Coverage</h2>
-          <div>
-            <label>Insulin-to-Carbohydrate Ratio: 1 unit covers: </label>
-            <input type="number"
-              placeholder="grams"
-              required={true}
-              ref="CF"
-              onChange={this.handleCFchange} />
-            <label> grams of carb</label>
-          </div>
-          <div>
-            <label>Current Carb Count: </label>
-            <input type="number"
-              placeholder="grams"
-              required={true}
-              ref="CC"
-              onChange={this.handleCCchange} />
-            <label> grams of carb</label>
-          </div>
-          <div>
-            <button className="btn btn-default" onClick={this.handleCarbSubmit}>Calculate</button>
-          </div>
-          <div>
-            <label>{this.state.nocarb}</label>
-          </div>
-        </div>
+          <div className = "Carbohydrate-Coverage-Main">
 
-        <div style={bloodGlucose}>
-        <a style={buttonStyle} href='#' onClick={this.handleBloodGluFormula}>Formula</a>
-          <div>
-            <h2>Blood Glucose Correction</h2>
+              <div className = "Carb-Coverage">
+                  <div className = "Insulin-to-Carbohydrate">
+                    <p>
+                      Insulin-to-Carbohydrate Ratio: 1 unit covers: <input className="TextField-Property" type="number" placeholder="grams" required={true} ref="CF" onChange={this.handleCFchange}/> grams
+                    </p>
+                  </div>
+
+                  <div className = "Current-Carbohydrate">
+                        <p>
+                          Current Carb Count: 
+                          <input className="TextField-Property" id="text-field-col" type="number" placeholder="grams" required={true} ref="CC" onChange={this.handleCCchange}/> grams
+                        </p> 
+                  </div>
+              </div>
+
+              <div className = "Carb-Coverage-Calc">
+                  <p>
+                    <label className="Calculate-Label-Carb">{this.state.nocarb}</label>           
+                    <button className="Calculate-Button-Carb" onClick={this.handleCarbSubmit}>   Calculate</button>
+                  </p>
+              </div>
+
           </div>
-          <div>
-            <label>Insulin Sensitivity Factor: 1 unit lowers blood glucose by </label>
-            <input type="number"
-              placeholder="mg/dl"
-              ref="ISF"
-              required="required" />
-            <label>mg/dL</label>
           </div>
 
           <div>
-            <label>Current Blood Glucose: </label>
-            <input type="number"
-              placeholder="mg/dL"
-              ref="GLU" />
-            <label>mg/dL</label>
+          <div className = "Main-Div3" >
+              <a className="Formula-Button" href='#'  onClick={this.handleCarbFormula}>Formula</a>
+              <h4 className="Carbohydrate-Coverage-Heading">Blood Glucose Coverage</h4>
+          </div>
+          
+          <div className = "BloodGlucose-Coverage-Main">
+
+              <div className = "Glucose-Coverage">
+                  <div className = "Insulin-Factor">
+                    <p>
+                      Insulin Sensitivity Factor: 1 unit lowers blood glucose by <input className="TextField-Property" type="number" placeholder="mg/dl" required={true} ref="ISF"/> mg/dl
+                    </p>
+                  </div>
+
+                  <div className = "Insulin-Factor">
+                    <p>
+                      Current Blood Glucose: <input className="TextField-Property" type="number" placeholder="mg/dl" required={true} ref="GLU"/> mg/dl
+                    </p>
+                  </div>
+
+                  <div className = "Target-Glucose">
+                    <p>
+                      Target Blood Glucose: <input className="TextField-Property" type="number" placeholder="mg/dl" required={true} ref="TAR"/> mg/dl
+                    </p>
+                  </div>
+
+
+              </div>
+
+              <div className = "Glucose-Coverage-Calc">
+                  <p>
+                    <label className="Calculate-Label-Glucose">{this.state.gluc}</label>           
+                    <button className="Calculate-Button-Glucose" onClick={this.handleSubmit}>   Calculate</button>
+                  </p>
+              </div>
+
+          </div>
           </div>
 
           <div>
-            <label>Target Blood Glucose: </label>
-            <input type="number"
-              placeholder="mg/dL"
-              ref="TAR" />
-            <label>mg/dL</label>
+          <div className = "Main-Div4" >
+              <h4 className="Carbohydrate-Coverage-Heading">Total Rapid-Acting Insulin to Be Given:</h4>
           </div>
 
-          <div>
-            <button className="btn btn-default" onClick={this.handleSubmit}>Calculate</button>
+          <div className = "Bolus-Coverage-Calc">
+                <p>
+                  <label className="Calculate-Label-Bolus">{this.state.result}</label>           
+                  <button className="Calculate-Button-Bolus" onClick={this.handleBolusDose}>   Calculate</button>
+                </p>
           </div>
 
-          <div>
-            <label>{this.state.gluc}</label>
           </div>
-        </div>
-
-        <div style={bolusCalc}>
-          <div>
-            <h2>Total Rapid-Acting Insulin to Be Given:</h2>
-          </div>
-
-          <div>
-            <button className="btn btn-default" onClick={this.handleBolusDose}>Total Bolus Dose</button>
-          </div>
-          <div>
-            <label>{this.state.result}</label>
-          </div>
-        </div>
-        <div style={disclaimer}>
-          <button className="btn btn-default" onClick={this.handleDisclaimer}>Disclaimer</button>
-        </div>
       </div>
+      
     );
   }
 }

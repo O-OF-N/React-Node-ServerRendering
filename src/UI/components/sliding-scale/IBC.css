@@ -1,0 +1,306 @@
+
+.Main-Div {
+}
+
+.Main-Div1 {
+  background-color: #ffffff;
+  box-shadow: inset 0 -1px 0 0 #dedfe0;
+  margin-left: -1%;
+  margin-right: -1%;
+  margin-top: -1%;
+
+}
+
+.Disclaimer-Button {
+  float: right;
+  margin-right: 48%;
+  font-family: Helvetica;
+  font-size: 13px;
+  margin-top: 1%;
+  color: #0063d6;
+}
+
+
+.Insulin-Heading {
+	font-size: 20px;
+    font-family: Helvetica;
+    color: #000000;
+
+}
+
+
+.Main-Div2 {
+	margin-top: 2%;
+	margin-bottom: 1%;
+	margin-left: 2%;
+    margin-right: 2%;
+}
+
+.Formula-Button {
+	float: right;
+	margin-right: 2%;
+}
+
+.Carbohydrate-Coverage-Heading {
+  font-family: Helvetica;
+  font-size: 15px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: left;
+  color: #000000;
+}
+
+
+.Carb-Coverage{
+  float: right;
+  width: 96%;
+  background-color: #ffffff;
+  border: solid 1px #dedfe0;
+  margin-right: 2%;
+}
+
+
+
+
+.Insulin-to-Carbohydrate {
+  font-family: Helvetica;
+  font-size: 13px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: right;
+  color: #000000;
+  float:right;
+  margin-top: 6px;
+  margin-bottom: 0px;
+  margin-right: 2%;
+}
+
+.TextField-Property{
+	height: 26px;
+}
+
+.Current-Carbohydrate {
+  font-family: Helvetica;
+  font-size: 13px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: right;
+  color: #000000;
+  float: right;
+  margin-top: 6px;
+  margin-bottom: 6px;
+  margin-right: 2%;
+}
+
+.Carb-Coverage-Calc {
+  width: 96%;
+  height: 33px;
+  background-color: #f0f9fe;
+  border: solid 1px #007cc3;
+  float: right;
+  margin-right: 2%;
+}
+
+.Calculate-Label-Carb {
+    font-family: Helvetica;
+    font-size: 14px;
+    font-weight: 400;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #000000;
+    margin-top: 6px;
+    width: 85%;
+}
+
+.Calculate-Button-Carb  {
+	font-family: Helvetica;
+    font-size: 14px;
+    font-weight: 400;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffffff;
+    float: right;
+    margin-top: -23px;
+    margin-right: 2%;
+    height: -23px;
+    width: 88px;
+    background-color: #007cc3;
+    border-radius: 3px;
+    border: solid 1px #0065a3;
+}
+
+
+
+
+
+.Main-Div3 {
+	margin-top: 22%	;
+	margin-bottom: 1%;
+	margin-left: 2%;
+    margin-right: 2%;
+}
+
+.Insulin-Factor {
+  font-family: Helvetica;
+  font-size: 13px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: right;
+  color: #000000;
+  float:right;
+  margin-top: 6px;
+  margin-bottom: 0px;
+  margin-right: 2%;
+}
+
+.Target-Glucose {
+  font-family: Helvetica;
+  font-size: 13px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: right;
+  color: #000000;
+  float: right;
+  margin-top: 6px;
+  margin-bottom: 6px;
+  margin-right: 2%;
+}
+
+.Glucose-Coverage-Calc {
+  width: 96%;
+  height: 33px;
+  background-color: #f0f9fe;
+  border: solid 1px #007cc3;
+  float: right;
+  margin-right: 2%;
+}
+
+.Calculate-Label-Glucose {
+    font-family: Helvetica;
+    font-size: 14px;
+    font-weight: 400;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #000000;
+    margin-top: 6px;
+    width: 85%;
+}
+
+.Calculate-Button-Glucose  {
+	font-family: Helvetica;
+    font-size: 14px;
+    font-weight: 400;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffffff;
+    float: right;
+    margin-top: -23px;
+    margin-right: 2%;
+    height: 23px;
+    width: 88px;
+    background-color: #007cc3;
+    border-radius: 3px;
+    border: solid 1px #0065a3;
+}
+
+
+
+.Main-Div4 {
+	margin-top: 27%	;
+	margin-bottom: 1%;
+	margin-left: 2%;
+    margin-right: 2%;
+}
+
+
+.Bolus-Coverage-Calc {
+  width: 96%;
+  height: 33px;
+  background-color: #f0f9fe;
+  border: solid 1px #007cc3;
+  float: right;
+  margin-right: 2%;
+}
+
+.Calculate-Label-Bolus {
+    font-family: Helvetica;
+    font-size: 14px;
+    font-weight: 400;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #000000;
+    margin-top: 6px;
+    width: 85%;
+}
+
+.Calculate-Button-Bolus  {
+	font-family: Helvetica;
+    font-size: 14px;
+    font-weight: 400;
+    font-style: normal;
+    font-stretch: normal;
+    line-height: normal;
+    letter-spacing: normal;
+    text-align: center;
+    color: #ffffff;
+    float: right;
+    margin-top: -23px;
+    margin-right: 2%;
+    height: 23px;
+    width: 88px;
+    background-color: #007cc3;
+    border-radius: 3px;
+    border: solid 1px #0065a3;
+}
+
+
+
+
+.BloodGlucose-Coverage-Main {
+}
+
+
+.Glucose-Coverage {
+  float: right;
+  width: 96%;
+  background-color: #ffffff;
+  border: solid 1px #dedfe0;
+  margin-right: 2%;
+}
+
+
+
+
+
+
+

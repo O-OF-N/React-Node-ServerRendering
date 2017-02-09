@@ -22,3 +22,11 @@
   color: #747474;
   padding-left: 0.5%; 
 }
+
+.order-details{
+  width:75%;
+}
+
+.date {
+  width:25%;
+}

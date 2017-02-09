@@ -9,10 +9,10 @@ const MedicationBody = ({data}) => (
 
 const buildRows = data => (
     <tr>
-        <td><span className="medication">{data.medication}</span>
+        <td className="order-details"><span className="medication">{data.ingredients.name}</span>
             <span className="text">{data.dosage}</span>
             <span className="text">{data.comments}</span></td>
-        <td className="data-type-date">{dateFormat(data.date)}</td>
+        <td className="date data-type-date">{dateFormat(data.date)}</td>
     </tr>
 );
 

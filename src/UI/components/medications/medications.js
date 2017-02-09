@@ -11,7 +11,7 @@ const NonBolusMedications = ({medication}) => {
     const med = medication ? medication.medications.map(m => m.toJS()) : null;
     return (
         <div style={MedicationTableStyle}>
-            <MedicationsTable data={med} title={medication.type} comments={false}/>
+            <MedicationsTable data={med} title={medication.type} comments={false} />
         </div>
     );
 };
@@ -32,7 +32,9 @@ const Header = () => (<div>
 const toggle = dispatch => dispatch({ type: Constants.SLIDING_SCALE_TOGGLE_VISIBILITY })
 
 const Medications = ({medicationObject, dispatch}) => medicationObject.medications ? (
-    <div style={{ width: '48%', height: '100%', padding: '1%', marginTop: '0.5%' }}>
+    <div style={{
+        width: '48%', height: '100%', padding: '1%', marginTop: '0.5%', float: left
+    }}>
         <Header />
         {medicationObject.fetching ? <Loading /> :
             medicationObject.error ? <Error /> :

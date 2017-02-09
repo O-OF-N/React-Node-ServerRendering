@@ -15,7 +15,8 @@ export const fetchLabs = state => dispatch => {
 
 const fetchLabsHelper = function* (state, dispatch) {
     dispatch({ type: Constants.LAB_FETCHING });
-    const labList = yield axios.get(Constants.LAB_FETCH_URL.concat(`/${state.state}`), { headers: Constants.AUTHORIZATION_HEADER }, { timeout: 10 });
+    axios.defaults.timeout = 100;
+    const labList = yield axios.get(Constants.LAB_FETCH_URL.concat(`/${state.state}`), { headers: Constants.AUTHORIZATION_HEADER });
     try {
         const data = (labList && labList.data) ? labList.data : null;
         if (data) {

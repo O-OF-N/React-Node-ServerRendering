@@ -9,7 +9,7 @@ const MedicationBody = ({data}) => (
 const buildRows = data => (
     <tr>
         <td>{data.medication}</td>
-        <td>{dateFormat(data.date)}</td>
+        <td className="data-type-date">{dateFormat(data.date)}</td>
     </tr>
 );
 

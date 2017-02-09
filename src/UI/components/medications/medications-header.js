@@ -6,10 +6,12 @@ import {
 } from '../styles';
 
 const MedicationsHeader = () => (
-    <div id="div-med-header" style={MedicationHeaderRowStyle} >
-        <span style={MedicationFirstHeaderSpanStyle}>Medication Order Details </span>
-        <span style={MedicationHeaderSpanStyle}>Date </span>
-    </div >
+    <thead>
+        <tr>
+            <th scope="col">Medication Order Details </th>
+            <th scope="col">Date </th>
+        </tr>
+    </thead >
 )
 
 export default MedicationsHeader;

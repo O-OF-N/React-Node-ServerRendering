@@ -8,7 +8,8 @@ const MedicationBody = ({data}) => (
 
 const buildRows = data => (
     <tr>
-        <td>{data.medication}</td>
+        <td><span className="medication">{data.medication}</span>
+            <span className="text">{data.dosage}</span></td>
         <td className="data-type-date">{dateFormat(data.date)}</td>
     </tr>
 );

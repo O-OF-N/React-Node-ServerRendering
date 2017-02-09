@@ -17,7 +17,7 @@ const MedicationsTable = ({data, title}) => {
     console.log(data);
     console.log(title);
     return (<table className="table-base table-striped">
-        <caption>{title}</caption>
+        <caption><h5>{title}</h5></caption>
         <MedicationsHeader />
         <MedicationBody data={data} />
     </table>);

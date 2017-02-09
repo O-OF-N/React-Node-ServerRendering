@@ -1,5 +1,4 @@
 import React from 'react';
-import BolusMedicationsTable from './bolus/medications-bolus-table';
 import MedicationsTable from './medications-table';
 import { connect } from 'react-redux';
 import { MedicationTableStyle } from '../styles';
@@ -33,7 +32,7 @@ const Header = () => (<div>
 const toggle = dispatch => dispatch({ type: Constants.SLIDING_SCALE_TOGGLE_VISIBILITY })
 
 const Medications = ({medicationObject, dispatch}) => medicationObject.medications ? (
-    <div style={{ width: '96%', height: '100%', padding: '1%', marginTop: '0.5%' }}>
+    <div style={{ width: '48%', height: '100%', padding: '1%', marginTop: '0.5%' }}>
         <Header />
         {medicationObject.fetching ? <Loading /> :
             medicationObject.error ? <Error /> :

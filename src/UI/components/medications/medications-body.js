@@ -11,4 +11,4 @@ const buildRows= data => {
         <td>{data.}
 };*/
 
-export default MedicationResultsBody;
+//export default MedicationResultsBody;

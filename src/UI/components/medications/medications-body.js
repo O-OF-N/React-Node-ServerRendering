@@ -6,12 +6,12 @@ const MedicationBody = ({data}) => (
     </tbody>
 );
 
-const buildRows= data => {
+const buildRows = data => (
     <tr>
         <td>{data.medication}</td>
         <td>{dateFormat(data.date)}</td>
     </tr>
-};
+);
 
 const dateFormat = date => new Date(date).toLocaleString();
 

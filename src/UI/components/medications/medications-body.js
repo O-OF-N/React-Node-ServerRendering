@@ -1,14 +1,18 @@
 import React from 'react';
 
-/*const MedicationResultsBody = ({data}) => (
+const MedicationBody = ({data}) => (
     <tbody>
-        {data.map(d => )}
+        {data.map(d => buildRows(d))}
     </tbody>
 );
 
 const buildRows= data => {
     <tr>
-        <td>{data.}
-};*/
+        <td>{data.medication}</td>
+        <td>{dateFormat(data.date)}</td>
+    </tr>
+};
 
-//export default MedicationResultsBody;
+const dateFormat = date => new Date(date).toLocaleString();
+
+export default MedicationBody;

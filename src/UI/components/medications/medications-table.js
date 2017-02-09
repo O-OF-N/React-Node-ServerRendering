@@ -1,6 +1,7 @@
 import React from 'react';
 import { MedicationTableStyle, MedicationBodyDivStyle } from '../styles';
 import MedicationsHeader from './medications-header';
+import MedicationBody from './medications-body';
 
 
 const columns = [{
@@ -12,16 +13,15 @@ const columns = [{
     render: (date) => dateFormat(date)
 }];
 
-const MedicationsTable = ({data, title}) =>{
+const MedicationsTable = ({data, title}) => {
     console.log(data);
     console.log(title);
     return (<table class="table-base table-striped">
         <MedicationsHeader />
+        <MedicationBody />
     </table>);
 }
 
-const dateFormat = (date) => {
-    return { children: new Date(date).toLocaleString(), props: { colSpan: 1, rowSpan: 1 } }
-};
+
 
 export default MedicationsTable;

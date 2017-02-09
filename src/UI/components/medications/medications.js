@@ -19,7 +19,7 @@ const BolusMedications = ({medication}) => {
     const med = medication ? medication.medications.map(m => m.toJS()) : null;
     return (
         <div style={MedicationTableStyle}>
-            <BolusMedicationsTable data={med} title={medication.type} />
+            <MedicationsTable data={med} title={medication.type} />
         </div>
     );
 };

@@ -11,7 +11,7 @@ const buildRows = (data, comments) => (
     <tr>
         <td className="order-details"><span className="medication">{data.ingredients.name}</span>
             <span className="text">{data.dosage}</span>
-            {comments ? <span className="text"><br />{data.comments}</span> : null}</td>
+            {comments ? <span className="text"><br />Comments:{data.comments}</span> : null}</td>
         <td className="date data-type-date">{dateFormat(data.date)}</td>
     </tr>
 );

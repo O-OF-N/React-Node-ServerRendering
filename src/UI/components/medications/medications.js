@@ -6,6 +6,7 @@ import { MedicationTableStyle } from '../styles';
 import * as Constants from '../../utils/constants';
 import Loading from '../loading/loading';
 import Error from '../error/error';
+import './medications.css';
 
 const NonBolusMedications = ({medication}) => {
     const med = medication ? medication.medications.map(m => m.toJS()) : null;
@@ -24,8 +25,8 @@ const BolusMedications = ({medication}) => {
     );
 };
 
-const Header = ({dis}) => (<div>
-    <h3>Active Diabetes Med Orders</h3>
+const Header = () => (<div>
+    <h3 className="header">Active Diabetes Med Orders</h3>
 </div>
 );
 
@@ -33,7 +34,7 @@ const toggle = dispatch => dispatch({ type: Constants.SLIDING_SCALE_TOGGLE_VISIB
 
 const Medications = ({medicationObject, dispatch}) => medicationObject.medications ? (
     <div style={{ width: '96%', height: '100%', padding: '1%', marginTop: '0.5%' }}>
-        <Header dis={dispatch} />
+        <Header />
         {medicationObject.fetching ? <Loading /> :
             medicationObject.error ? <Error /> :
                 medicationObject.medications.map(medication =>

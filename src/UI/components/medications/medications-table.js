@@ -14,6 +14,4 @@ const MedicationsTable = ({data, title, comments}) => {
     </table>);
 }
 
-
-
 export default MedicationsTable;

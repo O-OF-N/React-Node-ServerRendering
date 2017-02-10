@@ -58,6 +58,7 @@ const handleRenderer = (state) => {
 };
 
 const renderFullPage = (html, state) => {
+    console.log('State is logged as = ', state);
     return `
     <!doctype html>
     <html style="width:100%;height:100%">

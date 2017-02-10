@@ -1,0 +1,14 @@
+{
+  "supplemental": {
+    "version": {
+      "_number": "$Revision: 12447 $",
+      "_unicodeVersion": "8.0.0",
+      "_cldrVersion": "29"
+    },
+    "likelySubtags": {
+      "es": "es-Latn-ES"
+    }
+  }
+}
+
+

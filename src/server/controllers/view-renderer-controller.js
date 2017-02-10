@@ -54,7 +54,7 @@ const handleRenderer = (state) => {
     const html = ReactDomServer.renderToString(
         React.createElement(Component)
     );
-    return renderFullPage(renderFullPage(html, state))
+    return renderFullPage(html, state);
 };
 
 const renderFullPage = (html, state) => {

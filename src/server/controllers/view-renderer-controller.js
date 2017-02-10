@@ -74,8 +74,7 @@ const renderFullPage = (html, state) => {
         }
         window.__PRELOADED_STATE__ = '${state}';
     </script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="/terra/vendor/jquery/jquery.2.2.0.min.js"></script>
+    <script src="/terra/vendor/jquery/jquery-2.2.0.min.js"></script>
     <script src="/terra/vendor/cldrjs/cldr.min.js"></script>
     <script src="/terra/vendor/fastclick/fastclick.min.js"></script>
     <script src="/terra/vendor/jquery/jquery.are-you-sure-1.9.min.js"></script>

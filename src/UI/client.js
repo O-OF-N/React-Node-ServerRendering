@@ -17,7 +17,6 @@ import * as Records from './records/records';
 import * as Constants from './utils/constants';
 import co from 'co';
 import { inheritStyle } from './components/styles';
-import '/terra/img/icon_sprite.png';
 
 const logger = createLogger();
 

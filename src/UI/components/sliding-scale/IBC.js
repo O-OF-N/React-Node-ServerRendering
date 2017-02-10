@@ -1,7 +1,6 @@
 import React from 'react';
 import * as Records from '../../records/records';
 import { carbCoverage, bloodGlucose, bolusCalc, disclaimer,buttonStyle, formStyle } from '../styles';
-import InfoImg from '../../images/info.png';
 import './IBC.css'
 
 

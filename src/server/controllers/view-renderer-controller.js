@@ -61,33 +61,36 @@ const renderFullPage = (html, state) => {
     console.log('State is logged as = ', state);
     return `
     <!doctype html>
-    <html style="width:100%;height:100%">
-      <head>
-        <title>Diabetes Dashboard</title>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <link rel="stylesheet" type="text/css" href="/terra/css/terra.min.css">
-        <!--<script src='/terra/vendor/cldrjs/cldr.min.js' />
-        <script src='/terra/vendor/fastclick/fastclick.min.js' />
-        <script src='/terra/vendor/jquery/jquery.2.2.0.min.js' />
-        <script src='/terra/vendor/jquery/jquery.are-you-sure-1.9.min.js' />
-        <script src='/terra/vendor/jquery/jquery.validate-1.13.min.js' />
-        <script src='/terra/vendor/jquery-fontspy/jQuery-FontSpy-3.0.min.js' />
-        <script src='/terra/vendor/magnific-popup/magnific-popup-1.0.min.js' />
-        <script src='/terra/vendor/media-match/media.match.min.js' />
-        <script src='/terra/vendor/tooltipster/js/jquery.tooltipster-3.3.min.js' />
-        <script src='/terra/js/terra.min.js' />-->
-        <script type="text/javascript">  
-            function evaluate(x) {
-                return eval(x);
-            }
-            window.__PRELOADED_STATE__ = '${state}'
-        </script>
-      </head>
-      <body style="width:inherit;height:inherit">
-        <div id="root-app" style="width:inherit;height:inherit">${html}</div>
-      </body>
-    </html>
+<html style="width:100%;height:100%">
+
+<head>
+    <title>Diabetes Dashboard</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" type="text/css" href="/terra/css/terra.min.css">
+    <script src="/terra/vendor/cldrjs/cldr.min.js" />
+    <script src="/terra/vendor/fastclick/fastclick.min.js" />
+    <script src="/terra/vendor/jquery/jquery.2.2.0.min.js" />
+    <script src="/terra/vendor/jquery/jquery.are-you-sure-1.9.min.js" />
+    <script src="/terra/vendor/jquery/jquery.validate-1.13.min.js" />
+    <script src="/terra/vendor/jquery-fontspy/jQuery-FontSpy-3.0.min.js" />
+    <script src="/terra/vendor/magnific-popup/magnific-popup-1.0.min.js" />
+    <script src="/terra/vendor/media-match/media.match.min.js" />
+    <script src="/terra/vendor/tooltipster/js/jquery.tooltipster-3.3.min.js" />
+    <script src="/terra/js/terra.min.js" />
+    <script type="text/javascript">
+        function evaluate(x) {
+            return eval(x);
+        }
+        window.__PRELOADED_STATE__ = '${state}';
+    </script>
+</head>
+
+<body style="width:inherit;height:inherit">
+    <div id="root-app" style="width:inherit;height:inherit">${html}</div>
+</body>
+
+</html>
     `
 };
 

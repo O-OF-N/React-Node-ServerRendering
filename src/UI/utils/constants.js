@@ -18,8 +18,8 @@ export const SLIDING_SCALE_TOGGLE_VISIBILITY = 'SLIDING_SCALE_TOGGLE_VISIBILITY'
 
 export const SET_SERVER_STATE = 'SET_SERVER_STATE';
 
-export const GLUCOSE_FETCH_URL = "https://diabetesdashboard.herokuapp.com/observation/glucose";
-export const LAB_FETCH_URL = "https://diabetesdashboard.herokuapp.com/observation/labs";
-export const MEDICATIONS_FETCH_URL = "https://diabetesdashboard.herokuapp.com/medication/orders";
+export const GLUCOSE_FETCH_URL = "https://diabetesdashboard1.herokuapp.com/observation/glucose";
+export const LAB_FETCH_URL = "https://diabetesdashboard1.herokuapp.com/observation/labs";
+export const MEDICATIONS_FETCH_URL = "https://diabetesdashboard1.herokuapp.com/medication/orders";
 
 

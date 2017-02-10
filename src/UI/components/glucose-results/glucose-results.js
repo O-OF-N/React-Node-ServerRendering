@@ -44,7 +44,7 @@ class GlucoseResults extends React.Component {
                         this.props.glucoseObject.error ? <Error /> : null
                 }
                 {
-                    this.props.glucoseObject.error ? <div className="chart-hidden" id="chart"></div> : <div className="chart-visible" id="chart"></div>
+                    this.props.glucoseObject.error ? <div className="chart-hidden" id="chart"></div> : <div id="chart"></div>
                 }
             </div>
         )

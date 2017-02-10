@@ -10,9 +10,5 @@
 }
 
 .chart-hidden{
-    visibility: false;
-}
-
-.chart-visible{
-    visibility: true;
+    display: none;
 }

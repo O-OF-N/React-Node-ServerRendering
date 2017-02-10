@@ -66,6 +66,8 @@ const renderFullPage = (html, state) => {
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <link rel="stylesheet" type="text/css" href="/terra/css/terra.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+        <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
         <script src='/terra/js/terra.js' />
         <script type="text/javascript">  
             function evaluate(x) {

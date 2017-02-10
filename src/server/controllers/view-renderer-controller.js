@@ -67,13 +67,7 @@ const renderFullPage = (html, state) => {
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <link rel="stylesheet" type="text/css" href="/terra/css/terra.min.css">
-        <script type="text/javascript">  
-            function evaluate(x) {
-                return eval(x);
-            }
-            window.__PRELOADED_STATE__ = '${state}'
-        </script>
-        <script src='/terra/vendor/cldrjs/cldr.min.js' />
+        <!--<script src='/terra/vendor/cldrjs/cldr.min.js' />
         <script src='/terra/vendor/fastclick/fastclick.min.js' />
         <script src='/terra/vendor/jquery/jquery.2.2.0.min.js' />
         <script src='/terra/vendor/jquery/jquery.are-you-sure-1.9.min.js' />
@@ -82,7 +76,13 @@ const renderFullPage = (html, state) => {
         <script src='/terra/vendor/magnific-popup/magnific-popup-1.0.min.js' />
         <script src='/terra/vendor/media-match/media.match.min.js' />
         <script src='/terra/vendor/tooltipster/js/jquery.tooltipster-3.3.min.js' />
-        <script src='/terra/js/terra.min.js' />
+        <script src='/terra/js/terra.min.js' />-->
+        <script type="text/javascript">  
+            function evaluate(x) {
+                return eval(x);
+            }
+            window.__PRELOADED_STATE__ = '${state}'
+        </script>
       </head>
       <body style="width:inherit;height:inherit">
         <div id="root-app" style="width:inherit;height:inherit">${html}</div>

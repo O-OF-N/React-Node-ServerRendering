@@ -1,6 +1,4 @@
 import React from 'react';
-import '../../public/terra/img/icon_sprite.png';
-import '../../public/terra/img/icon_sprite@2x.png';
 
 export default class Component extends React.Component {
     render() {

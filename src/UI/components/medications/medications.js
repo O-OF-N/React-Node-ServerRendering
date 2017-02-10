@@ -33,7 +33,7 @@ const toggle = dispatch => dispatch({ type: Constants.SLIDING_SCALE_TOGGLE_VISIB
 
 const Medications = ({medicationObject, dispatch}) => medicationObject.medications ? (
     <div style={{
-        width: '48%', height: '100%', padding: '1%', float: left
+        width: '48%', height: '100%', padding: '1%', float: 'left'
     }}>
         <Header />
         {medicationObject.fetching ? <Loading /> :

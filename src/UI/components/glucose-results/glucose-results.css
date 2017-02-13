@@ -12,3 +12,21 @@
 .chart-hidden{
     display: none;
 }
+
+.style-full {
+    width: 95%;
+    height: 100%;
+    float: left; 
+    padding: 0.5%; 
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.style-half {
+    width: 58%;
+    height: 100%;
+    float: left; 
+    padding: 0.5%; 
+    max-width: 58%;
+    max-height: 100%;
+}

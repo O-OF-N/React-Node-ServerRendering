@@ -9,26 +9,18 @@ import Header from './header/header';
 import './diabetes-chart.css';
 
 const toggle = dispatch => dispatch({ type: Constants.SLIDING_SCALE_TOGGLE_VISIBILITY });
-const styleHalf = {
-    width: '58%', height: '100%', float: 'left', padding: '0.5%', maxWidth: '58%',
-    maxHeight: '100%'
-};
 
-const styleFull = {
-    width: '95%', height: '100%', float: 'left', padding: '0.5%', maxWidth: '100%',
-    maxHeight: '100%'
-};
 const DiabetesChart = ({slidingScale, dispatch}) => (
     <div className="inherit">
         <Header toggle={toggle.bind(null, dispatch)} />
         {
             slidingScale.visible ?
                 <div className="div-glucose-ibc" >
-                    <GlucoseResults style={styleHalf} />
+                    <GlucoseResults style="style-half" />
                     <div className="div-ibc"> <IBC /> </div>
                 </div>
                 : <div className="div-glucose-ibc">
-                    <GlucoseResults style={styleFull} />
+                    <GlucoseResults style="style-full" />
                 </div>
         }
         <div className="div-labs-meds">

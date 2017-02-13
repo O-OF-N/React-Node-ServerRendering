@@ -16,8 +16,7 @@ const styleHalf = {
 
 const styleFull = {
     width: '95%', height: '100%', float: 'left', padding: '0.5%', maxWidth: '100%',
-    maxHeight: '100%', backgroundColor: 'rgba(221, 223, 224, 0.35)',
-    boxShadow: 'inset 1px 0 0 0 #c8cacb'
+    maxHeight: '100%'
 };
 const DiabetesChart = ({slidingScale, dispatch}) => (
     <div style={inheritStyle}>

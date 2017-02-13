@@ -297,5 +297,3 @@ export const bolusCalc = {
   padding: '16px 8px'
   //marginBottom: '-20px'
 }
-
-export const inheritStyle = { width: 'inherit', height: 'inherit' };

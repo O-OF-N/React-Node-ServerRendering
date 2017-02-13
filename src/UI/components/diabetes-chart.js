@@ -3,10 +3,10 @@ import GlucoseResults from './glucose-results/glucose-results';
 import LabResults from './lab-results/lab-results';
 import Medications from './medications/medications';
 import IBC from './sliding-scale/IBC';
-import { inheritStyle } from './styles';
 import { connect } from 'react-redux';
 import * as Constants from '../utils/constants';
 import Header from './header/header';
+import './diabetes-chart.css';
 
 const toggle = dispatch => dispatch({ type: Constants.SLIDING_SCALE_TOGGLE_VISIBILITY });
 const styleHalf = {
@@ -19,23 +19,19 @@ const styleFull = {
     maxHeight: '100%'
 };
 const DiabetesChart = ({slidingScale, dispatch}) => (
-    <div style={inheritStyle}>
+    <div className="inherit">
         <Header toggle={toggle.bind(null, dispatch)} />
         {
             slidingScale.visible ?
-                <div style={{ width: '100%', maxHeight: '45%', minHeight: '45%', backgroundColor: '#f4f4f4', boxShadow: 'inset 0 -1px 0 0 #dedfe0' }}>
+                <div className="div-glucose-ibc" >
                     <GlucoseResults style={styleHalf} />
-                    <div style={{
-                        backgroundColor: 'rgba(221, 223, 224, 0.35)',
-                        boxShadow: 'inset 1px 0 0 0 #c8cacb',
-                        width: '41%', overflow: 'auto', padding: '0.5%'
-                    }}> <IBC /> </div>
+                    <div className="div-ibc"> <IBC /> </div>
                 </div>
-                : <div style={{ width: '100%', maxHeight: '45%', minHeight: '45%', backgroundColor: '#f4f4f4', boxShadow: 'inset 0 -1px 0 0 #dedfe0' }}>
+                : <div className="div-glucose-ibc">
                     <GlucoseResults style={styleFull} />
                 </div>
         }
-        <div style={{ width: '100%', maxHeight: '45%', marginTop: '3%', overflowY: 'auto' }}>
+        <div className="div-labs-meds">
             <LabResults />
             <Medications />
         </div>

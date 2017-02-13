@@ -11,8 +11,7 @@ import Header from './header/header';
 const toggle = dispatch => dispatch({ type: Constants.SLIDING_SCALE_TOGGLE_VISIBILITY });
 const styleHalf = {
     width: '58%', height: '100%', float: 'left', padding: '0.5%', maxWidth: '58%',
-    maxHeight: '100%', backgroundColor: 'rgba(221, 223, 224, 0.35)',
-    boxShadow: 'inset 1px 0 0 0 #c8cacb'
+    maxHeight: '100%'
 };
 
 const styleFull = {
@@ -25,7 +24,7 @@ const DiabetesChart = ({slidingScale, dispatch}) => (
         <Header toggle={toggle.bind(null, dispatch)} />
         {
             slidingScale.visible ?
-                <div style={{ width: '100%', maxHeight: '45%', minHeight: '45%' }}>
+                <div style={{ width: '100%', maxHeight: '45%', minHeight: '45%', backgroundColor: '#f4f4f4', boxShadow: 'inset 0 -1px 0 0 #dedfe0' }}>
                     <GlucoseResults style={styleHalf} />
                     <div style={{
                         backgroundColor: 'rgba(221, 223, 224, 0.35)',
@@ -33,7 +32,7 @@ const DiabetesChart = ({slidingScale, dispatch}) => (
                         width: '41%', overflow: 'auto', padding: '0.5%'
                     }}> <IBC /> </div>
                 </div>
-                : <div style={{ width: '100%', maxHeight: '45%', minHeight: '45%' }}>
+                : <div style={{ width: '100%', maxHeight: '45%', minHeight: '45%', backgroundColor: '#f4f4f4', boxShadow: 'inset 0 -1px 0 0 #dedfe0' }}>
                     <GlucoseResults style={styleFull} />
                 </div>
         }
@@ -42,7 +41,7 @@ const DiabetesChart = ({slidingScale, dispatch}) => (
             <Medications />
         </div>
 
-    </div>
+    </div >
 );
 export default connect(state => ({
     dispatch: state.dispatch,

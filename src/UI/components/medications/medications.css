@@ -11,6 +11,12 @@
   color: #000000;
 }
 
+.medication-div{
+  width: 48%; 
+  height: 100%;
+  float: left;
+}
+
 .text{
   font-family: Helvetica;
   font-size: 12px;
@@ -40,4 +46,10 @@
     line-height: normal;
     letter-spacing: normal;
     color: #000000;
+}
+
+.medication-table-style {
+  float: left;
+  width: 99%;
+  padding: 0.5%;
 }

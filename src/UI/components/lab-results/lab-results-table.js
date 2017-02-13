@@ -1,18 +1,4 @@
 import React from 'react';
-import LabResultsHeader from './lab-results-header';
-import LabResultsBody from './lab-results-body';
-
-const LabTable = ({data, title}) => {
-  const dataBuilt = buildData(data).toJS();
-  return (<table className="table-base">
-    <LabResultsHeader />
-    <LabResultsBody data={dataBuilt} />
-  </table>);
-};
-
-const dateFormat = (date) => {
-  return { children: new Date(date).toLocaleString(), props: { colSpan: 1, rowSpan: 1 } }
-};
 
 const buildData = (data) => data.map((d, i) => {
   let lab1, lab2;
@@ -30,5 +16,37 @@ const buildData = (data) => data.map((d, i) => {
     unit2: lab2.unit
   };
 });
+
+const LabTable = ({data, title}) => {
+  const dataBuilt = buildData(data).toJS();
+  return (<table className="table-base">
+    <LabResultsHeader />
+    <LabResultsBody data={dataBuilt} />
+  </table>);
+};
+
+const LabResultsHeader = () => (
+    <thead>
+        <tr>
+            <th></th>
+            <th scope="col">Latest Result</th>
+            <th scope="col">Previous Result</th>
+        </tr>
+    </thead>
+);
+
+const buildRow = rowData => (<tr>
+    <th scope="row">{rowData.code}</th>
+    <td>{rowData.quantity1}</td>
+    <td>{rowData.quantity2}</td>
+</tr>);
+
+const LabResultsBody = ({data}) => (
+    <tbody>
+        {data.map(d1 => buildRow(d1))}
+    </tbody>
+);
+
+
 
 export default LabTable;

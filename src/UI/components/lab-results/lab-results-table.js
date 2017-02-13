@@ -17,6 +17,29 @@ const buildData = (data) => data.map((d, i) => {
   };
 });
 
+const buildRow = rowData => (<tr>
+  <th scope="row">{rowData.code}</th>
+  <td>{rowData.quantity1}</td>
+  <td>{rowData.quantity2}</td>
+</tr>);
+
+const LabResultsHeader = () => (
+  <thead>
+    <tr>
+      <th></th>
+      <th scope="col">Latest Result</th>
+      <th scope="col">Previous Result</th>
+    </tr>
+  </thead>
+);
+
+const LabResultsBody = ({data}) => (
+  <tbody>
+    {data.map(d1 => buildRow(d1))}
+  </tbody>
+);
+
+
 const LabTable = ({data, title}) => {
   const dataBuilt = buildData(data).toJS();
   return (<table className="table-base">
@@ -24,29 +47,5 @@ const LabTable = ({data, title}) => {
     <LabResultsBody data={dataBuilt} />
   </table>);
 };
-
-const LabResultsHeader = () => (
-    <thead>
-        <tr>
-            <th></th>
-            <th scope="col">Latest Result</th>
-            <th scope="col">Previous Result</th>
-        </tr>
-    </thead>
-);
-
-const buildRow = rowData => (<tr>
-    <th scope="row">{rowData.code}</th>
-    <td>{rowData.quantity1}</td>
-    <td>{rowData.quantity2}</td>
-</tr>);
-
-const LabResultsBody = ({data}) => (
-    <tbody>
-        {data.map(d1 => buildRow(d1))}
-    </tbody>
-);
-
-
 
 export default LabTable;

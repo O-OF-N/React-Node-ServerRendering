@@ -6,13 +6,13 @@ import Error from '../error/error';
 import './lab-results.css';
 
 const LabResults = ({labObject}) => (
-    <div className="lab-div-style">
+    <div className="div-lab">
         <h3 className="header">Diabetes Labs</h3>
         <h5 className="header">Last 2 results in past 24 hours</h5>
         {
             labObject.fetching ? <Loading /> :
                 labObject.error ? <Error /> :
-                    <div className="table-div">
+                    <div className="table-div-lab">
                         <LabTable data={labObject.labMaps} />
                     </div>
         }

@@ -16,11 +16,12 @@
 .button-span {
     width: 20%;
     display: inline-block;
-    padding: 0.5%;
+    padding: 0.2%;
 }
 
 .ibc-button {
     float: right;
+    height: 20px
 }
 
 .section {

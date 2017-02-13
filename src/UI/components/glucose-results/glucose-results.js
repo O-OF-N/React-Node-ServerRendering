@@ -18,9 +18,11 @@ class GlucoseResults extends React.Component {
     }
 
     componentDidUpdate() {
-        if (document.getElementById("chart")) {
+        /*if (document.getElementById("chart")) {
             this.chart.resize({ width: document.getElementById("chart").offsetWidth });
-        }
+        }*/
+        this.chart.flush();
+
     }
 
     logit() {

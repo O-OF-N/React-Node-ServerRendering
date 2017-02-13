@@ -6,7 +6,10 @@ import './IBC.css'
 class popup extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { result: 'Total Bolus Dose = - units', nocarb: 'Carb Coverage Dose = - units', gluc: 'Glucose Correction Dose = - units', CC: '', CF: '' };
+    this.state = { result: 'Total Bolus Dose = - units', nocarb: 'Carb Coverage Dose = - units', gluc: 'Glucose Correction Dose = - units', CC: '', CF: '' , 
+    CCFormula:'CCD = Carbohydrate Coverage Dose = \nCC = Current Carb Count \nICR = Insulin/Carbohydrate Ratio \n\nCCD = CC * ICR', 
+    disclaimer:'This calculator is intended for healthcare professionals and cannot replace clinical judgment.\nBefore ordering or administering a bolus dose of insulin:\n* Ensure your patient has not already received a bolus dose of insulin in the last 2-3 hours;\n* Consider the current clinical situation; and\n* Always confirm the calculated dose.\nIf you have any concerns about the calculated insulin bolus dose, contact the patients supervising physician.',
+    ISFormula:'ISF = Insulin Sensitivity Factor \nGLU = Current Blood Glucose \nTAR = Target Blood Glucose \nCOR = Correction Calculation \nGCD = Glucose Correction Dose \n\nIf GLU <= TAR, Then GCD = 0 \nElse GCD = COR * 1'};
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleCarbSubmit = this.handleCarbSubmit.bind(this);
     this.handleBolusDose = this.handleBolusDose.bind(this);
@@ -122,12 +125,13 @@ class popup extends React.Component {
       <div className = "Main-Div">
           <div>
           <div className = "Main-Div1" >
-                <a className="Disclaimer-Button" href='#'  onClick={this.handleDisclaimer}>*Disclaimer</a>
+                <button className="Disclaimer-Button" type="button" data-popup="click" data-popup-position="bottom" title={this.state.disclaimer}>*Disclaimer</button>
                 <h2 className="Insulin-Heading">Insulin Bolus Calculator </h2>
           </div>
 
           <div className = "Main-Div2" >
-                <a className="Formula-Button" href='#'  onClick={this.handleCarbFormula}>Formula</a>
+          <button className="Formula-Button" type="button" data-popup="click" data-popup-position="bottom" title={this.state.CCFormula}>Formula</button>
+               
                 <h4 className = "Carbohydrate-Coverage-Heading">Carbohydrate Coverage</h4>
           </div>
 
@@ -160,7 +164,7 @@ class popup extends React.Component {
 
           <div>
           <div className = "Main-Div3" >
-              <a className="Formula-Button" href='#'  onClick={this.handleCarbFormula}>Formula</a>
+              <button className="Formula-Button" type="button" data-popup="click" data-popup-position="bottom" title={this.state.ISFormula}>Formula</button>
               <h4 className="Carbohydrate-Coverage-Heading">Blood Glucose Coverage</h4>
           </div>
           

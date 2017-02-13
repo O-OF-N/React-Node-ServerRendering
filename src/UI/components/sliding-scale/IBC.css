@@ -18,6 +18,8 @@
   font-size: 13px;
   margin-top: 1%;
   color: #0063d6;
+  border: none;
+  background: none;
 }
 
 
@@ -39,6 +41,12 @@
 .Formula-Button {
 	float: right;
 	margin-right: 2%;
+	font-family: Helvetica;
+  	font-size: 13px;
+  	margin-top: 1%;
+  	color: #0063d6;
+  	border: none;
+  	background: none;
 }
 
 .Carbohydrate-Coverage-Heading {
@@ -169,6 +177,7 @@
   margin-top: 6px;
   margin-bottom: 0px;
   margin-right: 2%;
+  width: 100%;
 }
 
 .Target-Glucose {
@@ -185,6 +194,7 @@
   margin-top: 6px;
   margin-bottom: 6px;
   margin-right: 2%;
+  width: 100%
 }
 
 .Glucose-Coverage-Calc {

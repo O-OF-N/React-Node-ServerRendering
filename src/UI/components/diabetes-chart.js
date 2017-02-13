@@ -23,7 +23,7 @@ const DiabetesChart = ({slidingScale, dispatch}) => (
         <Header toggle={toggle.bind(null, dispatch)} />
         {
             slidingScale.visible ?
-                <div style={{ width: '100%', maxHeight: '54%', minHeight: '50%' }}>
+                <div style={{ width: '100%', maxHeight: '45%', minHeight: '45%' }}>
                     <GlucoseResults style={styleHalf} />
                     <div style={{     backgroundColor: 'rgba(221, 223, 224, 0.35)',
                                       boxShadow: 'inset 1px 0 0 0 #c8cacb',
@@ -33,7 +33,7 @@ const DiabetesChart = ({slidingScale, dispatch}) => (
                     <GlucoseResults style={styleFull} />
                 </div>
         }
-        <div style={{ width: '100%', height: '45%', marginTop: '3%' }}>
+        <div style={{ width: '100%', maxHeight: '45%', marginTop: '3%',overflowY:'auto' }}>
             <LabResults />
             <Medications />
         </div>

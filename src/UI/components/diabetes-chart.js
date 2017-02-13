@@ -17,7 +17,7 @@ const DiabetesChart = ({slidingScale, dispatch}) => (
             slidingScale.visible ?
                 <div className="div-glucose-ibc" >
                     <GlucoseResults style="style-half" />
-                    <div className="div-ibc"> <IBC /> </div>
+                    <div className="div-ibc"> <IBC toggle={toggle.bind(null, dispatch)} /> </div>
                 </div>
                 : <div className="div-glucose-ibc">
                     <GlucoseResults style="style-full" />

@@ -39,7 +39,12 @@ var Component = function (_React$Component) {
                     { id: 'app', style: style },
                     _react2.default.createElement(
                         'div',
-                        { className: 'loading loading-large', style: { display: 'block', margin: '0 auto' } },
+                        { className: 'loading loading-large', style: {
+                                display: 'block', margin: 'auto auto', position: 'fixed', zIndex: '100', opacity: '0.4', backgroundRepeat: 'no-repeat',
+                                backgroundPosition: 'center',
+                                width: '100%',
+                                height: '100%'
+                            } },
                         _react2.default.createElement('span', { className: 'icon-spinner', 'aria-hidden': 'true' }),
                         ' Loading',
                         _react2.default.createElement(

@@ -16,7 +16,6 @@ import { Provider } from 'react-redux';
 import * as Records from './records/records';
 import * as Constants from './utils/constants';
 import co from 'co';
-import { inheritStyle } from './components/styles';
 
 const logger = createLogger();
 
@@ -36,7 +35,7 @@ const init = function* (dispatch, state) {
 const dom = () => {
     render(
         <Provider store={store}>
-            <DiabetiesChart style={inheritStyle} />
+            <DiabetiesChart style={{ width: 'inherit', height: 'inherit' }} />
         </Provider>, document.getElementById('app')
     );
 };

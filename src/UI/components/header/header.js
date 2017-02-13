@@ -1,15 +1,12 @@
 import React from 'react';
 import './header.css';
 
-const header = ({toggle}) => (<section className="section">
-    <header>
-        <div>
-            <h1 className="header-text">Diabetes Management</h1>
-            <span className="button-span">
-                <button style={{ marginRight: '10' }} className="btn btn-default ibc-button" onClick={toggle}>Insulin Bolus Calculator</button>
-            </span>
-        </div>
-    </header>
-</section>);
+const header = ({toggle}) => (
+    <div className="section">
+        <h1 className="header-text">Diabetes Management</h1>
+        <span className="button-span">
+            <button style={{ marginRight: '10' }} className="btn btn-default ibc-button" onClick={toggle}>Insulin Bolus Calculator</button>
+        </span>
+    </div>);
 
 export default header;

@@ -13,7 +13,7 @@ import * as Constants from '../util/constants';
 const router = express.Router();
 
 router.get('/', co(function* (req, res, next) {
-    try {
+    /*try {
         let iss = null, launch = null;
         ({ iss, launch } = req.query);
         if (iss && launch) {
@@ -24,8 +24,8 @@ router.get('/', co(function* (req, res, next) {
     } catch (err) {
         console.log('err = ' + err);
         ErrorHandler.ErrorHandler("InternalServerError", res, err.message);
-    }
-    //res.send(handleRenderer('Test state'));
+    }*/
+    res.send(handleRenderer('Test state'));
 }));
 
 router.get('/callback', co(function* (req, res, next) {

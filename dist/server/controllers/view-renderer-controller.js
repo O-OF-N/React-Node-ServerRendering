@@ -49,57 +49,34 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var router = _express2.default.Router();
 
 router.get('/', (0, _wrap2.default)(regeneratorRuntime.mark(function _callee(req, res, next) {
-    var iss, launch, _req$query, url;
-
     return regeneratorRuntime.wrap(function _callee$(_context) {
         while (1) {
             switch (_context.prev = _context.next) {
                 case 0:
-                    _context.prev = 0;
-                    iss = null, launch = null;
-                    _req$query = req.query;
-                    iss = _req$query.iss;
-                    launch = _req$query.launch;
+                    /*try {
+                        let iss = null, launch = null;
+                        ({ iss, launch } = req.query);
+                        if (iss && launch) {
+                            const url = yield AuthorizationHelper.authorize(iss, launch);
+                            res.redirect(url);
+                        } else
+                            invalidAuthParams(res);
+                    } catch (err) {
+                        console.log('err = ' + err);
+                        ErrorHandler.ErrorHandler("InternalServerError", res, err.message);
+                    }*/
+                    res.send(handleRenderer('Test state'));
 
-                    if (!(iss && launch)) {
-                        _context.next = 12;
-                        break;
-                    }
-
-                    _context.next = 8;
-                    return AuthorizationHelper.authorize(iss, launch);
-
-                case 8:
-                    url = _context.sent;
-
-                    res.redirect(url);
-                    _context.next = 13;
-                    break;
-
-                case 12:
-                    invalidAuthParams(res);
-
-                case 13:
-                    _context.next = 19;
-                    break;
-
-                case 15:
-                    _context.prev = 15;
-                    _context.t0 = _context['catch'](0);
-
-                    console.log('err = ' + _context.t0);
-                    ErrorHandler.ErrorHandler("InternalServerError", res, _context.t0.message);
-
-                case 19:
+                case 1:
                 case 'end':
                     return _context.stop();
             }
         }
-    }, _callee, this, [[0, 15]]);
+    }, _callee, this);
 })));
 
 router.get('/callback', (0, _wrap2.default)(regeneratorRuntime.mark(function _callee2(req, res, next) {
-    var code, state, accessToken, patient, _req$query2, authentication, url;
+    var code, state, accessToken, patient, _req$query, authentication, url;
 
     return regeneratorRuntime.wrap(function _callee2$(_context2) {
         while (1) {
@@ -107,9 +84,9 @@ router.get('/callback', (0, _wrap2.default)(regeneratorRuntime.mark(function _ca
                 case 0:
                     _context2.prev = 0;
                     code = null, state = null, accessToken = null, patient = 0;
-                    _req$query2 = req.query;
-                    code = _req$query2.code;
-                    state = _req$query2.state;
+                    _req$query = req.query;
+                    code = _req$query.code;
+                    state = _req$query.state;
 
                     if (!(code && state)) invalidAuthParams(res);
                     _context2.next = 8;
@@ -172,11 +149,12 @@ var invalidAuthParams = function invalidAuthParams(res) {
 
 var handleRenderer = function handleRenderer(state) {
     var html = _server2.default.renderToString(_react2.default.createElement(_index2.default));
-    return renderFullPage(renderFullPage(html, state));
+    return renderFullPage(html, state);
 };
 
 var renderFullPage = function renderFullPage(html, state) {
-    return '\n    <!doctype html>\n    <html style="width:100%;height:100%">\n      <head>\n        <title>Diabetes Dashboard</title>\n        <meta charset="utf-8">\n        <meta http-equiv="X-UA-Compatible" content="IE=edge">\n        <link rel="stylesheet" type="text/css" href="/terra/css/terra.min.css">\n        <script type="text/javascript">  \n            function evaluate(x) {\n                return eval(x);\n            }\n            window.__PRELOADED_STATE__ = \'' + state + '\'\n        </script>\n      </head>\n      <body style="width:inherit;height:inherit">\n        <div id="root-app" style="width:inherit;height:inherit">' + html + '</div>\n      </body>\n    </html>\n    ';
+    console.log('State is logged as = ', state);
+    return '\n    <!doctype html>\n<html style="width:100%;height:100%">\n\n<head>\n    <title>Diabetes Dashboard</title>\n    <meta charset="utf-8">\n    <meta http-equiv="X-UA-Compatible" content="IE=edge">\n    <link rel="stylesheet" type="text/css" href="/terra/css/terra.min.css">\n    <script type="text/javascript">\n        function evaluate(x) {\n            return eval(x);\n        }\n        window.__PRELOADED_STATE__ = \'' + state + '\';\n    </script>\n    <script src="/terra/vendor/jquery/jquery-2.2.0.min.js"></script>\n    <script src="/terra/vendor/cldrjs/cldr.min.js"></script>\n    <script src="/terra/vendor/fastclick/fastclick.min.js"></script>\n    <script src="/terra/vendor/jquery/jquery.are-you-sure-1.9.min.js"></script>\n    <script src="/terra/vendor/jquery/jquery.validate-1.13.min.js"></script>\n    <script src="/terra/vendor/jquery-fontspy/jQuery-FontSpy-3.0.min.js"></script>\n    <script src="/terra/vendor/magnific-popup/magnific-popup-1.0.min.js"></script>\n    <script src="/terra/vendor/media-match/media.match.min.js"></script>\n    <script src="/terra/vendor/tooltipster/js/jquery.tooltipster-3.3.min.js"></script>\n    <script src="/terra/js/terra.min.js"></script>\n</head>\n\n<body style="width:inherit;height:inherit">\n    <div id="root-app" style="width:inherit;height:inherit">' + html + '</div>\n</body>\n\n</html>\n    ';
 };
 
 exports.default = router;

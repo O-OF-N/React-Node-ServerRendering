@@ -37,7 +37,17 @@ var Component = function (_React$Component) {
                 _react2.default.createElement(
                     'div',
                     { id: 'app', style: style },
-                    ' Loading.........'
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'loading loading-large', style: { display: 'block', margin: '0 auto' } },
+                        _react2.default.createElement('span', { className: 'icon-spinner', 'aria-hidden': 'true' }),
+                        ' Loading',
+                        _react2.default.createElement(
+                            'marquee',
+                            { direction: 'right' },
+                            '… '
+                        )
+                    )
                 ),
                 _react2.default.createElement('script', { src: '/javascripts/bundle.js' })
             );

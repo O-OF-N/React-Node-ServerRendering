@@ -25,5 +25,15 @@
 
 .section {
     background-color: #0092e0;
-    height: 5%;
+    height: 44px;
+    width: 100%;
+    min-width: 1000px;
+    overflow: hidden;
+    display: block;
+    box-sizing: border-box;
+    margin: 0 auto;
+    padding: 7px 0;
+    position: relative;
+    width: 100%;
+    z-index: 12;
 }

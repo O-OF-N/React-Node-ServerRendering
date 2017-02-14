@@ -21,6 +21,8 @@
 
 .ibc-button {
     float: right;
+    background-color: white;
+    margin-right: 10px;
 }
 
 .section {

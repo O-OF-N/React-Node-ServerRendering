@@ -64,7 +64,7 @@ const renderFullPage = (html, state) => {
 <html style="width:100%;height:100%">
 
 <head>
-    <title>Diabetes Dashboard</title>
+    <title>Diabetes Management</title>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" type="text/css" href="/terra/css/terra.min.css">

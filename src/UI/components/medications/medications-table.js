@@ -15,7 +15,9 @@ const dateFormat = date => new Date(date).toLocaleString();
 const MedicationsTable = ({data, title, comments}) => (<table className="table-base table-striped">
     <caption><h5 className="header">{title}</h5></caption>
     <MedicationsHeader />
-    <MedicationBody data={data} comments={comments} />
+    <div style={{ overflowY: 'auto' }}>
+        <MedicationBody data={data} comments={comments} />
+    </div>
 </table>);
 
 const MedicationBody = ({data, comments}) => (

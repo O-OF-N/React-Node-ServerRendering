@@ -9,7 +9,7 @@ import './medications.css';
 const NonBolusMedications = ({medication}) => {
     const med = medication ? medication.medications.map(m => m.toJS()) : null;
     return (
-        <div className="medication-table-style">
+        <div className="medication-table-style" style={{height:'25%'}}>
             <MedicationsTable data={med} title={medication.type} comments={false} />
         </div>
     );
@@ -17,7 +17,7 @@ const NonBolusMedications = ({medication}) => {
 const BolusMedications = ({medication}) => {
     const med = medication ? medication.medications.map(m => m.toJS()) : null;
     return (
-        <div className="medication-table-style">
+        <div className="medication-table-style" style={{height:'25%'}}>
             <MedicationsTable data={med} title={medication.type} comments={true} />
         </div>
     );

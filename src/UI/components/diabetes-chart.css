@@ -30,8 +30,10 @@
 
 .div-lab-desktop{
     width: 48%;
+    float: left;
 }
 
 .div-meds-desktop{
     width: 48%;
+    float: left;
 }

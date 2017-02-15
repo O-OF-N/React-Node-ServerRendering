@@ -24,8 +24,12 @@ const DiabetesChart = ({slidingScale, dispatch}) => (
                 </div>
         }
         <div className="div-labs-meds">
-            <LabResults className="div-lab-desktop" />
-            <Medications className="div-meds-desktop" />
+            <div className="div-lab-desktop">
+                <LabResults />
+            </div>
+            <div className="div-meds-desktop">
+                <Medications />
+            </div>
         </div>
 
     </div >

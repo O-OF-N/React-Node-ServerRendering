@@ -27,8 +27,8 @@ const LabResultsHeader = () => (
   <thead>
     <tr>
       <th></th>
-      <th scope="col">Latest Result</th>
-      <th scope="col">Previous Result</th>
+      <th scope="col" className="data-type-number">Latest Result</th>
+      <th scope="col" className="data-type-number">Previous Result</th>
     </tr>
   </thead>
 );

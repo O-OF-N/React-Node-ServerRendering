@@ -36,7 +36,7 @@ class GlucoseResults extends React.Component {
         this.chart = this.logit();
         return (
             <div className={this.props.style}>
-                <h3 className="header-glucose" >Blood Glucose</h3> <h5 className="header-glucose" >(all sources for past 24 hours)</h5>
+                <h3 className="header-center" >Blood Glucose</h3> <h5 className="header-center" >(all sources for past 24 hours)</h5>
                 {
                     this.props.glucoseObject.fetching ? <Loading /> :
                         this.props.glucoseObject.error ? <Error /> : null

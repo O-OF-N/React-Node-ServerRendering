@@ -28,7 +28,7 @@
     height: inherit;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (min-width: 1024px) {
     .div-lab-desktop{ width: 100%; }
     .div-meds-desktop{ width: 100%; }
 }

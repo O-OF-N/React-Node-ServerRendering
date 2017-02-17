@@ -133,7 +133,7 @@ const addTestMedications = () => {
     const bolus2 = new Records.InsulinOrder({
         status: 'active',
         date: new Date(),
-        dosage: '10 unit(s), Subcutaneous, BID',
+        dosage: '11 unit(s), Subcutaneous, BID',
         medication: 'Insulin, Aspart, Human 100 UNT/ML [NovoLOG]',
         administration: Constants.SUBCUTANEOUS_TEXT,
         code: 575679,
@@ -142,7 +142,7 @@ const addTestMedications = () => {
     const bolus3 = new Records.InsulinOrder({
         status: 'active',
         date: new Date(),
-        dosage: '10 unit(s), Subcutaneous, BID',
+        dosage: '12 unit(s), Subcutaneous, BID',
         medication: 'HumaLOG Mix 75/25',
         administration: Constants.SUBCUTANEOUS_TEXT,
         code: 259111,

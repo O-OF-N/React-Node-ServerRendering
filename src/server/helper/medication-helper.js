@@ -13,15 +13,15 @@ export const fetchMedications = function* (state) {
     const result = yield* fetchMedicationsHelper(state);
     const insulinOrders = buildInsulinOrdersResult(result);
     console.log('insulin orders = ', insulinOrders);
-    //return insulinOrders ? categorizeOrders(insulinOrders) : null;
-    return insulinOrders ? yield* categorizeOrders(insulinOrders.push(...addTestMedications())) : null;
+    return insulinOrders ? categorizeOrders(insulinOrders) : null;
+    //return insulinOrders ? yield* categorizeOrders(insulinOrders.push(...addTestMedications())) : null;
 };
 
 //Private functions
 const fetchMedicationsHelper = function* (state) {
     const [userAuthenticationModel] = yield UserAuthenticationModel.findByState(state);
     if (!userAuthenticationModel) throw new Exceptions.InvalidStateError(`State ${state} is invalid`);
-    const url = userAuthenticationModel ? HttpUtil.buildMedicationURL(userAuthenticationModel.patient, userAuthenticationModel.iss) : null;
+    const url = userAuthenticationModel ? HttpUtil.buildMedicationURL(userAuthenticationModel.patient, "https://fhir-open.sandboxcerner.com/dstu2/d075cf8b-3261-481d-97e5-ba6c48d3b41f/") : null;
     const authHeader = userAuthenticationModel ? HttpUtil.buildAuthorizationHeader(userAuthenticationModel) : null;
     try {
         const result = (url && authHeader) ? yield get(url, authHeader) : null;

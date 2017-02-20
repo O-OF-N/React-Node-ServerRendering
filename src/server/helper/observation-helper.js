@@ -29,7 +29,7 @@ export const fetchLabResults = function* (state) {
 const fetchObservationResultsHelper = function* (state, lonicCodesList, date = null, duration = 0) {
     try {
         const [userAuthenticationModel] = yield UserAuthenticationModel.findByState(state);
-        const url = HttpUtil.buildObeservationURL(userAuthenticationModel.patient, flatMap(lonicCodesList), userAuthenticationModel.iss, getDateRange(date, duration));
+        const url = HttpUtil.buildObeservationURL(userAuthenticationModel.patient, flatMap(lonicCodesList), "https://fhir-open.sandboxcerner.com/dstu2/d075cf8b-3261-481d-97e5-ba6c48d3b41f/", getDateRange(date, duration));
         const authHeader = HttpUtil.buildAuthorizationHeader(userAuthenticationModel);
         const result = yield get(url, authHeader);
         return result;

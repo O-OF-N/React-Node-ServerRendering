@@ -78,8 +78,7 @@ const categorizeOrders = function* (insulinOrders) {
     Constants.ORDER_CATEGORIZATION.forEach((value, key) => {
         const medicationOrder = new Records.MedicationOrder({
             type: key, medications: new List(insulinOrdersWithIngredients.filter(order =>
-                checkIngredients(value.code, order.ingredients.codes).length &&
-                    checkDosage(value, order)
+                checkValueAndOrder(value,order)? checkIngredients(value.code, order.ingredients.codes).length && checkDosage(value, order):false
             ))
         });
         medicationOrders.push(medicationOrder);

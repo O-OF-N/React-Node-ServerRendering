@@ -1,6 +1,7 @@
-import {UserAuthentication} from './models';
+import { UserAuthentication } from './models';
 import mongoose from 'mongoose';
 import co from 'co';
+import sanitize from 'mongo-sanitize';
 
 var Schema = mongoose.Schema;
 
@@ -13,8 +14,8 @@ const UserAuthenticationSchema = new Schema({
     tokenURL: String,
     patient: Number,
     launch: String,
-    created_at: {type: Date,default: new Date()},
-    updated_at: {type: Date,default: new Date()}
+    created_at: { type: Date, default: new Date() },
+    updated_at: { type: Date, default: new Date() }
 });
 
 const UserAuthenticationModel = mongoose.model('UserAuth', UserAuthenticationSchema);
@@ -27,6 +28,7 @@ UserAuthenticationModel.findByState = (state) => co(findByStateHelper.bind(this,
 UserAuthenticationModel.update = (_id, $set) => co(updateHelper.bind(this, _id, $set));
 
 const findByStateHelper = function* (state) {
+    state = sanitize(state);
     const userAuth = yield UserAuthenticationModel.find({ state });
     return userAuth;
 }
@@ -38,6 +40,7 @@ const saveHelper = function* (userAuthentication) {
 };
 
 const updateHelper = function* (_id, $set) {
+    _id = sanitize(_id);
     const userAuth = yield UserAuthenticationModel.findByIdAndUpdate({ _id }, { $set });
     return userAuth;
 }

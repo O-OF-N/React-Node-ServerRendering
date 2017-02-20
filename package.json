@@ -37,6 +37,7 @@
     "jade": "^1.11.0",
     "json-loader": "^0.5.4",
     "matches": "0.5.1",
+    "mongo-sanitize": "^1.0.0",
     "mongoose": "^4.6.0",
     "morgan": "~1.7.0",
     "node-sass": "^4.4.0",

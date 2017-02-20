@@ -8,12 +8,12 @@ const buildData = (data) => data.map((d, i) => {
   return {
     key: i,
     code: code,
-    quantity1: lab1.quantity,
-    date1: lab1.date,
-    unit1: lab1.unit,
-    quantity2: lab2.quantity,
-    date2: lab2.date,
-    unit2: lab2.unit
+    quantity1: lab1 ? lab1.quantity : '-',
+    date1: lab1 ? lab1.date : '-',
+    unit1: lab1 ? lab1.unit : '-',
+    quantity2: lab2 ? lab2.quantity : '-',
+    date2: lab2 ? lab2.date : '-',
+    unit2: lab2 ? lab2.unit : '-'
   };
 });
 

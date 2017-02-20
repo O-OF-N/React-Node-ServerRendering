@@ -12,6 +12,7 @@ import * as Exceptions from '../util/exceptions'
 export const fetchMedications = function* (state) {
     const result = yield* fetchMedicationsHelper(state);
     const insulinOrders = buildInsulinOrdersResult(result);
+    console.log('insulin orders = ', insulinOrders);
     //return insulinOrders ? categorizeOrders(insulinOrders) : null;
     return insulinOrders ? yield* categorizeOrders(insulinOrders.push(...addTestMedications())) : null;
 };

@@ -12,7 +12,6 @@ import * as Exceptions from '../util/exceptions'
 export const fetchMedications = function* (state) {
     const result = yield* fetchMedicationsHelper(state);
     const insulinOrders = buildInsulinOrdersResult(result);
-    console.log('insulin orders = ', insulinOrders);
     return insulinOrders ? categorizeOrders(insulinOrders) : null;
     //return insulinOrders ? yield* categorizeOrders(insulinOrders.push(...addTestMedications())) : null;
 };
@@ -73,6 +72,7 @@ const fetchMedicationAdministration = (dosage) => (dosage && dosage instanceof A
 const categorizeOrders = function* (insulinOrders) {
     let medicationOrders = [];
     const insulinOrdersWithIngredients = yield* getIngredients(insulinOrders);
+    console.log('insulinOrdersWithIngredients=',insulinOrdersWithIngredients);
     Constants.ORDER_CATEGORIZATION.forEach((value, key) => {
         const medicationOrder = new Records.MedicationOrder({
             type: key, medications: new List(insulinOrdersWithIngredients.filter(order =>

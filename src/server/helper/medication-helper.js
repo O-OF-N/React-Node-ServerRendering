@@ -70,6 +70,7 @@ const fetchMedicationAdministration = (dosage) => (dosage && dosage instanceof A
 
 
 const categorizeOrders = function* (insulinOrders) {
+    console.log('insulin orders = ', insulinOrders);
     let medicationOrders = [];
     const insulinOrdersWithIngredients = yield* getIngredients(insulinOrders);
     console.log('insulinOrdersWithIngredients=',insulinOrdersWithIngredients);

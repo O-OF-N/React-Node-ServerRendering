@@ -19,8 +19,8 @@ const buildData = (data) => data.map((d, i) => {
 
 const buildRow = rowData => (<tr>
   <th scope="row">{rowData.code}</th>
-  <td>{rowData.quantity1}</td>
-  <td>{rowData.quantity2}</td>
+  <td title={rowData.date1}>{rowData.quantity1}</td>
+  <td title={rowData.date2}>{rowData.quantity2}</td>
 </tr>);
 
 const LabResultsHeader = () => (

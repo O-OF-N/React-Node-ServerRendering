@@ -52,13 +52,15 @@ const buildInsulinOrdersResult = (json) => {
                 medication: medication.name,
                 administration: fetchMedicationAdministration(dosageInstruction),
                 code: parseInt(medication.code),
-                comments: note ? note : null
+                comments: note ? note : ''
             }) : null;
         };
         return insulin;
     }).filter(entry => (entry) ? true : false) : null;
     return List(insulinOrder);
 };
+
+//const extractComments = comment => comment.split('\n').filter(c => c.indexOf('Order Comment: ')//>-1)
 
 const fetchMedicationFromResource = (concept) => (concept) ? {
     name: concept.text, code: concept.coding ?

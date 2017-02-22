@@ -33,6 +33,12 @@ const drawChart = (labels, data, tt) => c3.generate({
                 position: 'outer-middle'
             }
         }
+    },
+    tooltip: {
+         contents: function (d, defaultTitleFormat, defaultValueFormat, color) {
+            const content = tt[d[1].index]
+            return '<div id="tooltip">' + content + '</div>'
+          }
     }
 });
 

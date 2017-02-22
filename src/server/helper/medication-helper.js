@@ -13,7 +13,7 @@ export const fetchMedications = function* (state) {
     const result = yield* fetchMedicationsHelper(state);
     const insulinOrders = buildInsulinOrdersResult(result);
     return insulinOrders ? yield* categorizeOrders(insulinOrders) : null;
-    /*return insulinOrders ? yield* categorizeOrders(insulinOrders.push(...addTestMedications())) : null;*/
+    //return insulinOrders ? yield* categorizeOrders(insulinOrders.push(...addTestMedications())) : null;
 };
 
 //Private functions
@@ -42,7 +42,6 @@ const buildInsulinOrdersResult = (json) => {
         let status, prescriber, dateWritten, dosageInstruction, medicationReference, medicationCodeableConcept, note;
         if (entry && entry.resource) {
             const resource = entry.resource;
-            console.log(resource.note);
             ({ status, prescriber, dateWritten, dosageInstruction, medicationCodeableConcept, note } = resource);
             const medication = fetchMedicationFromResource(medicationCodeableConcept);
             insulin = (medication) ? new Records.InsulinOrder({

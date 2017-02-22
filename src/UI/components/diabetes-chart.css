@@ -14,10 +14,8 @@
 
 .div-labs-meds {
     width: 100%;
-    height: 45%;
     /*max-height: 45%;*/
     margin-top: 3%;
-    overflow-y: auto;
 }
 
 .div-ibc {

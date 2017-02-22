@@ -36,6 +36,10 @@ const drawChart = (labels, data, tt) => c3.generate({
     },
     tooltip: {
          contents: function (d, defaultTitleFormat, defaultValueFormat, color) {
+             console.log('d=',d);
+             console.log('d[0]=',d[0]);
+             console.log('d[0].index='  ,d[0].index);
+             console.log('tt[d[0].index]='  ,tt[d[0].index]);
             const content = tt[d[0].index]
             return '<div id="tooltip">' + content + '</div>'
           }

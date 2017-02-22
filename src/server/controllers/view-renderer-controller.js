@@ -61,7 +61,8 @@ const renderFullPage = (html, state) => {
     console.log('State is logged as = ', state);
     return `
     <!doctype html>
-<html style="width:100%;height: 100%;overflow-y: auto;">
+<html style="width:100%;height: 100%;overflow-y: auto;
+    min-height: 800px;">
 
 <head>
     <title>Diabetes Management</title>

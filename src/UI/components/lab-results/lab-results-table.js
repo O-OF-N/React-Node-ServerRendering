@@ -9,13 +9,15 @@ const buildData = (data) => data.map((d, i) => {
     key: i,
     code: code,
     quantity1: lab1 ? lab1.quantity : '-',
-    date1: lab1 ? lab1.date : '-',
+    date1: lab1 ? dateFormat(lab1.date) : '-',
     unit1: lab1 ? lab1.unit : '-',
     quantity2: lab2 ? lab2.quantity : '-',
-    date2: lab2 ? lab2.date : '-',
+    date2: lab2 ? dateFormat(lab2.date) : '-',
     unit2: lab2 ? lab2.unit : '-'
   };
 });
+
+const dateFormat = date => new Date(date).toLocaleString();
 
 const buildRow = rowData => (<tr>
   <th scope="row">{rowData.code}</th>

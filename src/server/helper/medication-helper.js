@@ -39,10 +39,11 @@ const fetchMedicationsHelper = function* (state) {
 const buildInsulinOrdersResult = (json) => {
     let insulinOrder = (json.data && json.data.entry) ? json.data.entry.map((entry) => {
         let insulin = null;
-        let status, prescriber, dateWritten, dosageInstruction, medicationReference, medicationCodeableConcept;
+        let status, prescriber, dateWritten, dosageInstruction, medicationReference, medicationCodeableConcept, note;
         if (entry && entry.resource) {
             const resource = entry.resource;
-            ({ status, prescriber, dateWritten, dosageInstruction, medicationCodeableConcept,note } = resource);
+            console.log(resource.note);
+            ({ status, prescriber, dateWritten, dosageInstruction, medicationCodeableConcept, note } = resource);
             const medication = fetchMedicationFromResource(medicationCodeableConcept);
             insulin = (medication) ? new Records.InsulinOrder({
                 status,
@@ -51,7 +52,7 @@ const buildInsulinOrdersResult = (json) => {
                 medication: medication.name,
                 administration: fetchMedicationAdministration(dosageInstruction),
                 code: parseInt(medication.code),
-                comments: note? note : null
+                comments: note ? note : null
             }) : null;
         };
         return insulin;
@@ -75,7 +76,7 @@ const categorizeOrders = function* (insulinOrders) {
     Constants.ORDER_CATEGORIZATION.forEach((value, key) => {
         const medicationOrder = new Records.MedicationOrder({
             type: key, medications: new List(insulinOrdersWithIngredients.filter(order =>
-                checkValueAndOrder(value,order)? checkIngredients(value.code, order.ingredients.codes).length && checkDosage(value, order):false
+                checkValueAndOrder(value, order) ? checkIngredients(value.code, order.ingredients.codes).length && checkDosage(value, order) : false
             ))
         });
         medicationOrders.push(medicationOrder);

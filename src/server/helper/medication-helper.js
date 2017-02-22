@@ -42,7 +42,7 @@ const buildInsulinOrdersResult = (json) => {
         let status, prescriber, dateWritten, dosageInstruction, medicationReference, medicationCodeableConcept;
         if (entry && entry.resource) {
             const resource = entry.resource;
-            ({ status, prescriber, dateWritten, dosageInstruction, medicationCodeableConcept } = resource);
+            ({ status, prescriber, dateWritten, dosageInstruction, medicationCodeableConcept,note } = resource);
             const medication = fetchMedicationFromResource(medicationCodeableConcept);
             insulin = (medication) ? new Records.InsulinOrder({
                 status,
@@ -51,7 +51,7 @@ const buildInsulinOrdersResult = (json) => {
                 medication: medication.name,
                 administration: fetchMedicationAdministration(dosageInstruction),
                 code: parseInt(medication.code),
-                comments: (dosageInstruction && dosageInstruction instanceof Array && dosageInstruction[0]) ? dosageInstruction[0].additionalInstructions : null
+                comments: note? note : null
             }) : null;
         };
         return insulin;

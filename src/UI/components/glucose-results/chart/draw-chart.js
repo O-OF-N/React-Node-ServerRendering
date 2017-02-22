@@ -2,8 +2,7 @@ import 'c3/c3.css';
 import 'd3';
 import * as c3 from 'c3/c3';
 
-const drawChart = (labels, data, tt) => {
-    const toolTipArray = tt.toJs();
+const drawChart = (labels, data, toolTipArray) => {
     return c3.generate({
         bindto: '#chart',
         padding: {

@@ -41,8 +41,8 @@ const drawChart = (labels, data, tt) => {
                 console.log('d=', d);
                 console.log('d[0]=', d[0]);
                 console.log('d[0].index=', d[0].index);
-                console.log('tt[d[0].index]=', toolTipArray[d[0].index]);
-                const content = toolTipArray.get(d[0].index);
+                console.log('tt[d[0].index]=', toolTipArray[0].get(d[0].index));
+                const content = toolTipArray[0].get(d[0].index);
                 return '<div id="tooltip"> Source: ' + content + ' <BR/> Value: ' + d[0].value + '</div>'
             }
         }

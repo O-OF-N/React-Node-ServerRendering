@@ -35,7 +35,7 @@ const drawChart = (labels, data, tt) => c3.generate({
         }
     },
     tooltip: {
-        contents: tooltip (d, tt)
+        contents: tooltip.bind(null, d, tt)
     }
 });
 

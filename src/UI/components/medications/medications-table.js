@@ -27,8 +27,8 @@ const MedicationBody = ({data, comments}) => (
 const MedicationsHeader = () => (
     <thead>
         <tr>
-            <th scope="col">Medication Order Details </th>
-            <th scope="col">Date </th>
+            <th scope="col" className="left">Medication Order Details </th>
+            <th scope="col" className="right">Date </th>
         </tr>
     </thead >
 );

@@ -73,3 +73,11 @@
   border: 1px solid #dedfe0;
 
 }
+
+.left{
+    text-align: left;
+}
+
+.right{
+    text-align: right;
+}

@@ -1,6 +1,8 @@
+import React from 'react';
 import 'c3/c3.css';
 import 'd3';
 import * as c3 from 'c3/c3';
+import Tooltip from './tool-tip';
 
 const drawChart = (labels, data, toolTipArray) => {
     return c3.generate({
@@ -46,7 +48,9 @@ const drawChart = (labels, data, toolTipArray) => {
                 console.log('defaultValueFormat=', defaultValueFormat(d[0].value, d[0].ratio, d[0].id, d[0].index));
                 const content = toolTipArray.get(d[0].index);
                 const bgColor = color(d[0].id);
-                return '<div id="tooltip" style="background-color:'+bgColor+'";> Source: ' + content + ' <BR/> Value: ' + d[0].value + '</div>'
+                const title = defaultTitleFormat(d[0].x);
+                const value = defaultValueFormat(d[0].value, d[0].ratio, d[0].id, d[0].index);
+                return <Tooltip color={bgColor} content={content} title={title} value={value} />
             }
         }
     })

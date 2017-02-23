@@ -63,9 +63,10 @@ const drawChart = (labels, data, toolTipArray) => {
                 console.log('color=', color(d[0].id));
                 console.log('defaultTitleFormat=', defaultTitleFormat(d[0].x));
                 console.log('defaultValueFormat=', defaultValueFormat(d[0].value, d[0].ratio, d[0].id, d[0].index));
-                const content = toolTipArray.get(d[0].index);
+                const tooltip = toolTipArray.get(d[0].index);
+                const content = tooltip.source;
                 const bgColor = color(d[0].id);
-                const title = defaultTitleFormat(d[0].x);
+                const title = tooltip.date;
                 const value = defaultValueFormat(d[0].value, d[0].ratio, d[0].id, d[0].index);
                 return ToolTip(bgColor, content, title, value)
             }

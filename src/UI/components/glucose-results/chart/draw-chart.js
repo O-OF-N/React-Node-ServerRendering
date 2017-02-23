@@ -10,12 +10,12 @@ const ToolTip = (color, content, title, value) =>
             </thead>
             <tbody style= "background-color: ${color} ">
                 <tr>
-                    <td>Source</td>
-                    <td>${content}</td>
+                    <td style= "border: 1px solid;">Source</td>
+                    <td style= "border: 1px solid;">${content}</td>
                 </tr>
                 <tr>
-                    <td>Blood Glucose</td>
-                    <td>${value}</td>
+                    <td style= "border: 1px solid;">Blood Glucose</td>
+                    <td style= "border: 1px solid;">${value}</td>
                 </tr>
             </tbody>
         </table>

@@ -67,7 +67,7 @@ const drawChart = (labels, data, toolTipArray) => {
                 const bgColor = color(d[0].id);
                 const title = defaultTitleFormat(d[0].x);
                 const value = defaultValueFormat(d[0].value, d[0].ratio, d[0].id, d[0].index);
-                return Tooltip(bgColor, content, title, value)
+                return ToolTip(bgColor, content, title, value)
             }
         }
     })

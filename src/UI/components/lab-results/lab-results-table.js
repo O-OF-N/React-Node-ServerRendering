@@ -46,7 +46,7 @@ const LabResultsBody = ({data}) => (
 const LabTable = ({data, title}) => {
   const dataBuilt = buildData(data).toJS();
   return (<table className="table-base">
-    <caption className="caption"><h5 className="header">Last 2 results in past 24 hours</h5></caption>
+    <caption className="caption"><h5 className="caption-header">Last 2 results in past 24 hours</h5></caption>
     <LabResultsHeader />
     <LabResultsBody data={dataBuilt} />
   </table>);

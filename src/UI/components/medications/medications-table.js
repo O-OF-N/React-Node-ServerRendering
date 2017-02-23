@@ -13,7 +13,7 @@ const buildRows = (data, comments) => (
 const dateFormat = date => new Date(date).toLocaleString();
 
 const MedicationsTable = ({data, title, comments}) => (<table className="table-base table-striped">
-    <caption className="caption"><h5 className="header">{title}</h5></caption>
+    <caption className="caption"><h5 className="caption-header">{title}</h5></caption>
     <MedicationsHeader />
     <MedicationBody data={data} comments={comments} />
 </table>);

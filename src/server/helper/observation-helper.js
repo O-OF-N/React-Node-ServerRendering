@@ -81,7 +81,7 @@ const buildLabResultsFromJson = (json) => {
             const resource = entry.resource;
             return buildObservationFromResource(resource);
         }
-    }).filter(entry => (entry) ? true : false) : null;
+    }).filter(entry => (entry) ? true : false).sort(compare) : null;
     return List(lab);
 };
 

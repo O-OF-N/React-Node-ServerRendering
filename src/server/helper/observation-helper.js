@@ -81,7 +81,7 @@ const buildLabResultsFromJson = (json) => {
             const resource = entry.resource;
             return buildObservationFromResource(resource);
         }
-    }).filter(entry => (entry) ? true : false).sort(sortLabs)  : null;
+    }).filter(entry => (entry) ? true : false).sort(compare)  : null;
     console.log('labs are logged as  = ', lab);
     return List(lab);
 };
@@ -98,4 +98,4 @@ const buildObservationFromResource = (resource) => new Records.Observation({
 
 const sortGlucose = (r1, r2) => (r1 && r2) ? r1.date > r2.date ? 1 : -1 : 0;
 
-const sortLabs = (r1, r2) => (r1 && r2) ? r1.resource > r2.resource ? 1 : r2.text.toLowerCase() > r1.text.toLowerCase() ? -1 : r1.date < r2.date ? 1 : -1 : 0;
+const sortLabs = (r1, r2) => (r1 && r2) ? r1.resource > r2.resource ? 1 : r2.resource > r1.resource ? -1 : r1.date < r2.date ? 1 : -1 : 0;

@@ -1,4 +1,5 @@
 import React from 'react';
+import './lab-results.css';
 
 const buildData = (data) => data.map((d, i) => {
   let lab1, lab2;
@@ -20,17 +21,17 @@ const buildData = (data) => data.map((d, i) => {
 const dateFormat = date => new Date(date).toLocaleString();
 
 const buildRow = rowData => (<tr>
-  <th scope="row">{rowData.code}</th>
-  <td title={rowData.date1} className="data-type-number">{rowData.quantity1}</td>
-  <td title={rowData.date2} className="data-type-number">{rowData.quantity2}</td>
+  <th scope="row" className="table-code">{rowData.code}</th>
+  <td title={rowData.date1} className="table-content">{rowData.quantity1}</td>
+  <td title={rowData.date2} className="table-content">{rowData.quantity2}</td>
 </tr>);
 
 const LabResultsHeader = () => (
   <thead>
     <tr>
       <th></th>
-      <th scope="col">Latest Result</th>
-      <th scope="col">Previous Result</th>
+      <th scope="col" className="table-content">Latest Result</th>
+      <th scope="col" className="table-content">Previous Result</th>
     </tr>
   </thead>
 );

@@ -1,4 +1,5 @@
 import React from 'react';
+import { render } from 'react-dom';
 import 'c3/c3.css';
 import 'd3';
 import * as c3 from 'c3/c3';
@@ -50,7 +51,7 @@ const drawChart = (labels, data, toolTipArray) => {
                 const bgColor = color(d[0].id);
                 const title = defaultTitleFormat(d[0].x);
                 const value = defaultValueFormat(d[0].value, d[0].ratio, d[0].id, d[0].index);
-                return <Tooltip color={bgColor} content={content} title={title} value={value} />
+                return render(<Tooltip color={bgColor} content={content} title={title} value={value} />)
             }
         }
     })

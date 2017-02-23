@@ -60,8 +60,6 @@ export const GLUCOSE_CODES = ["Glucose"];
 
 export const LABS_LOINIC_CODES = ["Glucose - serum/POCT", "Sodium - serum/POCT", "Potassium - serum/POCT", "Bicarbonate - serum", "Bicarbonate - arterial", "Bicarbonate - venous", "Bicarbonate - capillary", "pH - arterial", "pH - venous", "pH - capillary", "Anion gap - serum", "Glucose - urine", "Ketones - urine", "Beta-hydroxybutyrate - urine", "Ketones - serum", "Beta-hydroxybutyrate - serum", "Hemoglobin A1c"];
 
-export const LAB_RESULT_COUNT = 2;
-
 export const LAB_RESULT_DURATION_HOURS = 0; //If set to zero, no date condition will be added for lab results
 
 export const GLUCOSE_RESULT_DURATION_HOURS = 0; //If set to zero, no date condition will be added for glucose results

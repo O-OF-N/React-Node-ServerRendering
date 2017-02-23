@@ -21,16 +21,16 @@ const dateFormat = date => new Date(date).toLocaleString();
 
 const buildRow = rowData => (<tr>
   <th scope="row">{rowData.code}</th>
-  <td title={rowData.date1}>{rowData.quantity1}</td>
-  <td title={rowData.date2}>{rowData.quantity2}</td>
+  <td title={rowData.date1} className="data-type-number">{rowData.quantity1}</td>
+  <td title={rowData.date2} className="data-type-number">{rowData.quantity2}</td>
 </tr>);
 
 const LabResultsHeader = () => (
   <thead>
     <tr>
       <th></th>
-      <th scope="col" className="data-type-number">Latest Result</th>
-      <th scope="col" className="data-type-number">Previous Result</th>
+      <th scope="col">Latest Result</th>
+      <th scope="col">Previous Result</th>
     </tr>
   </thead>
 );

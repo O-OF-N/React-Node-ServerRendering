@@ -71,7 +71,7 @@ const buildGlucoseResultsFromJson = (json) => {
             const resource = entry.resource;
             return buildObservationFromResource(resource);
         }
-    }).filter(entry => (entry) ? true : false).sort(compare) : null;
+    }).filter(entry => (entry) ? true : false).sort(sortGlucose) : null;
     return List(glucose);
 };
 
@@ -81,7 +81,7 @@ const buildLabResultsFromJson = (json) => {
             const resource = entry.resource;
             return buildObservationFromResource(resource);
         }
-    }).filter(entry => (entry) ? true : false).sort(compare)  : null;
+    }).filter(entry => (entry) ? true : false).sort(sortLabs)  : null;
     console.log('labs are logged as  = ', lab);
     return List(lab);
 };
@@ -96,4 +96,6 @@ const buildObservationFromResource = (resource) => new Records.Observation({
     source: (resource.category && resource.category.coding) ? resource.category.coding.filter(code => code.system === Constants.OBSERVATION_CATEGORY_URL)[0]['code'] : null
 });
 
-const compare = (r1, r2) => (r1 && r2) ? r1.text.toLowerCase() > r2.text.toLowerCase() ? 1 : r2.text.toLowerCase() > r1.text.toLowerCase() ? -1 : r1.date > r2.date ? 1 : -1 : 0;
+const sortGlucose = (r1, r2) => (r1 && r2) ? r1.date > r2.date ? 1 : -1 : 0;
+
+const sortLabs = (r1, r2) => (r1 && r2) ? r1.resource > r2.resource ? 1 : r2.text.toLowerCase() > r1.text.toLowerCase() ? -1 : r1.date < r2.date ? 1 : -1 : 0;

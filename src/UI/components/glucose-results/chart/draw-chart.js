@@ -4,7 +4,7 @@ import * as c3 from 'c3/c3';
 
 const ToolTip = (color, content, title, value) =>
     `<div style= "color: white">
-        <table style= "border: 1px solid #dedfe0 ">
+        <table style= "border: 1px solid;">
             <thead style= "background-color: ${dedfe0}">
                 <th>${title}</th>
             </thead>

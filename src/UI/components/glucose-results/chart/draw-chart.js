@@ -4,11 +4,11 @@ import * as c3 from 'c3/c3';
 
 const ToolTip = (color, content, title, value) =>
     `<div style= "color: white">
-        <table style= "border: 1px solid;">
-            <thead style= "background-color: white">
+        <table style= "border: 1px solid;background-color: ${color} ">
+            <thead style= "background-color: #">
                 <th>${title}</th>
             </thead>
-            <tbody style= "background-color: ${color} ">
+            <tbody >
                 <tr>
                     <td style= "border: 1px solid;">Source</td>
                     <td style= "border: 1px solid;">${content}</td>

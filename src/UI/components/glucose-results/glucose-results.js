@@ -7,7 +7,7 @@ import './glucose-results.css';
 
 const timeStringForGraph = date => new Date(date).toLocaleTimeString([], { hour12: false, hour: '2-digit', minute: '2-digit' });
 
-const timeStringForTooltip = date => new Date(date).toLocaleTimeString([], { hour12: true });
+const timeStringForTooltip = date => new Date(date).toLocaleString([], { hour12: true });
 
 
 
@@ -27,7 +27,7 @@ class GlucoseResults extends React.Component {
             const data = ['Blood Glucose', ...glucose.map(g => g.quantity).toJS()];
             const labels = ['x', ...glucose.map(g => timeStringForGraph(g.date)).toJS()];
             const toolTip = glucose.map(g => {
-                return { source: g.source === 'laboratory' ? 'Laboratory' : 'POC', time: timeStringForTooltip(g.date) }
+                return { source: g.source === 'laboratory' ? 'Laboratory' : 'POC', date: timeStringForTooltip(g.date) }
             });
             return drawChart(labels, data, toolTip);
         }

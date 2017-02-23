@@ -1,7 +1,25 @@
 import 'c3/c3.css';
 import 'd3';
 import * as c3 from 'c3/c3';
-import Tooltip from './tool-tip';
+
+const ToolTip = (color, content, title, value) =>
+    `<div style= "color: white">
+        <table style= "border: 1px solid #dedfe0 ">
+            <thead style= "background-color: ${dedfe0}">
+                <th>${title}</th>
+            </thead>
+            <tbody style= "background-color: ${color} ">
+                <tr>
+                    <td>Source</td>
+                    <td>${content}</td>
+                </tr>
+                <tr>
+                    <td>Blood Glucose</td>
+                    <td>${value}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>`;
 
 const drawChart = (labels, data, toolTipArray) => {
     return c3.generate({
@@ -49,7 +67,7 @@ const drawChart = (labels, data, toolTipArray) => {
                 const bgColor = color(d[0].id);
                 const title = defaultTitleFormat(d[0].x);
                 const value = defaultValueFormat(d[0].value, d[0].ratio, d[0].id, d[0].index);
-                return Tooltip(bgColor,content,title,value)
+                return Tooltip(bgColor, content, title, value)
             }
         }
     })

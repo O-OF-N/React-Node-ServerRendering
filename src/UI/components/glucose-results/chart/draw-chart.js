@@ -6,7 +6,8 @@ const ToolTip = (color, content, title, value) =>
     `<div style= "color: white">
         <table style= "border: 1px solid;background-color: ${color};border-color:white ">
             <thead>
-                <th>${title}</th>
+                <th style= "border: 1px solid;border-right:0px">${title}</th>
+                <th style= "border: 1px solid;border-left:0px"></th>
             </thead>
             <tbody >
                 <tr>

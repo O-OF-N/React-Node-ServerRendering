@@ -27,13 +27,6 @@ module.exports = {
             }, {
                 test: /\.css?$/,
                 loader: 'style-loader!css-loader'
-            }, {
-                test: /\.(jpg|png|gif)$/,
-                loader: 'file?name=[path][name].[hash].[ext]',
-                include: PATHS.images
-            }, {
-                test: /\.(eot|svg|ttf|woff|woff2)$/,
-                loader: 'file?name=[path][name].[ext]'
             }
         ]
     },

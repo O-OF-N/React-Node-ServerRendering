@@ -4,8 +4,8 @@ import * as c3 from 'c3/c3';
 
 const ToolTip = (color, content, title, value) =>
     `<div style= "color: white">
-        <table style= "border: 1px solid;background-color: ${color} ">
-            <thead style= "background-color: #">
+        <table style= "border: 1px solid;background-color: ${color};border-color:white ">
+            <thead>
                 <th>${title}</th>
             </thead>
             <tbody >
@@ -56,13 +56,6 @@ const drawChart = (labels, data, toolTipArray) => {
         },
         tooltip: {
             contents: function (d, defaultTitleFormat, defaultValueFormat, color) {
-                console.log('d=', d);
-                console.log('d[0]=', d[0]);
-                console.log('d[0].index=', d[0].index);
-                console.log('tt[d[0].index]=', toolTipArray.get(d[0].index));
-                console.log('color=', color(d[0].id));
-                console.log('defaultTitleFormat=', defaultTitleFormat(d[0].x));
-                console.log('defaultValueFormat=', defaultValueFormat(d[0].value, d[0].ratio, d[0].id, d[0].index));
                 const tooltip = toolTipArray.get(d[0].index);
                 const content = tooltip.source;
                 const bgColor = color(d[0].id);

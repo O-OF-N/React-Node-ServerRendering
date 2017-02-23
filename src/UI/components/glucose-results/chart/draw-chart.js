@@ -45,7 +45,8 @@ const drawChart = (labels, data, toolTipArray) => {
                 console.log('defaultTitleFormat=', defaultTitleFormat(d[0].x));
                 console.log('defaultValueFormat=', defaultValueFormat(d[0].value, d[0].ratio, d[0].id, d[0].index));
                 const content = toolTipArray.get(d[0].index);
-                return '<div id="tooltip"> Source: ' + content + ' <BR/> Value: ' + d[0].value + '</div>'
+                const color = color(d[0].id);
+                return '<div id="tooltip" style="background-color:'+color+'";> Source: ' + content + ' <BR/> Value: ' + d[0].value + '</div>'
             }
         }
     })

@@ -5,7 +5,7 @@ const buildRows = (data, comments) => (
     <tr>
         <td className="order-details"><span className="medication">{data.ingredients.name}</span>
             <span className="text">{data.dosage}</span>
-            {comments ? <span className="text"><br />{extractComments(data.comments)}</span> : null}</td>
+            {comments ? <span className="text"><br /><p dataTruncateLimit="10">{extractComments(data.comments)}</p></span> : null}</td>
         <td className="date data-type-date">{dateFormat(data.date)}</td>
     </tr>
 );

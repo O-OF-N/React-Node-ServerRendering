@@ -6833,6 +6833,7 @@ button.mfp-close {
   text-align: center;
   text-decoration: none;
   top: 0;
+  margin-left: 95%;
 }
 [dir=ltr] .mfp-close {
   right: 0;

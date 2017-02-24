@@ -1,13 +1,13 @@
 import React from 'react';
-import './IBC.css';
+import './sliding-scale.css';
 import * as Constants from '../../utils/constants';
 
 
 
 const ibcHeader = ({toggle}) => (
-      <div className = "Main-Div1" >
+      <div className = "main-div1" >
             <button className="close-button" type="button" onClick = {toggle}>Close</button>
-            <a className="Disclaimer-Button" role="button" href="#modal-disclaimer" data-toggle="modal-inline">*Disclaimer</a>
+            <a className="disclaimer-button" role="button" href="#modal-disclaimer" data-toggle="modal-inline">*Disclaimer</a>
             <aside id="modal-disclaimer" role="dialog" className="modal modal-inline" data-modal-width="50%">
               <header>
                 <h2>Disclaimer</h2>
@@ -19,7 +19,7 @@ const ibcHeader = ({toggle}) => (
                 </p>
               </div>
             </aside>
-            <h2 className="Insulin-Heading">Insulin Bolus Calculator </h2>
+            <h2 className="insulin-heading">Insulin Bolus Calculator </h2>
       </div>
 	);
 

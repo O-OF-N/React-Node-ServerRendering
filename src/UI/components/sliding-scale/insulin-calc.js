@@ -1,5 +1,5 @@
 import React from 'react';
-import './IBC.css';
+import './sliding-scale.css';
 import * as Constants from '../../utils/constants';
 
 const values = {glucoseValue:{value:0},insulinValue:{value:0},targetValue:{value:0}};
@@ -42,49 +42,50 @@ const insulin = ({updateGluState, insulin}) => {
 	
 	return (
 	 <div>
-	      <div className = "Main-Div3" >
+	      <div className = "main-div3" >
 	          <a className="formula-button" role="button" href="#modal-ISF-formula" data-toggle="modal-inline">Formula</a>
 	            <aside id="modal-ISF-formula" role="dialog" className="modal modal-inline" data-modal-width="50%">
 	              <header>
 	                <h2>Blood Glucose Coverage Formula</h2>
 	              </header>
 	              <div className="modal-body">
-	                  <p>{Constants.GLU}</p>
-	                  <p>{Constants.TAR}</p>
-	                  <p>{Constants.COR}</p>
-	                  <p>{Constants.GCD}</p>
-	                  <p>{Constants.GCDForm1}</p>
-	                  <p>{Constants.GCDForm2}</p>
+	              	  <p className = "formula-font">{Constants.GCDForm1}</p>
+	                  <p className = "formula-font">{Constants.GCDForm2}</p><br></br>
+	                  <p className = "legend-font">{Constants.GLU}</p>
+	                  <p className = "legend-font">{Constants.TAR}</p>
+	                  <p className = "legend-font"> {Constants.COR}</p>
+	                  <p className = "legend-font">{Constants.GCD}</p>
+
 	              </div>
 	            </aside>
 	          <h4 className="heading-text">Blood Glucose Coverage</h4>
 	      </div>
 	      
 	      <div>
-	          <div className = "Carb-Coverage">
+	          <div className = "carb-coverage">
 	              <div className = "small-top-text">
 	                <p>
-	                  Insulin Sensitivity Factor: 1 unit lowers blood glucose by <input className="TextField-Property" type="number" placeholder="mg/dl" required={true} onChange={onChangeMutate.bind(null,values.glucoseValue)}/> mg/dl
+	                  Insulin Sensitivity Factor: 1 unit lowers blood glucose by <input className="textfield-property" type="number" placeholder="mg/dl" required={true} onChange={onChangeMutate.bind(null,values.glucoseValue)}/> mg/dl
 	                </p>
 	              </div>
 
 	              <div className = "small-top-text">
 	                <p>
-	                  Current Blood Glucose: <input className="TextField-Property" type="number" placeholder="mg/dl" required={true} onChange={onChangeMutate.bind(null,values.insulinValue)}/> mg/dl
+	                  Current Blood Glucose: <input className="textfield-property" type="number" placeholder="mg/dl" required={true} onChange={onChangeMutate.bind(null,values.insulinValue)}/> mg/dl
 	                </p>
 	              </div>
 
 	              <div className = "small-bottom-text">
 	                <p>
-	                  Target Blood Glucose: <input className="TextField-Property" type="number" placeholder="mg/dl" required={true} onChange={onChangeMutate.bind(null,values.targetValue)}/> mg/dl
+	                  Target Blood Glucose: <input className="textfield-property" type="number" placeholder="mg/dl" required={true} onChange={onChangeMutate.bind(null,values.targetValue)}/> mg/dl
 	                </p>
 	              </div>
 	          </div>
 
 	          <div className = "calc-div">
 	              <p>
-	              {insulin.gluValidation?<label id = "insulinLabel" className="Calculate-Label">Blood Glucose Dose = {insulin.glucoseVal} unit(s)</label>  : <label id = "insulinLabel" className="Calculate-Label">{calcError}</label> }           
-	                <button className="Calculate-Button" onClick={validation.bind(null,values,updateGluState)}>   Calculate</button>
+	              {insulin.gluValidation?<label id = "insulinLabel" className="calculate-label">Blood Glucose Dose = {insulin.glucoseVal} unit(s)</label>  : <label id = "insulinLabel" className="calculate-label">{calcError}</label> }           
+	                <button className="calculate-button" onClick={validation.bind(null,values,updateGluState)}>   Calculate</button>
 	              </p>
 	          </div>
 	      </div>

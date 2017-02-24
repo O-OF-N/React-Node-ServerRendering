@@ -15,10 +15,10 @@ export const buildObeservationURL = (patient, lonicCodes, url, dates) => {
     let urlConstructed = '';
     if (dates != null && dates instanceof Array && dates.length == 2) {
         const dateRange = ''.concat('date=gt').concat(dates[0]).concat('&date=lt').concat(dates[1]);
-        urlConstructed = `${url}/${Constants.OBSERVATIONS}?patient=${4638007}&code=${codes}&${dateRange}`;
+        urlConstructed = `${url}/${Constants.OBSERVATIONS}?patient=${patient}&code=${codes}&${dateRange}`;
     } else
-        urlConstructed = `${url}/${Constants.OBSERVATIONS}?patient=${4638007}&code=${codes}`;
+        urlConstructed = `${url}/${Constants.OBSERVATIONS}?patient=${patient}&code=${codes}`;
     return urlConstructed;
 };
 
-export const buildMedicationURL = (patient, url) => `${url}/${Constants.MEDICATION_ORDER}?patient=${4638007}&status=active`;
+export const buildMedicationURL = (patient, url) => `${url}/${Constants.MEDICATION_ORDER}?patient=${patient}&status=active`;

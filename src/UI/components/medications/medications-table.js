@@ -5,10 +5,17 @@ const buildRows = (data, comments) => (
     <tr>
         <td className="order-details"><span className="medication">{data.ingredients.name}</span>
             <span className="text">{data.dosage}</span>
-            {comments ? <span className="text"><br />{'Comments: '.concat(data.comments)}</span> : null}</td>
+            {comments ? <span className="text"><br />{extractComments(data.comments)}</span> : null}</td>
         <td className="date data-type-date">{dateFormat(data.date)}</td>
     </tr>
 );
+
+const extractComments = comment => {
+    if (!comment.length) return "";
+    const commentArray = comment.split('\n');
+    const orderComment = commentArray.length > 0 ? commentArray.filter(c => c.indexOf('Order Comment:') > -1) : [];
+    return orderComment.length > 0 ? orderComment[0] : "";
+};
 
 const dateFormat = date => new Date(date).toLocaleString();
 

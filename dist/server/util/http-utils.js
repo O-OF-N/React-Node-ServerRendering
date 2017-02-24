@@ -36,12 +36,12 @@ var buildObeservationURL = exports.buildObeservationURL = function buildObeserva
     var urlConstructed = '';
     if (dates != null && dates instanceof Array && dates.length == 2) {
         var dateRange = ''.concat('date=gt').concat(dates[0]).concat('&date=lt').concat(dates[1]);
-        urlConstructed = url + '/' + Constants.OBSERVATIONS + '?patient=' + 4638007 + '&code=' + codes + '&' + dateRange;
-    } else urlConstructed = url + '/' + Constants.OBSERVATIONS + '?patient=' + 4638007 + '&code=' + codes;
+        urlConstructed = url + '/' + Constants.OBSERVATIONS + '?patient=' + patient + '&code=' + codes + '&' + dateRange;
+    } else urlConstructed = url + '/' + Constants.OBSERVATIONS + '?patient=' + patient + '&code=' + codes;
     return urlConstructed;
 };
 
 var buildMedicationURL = exports.buildMedicationURL = function buildMedicationURL(patient, url) {
-    return url + '/' + Constants.MEDICATION_ORDER + '?patient=' + 4638007 + '&status=active';
+    return url + '/' + Constants.MEDICATION_ORDER + '?patient=' + patient + '&status=active';
 };
 //# sourceMappingURL=http-utils.js.map

@@ -14,6 +14,10 @@ var _co = require('co');
 
 var _co2 = _interopRequireDefault(_co);
 
+var _mongoSanitize = require('mongo-sanitize');
+
+var _mongoSanitize2 = _interopRequireDefault(_mongoSanitize);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var Schema = _mongoose2.default.Schema;
@@ -51,14 +55,15 @@ var findByStateHelper = regeneratorRuntime.mark(function findByStateHelper(state
         while (1) {
             switch (_context.prev = _context.next) {
                 case 0:
-                    _context.next = 2;
+                    state = (0, _mongoSanitize2.default)(state);
+                    _context.next = 3;
                     return UserAuthenticationModel.find({ state: state });
 
-                case 2:
+                case 3:
                     userAuth = _context.sent;
                     return _context.abrupt('return', userAuth);
 
-                case 4:
+                case 5:
                 case 'end':
                     return _context.stop();
             }
@@ -94,14 +99,15 @@ var updateHelper = regeneratorRuntime.mark(function updateHelper(_id, $set) {
         while (1) {
             switch (_context3.prev = _context3.next) {
                 case 0:
-                    _context3.next = 2;
+                    _id = (0, _mongoSanitize2.default)(_id);
+                    _context3.next = 3;
                     return UserAuthenticationModel.findByIdAndUpdate({ _id: _id }, { $set: $set });
 
-                case 2:
+                case 3:
                     userAuth = _context3.sent;
                     return _context3.abrupt('return', userAuth);
 
-                case 4:
+                case 5:
                 case 'end':
                     return _context3.stop();
             }

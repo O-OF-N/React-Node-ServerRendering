@@ -46,8 +46,6 @@ var GLUCOSE_CODES = exports.GLUCOSE_CODES = ["Glucose"];
 
 var LABS_LOINIC_CODES = exports.LABS_LOINIC_CODES = ["Glucose - serum/POCT", "Sodium - serum/POCT", "Potassium - serum/POCT", "Bicarbonate - serum", "Bicarbonate - arterial", "Bicarbonate - venous", "Bicarbonate - capillary", "pH - arterial", "pH - venous", "pH - capillary", "Anion gap - serum", "Glucose - urine", "Ketones - urine", "Beta-hydroxybutyrate - urine", "Ketones - serum", "Beta-hydroxybutyrate - serum", "Hemoglobin A1c"];
 
-var LAB_RESULT_COUNT = exports.LAB_RESULT_COUNT = 2;
-
 var LAB_RESULT_DURATION_HOURS = exports.LAB_RESULT_DURATION_HOURS = 0; //If set to zero, no date condition will be added for lab results
 
 var GLUCOSE_RESULT_DURATION_HOURS = exports.GLUCOSE_RESULT_DURATION_HOURS = 0; //If set to zero, no date condition will be added for glucose results

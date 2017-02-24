@@ -40,7 +40,12 @@ var Component = function (_React$Component) {
                     _react2.default.createElement(
                         'div',
                         { className: 'loading loading-large', style: {
-                                display: 'block', margin: 'auto auto', position: 'fixed', zIndex: '100', opacity: '0.4', backgroundRepeat: 'no-repeat',
+                                display: 'block',
+                                margin: 'auto auto',
+                                position: 'fixed',
+                                zIndex: '100',
+                                opacity: '0.4',
+                                backgroundRepeat: 'no-repeat',
                                 backgroundPosition: 'center',
                                 width: '100%',
                                 height: '100%'

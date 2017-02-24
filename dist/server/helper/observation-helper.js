@@ -179,9 +179,9 @@ var groupLabs = function groupLabs(loincCodes, results) {
 var buildResultLoincMap = function buildResultLoincMap(lc, code, results) {
     return new Records.LabResult({ code: lc, observation: results.filter(function (r) {
             return code.includes(r.resource);
-        }).sort(function (r) {
-            return r.date;
-        }).slice(0, Constants.LAB_RESULT_COUNT) });
+        }).sort(function (r, r1) {
+            return r.date < r1.date;
+        }) });
 };
 
 var getDateRange = function getDateRange(date, duration) {
@@ -202,7 +202,7 @@ var buildGlucoseResultsFromJson = function buildGlucoseResultsFromJson(json) {
         }
     }).filter(function (entry) {
         return entry ? true : false;
-    }).sort(compare) : null;
+    }).sort(sortGlucose) : null;
     return (0, _immutable.List)(glucose);
 };
 
@@ -214,7 +214,7 @@ var buildLabResultsFromJson = function buildLabResultsFromJson(json) {
         }
     }).filter(function (entry) {
         return entry ? true : false;
-    }) : null;
+    }).sort(sortLabs) : null;
     return (0, _immutable.List)(lab);
 };
 
@@ -234,7 +234,11 @@ var buildObservationFromResource = function buildObservationFromResource(resourc
     });
 };
 
-var compare = function compare(r1, r2) {
-    return r1 && r2 ? r1.text.toLowerCase() > r2.text.toLowerCase() ? 1 : r2.text.toLowerCase() > r1.text.toLowerCase() ? -1 : r1.date > r2.date ? 1 : -1 : 0;
+var sortGlucose = function sortGlucose(r1, r2) {
+    return r1 && r2 ? r1.date > r2.date ? 1 : -1 : 0;
+};
+
+var sortLabs = function sortLabs(r1, r2) {
+    return r1 && r2 ? r1.resource > r2.resource ? 1 : r2.resource > r1.resource ? -1 : r1.date < r2.date ? 1 : -1 : 0;
 };
 //# sourceMappingURL=observation-helper.js.map

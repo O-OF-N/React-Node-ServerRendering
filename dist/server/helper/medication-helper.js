@@ -51,14 +51,13 @@ var fetchMedications = exports.fetchMedications = regeneratorRuntime.mark(functi
                 case 1:
                     result = _context.t0;
                     insulinOrders = buildInsulinOrdersResult(result);
-                    //return insulinOrders ? categorizeOrders(insulinOrders) : null;
 
                     if (!insulinOrders) {
                         _context.next = 8;
                         break;
                     }
 
-                    return _context.delegateYield(categorizeOrders(insulinOrders.push.apply(insulinOrders, _toConsumableArray(addTestMedications()))), 't2', 5);
+                    return _context.delegateYield(categorizeOrders(insulinOrders), 't2', 5);
 
                 case 5:
                     _context.t1 = _context.t2;
@@ -170,7 +169,8 @@ var buildInsulinOrdersResult = function buildInsulinOrdersResult(json) {
             dateWritten = void 0,
             dosageInstruction = void 0,
             medicationReference = void 0,
-            medicationCodeableConcept = void 0;
+            medicationCodeableConcept = void 0,
+            note = void 0;
         if (entry && entry.resource) {
             var resource = entry.resource;
             status = resource.status;
@@ -178,6 +178,7 @@ var buildInsulinOrdersResult = function buildInsulinOrdersResult(json) {
             dateWritten = resource.dateWritten;
             dosageInstruction = resource.dosageInstruction;
             medicationCodeableConcept = resource.medicationCodeableConcept;
+            note = resource.note;
 
             var medication = fetchMedicationFromResource(medicationCodeableConcept);
             insulin = medication ? new Records.InsulinOrder({
@@ -187,7 +188,7 @@ var buildInsulinOrdersResult = function buildInsulinOrdersResult(json) {
                 medication: medication.name,
                 administration: fetchMedicationAdministration(dosageInstruction),
                 code: parseInt(medication.code),
-                comments: dosageInstruction && dosageInstruction instanceof Array && dosageInstruction[0] ? dosageInstruction[0].additionalInstructions : null
+                comments: note ? note : ''
             }) : null;
         };
         return insulin;
@@ -196,6 +197,8 @@ var buildInsulinOrdersResult = function buildInsulinOrdersResult(json) {
     }) : null;
     return (0, _immutable.List)(insulinOrder);
 };
+
+//const extractComments = comment => comment.split('\n').filter(c => c.indexOf('Order Comment: ')//>-1)
 
 var fetchMedicationFromResource = function fetchMedicationFromResource(concept) {
     return concept ? {
@@ -224,7 +227,7 @@ var categorizeOrders = regeneratorRuntime.mark(function categorizeOrders(insulin
                     Constants.ORDER_CATEGORIZATION.forEach(function (value, key) {
                         var medicationOrder = new Records.MedicationOrder({
                             type: key, medications: new _immutable.List(insulinOrdersWithIngredients.filter(function (order) {
-                                return checkIngredients(value.code, order.ingredients.codes).length && checkDosage(value, order);
+                                return checkValueAndOrder(value, order) ? checkIngredients(value.code, order.ingredients.codes).length && checkDosage(value, order) : false;
                             }))
                         });
                         medicationOrders.push(medicationOrder);
@@ -238,6 +241,10 @@ var categorizeOrders = regeneratorRuntime.mark(function categorizeOrders(insulin
         }
     }, categorizeOrders, this);
 });
+
+var checkValueAndOrder = function checkValueAndOrder(value, order) {
+    return value && order && value.code && order.administration && order.ingredients && order.ingredients.codes ? true : false;
+};
 
 var checkIngredients = function checkIngredients(valueCodes, orderCodes) {
     return valueCodes.filter(function (valueCode) {
@@ -352,7 +359,7 @@ var addTestMedications = function addTestMedications() {
     var bolus2 = new Records.InsulinOrder({
         status: 'active',
         date: new Date(),
-        dosage: '10 unit(s), Subcutaneous, BID',
+        dosage: '11 unit(s), Subcutaneous, BID',
         medication: 'Insulin, Aspart, Human 100 UNT/ML [NovoLOG]',
         administration: Constants.SUBCUTANEOUS_TEXT,
         code: 575679,
@@ -361,7 +368,7 @@ var addTestMedications = function addTestMedications() {
     var bolus3 = new Records.InsulinOrder({
         status: 'active',
         date: new Date(),
-        dosage: '10 unit(s), Subcutaneous, BID',
+        dosage: '12 unit(s), Subcutaneous, BID',
         medication: 'HumaLOG Mix 75/25',
         administration: Constants.SUBCUTANEOUS_TEXT,
         code: 259111,

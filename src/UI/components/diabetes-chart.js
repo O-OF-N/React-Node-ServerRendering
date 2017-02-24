@@ -2,7 +2,7 @@ import React from 'react';
 import GlucoseResults from './glucose-results/glucose-results';
 import LabResults from './lab-results/lab-results';
 import Medications from './medications/medications';
-import IBC from './sliding-scale/IBC';
+import IBC from './sliding-scale/sliding-scale';
 import { connect } from 'react-redux';
 import * as Constants from '../utils/constants';
 import Header from './header/header';

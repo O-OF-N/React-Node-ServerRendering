@@ -22,8 +22,8 @@ const dateFormat = date => new Date(date).toLocaleString();
 
 const buildRow = rowData => (<tr>
   <th scope="row" className="table-code">{rowData.code}</th>
-  <td title={rowData.date1} className="table-content">{rowData.quantity1?rowData.quantity1:'-'}</td>
-  <td title={rowData.date2} className="table-content">{rowData.quantity2?rowData.quantity2:'-'}</td>
+  <td title={rowData.date1} className="table-content">{rowData.quantity1?rowData.quantity1:'--'}</td>
+  <td title={rowData.date2} className="table-content">{rowData.quantity2?rowData.quantity2:'--'}</td>
 </tr>);
 
 const LabResultsHeader = () => (

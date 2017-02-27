@@ -7,7 +7,7 @@ import './lab-results.css';
 
 const LabResults = ({labObject}) => (
     <div className="div-lab">
-        <h3 className="header">Diabetes Lab Results</h3>
+        <h3 className="header">Current Diabetes Lab Results</h3>
         {
             labObject.fetching ? <Loading /> :
                 labObject.error ? <Error /> :

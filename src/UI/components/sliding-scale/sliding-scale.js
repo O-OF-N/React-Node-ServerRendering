@@ -11,7 +11,7 @@ import Bolus from './bolus-calc.js'
 class popup extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {carb: {carbValue: -1 , carbValidation: 0}, insulin:{glucoseVal: -1, gluValidation:false, error: 'Blood Glucose Dose =  - unit(s)'}, bolus:{totalBolus: -1, bolusValidation: false, error: 'Total Bolus Dose =  - unit(s)'}};
+    this.state = {carb: {carbValue: '--' , carbValidation: true}, insulin:{glucoseVal: '--', gluValidation:true}, bolus:{totalBolus: '--', bolusValidation: true}};
   }
 
   updateCarbState(carb){
@@ -27,6 +27,7 @@ class popup extends React.Component {
   }
 
   render() {
+    console.log("In return Method =-------------------")
     return (
       <div>
           <div><SlidingScaleHeader toggle = {this.props.toggle} /></div>
@@ -34,7 +35,6 @@ class popup extends React.Component {
           <div><Insulin updateGluState = {this.updateGluState.bind(this)} insulin = {this.state.insulin} /></div>
           <div><Bolus updateBolusState = {this.updateBolusState.bind(this)} bolus = {this.state.bolus} carbVal = {this.state.carb.carbValue} gluVal = {this.state.insulin.glucoseVal} /></div>
       </div>
-      
     );
   }
 }

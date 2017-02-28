@@ -6,6 +6,7 @@ import * as Constants from '../../utils/constants';
 
 const ibcHeader = ({toggle}) => (
       <div className = "main-div1" >
+            <button className="close-icon icon-dismiss" type="button" onClick = {toggle}></button>
             <button className="close-button" type="button" onClick = {toggle}>Close</button>
             <a className="disclaimer-button" role="button" href="#modal-disclaimer" data-toggle="modal-inline">*Disclaimer</a>
             <aside id="modal-disclaimer" role="dialog" className="modal modal-inline" data-modal-width="50%">

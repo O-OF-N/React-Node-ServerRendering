@@ -3,9 +3,10 @@ import './sliding-scale.css';
 import * as Constants from '../../utils/constants';
 
 const values = {glucoseValue:{value:0},insulinValue:{value:0},targetValue:{value:0}};
-var calcError = Constants.InsulinLabel
+var calcError = ''
 
 function validation(values,insulin, event) {
+	calculator1.className = 'calc-div-onChange';
 	if(values.glucoseValue.value > 0 && values.targetValue.value > 0 && values.insulinValue.value > 0){
 		if(values.glucoseValue.value > values.targetValue.value){
 			glucoseCalculator(values,insulin)
@@ -35,7 +36,10 @@ function glucoseCalculator(values,insulin){
     COR = (values.glucoseValue.value - values.targetValue.value) / values.insulinValue.value
     GCD = COR * 1
     GCD = Math.floor(GCD * 2) / 2
-    insulin({glucoseVal: GCD, gluValidation: true, error: ''});
+    insulin({glucoseVal: GCD, gluValidation: true});
+    values.glucoseValue.value = null;
+    values.targetValue.value = null;
+    values.insulinValue.value = null;
 }
 
 const insulin = ({updateGluState, insulin}) => {
@@ -65,26 +69,26 @@ const insulin = ({updateGluState, insulin}) => {
 	          <div className = "carb-coverage">
 	              <div className = "small-top-text">
 	                <p>
-	                  Insulin Sensitivity Factor: 1 unit lowers blood glucose by <input className="textfield-property" type="number" placeholder="mg/dl" required={true} onChange={onChangeMutate.bind(null,values.glucoseValue)}/> mg/dl
+	                 <b> Insulin Sensitivity Factor: 1 unit lowers blood glucose by <input className="textfield-property" type="number" placeholder="mg/dl" required={true} onChange={onChangeMutate.bind(null,values.glucoseValue)}/></b> mg/dl
 	                </p>
 	              </div>
 
 	              <div className = "small-top-text">
 	                <p>
-	                  Current Blood Glucose: <input className="textfield-property" type="number" placeholder="mg/dl" required={true} onChange={onChangeMutate.bind(null,values.insulinValue)}/> mg/dl
+	                  <b>Current Blood Glucose <input className="textfield-property" type="number" placeholder="mg/dl" required={true} onChange={onChangeMutate.bind(null,values.insulinValue)}/></b> mg/dl
 	                </p>
 	              </div>
 
 	              <div className = "small-bottom-text">
 	                <p>
-	                  Target Blood Glucose: <input className="textfield-property" type="number" placeholder="mg/dl" required={true} onChange={onChangeMutate.bind(null,values.targetValue)}/> mg/dl
+	                  <b>Target Blood Glucose <input className="textfield-property" type="number" placeholder="mg/dl" required={true} onChange={onChangeMutate.bind(null,values.targetValue)}/></b> mg/dl
 	                </p>
 	              </div>
 	          </div>
 
-	          <div className = "calc-div">
+	          <div id = "calculator1" className = "calc-div">
 	              <p>
-	              {insulin.gluValidation?<label id = "insulinLabel" className="calculate-label">Blood Glucose Dose = {insulin.glucoseVal} unit(s)</label>  : <label id = "insulinLabel" className="calculate-label">{calcError}</label> }           
+	              {insulin.gluValidation?<label id = "insulinLabel" className="calculate-label">Glucose Correction Dose = <b>{insulin.glucoseVal} unit(s)</b></label>  : <label id = "insulinLabel" className="calculate-label">{calcError}</label> }           
 	                <button className="calculate-button" onClick={validation.bind(null,values,updateGluState)}>   Calculate</button>
 	              </p>
 	          </div>

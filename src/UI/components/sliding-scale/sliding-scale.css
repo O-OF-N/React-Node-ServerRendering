@@ -11,7 +11,7 @@
 
 .disclaimer-button {
   float: right;
-  margin-right: 30%;
+  margin-right: 28%;
   font-family: Helvetica;
   font-size: 13px;
   margin-top: 1%;
@@ -43,29 +43,29 @@
 	margin-top: 2%;
 	margin-bottom: 1%;
 	margin-left: 2%;
-    margin-right: 2%;
+  margin-right: 2%;
 }
 
 .close-button {
   float: right;
-  margin-right: 2%;
+  margin-right: -1%;
   font-family: Helvetica;
-    font-size: 13px;
-    margin-top: 1%;
-    color: #0063d6;
-    border: none;
-    background: none;
+  font-size: 13px;
+  margin-top: 1%;
+  color: grey;
+  border: none;
+  background: none;
 }
 
 .formula-button {
 	float: right;
 	margin-right: 2%;
 	font-family: Helvetica;
-  	font-size: 13px;
-  	margin-top: 2%;
-  	color: #0063d6;
-  	border: none;
-  	background: none;
+  font-size: 13px;
+  margin-top: 2%;
+	color: #0063d6;
+  border: none;
+	background: none;
 }
 
 .heading-text {
@@ -94,7 +94,6 @@
 .small-top-text {
   font-family: Helvetica;
   font-size: 13px;
-  font-weight: bold;
   font-style: normal;
   font-stretch: normal;
   line-height: normal;
@@ -116,7 +115,6 @@
 .small-bottom-text {
   font-family: Helvetica;
   font-size: 13px;
-  font-weight: bold;
   font-style: normal;
   font-stretch: normal;
   line-height: normal;
@@ -131,6 +129,15 @@
 }
 
 .calc-div {
+  width: 96%;
+  height: 10%;
+  background-color: #ffffff;
+  border: solid 1px #dedfe0;
+  float: right;
+  margin-right: 2%;
+}
+
+.calc-div-onChange {
   width: 96%;
   height: 10%;
   background-color: #f0f9fe;
@@ -150,9 +157,9 @@
     text-align: center;
     color: #000000;
     margin-top: 1%;
-    width: 70%%;
+    width: 75%;
     float: left;
-    margin-left: 2%;
+  
 }
 
 .calculate-button  {
@@ -187,6 +194,17 @@
 	margin-left: 2%;
     margin-right: 2%;
 }
+
+.close-icon {
+    float: right;
+    margin-top: 0.5%;
+    margin-right: 1%;
+    font-family: Helvetica;
+    font-size: 18px;
+    border: none;
+    background: none;
+}
+
 
 
 

@@ -4,9 +4,10 @@ import * as Constants from '../../utils/constants';
 
 const values = {carbFactor:{value:0},carbCount:{value:0}};
 
-var calcLabel = Constants.CarbLabel
+var calcLabel = ''
 
 function validation(values,carbs,event) {
+   calculator.className = "calc-div-onChange";
   	if(values.carbFactor.value > 0 && values.carbCount.value > 0) {
   		carbCalculator(values,carbs)
   	} else {
@@ -26,6 +27,8 @@ function carbCalculator(values,carbs){
       ICR = 1/(values.carbFactor.value);
       carbValue = Math.round(values.carbCount.value * ICR * 2) / 2;
       carbs({carbValue: carbValue, carbValidation: 1});
+      values.carbFactor.value = null;
+      values.carbCount.value = null;
 }
 
 const carbCoverage = ({updateCarbState, carbVal}) => {
@@ -52,22 +55,23 @@ const carbCoverage = ({updateCarbState, carbVal}) => {
             <div className = "carb-coverage">
                 <div className = "small-top-text">
                     <p>
-                      Insulin-to-Carbohydrate Ratio: 1 unit covers: <input className="textfield-property" type="number" placeholder="grams" required={true} onChange={onChangeMutate.bind(null,values.carbFactor)}/> grams
+                     <b> Insulin-to-Carbohydrate Ratio: 1 unit covers <input className="textfield-property" type="number" placeholder="grams" required={true} onChange={onChangeMutate.bind(null,values.carbFactor)}/> </b> grams
                     </p>
                 </div>
 
                 <div className = "small-bottom-text">
                         <p>
-                          Current Carb Count: 
-                          <input className="textfield-property" id="text-field-col" type="number" placeholder="grams" required={true}  onChange={onChangeMutate.bind(null,values.carbCount)}/> grams
+                          <b>Current Carb Count 
+                          <input className="textfield-property" id="text-field-col" type="number" placeholder="grams" required={true}  onChange={onChangeMutate.bind(null,values.carbCount)}/></b> grams
                         </p> 
                 </div>
             </div>
 
-                <div className = "calc-div">
+                <div id = "calculator" className = "calc-div">
                   <p>
-                  	{carbVal.carbValidation?<label className="calculate-label">Carb Coverage Dose = {carbVal.carbValue} unit(s)</label> : <label className="calculate-label">{calcLabel}</label>}
-                   
+
+                  	{carbVal.carbValidation?<label className="calculate-label">Carb Coverage Dose = <b>{carbVal.carbValue} unit(s)</b></label> : <label className="calculate-label">{calcLabel}</label>}
+                    
                     <button className="calculate-button" onClick={validation.bind(null,values,updateCarbState)}>   Calculate</button>
                   </p>
                 </div>
